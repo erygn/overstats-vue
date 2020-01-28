@@ -2,7 +2,7 @@
       <div class="container">
         <div class="row">
           <div class="col">
-            <h1>Statistiques <router-link to="/add" style="text-decoration: none"><v-icon style="background-color: #454545; border-radius: 20px; padding: 5px; border: 1px solid #888888;">mdi-plus</v-icon></router-link></h1>
+            <h1>Statistiques <router-link to="/add" style="text-decoration: none"><v-btn fab x-small depressed><v-icon>mdi-plus</v-icon></v-btn></router-link></h1>
             <p>de votre compte</p>
           </div>
         </div>
@@ -57,7 +57,91 @@
           </div>
         </div>
 
-
+        <v-btn
+                bottom
+                fab
+                fixed
+                right
+                @click="dialog = !dialog"
+        >
+          <v-dialog
+                  v-model="dialog"
+                  width="800px"
+          >
+            <v-card>
+              <v-card-title>
+                Ajouter une équipe
+              </v-card-title>
+              <v-container>
+                <v-row class="mx-2">
+                  <v-col cols="12">
+                    <span class="font-weight-light overline">Entrer le nom de l'équipe puis les joueurs</span>
+                    <v-text-field
+                            prepend-icon="fas fa-users"
+                            placeholder="Nom de l'équipe"
+                            v-model="teamName"
+                    />
+                  </v-col>
+                  <v-col cols="6">
+                    <v-text-field
+                            prepend-icon="mdi-account"
+                            placeholder="Player"
+                            v-model="playerOne"
+                    />
+                  </v-col>
+                  <v-col cols="6">
+                    <v-text-field
+                            prepend-icon="mdi-account"
+                            placeholder="Player"
+                            v-model="playerTwo"
+                    />
+                  </v-col>
+                  <v-col cols="6">
+                    <v-text-field
+                            prepend-icon="mdi-account"
+                            placeholder="Player"
+                            v-model="playerThree"
+                    />
+                  </v-col>
+                  <v-col cols="6">
+                    <v-text-field
+                            prepend-icon="mdi-account"
+                            placeholder="Player"
+                            v-model="playerFour"
+                    />
+                  </v-col>
+                  <v-col cols="6">
+                    <v-text-field
+                            prepend-icon="mdi-account"
+                            placeholder="Player"
+                            v-model="playerFive"
+                    />
+                  </v-col>
+                  <v-col cols="6">
+                    <v-text-field
+                            prepend-icon="mdi-account"
+                            placeholder="Player"
+                            v-model="playerSix"
+                    />
+                  </v-col>
+                </v-row>
+              </v-container>
+              <v-card-actions>
+                <v-spacer />
+                <v-btn
+                        text
+                        color="primary"
+                        @click="dialog = false"
+                >Cancel</v-btn>
+                <v-btn
+                        text
+                        @click="submit"
+                >Save</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-dialog>
+          <v-icon>mdi-plus</v-icon>
+        </v-btn>
 
       </div>
 </template>
@@ -66,10 +150,34 @@
 // @ is an alias to /src
 // import HelloWorld from '@/components/HelloWorld.vue'
 
+import db from "@/fb";
+
 export default {
   name: 'home',
+  methods: {
+    submit: function () {
+      const team = {
+        teamName: this.teamName,
+        playerOne: this.playerOne,
+        playerTwo: this.playerTwo,
+      }
+      db.collection('teams').add(team).then(() => {
+        this.dialog = false
+      })
+    }
+  },
   data() {
     return {
+      teamName: null,
+      playerOne: null,
+      playerTwo: null,
+      playerThree: null,
+      playerFour: null,
+      playerFive: null,
+      playerSix: null,
+
+      dialog: null,
+
       chartData: {
         '2017': 24,
         '2018': 12,

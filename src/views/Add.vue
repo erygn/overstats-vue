@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <h1><router-link to="/" style="text-decoration: none"><v-icon style="padding-bottom: 5px; padding-right: 5px">fa-arrow-left</v-icon></router-link> Ajouter</h1>
+                <h1><router-link to="/" style="text-decoration: none"><v-btn fab x-small depressed><v-icon x-small>fa-arrow-left</v-icon></v-btn></router-link> Ajouter</h1>
                 <p>Inscrire de nouvelles données</p>
             </div>
         </div>
