@@ -1,5 +1,5 @@
 <template>
-  <v-app id="inspire" class="grey">
+  <v-app id="inspire" style="background: #F6F7F9">
       <Navbar/>
 
     <v-content>
@@ -11,6 +11,7 @@
 <script>
     import Navbar from "@/components/Navbar";
   export default {
+      name: 'OverStats',
     props: {
       source: String,
     },
@@ -22,3 +23,9 @@
       }
   }
 </script>
+
+<style>
+    #inspire {
+        font-family: Roboto;
+    }
+</style>

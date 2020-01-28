@@ -4,7 +4,7 @@
                 app
                 flat
         >
-            <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+            <v-app-bar-nav-icon v-if="!drawer" @click.stop="drawer = !drawer" />
             <v-toolbar-title class="text-uppercase">
                 <span class="font-weight-light">Over</span>
                 <span>Stats</span>
@@ -106,27 +106,30 @@
         </v-app-bar>
 
         <v-navigation-drawer
+                src="http://subswapr.com/background.jpg"
                 v-model="drawer"
+                color="#051E34"
                 app
+                mobile-break-point="920"
         >
             <v-list dense>
-                <v-list-item link to="/">
+                <v-list-item to="/">
                     <v-list-item-action>
-                        <v-icon color="grey darken-1">mdi-home</v-icon>
+                        <v-icon style="color: #c2cbd4">mdi-home</v-icon>
                     </v-list-item-action>
                     <v-list-item-content>
-                        <v-list-item-title class="grey--text text--darken-1">
+                        <v-list-item-title style="color: #c2cbd4">
                             Home
                         </v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
 
-                <v-list-item link to="/about">
+                <v-list-item to="/about">
                     <v-list-item-action>
-                        <v-icon color="grey darken-1">mdi-information-outline</v-icon>
+                        <v-icon style="color: #c2cbd4">mdi-information-outline</v-icon>
                     </v-list-item-action>
                     <v-list-item-content>
-                        <v-list-item-title class="grey--text text--darken-1">
+                        <v-list-item-title style="color: #c2cbd4">
                             About
                         </v-list-item-title>
                     </v-list-item-content>
@@ -135,6 +138,7 @@
                 <v-subheader class="mt-4 grey--text text--darken-1">SUBSCRIPTIONS</v-subheader>
                 <v-list>
                     <v-list-item
+                            class="item"
                             v-for="item in items2"
                             :key="item.text"
                             link
@@ -145,7 +149,7 @@
                                     alt=""
                             >
                         </v-list-item-avatar>
-                        <v-list-item-title v-text="item.text" />
+                        <v-list-item-title style="color: #c2cbd4" v-text="item.text" />
                     </v-list-item>
                 </v-list>
                 <v-divider
@@ -153,19 +157,27 @@
                         class="my-4"
                 />
                 <v-list-item
-                        class="mt-4"
-                        link
+                        class="mt-4 item"
                 >
                     <v-list-item-action>
                         <v-icon color="grey darken-1">mdi-plus-circle-outline</v-icon>
                     </v-list-item-action>
                     <v-list-item-title class="grey--text text--darken-1">Browse Channels</v-list-item-title>
                 </v-list-item>
-                <v-list-item link>
+                <v-list-item class="item">
                     <v-list-item-action>
                         <v-icon color="grey darken-1">mdi-settings</v-icon>
                     </v-list-item-action>
                     <v-list-item-title class="grey--text text--darken-1">Manage Subscriptions</v-list-item-title>
+                </v-list-item>
+            </v-list>
+
+            <v-list>
+                <v-list-item>
+                    <v-spacer/>
+                        <v-btn @click="drawer = !drawer" icon>
+                            <v-icon color="white">fa-angle-left</v-icon>
+                        </v-btn>
                 </v-list-item>
             </v-list>
         </v-navigation-drawer>
@@ -196,5 +208,10 @@
 </script>
 
 <style scoped>
-
+    .item:hover {
+        background-color: #193044;
+    }
+    .active {
+        color: #193044;
+    }
 </style>
