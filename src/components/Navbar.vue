@@ -4,7 +4,7 @@
                 app
                 flat
         >
-            <v-app-bar-nav-icon v-if="!drawer" @click.stop="drawer = !drawer" />
+            <v-app-bar-nav-icon v-if="!drawer" @click.stop="openDrawer" />
             <v-toolbar-title class="text-uppercase">
                 <span class="font-weight-light">Over</span>
                 <span>Stats</span>
@@ -77,6 +77,16 @@
                                 </v-list-item-title>
                             </v-list-item-content>
                         </v-list-item>
+                        <v-list-item link @click="signout">
+                            <v-list-item-action>
+                                <v-icon color="grey darken-1">mdi-logout-variant</v-icon>
+                            </v-list-item-action>
+                            <v-list-item-content>
+                                <v-list-item-title class="grey--text text--darken-1">
+                                    Deconnexion
+                                </v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
                     </v-list>
 
                     <v-list>
@@ -106,6 +116,7 @@
         </v-app-bar>
 
         <v-navigation-drawer
+                :mini-variant.sync="mini"
                 src="http://subswapr.com/background.jpg"
                 v-model="drawer"
                 color="#051E34"
@@ -135,49 +146,64 @@
                     </v-list-item-content>
                 </v-list-item>
 
-                <v-subheader class="mt-4 grey--text text--darken-1">SUBSCRIPTIONS</v-subheader>
-                <v-list>
-                    <v-list-item
-                            class="item"
-                            v-for="item in items2"
-                            :key="item.text"
-                            link
-                    >
-                        <v-list-item-avatar>
-                            <img
-                                    :src="`https://randomuser.me/api/portraits/men/${item.picture}.jpg`"
-                                    alt=""
-                            >
-                        </v-list-item-avatar>
-                        <v-list-item-title style="color: #c2cbd4" v-text="item.text" />
-                    </v-list-item>
-                </v-list>
-                <v-divider
-                        dark
-                        class="my-4"
-                />
                 <v-list-item
                         class="mt-4 item"
                 >
                     <v-list-item-action>
-                        <v-icon color="grey darken-1">mdi-plus-circle-outline</v-icon>
+                        <v-icon color="#c2cbd4">mdi-plus</v-icon>
                     </v-list-item-action>
-                    <v-list-item-title class="grey--text text--darken-1">Browse Channels</v-list-item-title>
+                    <v-list-item-title style="color: #c2cbd4">Ajouter une équipe</v-list-item-title>
                 </v-list-item>
+
+                <v-list-group
+                        no-action
+                        append-icon="">
+                    <template v-slot:activator>
+                            <v-list-item-action>
+                                <v-icon size="20" color="#c2cbd4">fa-gamepad</v-icon>
+                            </v-list-item-action>
+                            <v-list-item-content>
+                                <v-list-item-title style="color: #c2cbd4">
+                                    Mes équipes
+                                </v-list-item-title>
+                            </v-list-item-content>
+                        <v-list-item-action>
+                            <v-icon color="#c2cbd4">fa-angle-down</v-icon>
+                        </v-list-item-action>
+                    </template>
+                    <v-list-item
+                            link
+                    >
+                        <v-list-item-content>
+                            <v-list-item-title style="color: #c2cbd4">
+                                EQB
+                            </v-list-item-title>
+                        </v-list-item-content>
+                    </v-list-item>
+                </v-list-group>
+                <v-divider
+                        dark
+                        class="my-4"
+                />
                 <v-list-item class="item">
                     <v-list-item-action>
-                        <v-icon color="grey darken-1">mdi-settings</v-icon>
+                        <v-icon color="#c2cbd4">mdi-settings</v-icon>
                     </v-list-item-action>
-                    <v-list-item-title class="grey--text text--darken-1">Manage Subscriptions</v-list-item-title>
+                    <v-list-item-title style="color: #c2cbd4">Paramètres</v-list-item-title>
                 </v-list-item>
             </v-list>
 
             <v-list>
-                <v-list-item>
+                <v-list-item v-if="!mini">
                     <v-spacer/>
-                        <v-btn @click="drawer = !drawer" icon>
-                            <v-icon color="white">fa-angle-left</v-icon>
+                        <v-btn @click.stop="mini = !mini" icon>
+                            <v-icon color="#c2cbd4">fa-angle-left</v-icon>
                         </v-btn>
+                </v-list-item>
+                <v-list-item v-if="mini">
+                    <v-list-item-action>
+                        <v-icon style="color: #c2cbd4; margin-left: 5px">fa-angle-right</v-icon>
+                    </v-list-item-action>
                 </v-list-item>
             </v-list>
         </v-navigation-drawer>
@@ -188,22 +214,30 @@
 </template>
 
 <script>
+    import firebase from 'firebase';
     export default {
         name: "Navbar",
         data: () => ({
             drawer: null,
+            mini: false,
             fav: true,
             menu: false,
             message: false,
             hints: true,
 
             dialog: false,
-
-            items2: [
-                { picture: 28, text: 'Joseph' },
-                { picture: 38, text: 'Apple' },
-            ],
         }),
+        methods: {
+            openDrawer: function () {
+                this.drawer = !this.drawer;
+                this.mini = false;
+            },
+            signout: function () {
+                firebase.auth().signOut().then(() => {
+                    this.$router.replace('login')
+                })
+            }
+        }
     }
 </script>
 

@@ -52,7 +52,7 @@
                 </v-row>
                 <v-card-actions>
                   <v-spacer/>
-                  <v-btn text>
+                  <v-btn @click="add" text>
                     Ajouter <v-icon>mdi-plus</v-icon>
                   </v-btn>
                 </v-card-actions>
@@ -158,18 +158,6 @@ import db from "@/fb";
 
 export default {
   name: 'Home',
-  methods: {
-    submit: function () {
-      const team = {
-        teamName: this.teamName,
-        playerOne: this.playerOne,
-        playerTwo: this.playerTwo,
-      }
-      db.collection('teams').add(team).then(() => {
-        this.dialog = false
-      })
-    }
-  },
   data() {
     return {
       teamName: null,
@@ -217,9 +205,24 @@ export default {
       ],
     }
   },
+  methods: {
+    add: function () {
+      this.chartData.splice(1, 0, {'2012': 12})
+    },
+    submit: function () {
+      const team = {
+        teamName: this.teamName,
+        playerOne: this.playerOne,
+        playerTwo: this.playerTwo,
+      }
+      db.collection('teams').add(team).then(() => {
+        this.dialog = false
+      })
+    }
+  },
   components: {
     // HelloWorld
-  }
+  },
 }
 </script>
 
