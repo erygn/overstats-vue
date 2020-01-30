@@ -76,9 +76,10 @@
                         firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
                             (userCredential) => {
                                 firebase.database().ref('users' + '/' + userCredential.user.uid).set({
-                                    Pseudo: this.pseudo
+                                    Pseudo: this.pseudo,
+                                    Mail: this.email
                                 }).then(() => {
-                                    this.$router.replace('home')
+                                    this.$router.replace('/')
                                 },
                                     (err2) => {
                                     alert(err2.message())

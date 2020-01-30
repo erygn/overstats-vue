@@ -5,13 +5,14 @@ import Login from '../views/Login'
 import About from '../views/About'
 import Add from "@/views/Add";
 import Register from "@/views/Register";
+import Profile from "@/views/Profile";
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/home',
-    name: 'Home',
+    path: '/',
+    name: 'home',
     component: Home,
     meta: {
       requireAuth: true
@@ -29,6 +30,14 @@ const routes = [
     path: '/add',
     name: 'Add',
     component: Add,
+    meta: {
+      requireAuth: true
+    }
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: Profile,
     meta: {
       requireAuth: true
     }
@@ -71,7 +80,7 @@ router.beforeEach((to, from, next) => {
     next('login');
   }
   else if (!requireAuth && currentUser) {
-    next('home');
+    next('/');
   }
   else { next(); }
 })

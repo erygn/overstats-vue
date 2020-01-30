@@ -24,8 +24,9 @@
                                 item
                         >
                             <v-img
-                                    src="https://cdn.vuetifyjs.com/images/logos/logo.svg"
-                                    alt="Vuetify"
+                                    style="color: #333333"
+                                    src="https://genesis-mc.fr/images/favicon.png"
+                                    alt="Overstats"
                             /></v-avatar>
                     </v-btn>
                 </template>
@@ -33,11 +34,11 @@
                     <v-list>
                         <v-list-item>
                             <v-list-item-avatar>
-                                <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John">
+                                <img src="https://genesis-mc.fr/images/favicon.png" alt="Logo">
                             </v-list-item-avatar>
 
                             <v-list-item-content>
-                                <v-list-item-title>OverStats</v-list-item-title>
+                                <v-list-item-title>{{ displayName.Pseudo }}</v-list-item-title>
                                 <v-list-item-subtitle>Main Tank</v-list-item-subtitle>
                             </v-list-item-content>
 
@@ -56,13 +57,24 @@
                     <v-divider/>
 
                     <v-list>
-                        <v-list-item link to="/" @click="menu = false">
+                        <v-list-item link to="/">
                             <v-list-item-action>
                                 <v-icon color="grey darken-1">mdi-home</v-icon>
                             </v-list-item-action>
                             <v-list-item-content>
                                 <v-list-item-title class="grey--text text--darken-1">
                                     Home
+                                </v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+
+                        <v-list-item link to="/profile">
+                            <v-list-item-action>
+                                <v-icon color="grey darken-1">mdi-account</v-icon>
+                            </v-list-item-action>
+                            <v-list-item-content>
+                                <v-list-item-title class="grey--text text--darken-1">
+                                    Profile
                                 </v-list-item-title>
                             </v-list-item-content>
                         </v-list-item>
@@ -135,6 +147,17 @@
                     </v-list-item-content>
                 </v-list-item>
 
+                <v-list-item to="/profile">
+                    <v-list-item-action>
+                        <v-icon style="color: #c2cbd4">mdi-account</v-icon>
+                    </v-list-item-action>
+                    <v-list-item-content>
+                        <v-list-item-title style="color: #c2cbd4">
+                            Profile
+                        </v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
+
                 <v-list-item to="/about">
                     <v-list-item-action>
                         <v-icon style="color: #c2cbd4">mdi-information-outline</v-icon>
@@ -145,8 +168,19 @@
                         </v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
+                <a href="/" style="text-decoration: none">
+                <v-list-item
+                        class="mt-4 item"
+                >
+                        <v-list-item-action>
+                            <v-icon color="red">mdi-alert</v-icon>
+                        </v-list-item-action>
+                        <v-list-item-title style="color: #F44336">[DEV] Rafraichissement</v-list-item-title>
+                </v-list-item>
+                </a>
 
                 <v-list-item
+                        to="/add"
                         class="mt-4 item"
                 >
                     <v-list-item-action>
@@ -172,11 +206,13 @@
                         </v-list-item-action>
                     </template>
                     <v-list-item
+                            v-for="(team, i) in teamList"
+                            :key="i"
                             link
                     >
                         <v-list-item-content>
                             <v-list-item-title style="color: #c2cbd4">
-                                EQB
+                                {{ team.TeamName }}
                             </v-list-item-title>
                         </v-list-item-content>
                     </v-list-item>
@@ -226,6 +262,10 @@
             hints: true,
 
             dialog: false,
+
+            teamList: [],
+
+            displayName: ''
         }),
         methods: {
             openDrawer: function () {
@@ -237,7 +277,30 @@
                     this.$router.replace('login')
                 })
             }
-        }
+        },
+        created () {
+            firebase.database().ref('users/' + firebase.auth().currentUser.uid).once('value').then((snapshot) => {
+                const val = snapshot.val();
+                this.displayName = val;
+            })
+
+            firebase.database().ref('teams/' + firebase.auth().currentUser.uid).once('value').then((snapshot) => {
+                const val = snapshot.val();
+                this.teamList = val;
+            })
+
+            // firebase.firestore().collection('teams/' + firebase.auth().currentUser.uid).onSnapshot(res => {
+            //     const changes = res.docChanges();
+            //
+            //     changes.forEach(change => {
+            //         if (change.type === 'added') {
+            //             this.teamList.push({
+            //                 ...change.doc.data()
+            //             })
+            //         }
+            //     })
+            // })
+        },
     }
 </script>
 

@@ -1,6 +1,6 @@
 <template>
   <v-app id="inspire" style="background: #F6F7F9">
-      <Navbar/>
+      <Navbar v-if="this.$route.path != '/login'"/>
     <v-content>
         <router-view/>
     </v-content>
