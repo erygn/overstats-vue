@@ -7,6 +7,7 @@ import vuetify from './plugins/vuetify';
 
 import firebase from "firebase";
 import firebaseConfig from "@/fb";
+import './registerServiceWorker'
 
 firebase.initializeApp(firebaseConfig);
 

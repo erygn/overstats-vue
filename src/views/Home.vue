@@ -2,36 +2,30 @@
         <div class="container">
           <div class="row">
             <div class="col">
-              <h1 style="color: #1B3A57">Bienvenue {{ displayName.Pseudo }} <router-link to="/add" style="text-decoration: none"><v-btn fab x-small depressed><v-icon>mdi-plus</v-icon></v-btn></router-link></h1>
-              <p>de votre compte</p>
+              <h1 style="color: #1B3A57">Bienvenue {{ displayName.Pseudo }}</h1>
+              <p>Quelques nouveautés</p>
             </div>
           </div>
           <div class="row">
             <div class="col-sm-6">
-              <h2>Progression</h2>
+              <h2>Ajout des équipes</h2>
               <v-card tile style="border-radius: 5px">
                 <v-container>
-                  <area-chart prefix="$" :data="chartData"/>
+                  Il est désormais possible de créer des équipes, et de les gérer à partir de son interface
                   <v-card-actions>
                     <v-spacer/>
-                    <v-btn text>
-                      Ajouter <v-icon>mdi-plus</v-icon>
+                    <v-btn to="/add" text>
+                      Voir <v-icon>mdi-eye</v-icon>
                     </v-btn>
                   </v-card-actions>
                 </v-container>
               </v-card>
             </div>
             <div class="col-sm-6">
-              <h2>Kills</h2>
+              <h2>PWA</h2>
               <v-card tile style="border-radius: 5px">
                 <v-container>
-                  <column-chart :data="[['Sun', 32], ['Mon', 46], ['Tue', 28]]"/>
-                  <v-card-actions>
-                    <v-spacer/>
-                    <v-btn text>
-                      Ajouter <v-icon>mdi-plus</v-icon>
-                    </v-btn>
-                  </v-card-actions>
+                  PWA c'est quoi ? Pour rester dans les termes simple, une PWA c'est une application web que vous pouvez télécharger à partir d'un site et être représenté comme une véritable application. C'est vraiment bien ! En plus Overstats en est une ;)
                 </v-container>
               </v-card>
             </div>
@@ -66,84 +60,8 @@
                   fab
                   fixed
                   right
-                  @click="dialog = !dialog"
+                  to="/add"
           >
-            <v-dialog
-                    v-model="dialog"
-                    width="800px"
-            >
-              <v-card>
-                <v-card-title>
-                  Ajouter une équipe
-                </v-card-title>
-                <v-container>
-                  <v-row class="mx-2">
-                    <v-col cols="12">
-                      <span class="font-weight-light overline">Entrer le nom de l'équipe puis les joueurs</span>
-                      <v-text-field
-                              prepend-icon="fas fa-users"
-                              placeholder="Nom de l'équipe"
-                              v-model="teamName"
-                      />
-                    </v-col>
-                    <v-col cols="6">
-                      <v-text-field
-                              prepend-icon="mdi-account"
-                              placeholder="Player"
-                              v-model="playerOne"
-                      />
-                    </v-col>
-                    <v-col cols="6">
-                      <v-text-field
-                              prepend-icon="mdi-account"
-                              placeholder="Player"
-                              v-model="playerTwo"
-                      />
-                    </v-col>
-                    <v-col cols="6">
-                      <v-text-field
-                              prepend-icon="mdi-account"
-                              placeholder="Player"
-                              v-model="playerThree"
-                      />
-                    </v-col>
-                    <v-col cols="6">
-                      <v-text-field
-                              prepend-icon="mdi-account"
-                              placeholder="Player"
-                              v-model="playerFour"
-                      />
-                    </v-col>
-                    <v-col cols="6">
-                      <v-text-field
-                              prepend-icon="mdi-account"
-                              placeholder="Player"
-                              v-model="playerFive"
-                      />
-                    </v-col>
-                    <v-col cols="6">
-                      <v-text-field
-                              prepend-icon="mdi-account"
-                              placeholder="Player"
-                              v-model="playerSix"
-                      />
-                    </v-col>
-                  </v-row>
-                </v-container>
-                <v-card-actions>
-                  <v-spacer />
-                  <v-btn
-                          text
-                          color="primary"
-                          @click="dialog = false"
-                  >Cancel</v-btn>
-                  <v-btn
-                          text
-                          @click="submit"
-                  >Save</v-btn>
-                </v-card-actions>
-              </v-card>
-            </v-dialog>
             <v-icon>mdi-plus</v-icon>
           </v-btn>
 

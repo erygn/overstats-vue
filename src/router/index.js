@@ -1,18 +1,20 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+
 import Home from '../views/Home.vue'
 import Login from '../views/Login'
 import About from '../views/About'
 import Add from "@/views/Add";
 import Register from "@/views/Register";
-import Profile from "@/views/Profile";
+import Settings from "@/views/Settings";
+import Team from '@/views/Team';
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'home',
+    name: 'Home',
     component: Home,
     meta: {
       requireAuth: true
@@ -35,13 +37,25 @@ const routes = [
     }
   },
   {
-    path: '/profile',
-    name: 'Profile',
-    component: Profile,
+    path: '/settings',
+    name: 'Settings',
+    component: Settings,
     meta: {
       requireAuth: true
     }
   },
+  {
+    path: '/team',
+    name: 'Team',
+    component: Team,
+    props(route) {
+      return route.query || {}
+    },
+    meta: {
+      requireAuth: true
+    }
+  },
+
   {
     path: '/login',
     name: 'Login',

@@ -25,7 +25,7 @@
                         >
                             <v-img
                                     style="color: #333333"
-                                    src="https://genesis-mc.fr/images/favicon.png"
+                                    src="https://genesis-mc.fr/images/overstats.png"
                                     alt="Overstats"
                             /></v-avatar>
                     </v-btn>
@@ -34,22 +34,16 @@
                     <v-list>
                         <v-list-item>
                             <v-list-item-avatar>
-                                <img src="https://genesis-mc.fr/images/favicon.png" alt="Logo">
+                                <img src="https://genesis-mc.fr/images/overstats.png" alt="Logo">
                             </v-list-item-avatar>
 
                             <v-list-item-content>
                                 <v-list-item-title>{{ displayName.Pseudo }}</v-list-item-title>
-                                <v-list-item-subtitle>Main Tank</v-list-item-subtitle>
+                                <v-list-item-subtitle>{{ displayName.Description}}</v-list-item-subtitle>
                             </v-list-item-content>
 
                             <v-list-item-action>
-                                <v-btn
-                                        :class="fav ? 'red--text' : ''"
-                                        icon
-                                        @click="fav = !fav"
-                                >
-                                    <v-icon>mdi-heart</v-icon>
-                                </v-btn>
+                                    <v-icon color="green">mdi-check</v-icon>
                             </v-list-item-action>
                         </v-list-item>
                     </v-list>
@@ -63,18 +57,7 @@
                             </v-list-item-action>
                             <v-list-item-content>
                                 <v-list-item-title class="grey--text text--darken-1">
-                                    Home
-                                </v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-
-                        <v-list-item link to="/profile">
-                            <v-list-item-action>
-                                <v-icon color="grey darken-1">mdi-account</v-icon>
-                            </v-list-item-action>
-                            <v-list-item-content>
-                                <v-list-item-title class="grey--text text--darken-1">
-                                    Profile
+                                    Accueil
                                 </v-list-item-title>
                             </v-list-item-content>
                         </v-list-item>
@@ -85,10 +68,25 @@
                             </v-list-item-action>
                             <v-list-item-content>
                                 <v-list-item-title class="grey--text text--darken-1">
-                                    About
+                                    A Propos
                                 </v-list-item-title>
                             </v-list-item-content>
                         </v-list-item>
+                        <v-list-item link to="/settings">
+                            <v-list-item-action>
+                                <v-icon color="grey darken-1">mdi-settings</v-icon>
+                            </v-list-item-action>
+                            <v-list-item-content>
+                                <v-list-item-title class="grey--text text--darken-1">
+                                    Paramètres
+                                </v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
+                    </v-list>
+
+                    <v-divider/>
+
+                    <v-list>
                         <v-list-item link @click="signout">
                             <v-list-item-action>
                                 <v-icon color="grey darken-1">mdi-logout-variant</v-icon>
@@ -100,29 +98,6 @@
                             </v-list-item-content>
                         </v-list-item>
                     </v-list>
-
-                    <v-list>
-                        <v-list-item>
-                            <v-list-item-action>
-                                <v-switch v-model="message" color="purple"></v-switch>
-                            </v-list-item-action>
-                            <v-list-item-title>Enable messages</v-list-item-title>
-                        </v-list-item>
-
-                        <v-list-item>
-                            <v-list-item-action>
-                                <v-switch v-model="hints" color="purple"></v-switch>
-                            </v-list-item-action>
-                            <v-list-item-title>Enable hints</v-list-item-title>
-                        </v-list-item>
-                    </v-list>
-
-                    <v-card-actions>
-                        <v-spacer></v-spacer>
-
-                        <v-btn text @click="menu = false">Cancel</v-btn>
-                        <v-btn color="primary" text @click="menu = false">Save</v-btn>
-                    </v-card-actions>
                 </v-card>
             </v-menu>
         </v-app-bar>
@@ -142,18 +117,7 @@
                     </v-list-item-action>
                     <v-list-item-content>
                         <v-list-item-title style="color: #c2cbd4">
-                            Home
-                        </v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>
-
-                <v-list-item to="/profile">
-                    <v-list-item-action>
-                        <v-icon style="color: #c2cbd4">mdi-account</v-icon>
-                    </v-list-item-action>
-                    <v-list-item-content>
-                        <v-list-item-title style="color: #c2cbd4">
-                            Profile
+                            Accueil
                         </v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
@@ -164,13 +128,17 @@
                     </v-list-item-action>
                     <v-list-item-content>
                         <v-list-item-title style="color: #c2cbd4">
-                            About
+                            A Propos
                         </v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
+
+                <v-divider dark
+                           class="my-4" />
+
                 <a href="/" style="text-decoration: none">
                 <v-list-item
-                        class="mt-4 item"
+                        class="mt-4"
                 >
                         <v-list-item-action>
                             <v-icon color="red">mdi-alert</v-icon>
@@ -181,7 +149,7 @@
 
                 <v-list-item
                         to="/add"
-                        class="mt-4 item"
+                        class="mt-4"
                 >
                     <v-list-item-action>
                         <v-icon color="#c2cbd4">mdi-plus</v-icon>
@@ -209,6 +177,7 @@
                             v-for="(team, i) in teamList"
                             :key="i"
                             link
+                            :to="{path: '/team', query: {team: team.TeamName}}"
                     >
                         <v-list-item-content>
                             <v-list-item-title style="color: #c2cbd4">
@@ -221,7 +190,7 @@
                         dark
                         class="my-4"
                 />
-                <v-list-item class="item">
+                <v-list-item to="/settings">
                     <v-list-item-action>
                         <v-icon color="#c2cbd4">mdi-settings</v-icon>
                     </v-list-item-action>

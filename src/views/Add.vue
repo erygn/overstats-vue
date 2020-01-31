@@ -8,11 +8,11 @@
         </div>
         <div class="row">
             <div class="col">
-                <h2>Progression</h2>
+                <h2>Définir une équipe</h2>
                 <v-card tile style="border-radius: 5px">
                     <v-container>
                         Nom d'équipe
-                        <v-text-field type="text" label="Adresse mail" prepend-icon="mdi-mail" v-model="teamName"/>
+                        <v-text-field type="text" label="Nom" prepend-icon="fa-trophy" v-model="teamName"/>
                         <v-card-actions>
                             <v-spacer/>
                             <v-btn @click="addTeam" text>
@@ -38,7 +38,6 @@
         methods: {
             addCloud: function () {
                 if (this.teamName != null || this.teamName != '') {
-                    alert('Valide')
                     const teams = {
                         TeamName: this.teamName
                     }

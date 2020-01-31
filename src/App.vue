@@ -1,6 +1,7 @@
 <template>
   <v-app id="inspire" style="background: #F6F7F9">
-      <Navbar v-if="this.$route.path != '/login'"/>
+      <Navbar v-if="this.$route.path != '/login' && this.$route.path != '/register'"/>
+      <NavNew v-if="this.$route.path == '/login' || this.$route.path == '/register'"/>
     <v-content>
         <router-view/>
     </v-content>
@@ -9,6 +10,7 @@
 
 <script>
     import Navbar from "@/components/Navbar";
+    import NavNew from "@/components/NavNew";
   export default {
       name: 'OverStats',
     props: {
@@ -18,7 +20,8 @@
       this.$vuetify.theme.dark = false
     },
       components: {
-        Navbar
+        Navbar,
+          NavNew
       }
   }
 </script>
