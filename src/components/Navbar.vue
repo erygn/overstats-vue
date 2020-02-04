@@ -3,6 +3,7 @@
         <v-app-bar
                 app
                 dense
+                flat
         >
             <v-app-bar-nav-icon v-if="!drawer" @click.stop="openDrawer" />
             <v-toolbar-title class="text-uppercase">
@@ -252,11 +253,6 @@
                 firebase.auth().signOut().then(() => {
                     this.$router.replace('login')
                 })
-            }
-        },
-        computed: {
-            mini() {
-                return this.$vuetify.breakpoint.mdAndDown;
             }
         },
         created () {

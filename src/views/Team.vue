@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <h1><router-link to="/" style="text-decoration: none"><v-btn fab x-small depressed><v-icon x-small>fa-arrow-left</v-icon></v-btn></router-link> {{ teamName['TeamName'] }} <v-btn @click="selectFavorite" fab depressed v-if="!favorite"><v-icon>fa-star</v-icon></v-btn><v-btn @click="selectFavorite" fab depressed v-if="favorite"><v-icon color="yellow">fa-star</v-icon></v-btn></h1>
+                <h1><router-link to="/teams" style="text-decoration: none"><v-btn fab x-small depressed><v-icon x-small>fa-arrow-left</v-icon></v-btn></router-link> {{ teamName['TeamName'] }} <v-btn @click="selectFavorite" style="margin-top: -5px" fab depressed v-if="!favorite"><v-icon>fa-star</v-icon></v-btn><v-btn @click="selectFavorite" style="margin-top: -5px" fab depressed v-if="favorite"><v-icon color="yellow">fa-star</v-icon></v-btn></h1>
             </div>
         </div>
         <div class="row">
@@ -65,7 +65,6 @@
                 fab
                 fixed
                 right
-                to="/add"
         >
             <v-icon>mdi-plus</v-icon>
         </v-btn>

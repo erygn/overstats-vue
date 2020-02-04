@@ -1,34 +1,55 @@
 <template>
   <div>
     <v-container fluid style="height: 320px; background: linear-gradient(#0694cc, #075983); justify-content: center">
-      <v-row justify="center" style="margin: 0px 1px">
-        <div class="col-sm-12 col-lg-6">
-          <h1 style="color: #FFF; margin-top: 40px; font-weight: 300; margin-bottom: 10px">Hey <span style="font-weight: 500">{{ displayName.Pseudo }} !</span></h1>
-          <router-link to="/add" style="text-decoration: none; color: #dcdcdc; border: 1px solid #00577a; border-radius: 20px; padding: 5px 20px; background-color: #00577a">Gérer ces équipes <v-icon style="margin-bottom: 2px; margin-right: -5px; color: #dcdcdc" small>mdi-settings</v-icon></router-link>
+      <v-row justify="center" style="margin: 0px 1px; color: #FFF">
+        <div class="col-sm-12 col-lg-6 col-md-8">
+          <h1 style="margin-top: 40px; font-weight: 300; margin-bottom: 10px">{{randomWelcome}} <span style="font-weight: 500">{{ displayName.Pseudo }}</span></h1>
+            <p style="margin-top: -15px; font-weight: 200">Version 0.1.2</p>
+            <div>
+                <router-link to="/teams" style="text-decoration: none; color: #dcdcdc; border: 1px solid #00577a; border-radius: 20px; padding: 5px 20px; background-color: #00577a">Gérer <v-icon style="margin-bottom: 2px; margin-right: -5px; color: #dcdcdc" small>mdi-settings</v-icon></router-link>
+                <router-link to="/add" style="text-decoration: none; color: #dcdcdc; border: 1px solid #00577a; border-radius: 20px; padding: 5px 20px; background-color: #00577a; margin-left: 10px">Ajouter <v-icon style="margin-bottom: 2px; margin-right: -5px; color: #dcdcdc" small>mdi-plus</v-icon></router-link>
+            </div>
         </div>
       </v-row>
     </v-container>
 
-    <v-container fluid>
-      <v-row justify="center" style="margin: 5px">
-        <v-card
-                style="border-radius: 8px; padding: 18px"
-                class="mx-auto col-lg-7 col-sm-12 overlap"
-        >
-          <v-list-item three-line>
-            <v-list-item-content>
-              <v-list-item-title class="headline mb-1">Overstats</v-list-item-title>
-              <v-list-item-subtitle>Accédez à un panel de gestion de vos équipes et de vos données.<br>Utilisez les outils disponibles pour voir les points à améliorer sur votre équipe.</v-list-item-subtitle>
-              <v-list-item-subtitle>Système autonome</v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-        </v-card>
+    <v-container fluid style="align-items: center" class="my-5">
+      <v-row align="center" style="justify-content: center">
+        <div class="col-lg-6 col-sm-12 col-md-8">
+            <v-card
+                    style="border-radius: 8px; padding: 18px"
+                    class="overlap"
+            >
+                <v-card-title style="font-weight: 400; font-size: 24px">Overstats</v-card-title>
+                <v-card-subtitle class="pb-0">Accédez à un panel de gestion de vos équipes</v-card-subtitle>
+                <v-card-text class="text--primary">
+                    <div>Utilisez les outils disponibles pour voir les points à améliorer sur votre équipe.</div>
+
+                    <div>Gérer vos parties et ajouter des objectifs à réaliser dans les prochaines semaines</div>
+                </v-card-text>
+            </v-card>
+        </div>
       </v-row>
     </v-container>
 
-    <v-container style="align-items: center" class="my-5">
+      <v-container fluid>
+          <v-row align="center" style="justify-content: center">
+              <div class="col-lg-6 col-sm-12 col-md-8">
+                  <v-divider></v-divider>
+              </div>
+          </v-row>
+
+
+          <v-row align="center" style="justify-content: center; height: 1px; margin-top: 10px">
+              <div class="col-lg-6 col-sm-12 col-md-8">
+                  <h2>Nouveautés sur Overstats</h2>
+              </div>
+          </v-row>
+      </v-container>
+
+    <v-container fluid style="align-items: center" class="my-5">
       <v-row align="center" style="justify-content: center">
-        <div class="col-lg-6">
+        <div class="col-lg-6 col-md-8 col-sm-12">
           <v-row align="center" style="justify-content: center">
             <div class="col-sm-6">
               <v-card style="border-radius: 5px" class="mx-auto">
@@ -92,9 +113,24 @@
       </v-row>
     </v-container>
 
-    <v-container style="align-items: center" class="my-5">
+      <v-container fluid>
+          <v-row align="center" style="justify-content: center">
+              <div class="col-lg-6 col-sm-12 col-md-8">
+                  <v-divider></v-divider>
+              </div>
+          </v-row>
+
+
+          <v-row align="center" style="justify-content: center; height: 1px; margin-top: 10px; margin-bottom: 20px">
+              <div class="col-lg-6 col-sm-12 col-md-8">
+                  <h1>Votre équipe favorite</h1>
+              </div>
+          </v-row>
+      </v-container>
+
+    <v-container fluid style="align-items: center" class="my-5">
       <v-row align="center" style="justify-content: center">
-        <div class="col-sm-12 col-lg-6">
+        <div class="col-sm-12 col-lg-6 col-md-8">
           <h2>{{ favName }}</h2>
           <v-card tile style="border-radius: 20px">
             <v-container>
@@ -118,14 +154,13 @@
       </v-row>
     </v-container>
 
-    <v-container fluid style="justify-content: center; background: linear-gradient(#004a67, #003041)">
-      <v-row justify="center">
-        <h1 style="text-align: center; margin-top: 20px; font-weight: 200; text-transform: uppercase; font-size: 25px; color: white">Overstats</h1>
-      </v-row>
-      <v-row justify="center" style="margin-top: 10px">
-        <h2 style="font-weight: 300; font-size: 14px; margin-top: -10px; text-align: center; color: white">Développé par <a href="https://genesis-mc.fr">Genesis</a></h2>
-      </v-row>
-    </v-container>
+      <v-container fluid>
+          <v-row align="center" style="justify-content: center">
+              <div class="col-lg-6 col-sm-12 col-md-8">
+                  <v-divider></v-divider>
+              </div>
+          </v-row>
+      </v-container>
   </div>
 </template>
 
@@ -140,6 +175,22 @@ export default {
   name: 'Home',
   data() {
     return {
+        randomWelcome: '',
+
+        welcomeList: [
+            'Hello!',
+            'Hey!',
+            'Bonjour !',
+            'Hola !',
+            'Mirë Dita !',
+            'Buenos Días !',
+            'Nǐ Hăo !',
+            'Bok !',
+            'Hallo !',
+            'Konnichi Wa !',
+        ],
+
+
       displayName: null,
 
       favName: 'Genesis',
@@ -202,9 +253,21 @@ export default {
       db.collection('teams').add(team).then(() => {
         this.dialog = false
       })
-    }
+    },
+      randomID: function makeid() {
+          var result           = '';
+          var characters       = '0123456789';
+          var charactersLength = characters.length;
+          for ( var i = 0; i < 1; i++ ) {
+              result += characters.charAt(Math.floor(Math.random() * charactersLength));
+          }
+          return result;
+      }
   },
   created () {
+      let random = this.randomID()
+      this.randomWelcome = this.welcomeList[random]
+
      firebase.database().ref('users/' + firebase.auth().currentUser.uid).once('value').then((snapshot) => {
        const val = snapshot.val();
        this.displayName = val;
@@ -225,8 +288,11 @@ export default {
     font-weight: 300;
     padding-bottom: 5px;
   }
+  a {
+      text-decoration: none;
+  }
 
   .overlap {
-    margin-top: -80px;
+    margin-top: -120px;
   }
 </style>

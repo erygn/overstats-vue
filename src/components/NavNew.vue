@@ -34,7 +34,7 @@
             </v-list>
 
             <v-list>
-                <v-list-item v-if="!mini">
+                <v-list-item v-if="!mini && miniMD">
                     <v-spacer/>
                     <v-btn @click.stop="mini = !mini" icon>
                         <v-icon color="#c2cbd4">fa-angle-left</v-icon>
@@ -45,6 +45,12 @@
                         <v-icon style="color: #c2cbd4; margin-left: 5px">fa-angle-right</v-icon>
                     </v-list-item-action>
                 </v-list-item>
+                <v-list-item v-if="!mini && !miniMD">
+                    <v-spacer/>
+                    <v-btn @click.stop="drawer = !drawer" icon>
+                        <v-icon color="#c2cbd4">fa-angle-left</v-icon>
+                    </v-btn>
+                </v-list-item>
             </v-list>
         </v-navigation-drawer>
 
@@ -54,12 +60,11 @@
 </template>
 
 <script>
-    import firebase from 'firebase';
     export default {
         name: "NavNew",
         data: () => ({
             drawer: null,
-            mini: false,
+            mini: true,
             fav: true,
             menu: false,
             message: false,
@@ -67,43 +72,22 @@
 
             dialog: false,
 
-            teamList: [],
-
-            displayName: ''
+            miniMD: ''
         }),
         methods: {
             openDrawer: function () {
                 this.drawer = !this.drawer;
                 this.mini = false;
             },
-            signout: function () {
-                firebase.auth().signOut().then(() => {
-                    this.$router.replace('login')
-                })
-            }
         },
         created () {
-            firebase.database().ref('users/' + firebase.auth().currentUser.uid).once('value').then((snapshot) => {
-                const val = snapshot.val();
-                this.displayName = val;
-            })
-
-            firebase.database().ref('teams/' + firebase.auth().currentUser.uid).once('value').then((snapshot) => {
-                const val = snapshot.val();
-                this.teamList = val;
-            })
-
-            // firebase.firestore().collection('teams/' + firebase.auth().currentUser.uid).onSnapshot(res => {
-            //     const changes = res.docChanges();
-            //
-            //     changes.forEach(change => {
-            //         if (change.type === 'added') {
-            //             this.teamList.push({
-            //                 ...change.doc.data()
-            //             })
-            //         }
-            //     })
-            // })
+            switch (this.$vuetify.breakpoint.name) {
+                case 'xs': this.miniMD = false; break;
+                case 'sm': this.miniMD = true; break;
+                case 'md': this.miniMD = true; break;
+                case 'lg': this.miniMD = true; break;
+                case 'xl': this.miniMD = true; break;
+            }
         },
     }
 </script>

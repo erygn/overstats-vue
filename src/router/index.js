@@ -8,6 +8,7 @@ import Add from "@/views/Add";
 import Register from "@/views/Register";
 import Settings from "@/views/Settings";
 import Team from '@/views/Team';
+import Teams from "@/views/Teams";
 
 Vue.use(VueRouter)
 
@@ -51,6 +52,14 @@ const routes = [
     props(route) {
       return route.query || {}
     },
+    meta: {
+      requireAuth: true
+    }
+  },
+  {
+    path: '/teams',
+    name: 'Teams',
+    component: Teams,
     meta: {
       requireAuth: true
     }

@@ -4,6 +4,7 @@
       <NavNew v-if="this.$route.path == '/login' || this.$route.path == '/register'"/>
     <v-content>
         <router-view/>
+        <Footer v-if="this.$route.path != '/team'"/>
     </v-content>
   </v-app>
 </template>
@@ -11,6 +12,7 @@
 <script>
     import Navbar from "@/components/Navbar";
     import NavNew from "@/components/NavNew";
+    import Footer from "@/components/Footer";
   export default {
       name: 'OverStats',
     props: {
@@ -21,7 +23,8 @@
     },
       components: {
         Navbar,
-          NavNew
+          NavNew,
+          Footer
       }
   }
 </script>

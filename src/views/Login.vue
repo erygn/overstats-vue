@@ -17,89 +17,170 @@
                 <router-link style="text-decoration: none; font-size: 14px" to="/register">Créer un compte</router-link>
             </v-row>
         </v-container>
+
+        <v-container fluid style="align-items: center" class="my-5">
+            <v-row align="center" style="justify-content: center">
+                <div class="col-lg-6 col-sm-12 col-md-8">
+                    <v-card
+                            style="border-radius: 8px; padding: 18px"
+                            class="overlap"
+                    >
+                        <v-card-title style="font-weight: 400; font-size: 24px">Overstats</v-card-title>
+                        <v-card-subtitle class="pb-0">Accédez à un panel de gestion de vos équipes</v-card-subtitle>
+                        <v-card-text class="text--primary">
+                            <div>Utilisez les outils disponibles pour voir les points à améliorer sur votre équipe.</div>
+
+                            <div>Gérer vos parties et ajouter des objectifs à réaliser dans les prochaines semaines</div>
+                        </v-card-text>
+                    </v-card>
+                </div>
+            </v-row>
+        </v-container>
+
         <v-container fluid>
-            <v-row justify="center" style="margin: 5px">
-                <v-card
-                        style="border-radius: 8px; padding: 20px"
-                        width="900px"
-                        class="mx-auto overlap"
-                >
-                    <v-list-item three-line>
-                        <v-list-item-content>
-                            <v-list-item-title class="headline mb-1">Overstats</v-list-item-title>
-                            <v-list-item-subtitle>Accédez à un panel de gestion de vos équipes et de vos données.<br>Utilisez les outils disponibles pour voir les points à améliorer sur votre équipe.</v-list-item-subtitle>
-                            <v-list-item-subtitle>Système autonome</v-list-item-subtitle>
-                        </v-list-item-content>
-                    </v-list-item>
-                </v-card>
+            <v-row align="center" style="justify-content: center">
+                <div class="col-lg-6 col-sm-12 col-md-8">
+                    <v-divider></v-divider>
+                </div>
+            </v-row>
+
+
+            <v-row align="center" style="justify-content: center; height: 1px; margin-top: 10px">
+                <div class="col-lg-6 col-sm-12 col-md-8">
+                    <h2>Nouveautés sur Overstats</h2>
+                </div>
             </v-row>
         </v-container>
 
-        <v-divider dark class="my-12"/>
-
-        <v-container style="align-items: center" class="my-5">
+        <v-container fluid style="align-items: center" class="my-5">
             <v-row align="center" style="justify-content: center">
-                <div class="col-sm-6 col-lg-3">
-                    <v-card
-                            color="#004A67"
-                            dark
-                    >
-                        <v-card-title class="headline">Ajouter une équipe</v-card-title>
+                <div class="col-lg-6 col-sm-12 col-md-8">
+                    <v-row align="center" style="justify-content: center">
+                        <div class="col-sm-6">
+                            <v-card style="border-radius: 5px" class="mx-auto">
+                                <v-img
+                                        class="white--text align-end"
+                                        height="200px"
+                                        src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+                                >
+                                </v-img>
 
-                        <v-card-subtitle>Ajoutez une équipe et commencez à traiter des données.</v-card-subtitle>
+                                <v-card-title>Ajouter votre équipe</v-card-title>
+                                <v-card-subtitle class="pb-0">Votre panel au plus proche de vous</v-card-subtitle>
+                                <v-card-text class="text--primary">
+                                    <div>Il est désormais possible de créer des équipes</div>
 
-                        <v-card-actions>
-                            <v-btn @click="dialog = !dialog" text>Ajouter</v-btn>
-                        </v-card-actions>
-                    </v-card>
-                </div>
-                <div class="col-sm-6 col-lg-3">
-                    <v-card
-                            color="#003041"
-                            dark
-                    >
-                        <v-card-title class="headline">Accéder aux Stats</v-card-title>
+                                    <div> t de les gérer à partir de son interface</div>
+                                </v-card-text>
 
-                        <v-card-subtitle>Regardez en un clique vos statistiques d'équipe.</v-card-subtitle>
+                                <v-card-actions>
+                                    <v-spacer/>
+                                    <v-btn
+                                            to="/add"
+                                            color="grey"
+                                            text
+                                    >
+                                        Voir <v-icon small>fa-eye</v-icon>
+                                    </v-btn>
+                                </v-card-actions>
+                            </v-card>
+                        </div>
+                        <div class="col-sm-6">
+                            <v-card style="border-radius: 5px" class="mx-auto">
+                                <v-img
+                                        class="white--text align-end"
+                                        height="200px"
+                                        src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+                                >
+                                </v-img>
 
-                        <v-card-actions>
-                            <v-btn @click="dialog = !dialog" text>Voir</v-btn>
-                        </v-card-actions>
-                    </v-card>
-                </div>
-            </v-row>
-            <v-divider dark class="my-4"/>
-            <v-row align="center" style="justify-content: center">
-                <div class="col-sm-6 col-lg-3">
-                    <v-card
-                            color="#004A67"
-                            dark
-                    >
-                        <v-card-title class="headline">Partagez votre avancée</v-card-title>
+                                <v-card-title>PWA</v-card-title>
+                                <v-card-subtitle class="pb-0">Votre panel au plus proche de vous</v-card-subtitle>
+                                <v-card-text class="text--primary">
+                                    <div>Récupérer l'application directement depuis le site</div>
 
-                        <v-card-subtitle>Montrez aux autres équipes votre progression et organisez des matchs.</v-card-subtitle>
+                                    <div>En l'ajoutant au bureau</div>
+                                </v-card-text>
 
-                        <v-card-actions>
-                            <v-btn @click="dialog = !dialog" text>Partager</v-btn>
-                        </v-card-actions>
-                    </v-card>
-                </div>
-                <div class="col-sm-6 col-lg-3">
-                    <v-card
-                            color="#003041"
-                            dark
-                    >
-                        <v-card-title class="headline">Organiser des tournois</v-card-title>
-
-                        <v-card-subtitle>Organisez des tournois avec les équipes déjà présente sur Overstats.</v-card-subtitle>
-
-                        <v-card-actions>
-                            <v-btn @click="dialog = !dialog" text>Organiser</v-btn>
-                        </v-card-actions>
-                    </v-card>
+                                <v-card-actions>
+                                    <v-spacer/>
+                                    <v-btn
+                                            color="grey"
+                                            text
+                                    >
+                                        Installer
+                                    </v-btn>
+                                </v-card-actions>
+                            </v-card>
+                        </div>
+                    </v-row>
                 </div>
             </v-row>
         </v-container>
+
+<!--        <v-container style="align-items: center" class="my-5">-->
+<!--            <v-row align="center" style="justify-content: center">-->
+<!--                <div class="col-sm-6 col-lg-3">-->
+<!--                    <v-card-->
+<!--                            color="#004A67"-->
+<!--                            dark-->
+<!--                    >-->
+<!--                        <v-card-title class="headline">Ajouter une équipe</v-card-title>-->
+
+<!--                        <v-card-subtitle>Ajoutez une équipe et commencez à traiter des données.</v-card-subtitle>-->
+
+<!--                        <v-card-actions>-->
+<!--                            <v-btn @click="dialog = !dialog" text>Ajouter</v-btn>-->
+<!--                        </v-card-actions>-->
+<!--                    </v-card>-->
+<!--                </div>-->
+<!--                <div class="col-sm-6 col-lg-3">-->
+<!--                    <v-card-->
+<!--                            color="#003041"-->
+<!--                            dark-->
+<!--                    >-->
+<!--                        <v-card-title class="headline">Accéder aux Stats</v-card-title>-->
+
+<!--                        <v-card-subtitle>Regardez en un clique vos statistiques d'équipe.</v-card-subtitle>-->
+
+<!--                        <v-card-actions>-->
+<!--                            <v-btn @click="dialog = !dialog" text>Voir</v-btn>-->
+<!--                        </v-card-actions>-->
+<!--                    </v-card>-->
+<!--                </div>-->
+<!--            </v-row>-->
+<!--            <v-divider dark class="my-4"/>-->
+<!--            <v-row align="center" style="justify-content: center">-->
+<!--                <div class="col-sm-6 col-lg-3">-->
+<!--                    <v-card-->
+<!--                            color="#004A67"-->
+<!--                            dark-->
+<!--                    >-->
+<!--                        <v-card-title class="headline">Partagez votre avancée</v-card-title>-->
+
+<!--                        <v-card-subtitle>Montrez aux autres équipes votre progression et organisez des matchs.</v-card-subtitle>-->
+
+<!--                        <v-card-actions>-->
+<!--                            <v-btn @click="dialog = !dialog" text>Partager</v-btn>-->
+<!--                        </v-card-actions>-->
+<!--                    </v-card>-->
+<!--                </div>-->
+<!--                <div class="col-sm-6 col-lg-3">-->
+<!--                    <v-card-->
+<!--                            color="#003041"-->
+<!--                            dark-->
+<!--                    >-->
+<!--                        <v-card-title class="headline">Organiser des tournois</v-card-title>-->
+
+<!--                        <v-card-subtitle>Organisez des tournois avec les équipes déjà présente sur Overstats.</v-card-subtitle>-->
+
+<!--                        <v-card-actions>-->
+<!--                            <v-btn @click="dialog = !dialog" text>Organiser</v-btn>-->
+<!--                        </v-card-actions>-->
+<!--                    </v-card>-->
+<!--                </div>-->
+<!--            </v-row>-->
+<!--        </v-container>-->
 
 
         <v-container fluid>
@@ -143,68 +224,69 @@
                             </v-list-item>
                         </v-card>
             </v-row>
-
-            <v-dialog
-                    v-model="dialog"
-                    width="600px"
-            >
-                <v-card>
-                    <v-card-title style="background-color: #003041; color: white; font-weight: 300">
-                        Connexion
-                    </v-card-title>
-                    <v-container>
-                        <v-row class="mx-2">
-                            <v-col
-                                    class="align-center justify-space-between"
-                                    cols="12"
-                            >
-                                <v-row
-                                        align="center"
-                                        class="mr-0"
-                                >
-                                    <v-list-item-subtitle><v-text-field color="#003041" type="text" label="Adresse mail*" prepend-icon="mdi-mail" v-model="email"/></v-list-item-subtitle>
-                                </v-row>
-                                <v-row
-                                        align="center"
-                                        class="mr-0"
-                                ><v-list-item-subtitle><v-text-field
-                                        color="#003041"
-                                            :append-icon="show3 ? 'mdi-eye' : 'mdi-eye-off'"
-                                            prepend-icon="mdi-lock"
-                                            :type="show3 ? 'text' : 'password'"
-                                            name="input-10-2"
-                                            label="Mot de passe*"
-                                            class="input-group--focused"
-                                            v-model="password"
-                                            @click:append="show3 = !show3"
-                                    /></v-list-item-subtitle>
-                                </v-row>
-                                <v-row align="center"
-                                       class="mr-0">
-                                    <v-spacer/>
-                                    <p style="color: red">{{errorMessage}}</p>
-                                </v-row>
-                            </v-col>
-                        </v-row>
-                    </v-container>
-                    <v-card-actions>
-                        <v-spacer />
-                        <v-btn
-                                width="150"
-                                height="35"
-                                style="border-radius: 20px"
-                                @click="login"
-                        >Connexion</v-btn>
-                        <v-btn
-                                style="margin-right: 5px"
-                                text
-                                color="#003041"
-                                @click="dialog = false"
-                        >Fermer</v-btn>
-                    </v-card-actions>
-                </v-card>
-            </v-dialog>
         </v-container>
+
+        <v-dialog
+                v-model="dialog"
+                width="600px"
+        >
+            <v-card>
+                <v-card-title style="background-color: #003041; color: white; font-weight: 300">
+                    Connexion
+                </v-card-title>
+                <v-container>
+                    <v-row class="mx-2">
+                        <v-col
+                                class="align-center justify-space-between"
+                                cols="12"
+                        >
+                            <v-row
+                                    align="center"
+                                    class="mr-0"
+                            >
+                                <v-list-item-subtitle><v-text-field color="#003041" type="text" label="Adresse mail*" prepend-icon="mdi-mail" v-model="email"/></v-list-item-subtitle>
+                            </v-row>
+                            <v-row
+                                    align="center"
+                                    class="mr-0"
+                            ><v-list-item-subtitle><v-text-field
+                                    color="#003041"
+                                    :append-icon="show3 ? 'mdi-eye' : 'mdi-eye-off'"
+                                    prepend-icon="mdi-lock"
+                                    :type="show3 ? 'text' : 'password'"
+                                    name="input-10-2"
+                                    label="Mot de passe*"
+                                    class="input-group--focused"
+                                    v-model="password"
+                                    @click:append="show3 = !show3"
+                            /></v-list-item-subtitle>
+                            </v-row>
+                            <v-row align="center"
+                                   class="mr-0">
+                                <v-spacer/>
+                                <p style="color: red">{{errorMessage}}</p>
+                            </v-row>
+                        </v-col>
+                    </v-row>
+                </v-container>
+                <v-card-actions>
+                    <v-spacer />
+                    <v-btn
+                            width="150"
+                            height="35"
+                            style="border-radius: 20px"
+                            @click="login"
+                    >Connexion</v-btn>
+                    <v-btn
+                            style="margin-right: 5px"
+                            text
+                            color="#003041"
+                            @click="dialog = false"
+                    >Fermer</v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
+
 
         <v-divider dark class="my-12"/>
 
@@ -251,6 +333,6 @@
 
 <style scoped>
     .overlap {
-        margin-top: -80px;
+        margin-top: -110px;
     }
 </style>
