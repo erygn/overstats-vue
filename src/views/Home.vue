@@ -1,71 +1,132 @@
 <template>
-        <div class="container">
-          <div class="row">
-            <div class="col">
-              <h1 style="color: #1B3A57">Bienvenue {{ displayName.Pseudo }}</h1>
-              <p>Quelques nouveautés</p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm-6">
-              <h2>Ajout des équipes</h2>
-              <v-card tile style="border-radius: 5px">
-                <v-container>
-                  Il est désormais possible de créer des équipes, et de les gérer à partir de son interface
-                  <v-card-actions>
-                    <v-spacer/>
-                    <v-btn to="/add" text>
-                      Voir <v-icon>mdi-eye</v-icon>
-                    </v-btn>
-                  </v-card-actions>
-                </v-container>
-              </v-card>
-            </div>
-            <div class="col-sm-6">
-              <h2>PWA</h2>
-              <v-card tile style="border-radius: 5px">
-                <v-container>
-                  PWA c'est quoi ? Pour rester dans les termes simple, une PWA c'est une application web que vous pouvez télécharger à partir d'un site et être représenté comme une véritable application. C'est vraiment bien ! En plus Overstats en est une ;)
-                </v-container>
-              </v-card>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col">
-              <h2>Win Rate</h2>
-              <v-card tile style="border-radius: 20px">
-                <v-container>
-                  <v-row justify="space-between">
-                    <v-col cols="auto">
-                      <pie-chart donut="true" :data="pieData" />
-                    </v-col>
-                    <v-col cols="auto">
-                      <v-data-table :items="table" :items-per-page="5" :headers="[{text: 'Game', align: 'left', value: 'game', }, { text: 'Map', value: 'map' }, { text: 'Score', value: 'score' },]"/>
-                    </v-col>
-                  </v-row>
-                  <v-card-actions>
-                    <v-spacer/>
-                    <v-btn @click="add" text>
-                      Ajouter <v-icon>mdi-plus</v-icon>
-                    </v-btn>
-                  </v-card-actions>
-                </v-container>
-              </v-card>
-            </div>
-          </div>
-
-          <v-btn
-                  bottom
-                  fab
-                  fixed
-                  right
-                  to="/add"
-          >
-            <v-icon>mdi-plus</v-icon>
-          </v-btn>
-
+  <div>
+    <v-container fluid style="height: 320px; background: linear-gradient(#0694cc, #075983); justify-content: center">
+      <v-row justify="center" style="margin: 0px 1px">
+        <div class="col-sm-12 col-lg-6">
+          <h1 style="color: #FFF; margin-top: 40px; font-weight: 300; margin-bottom: 10px">Hey <span style="font-weight: 500">{{ displayName.Pseudo }} !</span></h1>
+          <router-link to="/add" style="text-decoration: none; color: #dcdcdc; border: 1px solid #00577a; border-radius: 20px; padding: 5px 20px; background-color: #00577a">Gérer ces équipes <v-icon style="margin-bottom: 2px; margin-right: -5px; color: #dcdcdc" small>mdi-settings</v-icon></router-link>
         </div>
+      </v-row>
+    </v-container>
+
+    <v-container fluid>
+      <v-row justify="center" style="margin: 5px">
+        <v-card
+                style="border-radius: 8px; padding: 18px"
+                class="mx-auto col-lg-7 col-sm-12 overlap"
+        >
+          <v-list-item three-line>
+            <v-list-item-content>
+              <v-list-item-title class="headline mb-1">Overstats</v-list-item-title>
+              <v-list-item-subtitle>Accédez à un panel de gestion de vos équipes et de vos données.<br>Utilisez les outils disponibles pour voir les points à améliorer sur votre équipe.</v-list-item-subtitle>
+              <v-list-item-subtitle>Système autonome</v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
+        </v-card>
+      </v-row>
+    </v-container>
+
+    <v-container style="align-items: center" class="my-5">
+      <v-row align="center" style="justify-content: center">
+        <div class="col-lg-6">
+          <v-row align="center" style="justify-content: center">
+            <div class="col-sm-6">
+              <v-card style="border-radius: 5px" class="mx-auto">
+                <v-img
+                        class="white--text align-end"
+                        height="200px"
+                        src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+                >
+                </v-img>
+
+                <v-card-title>Ajouter votre équipe</v-card-title>
+                <v-card-subtitle class="pb-0">Votre panel au plus proche de vous</v-card-subtitle>
+                <v-card-text class="text--primary">
+                  <div>Il est désormais possible de créer des équipes</div>
+
+                  <div> t de les gérer à partir de son interface</div>
+                </v-card-text>
+
+                <v-card-actions>
+                  <v-spacer/>
+                  <v-btn
+                          to="/add"
+                          color="grey"
+                          text
+                  >
+                    Voir <v-icon small>fa-eye</v-icon>
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </div>
+            <div class="col-sm-6">
+              <v-card style="border-radius: 5px" class="mx-auto">
+                <v-img
+                        class="white--text align-end"
+                        height="200px"
+                        src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+                >
+                </v-img>
+
+                <v-card-title>PWA</v-card-title>
+                <v-card-subtitle class="pb-0">Votre panel au plus proche de vous</v-card-subtitle>
+                <v-card-text class="text--primary">
+                  <div>Récupérer l'application directement depuis le site</div>
+
+                  <div>En l'ajoutant au bureau</div>
+                </v-card-text>
+
+                <v-card-actions>
+                  <v-spacer/>
+                  <v-btn
+                          color="grey"
+                          text
+                  >
+                    Installer
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </div>
+          </v-row>
+        </div>
+      </v-row>
+    </v-container>
+
+    <v-container style="align-items: center" class="my-5">
+      <v-row align="center" style="justify-content: center">
+        <div class="col-sm-12 col-lg-6">
+          <h2>{{ favName }}</h2>
+          <v-card tile style="border-radius: 20px">
+            <v-container>
+              <v-row justify="space-between">
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                  <pie-chart donut="true" :data="pieData" />
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                  <v-data-table :items="table" :items-per-page="5" :headers="[{text: 'Game', align: 'left', value: 'game', }, { text: 'Map', value: 'map' }, { text: 'Score', value: 'score' },]"/>
+                </div>
+              </v-row>
+              <v-card-actions>
+                <v-spacer/>
+                <v-btn @click="add" text>
+                  Ajouter <v-icon>mdi-plus</v-icon>
+                </v-btn>
+              </v-card-actions>
+            </v-container>
+          </v-card>
+        </div>
+      </v-row>
+    </v-container>
+
+    <v-container fluid style="justify-content: center; background: linear-gradient(#004a67, #003041)">
+      <v-row justify="center">
+        <h1 style="text-align: center; margin-top: 20px; font-weight: 200; text-transform: uppercase; font-size: 25px; color: white">Overstats</h1>
+      </v-row>
+      <v-row justify="center" style="margin-top: 10px">
+        <h2 style="font-weight: 300; font-size: 14px; margin-top: -10px; text-align: center; color: white">Développé par <a href="https://genesis-mc.fr">Genesis</a></h2>
+      </v-row>
+    </v-container>
+  </div>
 </template>
 
 <script>
@@ -80,6 +141,8 @@ export default {
   data() {
     return {
       displayName: null,
+
+      favName: 'Genesis',
 
       teamName: null,
       playerOne: null,
@@ -146,6 +209,7 @@ export default {
        const val = snapshot.val();
        this.displayName = val;
      })
+
   },
   components: {
     // HelloWorld
@@ -160,5 +224,9 @@ export default {
   h2 {
     font-weight: 300;
     padding-bottom: 5px;
+  }
+
+  .overlap {
+    margin-top: -80px;
   }
 </style>

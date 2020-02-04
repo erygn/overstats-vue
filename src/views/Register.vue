@@ -19,15 +19,16 @@
                     <v-list-item three-line>
                         <v-list-item-content>
                             <v-list-item-title class="headline mb-1">Inscription</v-list-item-title>
-                            <v-list-item-subtitle><v-text-field type="text" label="Pseudo" prepend-icon="mdi-account" v-model="pseudo"/></v-list-item-subtitle>
-                            <v-list-item-subtitle><v-text-field type="text" label="Adresse mail" prepend-icon="mdi-mail" v-model="email"/></v-list-item-subtitle>
+                            <v-list-item-subtitle><v-text-field type="text" label="Pseudo*" prepend-icon="mdi-account" v-model="pseudo"/></v-list-item-subtitle>
+                            <v-list-item-subtitle><v-text-field type="text" label="Adresse mail*" prepend-icon="mdi-mail" v-model="email"/></v-list-item-subtitle>
                             <v-list-item-subtitle><v-text-field
                                     :append-icon="show3 ? 'mdi-eye' : 'mdi-eye-off'"
                                     prepend-icon="mdi-lock"
                                     :type="show3 ? 'text' : 'password'"
                                     name="input-10-2"
-                                    label="Mot de passe"
+                                    label="Mot de passe*"
                                     class="input-group--focused"
+                                    :rules="rules" counter
                                     v-model="password"
                                     @click:append="show3 = !show3"
                             /></v-list-item-subtitle>
@@ -36,7 +37,8 @@
                                     prepend-icon="mdi-lock"
                                     :type="show4 ? 'text' : 'password'"
                                     name="input-10-2"
-                                    label="Confirmation du mot de passe"
+                                    label="Confirmation du mot de passe*"
+                                    :rules="rules" counter
                                     class="input-group--focused"
                                     v-model="password2"
                                     @click:append="show4 = !show4"
@@ -58,7 +60,7 @@
         name: "Register",
         data() {
             return {
-                rules: [v => v.length <= 25 || 'Max 25 characters'],
+                rules: [v => v.length > 5],
 
                 show3: false,
                 show4: false,
@@ -88,7 +90,7 @@
                                     })
                             },
                             (err) => {
-                                alert('Oops. ' + err.message)
+                                this.errorMessage = err.message;
                             }
                         );
                     } else {

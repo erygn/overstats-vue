@@ -3,6 +3,7 @@
         <v-app-bar
                 app
                 flat
+                dense
         >
             <v-app-bar-nav-icon v-if="!drawer" @click.stop="openDrawer" />
             <v-toolbar-title class="text-uppercase">
@@ -13,7 +14,7 @@
 
         <v-navigation-drawer
                 :mini-variant.sync="mini"
-                src="http://subswapr.com/background.jpg"
+                src="https://genesis-mc.fr/images/background.jpg"
                 v-model="drawer"
                 color="#051E34"
                 app
@@ -30,10 +31,6 @@
                         </v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
-
-                <v-divider dark
-                           class="my-4" />
-
             </v-list>
 
             <v-list>

@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <h1>{{ team }}</h1>
+                <h1><router-link to="/" style="text-decoration: none"><v-btn fab x-small depressed><v-icon x-small>fa-arrow-left</v-icon></v-btn></router-link> {{ teamName['TeamName'] }} <v-btn @click="selectFavorite" fab depressed v-if="!favorite"><v-icon>fa-star</v-icon></v-btn><v-btn @click="selectFavorite" fab depressed v-if="favorite"><v-icon color="yellow">fa-star</v-icon></v-btn></h1>
             </div>
         </div>
         <div class="row">
@@ -59,15 +59,30 @@
                 </v-card>
             </div>
         </div>
+
+        <v-btn
+                bottom
+                fab
+                fixed
+                right
+                to="/add"
+        >
+            <v-icon>mdi-plus</v-icon>
+        </v-btn>
     </div>
 </template>
 
 <script>
+    import firebase from 'firebase'
     export default {
         name: "Team",
         props: ['team'],
         data() {
             return {
+                teamName: '',
+
+                favorite: false,
+
                 chartData: {
                     '2017': 24,
                     '2018': 12,
@@ -98,6 +113,34 @@
                 ],
             }
         },
+        methods: {
+          selectFavorite: function () {
+              if (this.favorite) {
+                  firebase.database().ref('teams/' + firebase.auth().currentUser.uid + '/' + this.team).update({
+                      isFav: false
+                  })
+              } else {
+                  firebase.database().ref('teams/' + firebase.auth().currentUser.uid + '/' + this.team).update({
+                      isFav: true
+                  })
+              }
+
+            this.favorite = !this.favorite;
+          }
+        },
+        created() {
+            firebase.database().ref('teams/' + firebase.auth().currentUser.uid + '/' + this.team).once('value').then((snapshot) => {
+                // alert(JSON.stringify(snapshot.val()))
+                this.teamName = snapshot.val()
+                this.favorite = snapshot.child('isFav').val()
+            })
+
+            // firebase.database().ref('teams/' + firebase.auth().currentUser.uid + '/' + this.team).on('value',  (snapshot) => {
+            //
+            //     // alert(JSON.stringify(snapshot.val()))
+            //     this.teamName = snapshot.val();
+            // })
+        }
     }
 </script>
 

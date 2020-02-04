@@ -2,7 +2,7 @@
     <nav>
         <v-app-bar
                 app
-                flat
+                dense
         >
             <v-app-bar-nav-icon v-if="!drawer" @click.stop="openDrawer" />
             <v-toolbar-title class="text-uppercase">
@@ -10,9 +10,6 @@
                 <span>Stats</span>
             </v-toolbar-title>
             <v-spacer />
-            <v-btn icon>
-                <v-icon>mdi-apps</v-icon>
-            </v-btn>
             <v-btn icon>
                 <v-icon>mdi-bell</v-icon>
             </v-btn>
@@ -102,9 +99,11 @@
             </v-menu>
         </v-app-bar>
 
+<!--        :mini-variant.sync="mini"-->
+
         <v-navigation-drawer
                 :mini-variant.sync="mini"
-                src="http://subswapr.com/background.jpg"
+                src="https://genesis-mc.fr/images/background.jpg"
                 v-model="drawer"
                 color="#051E34"
                 app
@@ -177,13 +176,13 @@
                             v-for="(team, i) in teamList"
                             :key="i"
                             link
-                            :to="{path: '/team', query: {team: team.TeamName}}"
+                            :to="{path: '/team', query: {team: i}}"
                     >
-                        <v-list-item-content>
-                            <v-list-item-title style="color: #c2cbd4">
-                                {{ team.TeamName }}
-                            </v-list-item-title>
-                        </v-list-item-content>
+                            <v-list-item-content>
+                                <v-list-item-title style="color: #c2cbd4">
+                                    {{ team.TeamName }}
+                                </v-list-item-title>
+                            </v-list-item-content>
                     </v-list-item>
                 </v-list-group>
                 <v-divider
@@ -199,7 +198,7 @@
             </v-list>
 
             <v-list>
-                <v-list-item v-if="!mini">
+                <v-list-item v-if="!mini && miniMD">
                     <v-spacer/>
                         <v-btn @click.stop="mini = !mini" icon>
                             <v-icon color="#c2cbd4">fa-angle-left</v-icon>
@@ -209,6 +208,12 @@
                     <v-list-item-action>
                         <v-icon style="color: #c2cbd4; margin-left: 5px">fa-angle-right</v-icon>
                     </v-list-item-action>
+                </v-list-item>
+                <v-list-item v-if="!mini && !miniMD">
+                    <v-spacer/>
+                    <v-btn @click.stop="drawer = !drawer" icon>
+                        <v-icon color="#c2cbd4">fa-angle-left</v-icon>
+                    </v-btn>
                 </v-list-item>
             </v-list>
         </v-navigation-drawer>
@@ -224,7 +229,7 @@
         name: "Navbar",
         data: () => ({
             drawer: null,
-            mini: false,
+            mini: true,
             fav: true,
             menu: false,
             message: false,
@@ -234,7 +239,9 @@
 
             teamList: [],
 
-            displayName: ''
+            displayName: '',
+
+            miniMD: ''
         }),
         methods: {
             openDrawer: function () {
@@ -247,16 +254,35 @@
                 })
             }
         },
+        computed: {
+            mini() {
+                return this.$vuetify.breakpoint.mdAndDown;
+            }
+        },
         created () {
+            switch (this.$vuetify.breakpoint.name) {
+                case 'xs': this.miniMD = false; break;
+                case 'sm': this.miniMD = true; break;
+                case 'md': this.miniMD = true; break;
+                case 'lg': this.miniMD = true; break;
+                case 'xl': this.miniMD = true; break;
+            }
+
             firebase.database().ref('users/' + firebase.auth().currentUser.uid).once('value').then((snapshot) => {
                 const val = snapshot.val();
                 this.displayName = val;
             })
 
-            firebase.database().ref('teams/' + firebase.auth().currentUser.uid).once('value').then((snapshot) => {
-                const val = snapshot.val();
-                this.teamList = val;
+            firebase.database().ref('teams/' + firebase.auth().currentUser.uid).on('value',  (snapshot) => {
+
+                // alert(JSON.stringify(snapshot.val()))
+                this.teamList = snapshot.val();
             })
+
+            // firebase.database().ref('teams/' + firebase.auth().currentUser.uid).once('value').then((snapshot) => {
+            //     const val = snapshot.val();
+            //     this.teamList = val;
+            // })
 
             // firebase.firestore().collection('teams/' + firebase.auth().currentUser.uid).onSnapshot(res => {
             //     const changes = res.docChanges();

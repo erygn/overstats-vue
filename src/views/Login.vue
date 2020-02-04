@@ -2,10 +2,13 @@
     <div>
         <v-container fluid style="height: 420px; background: linear-gradient(#004a67, #003041); justify-content: center">
             <v-row justify="center">
-                <h1 style="color: white; margin-top: 90px; font-weight: 200; text-transform: uppercase; font-size: 25px">Overstats</h1>
+                <h1 style="text-align: center; color: white; margin-top: 100px; font-weight: 200; text-transform: uppercase; font-size: 25px">Développez votre équipe</h1>
+            </v-row>
+            <v-row justify="center" style="margin-top: 10px">
+                <h2 style="font-weight: 300; color: #FFF; font-size: 14px; margin-top: -10px; text-align: center">Utilisez Overstats pour développer vos équipes Esport</h2>
             </v-row>
             <v-row justify="center">
-                <v-btn width="200" height="40" style="border-radius: 20px" @click="dialog = !dialog">Connexion</v-btn>
+                <v-btn width="200" height="40" style="border-radius: 20px; margin-top: 20px" @click="dialog = !dialog">Connexion</v-btn>
             </v-row>
             <v-row justify="center" style="margin-top: 10px">
                 <h2 style="font-weight: 300; color: #FFF; font-size: 14px">Pas encore de compte ?</h2>
@@ -23,24 +26,83 @@
                 >
                     <v-list-item three-line>
                         <v-list-item-content>
-                            <v-list-item-title class="headline mb-1">Connexion</v-list-item-title>
-                            <v-list-item-subtitle><v-text-field type="text" label="Adresse mail*" prepend-icon="mdi-mail" v-model="email"/></v-list-item-subtitle>
-                            <v-list-item-subtitle><v-text-field
-                                    :append-icon="show3 ? 'mdi-eye' : 'mdi-eye-off'"
-                                    prepend-icon="mdi-lock"
-                                    :type="show3 ? 'text' : 'password'"
-                                    name="input-10-2"
-                                    label="Mot de passe*"
-                                    class="input-group--focused"
-                                    v-model="password"
-                                    @click:append="show3 = !show3"
-                            /></v-list-item-subtitle>
-                                <v-btn style="border-radius: 40px; padding-left: 40px; padding-right: 40px; padding-top: 5px; padding-bottom: 5px">Connexion</v-btn>
-                            <v-list-item-subtitle style="margin-top: 10px">Pas de compte OverStats ? <router-link style="text-decoration: none" to="/register">Créer un compte</router-link></v-list-item-subtitle>
+                            <v-list-item-title class="headline mb-1">Overstats</v-list-item-title>
+                            <v-list-item-subtitle>Accédez à un panel de gestion de vos équipes et de vos données.<br>Utilisez les outils disponibles pour voir les points à améliorer sur votre équipe.</v-list-item-subtitle>
+                            <v-list-item-subtitle>Système autonome</v-list-item-subtitle>
                         </v-list-item-content>
                     </v-list-item>
                 </v-card>
             </v-row>
+        </v-container>
+
+        <v-divider dark class="my-12"/>
+
+        <v-container style="align-items: center" class="my-5">
+            <v-row align="center" style="justify-content: center">
+                <div class="col-sm-6 col-lg-3">
+                    <v-card
+                            color="#004A67"
+                            dark
+                    >
+                        <v-card-title class="headline">Ajouter une équipe</v-card-title>
+
+                        <v-card-subtitle>Ajoutez une équipe et commencez à traiter des données.</v-card-subtitle>
+
+                        <v-card-actions>
+                            <v-btn @click="dialog = !dialog" text>Ajouter</v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <v-card
+                            color="#003041"
+                            dark
+                    >
+                        <v-card-title class="headline">Accéder aux Stats</v-card-title>
+
+                        <v-card-subtitle>Regardez en un clique vos statistiques d'équipe.</v-card-subtitle>
+
+                        <v-card-actions>
+                            <v-btn @click="dialog = !dialog" text>Voir</v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </div>
+            </v-row>
+            <v-divider dark class="my-4"/>
+            <v-row align="center" style="justify-content: center">
+                <div class="col-sm-6 col-lg-3">
+                    <v-card
+                            color="#004A67"
+                            dark
+                    >
+                        <v-card-title class="headline">Partagez votre avancée</v-card-title>
+
+                        <v-card-subtitle>Montrez aux autres équipes votre progression et organisez des matchs.</v-card-subtitle>
+
+                        <v-card-actions>
+                            <v-btn @click="dialog = !dialog" text>Partager</v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <v-card
+                            color="#003041"
+                            dark
+                    >
+                        <v-card-title class="headline">Organiser des tournois</v-card-title>
+
+                        <v-card-subtitle>Organisez des tournois avec les équipes déjà présente sur Overstats.</v-card-subtitle>
+
+                        <v-card-actions>
+                            <v-btn @click="dialog = !dialog" text>Organiser</v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </div>
+            </v-row>
+        </v-container>
+
+
+        <v-container fluid>
             <v-divider dark class="my-12"/>
 
             <v-row justify="center" style="margin: 5px">
@@ -120,7 +182,7 @@
                                 <v-row align="center"
                                        class="mr-0">
                                     <v-spacer/>
-                                    <p>Hey</p>
+                                    <p style="color: red">{{errorMessage}}</p>
                                 </v-row>
                             </v-col>
                         </v-row>
@@ -128,20 +190,24 @@
                     <v-card-actions>
                         <v-spacer />
                         <v-btn
-                                text
-                                color="#003041"
-                                @click="dialog = false"
-                        >Fermer</v-btn>
-                        <v-btn
-                                width="180"
+                                width="150"
                                 height="35"
                                 style="border-radius: 20px"
                                 @click="login"
                         >Connexion</v-btn>
+                        <v-btn
+                                style="margin-right: 5px"
+                                text
+                                color="#003041"
+                                @click="dialog = false"
+                        >Fermer</v-btn>
                     </v-card-actions>
                 </v-card>
             </v-dialog>
         </v-container>
+
+        <v-divider dark class="my-12"/>
+
     </div>
 </template>
 
@@ -155,7 +221,17 @@
 
                 show3: false,
                 email: '',
-                password: ''
+                password: '',
+
+                errorMessage: null,
+
+                icons: [
+                    'fab fa-facebook',
+                    'fab fa-twitter',
+                    'fab fa-google-plus',
+                    'fab fa-linkedin',
+                    'fab fa-instagram',
+                ],
             }
         },
         methods: {
@@ -165,7 +241,7 @@
                         this.$router.replace('/')
                     },
                     (err) => {
-                        alert('Oops. ' + err.message)
+                        this.errorMessage = 'Oops. ' + err.message;
                     }
                 );
             }
@@ -175,6 +251,6 @@
 
 <style scoped>
     .overlap {
-        margin-top: -100px;
+        margin-top: -80px;
     }
 </style>

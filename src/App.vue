@@ -1,6 +1,6 @@
 <template>
   <v-app id="inspire" style="background: #F6F7F9">
-      <Navbar v-if="this.$route.path != '/login' && this.$route.path != '/register'"/>
+      <Navbar v-if="this.$route.path != '/login' && this.$route.path != '/register' && this.$route.path != '/team'"/>
       <NavNew v-if="this.$route.path == '/login' || this.$route.path == '/register'"/>
     <v-content>
         <router-view/>

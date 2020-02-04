@@ -52,7 +52,8 @@
             addTeam: function () {
                 if (this.teamName != null || this.teamName != '') {
                     firebase.database().ref('teams' + '/' + firebase.auth().currentUser.uid + '/' + this.randomID()).set({
-                        TeamName: this.teamName
+                        TeamName: this.teamName,
+                        isFav: false
                     }).then(() => {
                         this.$router.push('home');
                     })
