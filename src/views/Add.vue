@@ -35,10 +35,10 @@
                     <v-card
                             style="border-radius: 8px; padding: 18px"
                     >
-                        <v-card-title style="font-weight: 400; font-size: 24px">Définir une équipe</v-card-title>
+                        <v-card-title style="font-weight: 400; font-size: 24px">Définir une équipe {{ accountValues.Teams }} / {{ accountValues.Grade }}</v-card-title>
                         <v-card-subtitle class="pb-0">Définissez votre équipe</v-card-subtitle>
                         <v-card-text class="text--primary">
-                            <div><v-text-field type="text" label="Nom" prepend-icon="fa-trophy" v-model="teamName"/></div>
+                            <div><v-text-field type="text" label="Nom d'équipe" prepend-icon="fa-trophy" v-model="teamName"/></div>
                         </v-card-text>
                         <v-card-actions>
                             <v-spacer/>
@@ -51,14 +51,66 @@
             </v-row>
         </v-container>
 
-        <v-snackbar v-model="snackbar" :timeout="2000">
+        <v-dialog
+                v-model="dialog"
+                width="600px"
+                style="border-radius: 20px"
+        >
+            <v-card style="border-radius: 20px">
+                <v-card-title style="background-color: #003041; color: white; font-weight: 300">
+                    Maximum atteint
+                    <v-spacer/>
+                    <v-btn @click="dialog = !dialog" text depressed><v-icon color="#FFF">mdi-close</v-icon></v-btn>
+                </v-card-title>
+                <v-container>
+                    <v-row class="mx-2">
+                        <v-col class="align-center justify-space-between" cols="12">
+                            <v-row align="center" class="mr-0">
+                                <v-alert type="error" text>
+                                    Attention votre grade actuel ne vous permet pas de réaliser cette action
+                                </v-alert>
+                            </v-row>
+                            <v-row align="center" class="mr-0">
+                                Vous avez atteint le nombre d'équipe maximum pour votre grade actuel. Pour pouvoir ajouter d'autres équipes en plus, merci de choisir une offre supérieure
+                            </v-row>
+                        </v-col>
+                    </v-row>
+                </v-container>
+                <v-card-actions>
+                    <v-spacer />
+                    <v-btn
+                            depressed
+                            color="grey"
+                            width="150"
+                            height="35"
+                            style="border-radius: 20px; color: #FFF"
+                            @click="dialog = false"
+                    >Fermer</v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
+
+        <v-snackbar v-model="snackbar" :timeout="3000" color="green">
             Equipe ajoutée
             <v-btn
-                    color="grey"
+                    color="white"
                     text
+                    icon
                     @click="snackbar = false"
             >
-                Fermer
+                <v-icon>mdi-close</v-icon>
+            </v-btn>
+        </v-snackbar>
+
+        <v-snackbar v-model="snackbarErr" :timeout="3000" color="red">
+            Veuillez remplir le champ Nom d'équipe
+            <v-btn
+                    color="white"
+                    text
+                    icon
+                    @click="snackbar = false"
+            >
+                <v-icon>mdi-close</v-icon>
             </v-btn>
         </v-snackbar>
     </div>
@@ -71,8 +123,13 @@
         data() {
             return {
                 snackbar: false,
+                dialog: false,
                 isLoad: false,
                 teamName: '',
+
+                accountValues: '',
+
+                snackbarErr: false
             }
         },
         methods: {
@@ -92,16 +149,25 @@
             addTeam: function () {
                 let long = this.teamName.length
                 if (long !== 0) {
-                    this.isLoad = true;
-                    this.snackbar = true;
-                    firebase.database().ref('teams' + '/' + firebase.auth().currentUser.uid + '/' + this.randomID()).set({
-                        TeamName: this.teamName,
-                        isFav: false
-                    }).then(() => {
-                        this.isLoad = false;
-                    })
+                    if (this.accountValues.Teams !== this.accountValues.Grade) {
+                        this.isLoad = true;
+                        this.snackbar = true;
+                        firebase.database().ref('teams' + '/' + firebase.auth().currentUser.uid + '/' + this.randomID()).set({
+                            TeamName: this.teamName,
+                            isFav: false
+                        }).then(() => {
+                            firebase.database().ref('users/' + firebase.auth().currentUser.uid).update({
+                                Teams: this.accountValues.Teams + 1
+                            }).then(() => {
+                                this.isLoad = false;
+                                this.teamName = ''
+                            })
+                        })
+                    } else {
+                        this.dialog = true
+                    }
                 } else {
-                    alert('Incorrect')
+                    this.snackbarErr = true
                 }
             },
             randomID: function makeid() {
@@ -113,7 +179,20 @@
                 }
                 return result;
             }
-        }
+        },
+        created () {
+            // firebase.database().ref('users/' + firebase.auth().currentUser.uid).once('value').then((snapshot) => {
+            //     const val = snapshot.val();
+            //     this.accountValues = val;
+            // })
+
+            firebase.database().ref('users/' + firebase.auth().currentUser.uid).on('value',  (snapshot) => {
+
+                // alert(JSON.stringify(snapshot.val()))
+                this.accountValues = snapshot.val();
+            })
+
+        },
     }
 </script>
 

@@ -96,6 +96,7 @@ const router = new VueRouter({
 import firebase from "firebase";
 
 router.beforeEach((to, from, next) => {
+  window.scrollTo(0, 0);
   const currentUser = firebase.auth().currentUser;
   const requireAuth = to.matched.some(record => record.meta.requireAuth);
 

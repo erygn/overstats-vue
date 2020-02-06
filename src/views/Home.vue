@@ -153,14 +153,6 @@
         </div>
       </v-row>
     </v-container>
-
-      <v-container fluid>
-          <v-row align="center" style="justify-content: center">
-              <div class="col-lg-6 col-sm-12 col-md-8">
-                  <v-divider></v-divider>
-              </div>
-          </v-row>
-      </v-container>
   </div>
 </template>
 
