@@ -1,10 +1,10 @@
 <template>
   <v-app id="inspire" style="background: #F6F7F9">
-      <Navbar v-if="this.$route.path != '/login' && this.$route.path != '/register' && this.$route.path != '/team'"/>
-      <NavNew v-if="this.$route.path == '/login' || this.$route.path == '/register'"/>
+      <Navbar v-if="this.$route.path != '/login' && this.$route.path != '/about' && this.$route.path != '/register' && this.$route.path != '/team' && this.$route.path != '/addMatch'"/>
+      <NavNew v-if="this.$route.path == '/login' || this.$route.path == '/register' || this.$route.path == '/about'"/>
     <v-content>
         <router-view/>
-        <Footer v-if="this.$route.path != '/team'"/>
+        <Footer v-if="this.$route.path != '/team' && this.$route.path != '/addMatch'"/>
     </v-content>
   </v-app>
 </template>

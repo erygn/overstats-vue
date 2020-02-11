@@ -31,6 +31,16 @@
                         </v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
+                <v-list-item to="/about">
+                    <v-list-item-action>
+                        <v-icon style="color: #c2cbd4">mdi-information-outline</v-icon>
+                    </v-list-item-action>
+                    <v-list-item-content>
+                        <v-list-item-title style="color: #c2cbd4">
+                            A Propos
+                        </v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
             </v-list>
 
             <v-list>

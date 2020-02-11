@@ -81,8 +81,9 @@
                                 firebase.database().ref('users' + '/' + userCredential.user.uid).set({
                                     Pseudo: this.pseudo,
                                     Mail: this.email,
+                                    Teams: 0,
                                     Description: 'Nouveau',
-                                    Grade: 1
+                                    Grade: 1,
                                 }).then(() => {
                                     this.$router.replace('/')
                                 },

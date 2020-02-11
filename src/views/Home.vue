@@ -6,8 +6,7 @@
           <h1 style="margin-top: 40px; font-weight: 300; margin-bottom: 10px">{{randomWelcome}} <span style="font-weight: 500">{{ displayName.Pseudo }}</span></h1>
             <p style="margin-top: -15px; font-weight: 200">Version 0.1.2</p>
             <div>
-                <router-link to="/teams" style="text-decoration: none; color: #dcdcdc; border: 1px solid #00577a; border-radius: 20px; padding: 5px 20px; background-color: #00577a">Gérer <v-icon style="margin-bottom: 2px; margin-right: -5px; color: #dcdcdc" small>mdi-settings</v-icon></router-link>
-                <router-link to="/add" style="text-decoration: none; color: #dcdcdc; border: 1px solid #00577a; border-radius: 20px; padding: 5px 20px; background-color: #00577a; margin-left: 10px">Ajouter <v-icon style="margin-bottom: 2px; margin-right: -5px; color: #dcdcdc" small>mdi-plus</v-icon></router-link>
+                <router-link to="/teams" style="text-decoration: none; color: #dcdcdc; border: 1px solid #00577a; border-radius: 20px; padding: 5px 20px; background-color: #00577a">Gérer vos équipes <v-icon style="margin-bottom: 2px; margin-right: -5px; color: #dcdcdc" small>mdi-account-group</v-icon></router-link>
             </div>
         </div>
       </v-row>
@@ -71,7 +70,7 @@
                 <v-card-actions>
                   <v-spacer/>
                   <v-btn
-                          to="/add"
+                          to="/teams"
                           color="grey"
                           text
                   >
@@ -130,8 +129,11 @@
 
     <v-container fluid style="align-items: center" class="my-5">
       <v-row align="center" style="justify-content: center">
-        <div class="col-sm-12 col-lg-6 col-md-8">
-          <h2>{{ favName }}</h2>
+        <div class="col-sm-12 col-lg-6 col-md-8"
+             v-for="(team, i) in teamValue"
+             :key="i"
+        >
+          <h2>{{ team.TeamName }}</h2>
           <v-card tile style="border-radius: 20px">
             <v-container>
               <v-row justify="space-between">
@@ -144,8 +146,8 @@
               </v-row>
               <v-card-actions>
                 <v-spacer/>
-                <v-btn @click="add" text>
-                  Ajouter <v-icon>mdi-plus</v-icon>
+                <v-btn :to="{path: '/team', query: {team: i}}" text>
+                  Voir <v-icon>mdi-eye</v-icon>
                 </v-btn>
               </v-card-actions>
             </v-container>
@@ -197,6 +199,8 @@ export default {
 
       dialog: null,
 
+        teamValue: null,
+
       chartData: {
         '2017': 24,
         '2018': 12,
@@ -233,9 +237,6 @@ export default {
     }
   },
   methods: {
-    add: function () {
-      this.chartData.splice(1, 0, {'2012': 12})
-    },
     submit: function () {
       const team = {
         teamName: this.teamName,
@@ -264,6 +265,10 @@ export default {
        const val = snapshot.val();
        this.displayName = val;
      })
+
+      firebase.database().ref('teams/' + firebase.auth().currentUser.uid).once('value').then((snapshot) => {
+          this.teamValue = snapshot.val()
+      })
 
   },
   components: {

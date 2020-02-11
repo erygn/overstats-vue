@@ -60,13 +60,13 @@
                             </v-list-item-content>
                         </v-list-item>
 
-                        <v-list-item link to="/about">
+                        <v-list-item link to="/teams">
                             <v-list-item-action>
-                                <v-icon color="grey darken-1">mdi-information-outline</v-icon>
+                                <v-icon color="grey darken-1">mdi-account-group</v-icon>
                             </v-list-item-action>
                             <v-list-item-content>
                                 <v-list-item-title class="grey--text text--darken-1">
-                                    A Propos
+                                    Equipes
                                 </v-list-item-title>
                             </v-list-item-content>
                         </v-list-item>
@@ -122,13 +122,13 @@
                     </v-list-item-content>
                 </v-list-item>
 
-                <v-list-item to="/about">
+                <v-list-item>
                     <v-list-item-action>
-                        <v-icon style="color: #c2cbd4">mdi-information-outline</v-icon>
+                        <v-icon style="color: #c2cbd4">mdi-trophy</v-icon>
                     </v-list-item-action>
                     <v-list-item-content>
                         <v-list-item-title style="color: #c2cbd4">
-                            A Propos
+                            Tournoi
                         </v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
@@ -136,25 +136,14 @@
                 <v-divider dark
                            class="my-4" />
 
-                <a href="/" style="text-decoration: none">
                 <v-list-item
-                        class="mt-4"
-                >
-                        <v-list-item-action>
-                            <v-icon color="red">mdi-alert</v-icon>
-                        </v-list-item-action>
-                        <v-list-item-title style="color: #F44336">[DEV] Rafraichissement</v-list-item-title>
-                </v-list-item>
-                </a>
-
-                <v-list-item
-                        to="/add"
+                        to="/teams"
                         class="mt-4"
                 >
                     <v-list-item-action>
-                        <v-icon color="#c2cbd4">mdi-plus</v-icon>
+                        <v-icon color="#c2cbd4">mdi-account-group</v-icon>
                     </v-list-item-action>
-                    <v-list-item-title style="color: #c2cbd4">Ajouter une équipe</v-list-item-title>
+                    <v-list-item-title style="color: #c2cbd4">Gérer vos équipes</v-list-item-title>
                 </v-list-item>
 
                 <v-list-group
@@ -190,11 +179,29 @@
                         dark
                         class="my-4"
                 />
+                <v-list-item>
+                    <v-list-item-action>
+                        <v-icon color="#c2cbd4">mdi-account</v-icon>
+                    </v-list-item-action>
+                    <v-list-item-title style="color: #c2cbd4">Profil</v-list-item-title>
+                </v-list-item>
                 <v-list-item to="/settings">
                     <v-list-item-action>
                         <v-icon color="#c2cbd4">mdi-settings</v-icon>
                     </v-list-item-action>
                     <v-list-item-title style="color: #c2cbd4">Paramètres</v-list-item-title>
+                </v-list-item>
+
+                <v-divider
+                        dark
+                        class="my-4"
+                />
+
+                <v-list-item>
+                    <v-list-item-action>
+                        <v-icon color="#c2cbd4">mdi-information-outline</v-icon>
+                    </v-list-item-action>
+                    <v-list-item-title style="color: #c2cbd4">Aide</v-list-item-title>
                 </v-list-item>
             </v-list>
 

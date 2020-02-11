@@ -4,7 +4,6 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from '../views/Login'
 import About from '../views/About'
-import Add from "@/views/Add";
 import Register from "@/views/Register";
 import Settings from "@/views/Settings";
 import Team from '@/views/Team';
@@ -17,22 +16,6 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
-    meta: {
-      requireAuth: true
-    }
-  },
-  {
-    path: '/about',
-    name: 'About',
-    component: About,
-    meta: {
-      requireAuth: true
-    }
-  },
-  {
-    path: '/add',
-    name: 'Add',
-    component: Add,
     meta: {
       requireAuth: true
     }
@@ -64,6 +47,17 @@ const routes = [
       requireAuth: true
     }
   },
+  {
+    path: '/addMatch',
+    name: 'AddMatch',
+    component: addMatch,
+    props(route) {
+      return route.query || {}
+    },
+    meta: {
+      requireAuth: true
+    }
+  },
 
   {
     path: '/login',
@@ -74,6 +68,11 @@ const routes = [
     path: '/register',
     name: 'Register',
     component: Register
+  },
+  {
+    path: '/about',
+    name: 'About',
+    component: About,
   },
   {
     path: '*',
@@ -94,6 +93,7 @@ const router = new VueRouter({
 
 
 import firebase from "firebase";
+import addMatch from "@/views/addMatch";
 
 router.beforeEach((to, from, next) => {
   window.scrollTo(0, 0);
