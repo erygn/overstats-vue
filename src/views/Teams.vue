@@ -308,14 +308,7 @@
                         firebase.database().ref('teams' + '/' + firebase.auth().currentUser.uid + '/' + this.randomID()).set({
                             TeamName: this.teamName,
                             Description: "Description par défaut",
-                            isFav: false,
-                            MatchCount: 0,
-                            countVictoryRanked: 0,
-                            countDefeatRanked: 0,
-                            countNullRanked: 0,
-                            countVictoryQuickPlay: 0,
-                            countDefeatQuickPlay: 0,
-                            countNullQuickPlay: 0,
+                            isFav: false
                         }).then(() => {
                             firebase.database().ref('users/' + firebase.auth().currentUser.uid).update({
                                 Teams: this.accountValues.Teams + 1

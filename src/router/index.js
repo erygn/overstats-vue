@@ -58,6 +58,17 @@ const routes = [
       requireAuth: true
     }
   },
+  {
+    path: '/gameadd',
+    name: 'GameAdd',
+    component: GameAdd,
+    props(route) {
+      return route.query || {}
+    },
+    meta: {
+      requireAuth: true
+    }
+  },
 
   {
     path: '/login',
@@ -94,6 +105,7 @@ const router = new VueRouter({
 
 import firebase from "firebase";
 import addMatch from "@/views/addMatch";
+import GameAdd from "@/views/GameAdd";
 
 router.beforeEach((to, from, next) => {
   window.scrollTo(0, 0);
