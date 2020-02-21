@@ -308,7 +308,16 @@
                         firebase.database().ref('teams' + '/' + firebase.auth().currentUser.uid + '/' + this.randomID()).set({
                             TeamName: this.teamName,
                             Description: "Description par défaut",
-                            isFav: false
+                            isFav: false,
+                            compo: true,
+                            Players: {
+                                mainTank: 'MainTank',
+                                offTank: 'OffTank',
+                                mainDps: 'MainDps',
+                                offDps: 'OffDps',
+                                mainHeal: 'MainHeal',
+                                offHeal: 'OffHeal'
+                            }
                         }).then(() => {
                             firebase.database().ref('users/' + firebase.auth().currentUser.uid).update({
                                 Teams: this.accountValues.Teams + 1

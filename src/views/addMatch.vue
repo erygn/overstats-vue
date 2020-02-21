@@ -17,30 +17,33 @@
                         <br>
                         <h3 class="title font-weight-light mb-2">Type de carte</h3>
                         <v-radio-group v-model="configMap" row>
-                            <v-radio label="KOTH" value="KOTH"></v-radio>
-                            <v-radio label="Escord" value="Escord"></v-radio>
+                            <v-radio disabled label="KOTH" value="KOTH"></v-radio>
+                            <v-radio label="Escorte" value="Escorte"></v-radio>
                             <v-radio label="Hybride" value="Hybride"></v-radio>
                             <v-radio label="2CP" value="2CP"></v-radio>
                         </v-radio-group>
-                        <hr>
-                        <br>
-                        <h3 class="title font-weight-light mb-2">Status du Match</h3>
-                        <v-radio-group v-model="configStatus" row>
-                            <v-radio label="Victoire" value="Victoire"></v-radio>
-                            <v-radio label="Défaite" value="Défaite"></v-radio>
-                            <v-radio label="Egalité" value="Egalité"></v-radio>
-                        </v-radio-group>
-                        <hr>
-                        <br>
-                        <h3 class="title font-weight-light mb-2">Score</h3>
-                        <v-row>
-                            <v-col cols="6" sm="6">
-                                <v-text-field type="number" label="Votre équipe" v-model="configScoreOne"></v-text-field>
-                            </v-col>
-                            <v-col cols="6" sm="6">
-                                <v-text-field type="number" label="Equipe adverse" v-model="configScoreTwo"></v-text-field>
-                            </v-col>
-                        </v-row>
+
+                        <!--                        <hr>-->
+                        <!--                        <br>-->
+                        <!--                        <h3 class="title font-weight-light mb-2">Status du Match</h3>-->
+                        <!--                        <v-radio-group v-model="configStatus" row>-->
+                        <!--                            <v-radio label="Victoire" value="Victoire"></v-radio>-->
+                        <!--                            <v-radio label="Défaite" value="Défaite"></v-radio>-->
+                        <!--                            <v-radio label="Egalité" value="Egalité"></v-radio>-->
+                        <!--                        </v-radio-group>-->
+                        <!--                        <hr>-->
+                        <!--                        <br>-->
+                        <!--                        <h3 class="title font-weight-light mb-2">Score</h3>-->
+                        <!--                        <v-row>-->
+                        <!--                            <v-col cols="6" sm="6">-->
+                        <!--                                <v-text-field type="number" label="Votre équipe" v-model="configScoreOne"></v-text-field>-->
+                        <!--                            </v-col>-->
+                        <!--                            <v-col cols="6" sm="6">-->
+                        <!--                                <v-text-field type="number" label="Equipe adverse" v-model="configScoreTwo"></v-text-field>-->
+                        <!--                            </v-col>-->
+                        <!--                        </v-row>-->
+
+
                         <!--                        <v-text-field-->
                         <!--                                label="Email"-->
                         <!--                                value="john@vuetifyjs.com"-->
@@ -52,12 +55,12 @@
                 </v-window-item>
 
                 <v-window-item :value="2">
-                    <v-card-text v-if="configMap === '2CP'">
-                        <h3 class="title font-weight-light mb-2">Choisir la carte joué</h3>
+                    <v-card-text v-if="configMap === 'Escorte'">
+                        <h3 class="title font-weight-light mb-2">Choisir la carte joué pour {{ configMap }}</h3>
                         <v-radio-group v-model="configModel">
                             <v-row>
-                                <div class="col-6">
-                                    <v-radio value="Temple d'anubis" style="height: 100px">
+                                <div class="col-sm-6 col-lg-4 col-md-4">
+                                    <v-radio value="Dorado" style="height: 100px">
                                         <v-card
                                                 slot="label"
                                                 max-width="400"
@@ -66,15 +69,15 @@
                                                     class="white--text align-end"
                                                     height="100px"
                                                     width="220px"
-                                                    src="https://genesis-mc.fr/images/anubis.jpg"
+                                                    src="https://subswapr.fr/img/overstats/dorado.jpg"
                                             >
-                                                <v-card-title>Temple d'anubis</v-card-title>
+                                                <v-card-title>Dorado</v-card-title>
                                             </v-img>
                                         </v-card>
                                     </v-radio>
                                 </div>
-                                <div class="col-6">
-                                    <v-radio value="Autre" style="height: 100px">
+                                <div class="col-sm-6 col-lg-4">
+                                    <v-radio value="La Havane" style="height: 100px">
                                         <v-card
                                                 slot="label"
                                                 max-width="400"
@@ -83,14 +86,295 @@
                                                     class="white--text align-end"
                                                     height="100px"
                                                     width="220px"
-                                                    src="https://genesis-mc.fr/images/anubis.jpg"
+                                                    src="https://subswapr.fr/img/overstats/havane.jpg"
                                             >
-                                                <v-card-title>Autre</v-card-title>
+                                                <v-card-title>La Havane</v-card-title>
+                                            </v-img>
+                                        </v-card>
+                                    </v-radio>
+                                </div>
+                                <div class="col-sm-6 col-lg-4 col-md-4">
+                                    <v-radio value="Junkertown" style="height: 100px">
+                                        <v-card
+                                                slot="label"
+                                                max-width="400"
+                                        >
+                                            <v-img
+                                                    class="white--text align-end"
+                                                    height="100px"
+                                                    width="220px"
+                                                    src="https://subswapr.fr/img/overstats/junker.jpg"
+                                            >
+                                                <v-card-title>Junkertown</v-card-title>
+                                            </v-img>
+                                        </v-card>
+                                    </v-radio>
+                                </div>
+                                <div class="col-sm-6 col-lg-4 col-md-4">
+                                    <v-radio value="Rialto" style="height: 100px">
+                                        <v-card
+                                                slot="label"
+                                                max-width="400"
+                                        >
+                                            <v-img
+                                                    class="white--text align-end"
+                                                    height="100px"
+                                                    width="220px"
+                                                    src="https://subswapr.fr/img/overstats/rialto.jpg"
+                                            >
+                                                <v-card-title>Rialto</v-card-title>
+                                            </v-img>
+                                        </v-card>
+                                    </v-radio>
+                                </div>
+                                <div class="col-sm-6 col-lg-4 col-md-4">
+                                    <v-radio value="Route 66" style="height: 100px">
+                                        <v-card
+                                                slot="label"
+                                                max-width="400"
+                                        >
+                                            <v-img
+                                                    class="white--text align-end"
+                                                    height="100px"
+                                                    width="220px"
+                                                    src="https://subswapr.fr/img/overstats/route.jpg"
+                                            >
+                                                <v-card-title>Route 66</v-card-title>
+                                            </v-img>
+                                        </v-card>
+                                    </v-radio>
+                                </div>
+                                <div class="col-sm-6 col-lg-4 col-md-4">
+                                    <v-radio value="Observatoire - Gibraltar" style="height: 100px">
+                                        <v-card
+                                                slot="label"
+                                                max-width="400"
+                                        >
+                                            <v-img
+                                                    class="white--text align-end"
+                                                    height="100px"
+                                                    width="220px"
+                                                    src="https://subswapr.fr/img/overstats/gibraltar.jpg"
+                                            >
+                                                <v-card-title>OBS - Gibraltar</v-card-title>
                                             </v-img>
                                         </v-card>
                                     </v-radio>
                                 </div>
                             </v-row>
+                        </v-radio-group>
+                        <hr>
+                        <br>
+                        <h3 class="title font-weight-light mb-2">Côté commencé</h3>
+                        <v-radio-group v-model="configStatus" row>
+                            <v-radio label="Attaque" value="Attaque"></v-radio>
+                            <v-radio label="Défense" value="Défense"></v-radio>
+                        </v-radio-group>
+                        <span class="caption grey--text text--darken-1">
+            Veuillez choisir une carte de jeu
+          </span>
+                    </v-card-text>
+
+                    <v-card-text v-if="configMap === 'Hybride'">
+                        <h3 class="title font-weight-light mb-2">Choisir la carte joué pour {{ configMap }}</h3>
+                        <v-radio-group v-model="configModel">
+                            <v-row>
+                                <div class="col-sm-6 col-lg-4 col-md-4">
+                                    <v-radio value="Blizzard World" style="height: 100px">
+                                        <v-card
+                                                slot="label"
+                                                max-width="400"
+                                        >
+                                            <v-img
+                                                    class="white--text align-end"
+                                                    height="100px"
+                                                    width="220px"
+                                                    src="https://subswapr.fr/img/overstats/world.jpg"
+                                            >
+                                                <v-card-title>Blizzard World</v-card-title>
+                                            </v-img>
+                                        </v-card>
+                                    </v-radio>
+                                </div>
+                                <div class="col-sm-6 col-lg-4 col-md-4">
+                                    <v-radio value="Eichenwald" style="height: 100px">
+                                        <v-card
+                                                slot="label"
+                                                max-width="400"
+                                        >
+                                            <v-img
+                                                    class="white--text align-end"
+                                                    height="100px"
+                                                    width="220px"
+                                                    src="https://subswapr.fr/img/overstats/eichenvald.jpg"
+                                            >
+                                                <v-card-title>Eichenwald</v-card-title>
+                                            </v-img>
+                                        </v-card>
+                                    </v-radio>
+                                </div>
+                                <div class="col-sm-6 col-lg-4 col-md-4">
+                                    <v-radio value="Hollywood" style="height: 100px">
+                                        <v-card
+                                                slot="label"
+                                                max-width="400"
+                                        >
+                                            <v-img
+                                                    class="white--text align-end"
+                                                    height="100px"
+                                                    width="220px"
+                                                    src="https://subswapr.fr/img/overstats/hollywood.jpg"
+                                            >
+                                                <v-card-title>Hollywood</v-card-title>
+                                            </v-img>
+                                        </v-card>
+                                    </v-radio>
+                                </div>
+                                <div class="col-sm-6 col-lg-4 col-md-4">
+                                    <v-radio value="King's Row" style="height: 100px">
+                                        <v-card
+                                                slot="label"
+                                                max-width="400"
+                                        >
+                                            <v-img
+                                                    class="white--text align-end"
+                                                    height="100px"
+                                                    width="220px"
+                                                    src="https://subswapr.fr/img/overstats/row.jpg"
+                                            >
+                                                <v-card-title>King's Row</v-card-title>
+                                            </v-img>
+                                        </v-card>
+                                    </v-radio>
+                                </div>
+                                <div class="col-sm-6 col-lg-4 col-md-4">
+                                    <v-radio value="Numbani" style="height: 100px">
+                                        <v-card
+                                                slot="label"
+                                                max-width="400"
+                                        >
+                                            <v-img
+                                                    class="white--text align-end"
+                                                    height="100px"
+                                                    width="220px"
+                                                    src="https://subswapr.fr/img/overstats/numbani.jpg"
+                                            >
+                                                <v-card-title>Numbani</v-card-title>
+                                            </v-img>
+                                        </v-card>
+                                    </v-radio>
+                                </div>
+                            </v-row>
+                        </v-radio-group>
+                        <hr>
+                        <br>
+                        <h3 class="title font-weight-light mb-2">Côté commencé</h3>
+                        <v-radio-group v-model="configStatus" row>
+                            <v-radio label="Attaque" value="Attaque"></v-radio>
+                            <v-radio label="Défense" value="Défense"></v-radio>
+                        </v-radio-group>
+                        <span class="caption grey--text text--darken-1">
+            Veuillez choisir une carte de jeu
+          </span>
+                    </v-card-text>
+
+                    <v-card-text v-if="configMap === '2CP'">
+                        <h3 class="title font-weight-light mb-2">Choisir la carte joué pour {{ configMap }}</h3>
+                        <v-radio-group v-model="configModel">
+                            <v-row>
+                                <div class="col-sm-6 col-lg-4 col-md-4">
+                                    <v-radio value="Hanamura" style="height: 100px">
+                                        <v-card
+                                                slot="label"
+                                                max-width="400"
+                                        >
+                                            <v-img
+                                                    class="white--text align-end"
+                                                    height="100px"
+                                                    width="220px"
+                                                    src="https://subswapr.fr/img/overstats/hamanura.jpg"
+                                            >
+                                                <v-card-title>Hanamura</v-card-title>
+                                            </v-img>
+                                        </v-card>
+                                    </v-radio>
+                                </div>
+                                <div class="col-sm-6 col-lg-4 col-md-4">
+                                    <v-radio value="Colonie lunaire horizon" style="height: 100px">
+                                        <v-card
+                                                slot="label"
+                                                max-width="400"
+                                        >
+                                            <v-img
+                                                    class="white--text align-end"
+                                                    height="100px"
+                                                    width="220px"
+                                                    src="https://subswapr.fr/img/overstats/horizon.jpg"
+                                            >
+                                                <v-card-title>Colonie lunaire</v-card-title>
+                                            </v-img>
+                                        </v-card>
+                                    </v-radio>
+                                </div>
+                                <div class="col-sm-6 col-lg-4 col-md-4">
+                                    <v-radio value="Paris" style="height: 100px">
+                                        <v-card
+                                                slot="label"
+                                                max-width="400"
+                                        >
+                                            <v-img
+                                                    class="white--text align-end"
+                                                    height="100px"
+                                                    width="220px"
+                                                    src="https://subswapr.fr/img/overstats/paris.jpg"
+                                            >
+                                                <v-card-title>Paris</v-card-title>
+                                            </v-img>
+                                        </v-card>
+                                    </v-radio>
+                                </div>
+                                <div class="col-sm-6 col-lg-4 col-md-4">
+                                    <v-radio value="Temple d'Anubis" style="height: 100px">
+                                        <v-card
+                                                slot="label"
+                                                max-width="400"
+                                        >
+                                            <v-img
+                                                    class="white--text align-end"
+                                                    height="100px"
+                                                    width="220px"
+                                                    src="https://subswapr.fr/img/overstats/anubis.jpg"
+                                            >
+                                                <v-card-title>Temple d'Anubis</v-card-title>
+                                            </v-img>
+                                        </v-card>
+                                    </v-radio>
+                                </div>
+                                <div class="col-sm-6 col-lg-4 col-md-4">
+                                    <v-radio value="Usine Volskaya" style="height: 100px">
+                                        <v-card
+                                                slot="label"
+                                                max-width="400"
+                                        >
+                                            <v-img
+                                                    class="white--text align-end"
+                                                    height="100px"
+                                                    width="220px"
+                                                    src="https://subswapr.fr/img/overstats/usine.jpg"
+                                            >
+                                                <v-card-title>Usine Volskaya</v-card-title>
+                                            </v-img>
+                                        </v-card>
+                                    </v-radio>
+                                </div>
+                            </v-row>
+                        </v-radio-group>
+                        <hr>
+                        <br>
+                        <h3 class="title font-weight-light mb-2">Côté commencé</h3>
+                        <v-radio-group v-model="configStatus" row>
+                            <v-radio label="Attaque" value="Attaque"></v-radio>
+                            <v-radio label="Défense" value="Défense"></v-radio>
                         </v-radio-group>
                         <span class="caption grey--text text--darken-1">
             Veuillez choisir une carte de jeu
@@ -99,7 +383,7 @@
                 </v-window-item>
 
                 <v-window-item :value="3">
-                    <v-card-text>
+                    <v-card-text v-if="configStatus === 'Attaque'">
                         <h3 class="title font-weight-light mb-2">Choix des DPS - Attaque</h3>
                         <v-row>
                             <v-col class="d-flex" cols="6">
@@ -151,12 +435,84 @@
                                 ></v-select>
                             </v-col>
                         </v-row>
+                        <hr>
+                        <br>
+                        <h3 class="title font-weight-light mb-2">Changement en cours de partie <v-btn style="background-color: transparent" x-small depressed fab @click="resetSwitchOne"><v-icon>mdi-reload</v-icon></v-btn></h3>
+                        <v-radio-group multiple v-model="configSwitchOne" row>
+                            <v-radio label="TANKS" value="TANK"></v-radio>
+                            <v-radio label="DPS" value="DPS"></v-radio>
+                            <v-radio label="HEAL" value="HEAL"></v-radio>
+                            <v-radio label="AUCUN" value="AUCUN"></v-radio>
+                        </v-radio-group>
+                    </v-card-text>
+
+                    <v-card-text v-if="configStatus === 'Défense'">
+                        <h3 class="title font-weight-light mb-2">Choix des DPS - Défense</h3>
+                        <v-row>
+                            <v-col class="d-flex" cols="6">
+                                <v-select
+                                        v-model="configDpsOne"
+                                        :items="dps"
+                                        label="DPS #1"
+                                ></v-select>
+                            </v-col>
+                            <v-col class="d-flex" cols="6">
+                                <v-select
+                                        v-model="configDpsTwo"
+                                        :items="dps"
+                                        label="DPS #2"
+                                ></v-select>
+                            </v-col>
+                        </v-row>
+                        <h3 class="title font-weight-light mb-2">Choix des TANKS</h3>
+                        <v-row>
+                            <v-col class="d-flex" cols="6">
+                                <v-select
+                                        v-model="configTankOne"
+                                        :items="tank"
+                                        label="TANK #1"
+                                ></v-select>
+                            </v-col>
+                            <v-col class="d-flex" cols="6">
+                                <v-select
+                                        v-model="configTankTwo"
+                                        :items="tank"
+                                        label="TANK #2"
+                                ></v-select>
+                            </v-col>
+                        </v-row>
+                        <h3 class="title font-weight-light mb-2">Choix des HEALS</h3>
+                        <v-row>
+                            <v-col class="d-flex" cols="6">
+                                <v-select
+                                        v-model="configHealOne"
+                                        :items="heal"
+                                        label="HEAL #1"
+                                ></v-select>
+                            </v-col>
+                            <v-col class="d-flex" cols="6">
+                                <v-select
+                                        v-model="configHealTwo"
+                                        :items="heal"
+                                        label="HEAL #2"
+                                ></v-select>
+                            </v-col>
+                        </v-row>
+                        <hr>
+                        <br>
+                        <h3 class="title font-weight-light mb-2">Changement en cours de partie <v-btn style="background-color: transparent" x-small depressed fab @click="resetSwitchOne"><v-icon>mdi-reload</v-icon></v-btn></h3>
+                        <v-radio-group multiple v-model="configSwitchOne" row>
+                            <v-radio label="TANKS" value="TANK"></v-radio>
+                            <v-radio label="DPS" value="DPS"></v-radio>
+                            <v-radio label="HEAL" value="HEAL"></v-radio>
+                            <v-radio label="AUCUN" value="AUCUN"></v-radio>
+                        </v-radio-group>
                     </v-card-text>
                 </v-window-item>
 
                 <v-window-item :value="4">
-                    <v-card-text>
-                        <h3 class="title font-weight-light mb-2">Choix des DPS - Défense</h3>
+                    <v-card-text v-if="configStatus === 'Attaque'">
+                        <h3 class="title font-weight-light mb-2">Choix des Héros - Défense</h3>
                         <v-row>
                             <v-col class="d-flex" cols="6">
                                 <v-select
@@ -207,11 +563,95 @@
                                 ></v-select>
                             </v-col>
                         </v-row>
+                        <hr>
+                        <br>
+                        <h3 class="title font-weight-light mb-2">Changement en cours de partie <v-btn style="background-color: transparent" x-small depressed fab @click="resetSwitchTwo"><v-icon>mdi-reload</v-icon></v-btn></h3>
+                        <v-radio-group multiple v-model="configSwitchTwo" row>
+                            <v-radio label="TANKS" value="TANK"></v-radio>
+                            <v-radio label="DPS" value="DPS"></v-radio>
+                            <v-radio label="HEAL" value="HEAL"></v-radio>
+                            <v-radio label="AUCUN" value="AUCUN"></v-radio>
+                        </v-radio-group>
                     </v-card-text>
+
+                    <v-card-text v-if="configStatus === 'Défense'">
+                        <h3 class="title font-weight-light mb-2">Choix des Héros - Attaque</h3>
+                        <v-row>
+                            <v-col class="d-flex" cols="6">
+                                <v-select
+                                        v-model="configDpsOneD"
+                                        :items="dps"
+                                        label="DPS #1"
+                                ></v-select>
+                            </v-col>
+                            <v-col class="d-flex" cols="6">
+                                <v-select
+                                        v-model="configDpsTwoD"
+                                        :items="dps"
+                                        label="DPS #2"
+                                ></v-select>
+                            </v-col>
+                        </v-row>
+                        <h3 class="title font-weight-light mb-2">Choix des TANKS</h3>
+                        <v-row>
+                            <v-col class="d-flex" cols="6">
+                                <v-select
+                                        v-model="configTankOneD"
+                                        :items="tank"
+                                        label="TANK #1"
+                                ></v-select>
+                            </v-col>
+                            <v-col class="d-flex" cols="6">
+                                <v-select
+                                        v-model="configTankTwoD"
+                                        :items="tank"
+                                        label="TANK #2"
+                                ></v-select>
+                            </v-col>
+                        </v-row>
+                        <h3 class="title font-weight-light mb-2">Choix des HEALS</h3>
+                        <v-row>
+                            <v-col class="d-flex" cols="6">
+                                <v-select
+                                        v-model="configHealOneD"
+                                        :items="heal"
+                                        label="HEAL #1"
+                                ></v-select>
+                            </v-col>
+                            <v-col class="d-flex" cols="6">
+                                <v-select
+                                        v-model="configHealTwoD"
+                                        :items="heal"
+                                        label="HEAL #2"
+                                ></v-select>
+                            </v-col>
+                        </v-row>
+                        <hr>
+                        <br>
+                        <h3 class="title font-weight-light mb-2">Changement en cours de partie <v-btn style="background-color: transparent" x-small depressed fab @click="resetSwitchTwo"><v-icon>mdi-reload</v-icon></v-btn></h3>
+                        <v-radio-group multiple v-model="configSwitchTwo" row>
+                            <v-radio label="TANKS" value="TANK"></v-radio>
+                            <v-radio label="DPS" value="DPS"></v-radio>
+                            <v-radio label="HEAL" value="HEAL"></v-radio>
+                            <v-radio label="AUCUN" value="AUCUN"></v-radio>
+                        </v-radio-group>
+                    </v-card-text>
+
                 </v-window-item>
 
                 <v-window-item :value="5">
-                    <div class="pa-4 text-center">
+                    <div class="pa-4">
+                        <h3 class="title font-weight-light mb-2">Score</h3>
+                        <v-row>
+                            <v-col cols="6" sm="6">
+                                <v-text-field type="number" label="Votre équipe" v-model="configScoreOne"></v-text-field>
+                            </v-col>
+                            <v-col cols="6" sm="6">
+                                <v-text-field type="number" label="Equipe adverse" v-model="configScoreTwo"></v-text-field>
+                            </v-col>
+                        </v-row>
+                        <hr>
+                        <br>
                         <h3 class="title font-weight-light mb-2">Commentaire (falcultatif)</h3>
                         <v-row>
                             <v-col cols="12" sm="12">
@@ -249,7 +689,7 @@
                 </v-btn>
                 <v-spacer></v-spacer>
                 <v-btn
-                        :disabled="configStatus === null || configScoreOne === null || configScoreTwo === null || step === 5 || step === 3 && configDpsOne === null || step === 3 && configDpsTwo === null || step === 3 && configTankOne === null || step === 3 &&  configTankTwo === null || step === 3 && configHealOne === null || step === 3 && configHealTwo === null || step === 4 && configDpsOneD === null || step === 4 && configDpsTwoD === null || step === 4 && configTankOneD === null || step === 4 &&  configTankTwoD === null || step === 4 && configHealOneD === null || step === 4 && configHealTwoD === null || step === 2 && configModel === null || configMap === null || configPlay === null"
+                        :disabled="configMap === 'KOTH' || step === 2 && configStatus === null || step === 5 || step === 3 && configDpsOne === null || step === 3 && configDpsTwo === null || step === 3 && configTankOne === null || step === 3 &&  configTankTwo === null || step === 3 && configHealOne === null || step === 3 && configHealTwo === null || step === 3 && configSwitchOne === null || step === 4 && configSwitchTwo === null || step === 4 && configDpsOneD === null || step === 4 && configDpsTwoD === null || step === 4 && configTankOneD === null || step === 4 &&  configTankTwoD === null || step === 4 && configHealOneD === null || step === 4 && configHealTwoD === null || step === 2 && configModel === null || configMap === null || configPlay === null"
                         color="primary"
                         depressed
                         icon
@@ -282,9 +722,9 @@
         props: ["team"],
         data() {
             return {
-                dps: ['Ashe', 'Hanzo'],
-                tank: ['Orisa', 'Sigma'],
-                heal: ['Moira', 'Ange'],
+                dps: ['Ashe', 'Bastion', 'Dommfist', 'Genji', 'Hanzo', 'Junkrat', 'Mccree', 'Mei', 'Pharah', 'Reaper', 'Soldier 76', 'Sombra', 'Symmetra', 'Torbjorn', 'Tracer', 'Widowmaker'],
+                tank: ['Dva', 'Orisa', 'Reinhardt', 'Roadhog', 'Sigma', 'Winston', 'Wrecking ball', 'Zarya'],
+                heal: ['Ana', 'Baptiste', 'Brigitte', 'Lucio', 'Mercy', 'Moira', 'Zenyatta'],
 
                 teamValue: '',
 
@@ -318,6 +758,9 @@
                 configHealOneD: null,
                 configHealTwoD: null,
 
+                configSwitchOne: null,
+                configSwitchTwo: null,
+
                 configCommentaire: '',
 
                 sendM: false,
@@ -325,6 +768,9 @@
             }
         },
         methods: {
+            resetSwitchOne: function () {
+                this.configSwitchOne = null;
+            },
             sendMatch: function () {
                 this.sendM = true;
                 firebase.database().ref('teams/' + firebase.auth().currentUser.uid + '/' + this.team + '/matchs/' + this.randomID()).update({
@@ -334,10 +780,12 @@
                     GameStatus: this.configStatus,
                     GameScoreA: this.configScoreOne,
                     GameScoreB: this.configScoreTwo,
+                    GameSwitchOne: this.configSwitchOne,
+                    GameSwicthTwo: this.configSwitchTwo,
                     GameComment: this.configCommentaire,
                     GameDate: new Date().toLocaleString(),
                     Players: {
-                        Attack: {
+                        SideOne: {
                             PlayerDpsOne: this.configDpsOne,
                             PlayerDpsTwo: this.configDpsTwo,
                             PlayerTankOne: this.configTankOne,
@@ -345,7 +793,7 @@
                             PlayerHealOne: this.configHealOne,
                             PlayerHealTwo: this.configHealTwo,
                         },
-                        Defense: {
+                        SideTwo: {
                             PlayerDpsOne: this.configDpsOneD,
                             PlayerDpsTwo: this.configDpsTwoD,
                             PlayerTankOne: this.configTankOneD,
@@ -355,70 +803,36 @@
                         }
                     }
                 }).then(() => {
-                    let victoireR = 0
-                    let victoireQ = 0
-                    let nullR = 0
-                    let nullQ = 0
-                    let defeatR = 0
-                    let defeatQ = 0
-                    if (this.configStatus === 'Victoire') {
-                        if (this.configPlay === 'Ranked') {
-                            victoireR = 1
-                        } else {
-                            victoireQ = 1
-                        }
-                    }
-                    if (this.configStatus === 'Défaite') {
-                        if (this.configPlay === 'Ranked') {
-                            defeatR = 1
-                        } else {
-                            defeatQ = 1
-                        }
-                    }
-                    if (this.configStatus === 'Egalité') {
-                        if (this.configPlay === 'Ranked') {
-                            nullR = 1
-                        } else {
-                            nullQ = 1
-                        }
-                    }
-                    firebase.database().ref('teams/' + firebase.auth().currentUser.uid + '/' + this.team).update({
-                        MatchCount: this.teamValue.MatchCount + 1,
-                        countVictoryRanked: this.teamValue.countVictoryRanked + victoireR,
-                        countDefeatRanked: this.teamValue.countDefeatRanked + defeatR,
-                        countNullRanked: this.teamValue.countNullRanked + nullR,
-                        countVictoryQuickPlay: this.teamValue.countVictoryQuickPlay + victoireQ,
-                        countDefeatQuickPlay: this.teamValue.countDefeatQuickPlay + defeatQ,
-                        countNullQuickPlay: this.teamValue.countNullQuickPlay + nullQ,
-                    }).then(() => {
-                        this.sendM = false
-                        this.snackbarAddVal = true
+                    this.sendM = false
+                    this.snackbarAddVal = true
 
-                        this.configModel = null
+                    this.configModel = null
 
-                        this.configPlay = null
-                        this.configMap = null
-                        this.configStatus = null
-                        this.configScoreOne = null
-                        this.configScoreTwo = null
+                    this.configPlay = null
+                    this.configMap = null
+                    this.configStatus = null
+                    this.configScoreOne = null
+                    this.configScoreTwo = null
 
-                        this.configDpsOne = null
-                        this.configDpsTwo = null
-                        this.configTankOne = null
-                        this.configTankTwo =null
-                        this.configHealOne = null
-                        this.configHealTwo = null
+                    this.configSwitchOne = null
+                    this.configSwitchTwo = null
 
-                        this.configDpsOneD = null
-                        this.configDpsTwoD = null
-                        this.configTankOneD = null
-                        this.configTankTwoD = null
-                        this.configHealOneD = null
-                        this.configHealTwoD = null
+                    this.configDpsOne = null
+                    this.configDpsTwo = null
+                    this.configTankOne = null
+                    this.configTankTwo =null
+                    this.configHealOne = null
+                    this.configHealTwo = null
 
-                        this.configCommentaire = ''
-                        this.step = 1
-                    })
+                    this.configDpsOneD = null
+                    this.configDpsTwoD = null
+                    this.configTankOneD = null
+                    this.configTankTwoD = null
+                    this.configHealOneD = null
+                    this.configHealTwoD = null
+
+                    this.configCommentaire = ''
+                    this.step = 1
                 })
             },
             randomID: function makeid() {

@@ -2,9 +2,10 @@
   <v-app id="inspire" style="background: #F6F7F9">
       <Navbar v-if="this.$route.path != '/login' && this.$route.path != '/about' && this.$route.path != '/register' && this.$route.path != '/team' && this.$route.path != '/addMatch' && this.$route.path != '/GameAdd'" />
       <NavNew v-if="this.$route.path == '/login' || this.$route.path == '/register' || this.$route.path == '/about'"/>
+      <NavTeam v-if="this.$route.path == '/team' || this.$route.path == '/GameAdd'"/>
     <v-content>
         <router-view/>
-        <Footer v-if="this.$route.path != '/team' && this.$route.path != '/addMatch' && this.$route.path != '/GameAdd'"/>
+        <Footer v-if="this.$route.path != '/team' && this.$route.path != '/GameAdd'"/>
     </v-content>
   </v-app>
 </template>
@@ -12,6 +13,7 @@
 <script>
     import Navbar from "@/components/Navbar";
     import NavNew from "@/components/NavNew";
+    import NavTeam from "@/components/NavTeam";
     import Footer from "@/components/Footer";
   export default {
       name: 'OverStats',
@@ -24,13 +26,15 @@
       components: {
         Navbar,
           NavNew,
+          NavTeam,
           Footer
       }
   }
 </script>
 
 <style>
+    @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
     #inspire {
-        font-family: Roboto;
+        font-family: 'Montserrat';
     }
 </style>

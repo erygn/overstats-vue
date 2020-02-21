@@ -71,6 +71,18 @@ const routes = [
   },
 
   {
+    path: '/tee',
+    name: 'Tee',
+    component: tee,
+    props(route) {
+      return route.query || {}
+    },
+    meta: {
+      requireAuth: true
+    }
+  },
+
+  {
     path: '/login',
     name: 'Login',
     component: Login
@@ -106,6 +118,7 @@ const router = new VueRouter({
 import firebase from "firebase";
 import addMatch from "@/views/addMatch";
 import GameAdd from "@/views/GameAdd";
+import tee from "@/views/tee";
 
 router.beforeEach((to, from, next) => {
   window.scrollTo(0, 0);
