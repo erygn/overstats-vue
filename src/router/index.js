@@ -4,7 +4,6 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from '../views/Login'
 import About from '../views/About'
-import Register from "@/views/Register";
 import Settings from "@/views/Settings";
 import Team from '@/views/Team';
 import Teams from "@/views/Teams";
@@ -81,16 +80,22 @@ const routes = [
       requireAuth: true
     }
   },
+  {
+    path: '/teamPlayer',
+    name: 'teamPlayer',
+    component: teamPlayer,
+    props(route) {
+      return route.query || {}
+    },
+    meta: {
+      requireAuth: true
+    }
+  },
 
   {
     path: '/login',
     name: 'Login',
     component: Login
-  },
-  {
-    path: '/register',
-    name: 'Register',
-    component: Register
   },
   {
     path: '/about',
@@ -119,6 +124,7 @@ import firebase from "firebase";
 import addMatch from "@/views/addMatch";
 import GameAdd from "@/views/GameAdd";
 import tee from "@/views/tee";
+import teamPlayer from "@/views/teamPlayer";
 
 router.beforeEach((to, from, next) => {
   window.scrollTo(0, 0);

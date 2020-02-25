@@ -1,20 +1,22 @@
 <template>
-    <div>
-        <v-container fluid style="height: 420px; background: linear-gradient(#004a67, #003041); justify-content: center">
+    <div style="background-color: #f4f7fc">
+        <v-container fluid>
             <v-row justify="center">
-                <h1 style="text-align: center; color: white; margin-top: 100px; font-weight: 200; text-transform: uppercase; font-size: 25px">Développez votre équipe</h1>
+                <div class="col-lg-10 col-md-10 col-sm-12 text-center">
+                    <h1 style="font-size: 22px; font-weight: 700; text-transform: uppercase; font-size: 25px; color: #2d3039; margin-top: 80px">Développez votre équipe</h1>
+                    <h2 style="font-weight: 300; font-size: 14px; color: #2d3039">Utilisez Overstats pour développer vos équipes Esport</h2>
+                    <v-btn width="200" elevation="1" tile height="40" style="border-radius: 5px; margin-top: 20px; background-color: #FFF; color: #2d3039; text-transform: initial" @click="dialog = !dialog">Connexion</v-btn>
+                    <h2 style="font-weight: 300; color: #2d3039; font-size: 14px; margin-top: 10px">Pas encore de compte ?</h2>
+                    <button @click="dialogRegister = !dialogRegister" style="font-size: 14px; color: #0084fd">Créer un compte</button>
+                </div>
             </v-row>
-            <v-row justify="center" style="margin-top: 10px">
-                <h2 style="font-weight: 300; color: #FFF; font-size: 14px; margin-top: -10px; text-align: center">Utilisez Overstats pour développer vos équipes Esport</h2>
-            </v-row>
+        </v-container>
+
+        <v-container fluid>
             <v-row justify="center">
-                <v-btn width="200" height="40" style="border-radius: 20px; margin-top: 20px" @click="dialog = !dialog">Connexion</v-btn>
-            </v-row>
-            <v-row justify="center" style="margin-top: 10px">
-                <h2 style="font-weight: 300; color: #FFF; font-size: 14px">Pas encore de compte ?</h2>
-            </v-row>
-            <v-row justify="center" style="margin-top: -7px">
-                <router-link style="text-decoration: none; font-size: 14px" to="/register">Créer un compte</router-link>
+                <div class="col-lg-10 col-md-10 col-sm-12 text-center">
+                    <h2 style="font-weight: 300; font-size: 20px; color: red; margin-bottom: -60px">Attention, système en cours de développement <v-icon color="red">mdi-alert</v-icon></h2>
+                </div>
             </v-row>
         </v-container>
 
@@ -22,8 +24,8 @@
             <v-row align="center" style="justify-content: center">
                 <div class="col-lg-6 col-sm-12 col-md-8">
                     <v-card
-                            style="border-radius: 8px; padding: 18px"
-                            class="overlap"
+                            elevation="1"
+                            style="border-radius: 5px; padding: 18px"
                     >
                         <v-card-title style="font-weight: 400; font-size: 24px">Overstats</v-card-title>
                         <v-card-subtitle class="pb-0">Accédez à un panel de gestion de vos équipes</v-card-subtitle>
@@ -230,9 +232,9 @@
                 v-model="dialog"
                 width="600px"
         >
-            <v-card>
-                <v-card-title style="background-color: #003041; color: white; font-weight: 300">
-                    Connexion
+            <v-card tile style="border-radius: 5px; background-color: #FFF; color: #2d3039;">
+                <v-card-title style="font-size: 17px; font-weight: 400; border-bottom: 2px solid #d5d8dd">
+                    <span style="margin-left: 10px;">Connexion</span>
                 </v-card-title>
                 <v-container>
                     <v-row class="mx-2">
@@ -244,13 +246,13 @@
                                     align="center"
                                     class="mr-0"
                             >
-                                <v-list-item-subtitle><v-text-field color="#003041" type="text" label="Adresse mail*" prepend-icon="mdi-mail" v-model="email"/></v-list-item-subtitle>
+                                <v-list-item-subtitle><v-text-field color="#69697f" type="text" label="Adresse mail*" prepend-icon="mdi-mail" v-model="email"/></v-list-item-subtitle>
                             </v-row>
                             <v-row
                                     align="center"
                                     class="mr-0"
                             ><v-list-item-subtitle><v-text-field
-                                    color="#003041"
+                                    color="#69697f"
                                     :append-icon="show3 ? 'mdi-eye' : 'mdi-eye-off'"
                                     prepend-icon="mdi-lock"
                                     :type="show3 ? 'text' : 'password'"
@@ -274,14 +276,87 @@
                     <v-btn
                             width="150"
                             height="35"
-                            style="border-radius: 20px"
+                            elevation="1" tile style="border-radius: 5px; background-color: #FFF; color: #2d3039; text-transform: initial"
                             @click="login"
                     >Connexion</v-btn>
                     <v-btn
-                            style="margin-right: 5px"
+                            style="margin-right: 5px; text-transform: initial"
                             text
                             color="#003041"
                             @click="dialog = false"
+                    >Fermer</v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
+
+
+        <v-dialog
+                v-model="dialogRegister"
+                width="600px"
+        >
+            <v-card tile style="border-radius: 5px; background-color: #FFF; color: #2d3039;">
+                <v-card-title style="font-size: 17px; font-weight: 400; background-color: #2d3039; color: #FFF">
+                    <span style="margin-left: 10px;">Inscription</span>
+                </v-card-title>
+                <v-container>
+                    <v-row class="mx-2">
+                        <v-col
+                                class="align-center justify-space-between"
+                                cols="12"
+                        >
+                            <v-row
+                                    align="center"
+                                    class="mr-0"
+                            >
+                                <v-list-item-subtitle><v-text-field color="#69697f" type="text" label="Pseudo*" prepend-icon="mdi-account" v-model="pseudo"/></v-list-item-subtitle>
+                                <v-list-item-subtitle><v-text-field color="#69697f" type="text" label="Adresse mail*" prepend-icon="mdi-mail" v-model="email"/></v-list-item-subtitle>
+                                <v-list-item-subtitle><v-text-field
+                                        color="#69697f"
+                                        :append-icon="show3 ? 'mdi-eye' : 'mdi-eye-off'"
+                                        prepend-icon="mdi-lock"
+                                        :type="show3 ? 'text' : 'password'"
+                                        name="input-10-2"
+                                        label="Mot de passe*"
+                                        class="input-group--focused"
+                                        :rules="rules" counter
+                                        v-model="password"
+                                        @click:append="show3 = !show3"
+                                /></v-list-item-subtitle>
+                                <v-list-item-subtitle><v-text-field
+                                        color="#69697f"
+                                        :append-icon="show4 ? 'mdi-eye' : 'mdi-eye-off'"
+                                        prepend-icon="mdi-lock"
+                                        :type="show4 ? 'text' : 'password'"
+                                        name="input-10-2"
+                                        label="Confirmation du mot de passe*"
+                                        :rules="rules" counter
+                                        class="input-group--focused"
+                                        v-model="password2"
+                                        @click:append="show4 = !show4"
+                                /></v-list-item-subtitle>
+                            </v-row>
+
+                            <v-row align="center"
+                                   class="mr-0">
+                                <v-spacer/>
+                                <p style="color: red">{{errorMessage}}</p>
+                            </v-row>
+                        </v-col>
+                    </v-row>
+                </v-container>
+                <v-card-actions>
+                    <v-spacer />
+                    <v-btn
+                            width="150"
+                            height="35"
+                            elevation="1" tile style="border-radius: 5px; background-color: #FFF; color: #2d3039; text-transform: initial"
+                            @click="register"
+                    >Inscription</v-btn>
+                    <v-btn
+                            style="margin-right: 5px; text-transform: initial"
+                            text
+                            color="#003041"
+                            @click="dialogRegister = false"
                     >Fermer</v-btn>
                 </v-card-actions>
             </v-card>
@@ -299,6 +374,13 @@
         name: "Login",
         data() {
             return {
+                rules: [v => v.length > 5],
+
+                show4: false,
+                pseudo: null,
+                password2: null,
+
+                dialogRegister: false,
                 dialog: false,
 
                 show3: false,
@@ -326,13 +408,43 @@
                         this.errorMessage = 'Oops. ' + err.message;
                     }
                 );
+            },
+            register: function() {
+                if (this.pseudo != null && this.email != null && this.password != null && this.password2 != null) {
+                    if (this.password == this.password2) {
+                        firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
+                            (userCredential) => {
+                                firebase.database().ref('users' + '/' + userCredential.user.uid).set({
+                                    Pseudo: this.pseudo,
+                                    Mail: this.email,
+                                    Teams: 0,
+                                    Description: 'Nouveau',
+                                    Grade: 1,
+                                    isRole: false,
+                                    roleId: false,
+                                    InscriptionDate: new Date().toLocaleString(),
+                                }).then(() => {
+                                        this.$router.replace('/')
+                                    },
+                                    (err2) => {
+                                        alert(err2.message())
+                                    })
+                            },
+                            (err) => {
+                                this.errorMessage = err.message;
+                            }
+                        );
+                    } else {
+                        this.errorMessage = 'Les mots de passe ne correspondent pas';
+                    }
+                } else {
+                    this.errorMessage = 'Veuillez completer tous les champs';
+                }
             }
         }
     }
 </script>
 
 <style scoped>
-    .overlap {
-        margin-top: -110px;
-    }
+
 </style>

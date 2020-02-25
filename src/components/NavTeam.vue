@@ -3,43 +3,38 @@
         <v-navigation-drawer
                 v-model="drawer"
                 :mini-variant="true"
+                color="#051E34"
+                src="https://genesis-mc.fr/images/background.jpg"
+                mobile-break-point="800"
                 app
-                floating
         >
             <v-list dense>
                 <v-list-item>
                     <v-list-item-content>
-                        <v-list-item-title>Back</v-list-item-title>
+                        <v-list-item-title></v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
-                <v-list-item link>
-                    <v-list-item-action>
-                        <v-icon>mdi-home</v-icon>
-                    </v-list-item-action>
-                    <v-list-item-content>
-                        <v-list-item-title style="color:#6a6a81;">Home</v-list-item-title>
-                    </v-list-item-content>
+                <v-list-item link :to="{path: '/team', query: {team: this.$route.query.team}}">
+                        <v-icon color="#c2cbd4" style="padding: 10px 0px">mdi-home</v-icon>
                 </v-list-item>
-                <v-list-item link>
-                    <v-list-item-action>
-                        <v-icon>mdi-contact-mail</v-icon>
-                    </v-list-item-action>
-                    <v-list-item-content>
-                        <v-list-item-title>Contact</v-list-item-title>
-                    </v-list-item-content>
+                <v-list-item :to="{path: '/teamPlayer', query: {team: this.$route.query.team}}">
+                        <v-icon color="#c2cbd4" style="padding: 10px 0px">mdi-settings</v-icon>
                 </v-list-item>
             </v-list>
         </v-navigation-drawer>
 
         <v-app-bar
+                dense
                 app
                 flat
                 color="#FFF"
         >
             <v-app-bar-nav-icon v-if="!drawer" @click.stop="drawer = !drawer" />
-            <v-toolbar-title style="color: #adb2bd; font-weight: 300">Team Manager</v-toolbar-title>
+            <v-toolbar-title class="text-uppercase">
+                <span class="font-weight-light">Team</span>
+                <span>Manager</span></v-toolbar-title>
             <v-spacer/>
-            <v-btn style="background-color: transparent" fab depressed><v-icon>mdi-settings</v-icon></v-btn>
+            <router-link :to="{path: '/teamPlayer', query: {team: this.$route.query.team}}"><v-icon id="setting">mdi-settings</v-icon></router-link>
         </v-app-bar>
     </nav>
 </template>
@@ -65,5 +60,8 @@
 </script>
 
 <style scoped>
-
+    #setting {
+        color: #0d0d16;
+        background-color: transparent
+    }
 </style>

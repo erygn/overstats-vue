@@ -3,7 +3,8 @@
         <v-container fluid>
             <v-row justify="center" style="color: #2e313a">
                 <div class="col-lg-10 col-md-10 col-sm-12">
-                    <h1 style="margin-left: 15px; font-weight: 400; margin-bottom: 10px; font-size: 30px"><router-link to="/teams" style="text-decoration: none"><v-btn style="background-color: transparent; color: #2e313a;" fab x-small depressed><v-icon>fa-angle-left</v-icon></v-btn></router-link> {{ teamValue.TeamName }} <v-btn @click="selectFavorite" style="margin-top: -2px; background-color: transparent" small fab depressed v-if="!favorite"><v-icon small>fa-star</v-icon></v-btn><v-btn @click="selectFavorite" style="margin-top: -5px; background-color: transparent" fab depressed v-if="favorite"><v-icon color="yellow">fa-star</v-icon></v-btn></h1>
+                    <h1 style="margin-left: 15px; font-weight: 400; margin-bottom: 10px; font-size: 30px"><router-link to="/teams" style="text-decoration: none"><v-btn style="background-color: transparent; color: #2e313a;" fab x-small depressed><v-icon>fa-angle-left</v-icon></v-btn></router-link> {{ teamValue.TeamName }} </h1>
+<!--                    <v-btn @click="selectFavorite" style="margin-top: -2px; background-color: transparent" small fab depressed v-if="!favorite"><v-icon small>fa-star</v-icon></v-btn><v-btn @click="selectFavorite" style="margin-top: -5px; background-color: transparent" fab depressed v-if="favorite"><v-icon color="yellow">fa-star</v-icon></v-btn>-->
                     <p style="margin-left: 15px; margin-top: -10px; font-size: 16px">{{ teamValue.Description}}</p>
                 </div>
             </v-row>
@@ -155,13 +156,56 @@
                             <v-card tile style="border-radius: 5px; color: #363645; font-weight: 500">
                                 <v-card-title>
                                     <h1 style="margin-left: 15px; font-size: 15px; font-weight: 700; color: #2e313a">Global Win Rate</h1>
+                                    <v-spacer/>
+                                    <v-btn :to="{path: '/winRate', query: {id: index}}" text small><v-icon color="#2e313a">fas fa-ellipsis-v</v-icon></v-btn>
                                 </v-card-title>
-                                <v-container style="height: 360px">
-                                    <v-row justify="space-between">
-                                        <div class="col-12">
-                                            <pie-chart legend="bottom" donut="true" :data="pieData" />
-                                        </div>
-                                    </v-row>
+                                <v-container style="height: 420px; margin-top: -20px">
+                                    <v-tabs :grow="true"
+                                            background-color="transparent"
+                                            color="#363645"
+                                    >
+                                        <v-tab>
+                                            Ranked
+                                        </v-tab>
+                                        <v-tab>
+                                            QuickPlay
+                                        </v-tab>
+
+                                        <v-tab-item>
+                                            <v-container>
+                                                <v-row class="mx-2">
+                                                    <v-col
+                                                            class="align-center justify-space-between"
+                                                            cols="12"
+                                                    >
+                                                        <v-row
+                                                                align="center"
+                                                                class="mr-0"
+                                                        >
+                                                            <pie-chart legend="bottom" donut="true" :data="pieDataRank" />
+                                                        </v-row>
+                                                    </v-col>
+                                                </v-row>
+                                            </v-container>
+                                        </v-tab-item>
+                                        <v-tab-item>
+                                            <v-container>
+                                                <v-row class="mx-2">
+                                                    <v-col
+                                                            class="align-center justify-space-between"
+                                                            cols="12"
+                                                    >
+                                                        <v-row
+                                                                align="center"
+                                                                class="mr-0"
+                                                        >
+                                                            <pie-chart legend="bottom" donut="true" :data="pieDataQuick" />
+                                                        </v-row>
+                                                    </v-col>
+                                                </v-row>
+                                            </v-container>
+                                        </v-tab-item>
+                                    </v-tabs>
                                 </v-container>
                             </v-card>
                         </div>
@@ -171,16 +215,16 @@
                                 <v-card-title>
                                     <h1 style="margin-left: 15px; font-size: 15px; font-weight: 700; color: #2e313a">Global Game Composition</h1>
                                 </v-card-title>
-                                <v-container style="height: 360px">
+                                <v-container style="height: 400px">
                                     <v-row>
                                         <div class="col-12" style="margin-top: -20px">
-                                            <div style="margin: 0px 20px; overflow:auto; height: 330px">
+                                            <div style="margin: 0px 20px; overflow:auto; height: 370px">
                                                 <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #2D2D39; margin-bottom: 10px" v-for="(item, index) in teamValue.compo" :key="index">
                                                     <div>
                                                         <p style="color: #363645; font-weight: 600">{{ item.Name }} <span v-if="item.isNew" style="text-transform: uppercase; font-weight: 400; font-size: 12px; background-color: #d3d8e3; padding: 5px 15px; border-radius: 20px">New</span></p>
                                                         <p style="margin-top: -14px; font-size: 12px">{{ item.CompoDate }}</p>
                                                     </div>
-                                                    <v-btn :to="{path: '/compo', query: {id: index}}" fab depressed style="background-color: transparent"><v-icon style="color: #363645">fa-eye</v-icon></v-btn>
+                                                    <v-btn :to="{path: '/compo', query: {team: team, id: index}}" fab depressed style="background-color: transparent"><v-icon style="color: #363645">fa-eye</v-icon></v-btn>
                                                 </div>
                                             </div>
                                         </div>
@@ -595,6 +639,16 @@
                 },
 
                 pieData: null,
+                pieDataRank: null,
+                vicRank: 0,
+                defRank: 0,
+                egRank: 0,
+
+                pieDataQuick: null,
+                vicQuick: 0,
+                defQuick: 0,
+                egQuick: 0,
+
                 columnRanked: null,
                 columnQuick: null,
 
@@ -622,14 +676,16 @@
               if (this.favorite) {
                   firebase.database().ref('teams/' + firebase.auth().currentUser.uid + '/' + this.team).update({
                       isFav: false
+                  }).then(() => {
+                      this.favorite = false;
                   })
               } else {
                   firebase.database().ref('teams/' + firebase.auth().currentUser.uid + '/' + this.team).update({
                       isFav: true
+                  }).then(() => {
+                      this.favorite = true;
                   })
               }
-
-            this.favorite = !this.favorite;
           },
             addComment: function () {
                 if (this.commentText != null) {
@@ -715,22 +771,44 @@
                 //     this.compoTank.push(tan);
                 // });
 
-                //Calcul de PieData All
+                //Calcul de PieDataRank
                 Object.keys(snapshot.val().matchs || {}).forEach(id => {
                     const match = snapshot.val().matchs[id];
-                    if (match.GameScoreA > match.GameScoreB) {
-                        this.totVic += 1;
-                    } else if (match.GameScoreA < match.GameScoreB) {
-                        this.totDef += 1;
-                    } else {
-                        this.totEg += 1;
+                    if (match.GamePlay === 'Ranked') {
+                        if (match.GameScoreA > match.GameScoreB) {
+                            this.vicRank += 1;
+                        } else if (match.GameScoreA < match.GameScoreB) {
+                            this.defRank += 1;
+                        } else {
+                            this.egRank += 1;
+                        }
                     }
                 });
 
-                this.pieData = [
-                    ['Victoire', this.totVic],
-                    ['Défaite', this.totDef],
-                    ['Egalité', this.totEg],
+                //Calcul de PieDataQuick
+                Object.keys(snapshot.val().matchs || {}).forEach(id => {
+                    const match = snapshot.val().matchs[id];
+                    if (match.GamePlay === 'QuickPlay') {
+                        if (match.GameScoreA > match.GameScoreB) {
+                            this.vicQuick += 1;
+                        } else if (match.GameScoreA < match.GameScoreB) {
+                            this.defQuick += 1;
+                        } else {
+                            this.egQuick += 1;
+                        }
+                    }
+                });
+
+                this.pieDataRank = [
+                    ['Victoire', this.vicRank],
+                    ['Défaite', this.defRank],
+                    ['Egalité', this.egRank],
+                ];
+
+                this.pieDataQuick = [
+                    ['Victoire', this.vicQuick],
+                    ['Défaite', this.defQuick],
+                    ['Egalité', this.egQuick],
                 ];
 
                 this.columnRanked = [

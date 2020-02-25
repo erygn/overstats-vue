@@ -13,7 +13,7 @@
                 <div class="col-lg-10 col-md-10 col-sm-12">
                     <v-card tile style="border-radius: 5px; background-color: #FFF; color: #2d3039;">
                         <v-card-title style="font-size: 17px; font-weight: 400; border-bottom: 2px solid #d5d8dd">
-                            <span style="margin-left: 10px; margin-bottom: -5px">{{ currentTitle }}</span>
+                            <span style="margin-left: 10px;">{{ currentTitle }}</span>
                         </v-card-title>
 
                         <v-window v-model="step">

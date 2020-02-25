@@ -1,11 +1,10 @@
 <template>
   <v-app id="inspire" style="background: #F6F7F9">
-      <Navbar v-if="this.$route.path != '/login' && this.$route.path != '/about' && this.$route.path != '/register' && this.$route.path != '/team' && this.$route.path != '/addMatch' && this.$route.path != '/GameAdd'" />
+      <Navbar v-if="this.$route.path != '/login' && this.$route.path != '/about' && this.$route.path != '/register' && this.$route.path != '/team' && this.$route.path != '/teamPlayer' && this.$route.path != '/GameAdd'" />
       <NavNew v-if="this.$route.path == '/login' || this.$route.path == '/register' || this.$route.path == '/about'"/>
-      <NavTeam v-if="this.$route.path == '/team' || this.$route.path == '/GameAdd'"/>
+      <NavTeam v-if="this.$route.path == '/team' || this.$route.path == '/GameAdd' || this.$route.path == '/teamPlayer'"/>
     <v-content>
         <router-view/>
-        <Footer v-if="this.$route.path != '/team' && this.$route.path != '/GameAdd'"/>
     </v-content>
   </v-app>
 </template>
@@ -14,7 +13,6 @@
     import Navbar from "@/components/Navbar";
     import NavNew from "@/components/NavNew";
     import NavTeam from "@/components/NavTeam";
-    import Footer from "@/components/Footer";
   export default {
       name: 'OverStats',
     props: {
@@ -27,7 +25,6 @@
         Navbar,
           NavNew,
           NavTeam,
-          Footer
       }
   }
 </script>

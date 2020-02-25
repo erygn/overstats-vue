@@ -13,7 +13,7 @@
         </v-app-bar>
 
         <v-navigation-drawer
-                :mini-variant.sync="mini"
+                mini-variant
                 src="https://genesis-mc.fr/images/background.jpg"
                 v-model="drawer"
                 color="#051E34"
@@ -42,26 +42,6 @@
                     </v-list-item-content>
                 </v-list-item>
             </v-list>
-
-            <v-list>
-                <v-list-item v-if="!mini && miniMD">
-                    <v-spacer/>
-                    <v-btn @click.stop="mini = !mini" icon>
-                        <v-icon color="#c2cbd4">fa-angle-left</v-icon>
-                    </v-btn>
-                </v-list-item>
-                <v-list-item v-if="mini">
-                    <v-list-item-action>
-                        <v-icon style="color: #c2cbd4; margin-left: 5px">fa-angle-right</v-icon>
-                    </v-list-item-action>
-                </v-list-item>
-                <v-list-item v-if="!mini && !miniMD">
-                    <v-spacer/>
-                    <v-btn @click.stop="drawer = !drawer" icon>
-                        <v-icon color="#c2cbd4">fa-angle-left</v-icon>
-                    </v-btn>
-                </v-list-item>
-            </v-list>
         </v-navigation-drawer>
 
 
@@ -74,30 +54,17 @@
         name: "NavNew",
         data: () => ({
             drawer: null,
-            mini: true,
             fav: true,
             menu: false,
             message: false,
             hints: true,
 
             dialog: false,
-
-            miniMD: ''
         }),
         methods: {
             openDrawer: function () {
                 this.drawer = !this.drawer;
-                this.mini = false;
             },
-        },
-        created () {
-            switch (this.$vuetify.breakpoint.name) {
-                case 'xs': this.miniMD = false; break;
-                case 'sm': this.miniMD = true; break;
-                case 'md': this.miniMD = true; break;
-                case 'lg': this.miniMD = true; break;
-                case 'xl': this.miniMD = true; break;
-            }
         },
     }
 </script>
