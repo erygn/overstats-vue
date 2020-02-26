@@ -369,26 +369,7 @@
 
                             <v-window-item :value="3">
                                 <v-card-text v-if="configStatus === 'Attaque'">
-                                    <h3>Choix des DPS - Attaque</h3>
-                                    <v-row>
-                                        <v-col class="d-flex" cols="6">
-                                            <v-select
-                                                    color="#69697f"
-                                                    v-model="configDpsOne"
-                                                    :items="dps"
-                                                    :label="teamValue.Players.mainDps"
-                                            ></v-select>
-                                        </v-col>
-                                        <v-col class="d-flex" cols="6">
-                                            <v-select
-                                                    color="#69697f"
-                                                    v-model="configDpsTwo"
-                                                    :items="dps"
-                                                    :label="teamValue.Players.offDps"
-                                            ></v-select>
-                                        </v-col>
-                                    </v-row>
-                                    <h3>Choix des TANKS</h3>
+                                    <h3>Choix des TANKS - Attaque</h3>
                                     <v-row>
                                         <v-col class="d-flex" cols="6">
                                             <v-select
@@ -404,6 +385,25 @@
                                                     v-model="configTankTwo"
                                                     :items="tank"
                                                     :label="teamValue.Players.offTank"
+                                            ></v-select>
+                                        </v-col>
+                                    </v-row>
+                                    <h3>Choix des DPS</h3>
+                                    <v-row>
+                                        <v-col class="d-flex" cols="6">
+                                            <v-select
+                                                    color="#69697f"
+                                                    v-model="configDpsOne"
+                                                    :items="dps"
+                                                    :label="teamValue.Players.mainDps"
+                                            ></v-select>
+                                        </v-col>
+                                        <v-col class="d-flex" cols="6">
+                                            <v-select
+                                                    color="#69697f"
+                                                    v-model="configDpsTwo"
+                                                    :items="dps"
+                                                    :label="teamValue.Players.offDps"
                                             ></v-select>
                                         </v-col>
                                     </v-row>
@@ -438,26 +438,7 @@
                                 </v-card-text>
 
                                 <v-card-text v-if="configStatus === 'Défense'">
-                                    <h3>Choix des DPS - Défense</h3>
-                                    <v-row>
-                                        <v-col class="d-flex" cols="6">
-                                            <v-select
-                                                    color="#69697f"
-                                                    v-model="configDpsOne"
-                                                    :items="dps"
-                                                    :label="teamValue.Players.mainDps"
-                                            ></v-select>
-                                        </v-col>
-                                        <v-col class="d-flex" cols="6">
-                                            <v-select
-                                                    color="#69697f"
-                                                    v-model="configDpsTwo"
-                                                    :items="dps"
-                                                    :label="teamValue.Players.offDps"
-                                            ></v-select>
-                                        </v-col>
-                                    </v-row>
-                                    <h3>Choix des TANKS</h3>
+                                    <h3>Choix des TANKS - Défense</h3>
                                     <v-row>
                                         <v-col class="d-flex" cols="6">
                                             <v-select
@@ -473,6 +454,25 @@
                                                     v-model="configTankTwo"
                                                     :items="tank"
                                                     :label="teamValue.Players.offTank"
+                                            ></v-select>
+                                        </v-col>
+                                    </v-row>
+                                    <h3>Choix des DPS</h3>
+                                    <v-row>
+                                        <v-col class="d-flex" cols="6">
+                                            <v-select
+                                                    color="#69697f"
+                                                    v-model="configDpsOne"
+                                                    :items="dps"
+                                                    :label="teamValue.Players.mainDps"
+                                            ></v-select>
+                                        </v-col>
+                                        <v-col class="d-flex" cols="6">
+                                            <v-select
+                                                    color="#69697f"
+                                                    v-model="configDpsTwo"
+                                                    :items="dps"
+                                                    :label="teamValue.Players.offDps"
                                             ></v-select>
                                         </v-col>
                                     </v-row>
@@ -509,26 +509,7 @@
 
                             <v-window-item :value="4">
                                 <v-card-text v-if="configStatus === 'Attaque'">
-                                    <h3>Choix des Héros - Défense</h3>
-                                    <v-row>
-                                        <v-col class="d-flex" cols="6">
-                                            <v-select
-                                                    color="#69697f"
-                                                    v-model="configDpsOneD"
-                                                    :items="dps"
-                                                    :label="teamValue.Players.mainDps"
-                                            ></v-select>
-                                        </v-col>
-                                        <v-col class="d-flex" cols="6">
-                                            <v-select
-                                                    color="#69697f"
-                                                    v-model="configDpsTwoD"
-                                                    :items="dps"
-                                                    :label="teamValue.Players.offDps"
-                                            ></v-select>
-                                        </v-col>
-                                    </v-row>
-                                    <h3>Choix des TANKS</h3>
+                                    <h3>Choix des TANKS - Défense</h3>
                                     <v-row>
                                         <v-col class="d-flex" cols="6">
                                             <v-select
@@ -544,6 +525,25 @@
                                                     v-model="configTankTwoD"
                                                     :items="tank"
                                                     :label="teamValue.Players.offTank"
+                                            ></v-select>
+                                        </v-col>
+                                    </v-row>
+                                    <h3>Choix des DPS</h3>
+                                    <v-row>
+                                        <v-col class="d-flex" cols="6">
+                                            <v-select
+                                                    color="#69697f"
+                                                    v-model="configDpsOneD"
+                                                    :items="dps"
+                                                    :label="teamValue.Players.mainDps"
+                                            ></v-select>
+                                        </v-col>
+                                        <v-col class="d-flex" cols="6">
+                                            <v-select
+                                                    color="#69697f"
+                                                    v-model="configDpsTwoD"
+                                                    :items="dps"
+                                                    :label="teamValue.Players.offDps"
                                             ></v-select>
                                         </v-col>
                                     </v-row>
@@ -578,26 +578,7 @@
                                 </v-card-text>
 
                                 <v-card-text v-if="configStatus === 'Défense'">
-                                    <h3>Choix des Héros - Attaque</h3>
-                                    <v-row>
-                                        <v-col class="d-flex" cols="6">
-                                            <v-select
-                                                    color="#69697f"
-                                                    v-model="configDpsOneD"
-                                                    :items="dps"
-                                                    :label="teamValue.Players.mainDps"
-                                            ></v-select>
-                                        </v-col>
-                                        <v-col class="d-flex" cols="6">
-                                            <v-select
-                                                    color="#69697f"
-                                                    v-model="configDpsTwoD"
-                                                    :items="dps"
-                                                    :label="teamValue.Players.offDps"
-                                            ></v-select>
-                                        </v-col>
-                                    </v-row>
-                                    <h3>Choix des TANKS</h3>
+                                    <h3>Choix des TANKS - Attaque</h3>
                                     <v-row>
                                         <v-col class="d-flex" cols="6">
                                             <v-select
@@ -613,6 +594,25 @@
                                                     v-model="configTankTwoD"
                                                     :items="tank"
                                                     :label="teamValue.Players.offTank"
+                                            ></v-select>
+                                        </v-col>
+                                    </v-row>
+                                    <h3>Choix des DPS</h3>
+                                    <v-row>
+                                        <v-col class="d-flex" cols="6">
+                                            <v-select
+                                                    color="#69697f"
+                                                    v-model="configDpsOneD"
+                                                    :items="dps"
+                                                    :label="teamValue.Players.mainDps"
+                                            ></v-select>
+                                        </v-col>
+                                        <v-col class="d-flex" cols="6">
+                                            <v-select
+                                                    color="#69697f"
+                                                    v-model="configDpsTwoD"
+                                                    :items="dps"
+                                                    :label="teamValue.Players.offDps"
                                             ></v-select>
                                         </v-col>
                                     </v-row>
@@ -820,7 +820,7 @@
                             Name: this.randomIdCompoSide1,
                             isFav: false,
                             isNew: true,
-                            CpmpoDate: new Date().toLocaleString(),
+                            CpmpoDate: new Date().toLocaleString("fr-FR"),
                             Compo: {
                                 mainDps: this.configDpsOne,
                                 offDps: this.configDpsTwo,
@@ -837,7 +837,7 @@
                                 Name: this.randomIdCompoSide1,
                                 isFav: false,
                                 isNew: true,
-                                CompoDate: new Date().toLocaleString(),
+                                CompoDate: new Date().toLocaleString("fr-FR"),
                                 Compo: {
                                     mainDps: this.configDpsOne,
                                     offDps: this.configDpsTwo,
@@ -855,7 +855,7 @@
                                 Name: this.randomIdCompoSide2,
                                 isFav: false,
                                 isNew: true,
-                                CompoDate: new Date().toLocaleString(),
+                                CompoDate: new Date().toLocaleString("fr-FR"),
                                 Compo: {
                                     mainDps: this.configDpsOneD,
                                     offDps: this.configDpsTwoD,
@@ -882,7 +882,7 @@
                     GameSwitchOne: this.configSwitchOne,
                     GameSwicthTwo: this.configSwitchTwo,
                     GameComment: this.configCommentaire,
-                    GameDate: new Date().toLocaleString(),
+                    GameDate: new Date().toLocaleString("fr-FR"),
                     GameCompositionSide1: this.randomIdCompoSide1,
                     GameCompositionSide2: this.randomIdCompoSide2,
                 }).then(() => {

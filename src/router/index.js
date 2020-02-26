@@ -91,6 +91,28 @@ const routes = [
       requireAuth: true
     }
   },
+  {
+    path: '/winRate',
+    name: 'winRate',
+    component: winRate,
+    props(route) {
+      return route.query || {}
+    },
+    meta: {
+      requireAuth: true
+    }
+  },
+  {
+    path: '/compo',
+    name: 'compo',
+    component: Compo,
+    props(route) {
+      return route.query || {}
+    },
+    meta: {
+      requireAuth: true
+    }
+  },
 
   {
     path: '/login',
@@ -125,6 +147,8 @@ import addMatch from "@/views/addMatch";
 import GameAdd from "@/views/GameAdd";
 import tee from "@/views/tee";
 import teamPlayer from "@/views/teamPlayer";
+import winRate from "@/views/winRate";
+import Compo from "@/views/Compo";
 
 router.beforeEach((to, from, next) => {
   window.scrollTo(0, 0);

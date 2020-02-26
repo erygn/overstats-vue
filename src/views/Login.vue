@@ -422,7 +422,7 @@
                                     Grade: 1,
                                     isRole: false,
                                     roleId: false,
-                                    InscriptionDate: new Date().toLocaleString(),
+                                    InscriptionDate: new Date().toLocaleString("fr-FR"),
                                 }).then(() => {
                                         this.$router.replace('/')
                                     },

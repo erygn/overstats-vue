@@ -56,7 +56,7 @@
                    :key="i">
                 <div class="col-lg-6 col-sm-12 col-md-8">
                             <v-card style="border-radius: 5px" class="mx-auto">
-                                <v-card-title>{{ team.TeamName }} <v-icon style="margin-left: 6px" small v-if="!team.isFav">fa-star</v-icon><v-icon style="margin-left: 6px" small v-if="team.isFav" color="yellow">fa-star</v-icon></v-card-title>
+                                <v-card-title>{{ team.TeamName }} <v-icon style="margin-left: 6px" small v-if="team.isFav">fa-star</v-icon></v-card-title>
                                 <v-card-subtitle class="pb-0">{{ team.Description }}</v-card-subtitle>
 
                                 <v-card-actions>

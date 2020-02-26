@@ -9,11 +9,6 @@
                 app
         >
             <v-list dense>
-                <v-list-item>
-                    <v-list-item-content>
-                        <v-list-item-title></v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>
                 <v-list-item link :to="{path: '/team', query: {team: this.$route.query.team}}">
                         <v-icon color="#c2cbd4" style="padding: 10px 0px">mdi-home</v-icon>
                 </v-list-item>

@@ -1,8 +1,8 @@
 <template>
   <v-app id="inspire" style="background: #F6F7F9">
-      <Navbar v-if="this.$route.path != '/login' && this.$route.path != '/about' && this.$route.path != '/register' && this.$route.path != '/team' && this.$route.path != '/teamPlayer' && this.$route.path != '/GameAdd'" />
+      <Navbar v-if="this.$route.path != '/login' && this.$route.path != '/about' && this.$route.path != '/register' && this.$route.path != '/team' && this.$route.path != '/teamPlayer' && this.$route.path != '/GameAdd' && this.$route.path != '/winRate' && this.$route.path != '/compo'" />
       <NavNew v-if="this.$route.path == '/login' || this.$route.path == '/register' || this.$route.path == '/about'"/>
-      <NavTeam v-if="this.$route.path == '/team' || this.$route.path == '/GameAdd' || this.$route.path == '/teamPlayer'"/>
+      <NavTeam v-if="this.$route.path == '/team' || this.$route.path == '/GameAdd' || this.$route.path == '/teamPlayer' || this.$route.path == '/winRate' || this.$route.path == '/compo'"/>
     <v-content>
         <router-view/>
     </v-content>
