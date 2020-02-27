@@ -14,8 +14,14 @@
             <v-row justify="center">
                 <div class="col-lg-10 col-md-10 col-sm-12">
                     <v-row>
-                        <div class="col-12">
-                            <h1 style="margin-left: 15px; margin-bottom: -30px; font-size: 22px; font-weight: 700; color: #2e313a">{{ teamValue.Name }} <v-icon style="margin-top: -2px" small v-if="teamValue.isFav">fa-star</v-icon><v-btn text small @click="compoNameDialog = !compoNameDialog"><v-icon color="#2e313a">mdi-pencil</v-icon></v-btn></h1>
+                        <div class="col-12" style="margin-bottom: -40px">
+                            <h1 style="margin-left: 15px; font-size: 22px; font-weight: 700; color: #2e313a">{{ teamValue.Name }} <v-icon style="margin-top: -2px" small v-if="teamValue.isFav">fa-star</v-icon><v-btn text small @click="compoNameDialog = !compoNameDialog"><v-icon color="#2e313a">mdi-pencil</v-icon></v-btn></h1>
+                            <v-btn
+                                    width="80"
+                                    height="35"
+                                    elevation="1" tile style="margin-left: 15px; border-radius: 5px; background-color: #FFF; color: #2d3039; text-transform: initial; margin-top: 10px"
+                                    @click="favDialog = !favDialog"
+                            >Fav</v-btn>
                         </div>
                     </v-row>
                 </div>
@@ -84,6 +90,94 @@
         </v-container>
 
         <v-dialog
+                v-model="favDialog"
+                width="600px"
+                content-class="dialogBorder"
+        >
+            <v-card>
+                <v-card-title style="font-size: 17px; font-weight: 400; background-color: #2d3039; color: #FFF">
+                    Favorite
+                    <v-spacer/>
+                    <v-btn @click="favDialog = !favDialog" text depressed><v-icon color="#FFF">mdi-close</v-icon></v-btn>
+                </v-card-title>
+                <v-container>
+                    <v-row class="mx-2">
+                        <v-col
+                                class="align-center justify-space-between"
+                                cols="12"
+                        >
+                            <v-row v-if="fullFav && !isFav" align="center" class="mr-0">
+                                <v-alert type="error" text>
+                                    Attention le nombre de composition favorite est atteint. Veuillez retirer une composition avant d'ajouter celle-ci
+                                </v-alert>
+                            </v-row>
+                            <v-row
+                                    v-if="!fullFav && !isFav"
+                                    align="center"
+                                    class="mr-0"
+                            >
+                                <p style="font-size: 15px">Ajouter aux favoris une composition, vous permet d'ajouter plus rapidement cette composition lors de l'ajout d'un match</p>
+                            </v-row>
+                            <v-row
+                                    v-if="isFav"
+                                    align="center"
+                                    class="mr-0"
+                            >
+
+                                <p style="font-size: 15px">Retirer la composition des favoris, ne vous permet plus d'ajouter votre composition rapidement lors de l'ajout d'un match.</p>
+                            </v-row>
+                            <v-row
+                                    align="center"
+                                   class="mr-0">
+                                <v-spacer/>
+                                <p style="font-size: 12px">ID composition : {{ id }}</p>
+                            </v-row>
+                        </v-col>
+                    </v-row>
+                </v-container>
+                <v-card-actions v-if="!fullFav && !isFav">
+                    <v-spacer />
+                    <v-btn
+                            width="150"
+                            height="35"
+                            elevation="1" tile style="border-radius: 5px; background-color: #FFF; color: #2d3039; text-transform: initial"
+                            @click="favFunc"
+                    >Ajouter</v-btn>
+                    <v-btn
+                            style="margin-right: 5px; text-transform: initial"
+                            text
+                            color="#003041"
+                            @click="favDialog = false"
+                    >Fermer</v-btn>
+                </v-card-actions>
+                <v-card-actions v-if="fullFav && !isFav">
+                    <v-spacer />
+                    <v-btn
+                            style="margin-right: 5px; text-transform: initial"
+                            text
+                            color="#003041"
+                            @click="favDialog = false"
+                    >Fermer</v-btn>
+                </v-card-actions>
+                <v-card-actions v-if="isFav">
+                    <v-spacer />
+                    <v-btn
+                            width="150"
+                            height="35"
+                            elevation="1" tile style="border-radius: 5px; background-color: #FFF; color: #2d3039; text-transform: initial"
+                            @click="favFunc"
+                    >Retirer</v-btn>
+                    <v-btn
+                            style="margin-right: 5px; text-transform: initial"
+                            text
+                            color="#003041"
+                            @click="favDialog = false"
+                    >Fermer</v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
+
+        <v-dialog
                 v-model="compoNameDialog"
                 width="600px"
                 content-class="dialogBorder"
@@ -128,6 +222,30 @@
             </v-card>
         </v-dialog>
 
+        <v-snackbar v-model="snackbarFav" :timeout="3000" color="green">
+            Composition ajoutée
+            <v-btn
+                    color="white"
+                    text
+                    icon
+                    @click="snackbarFav = false"
+            >
+                <v-icon>mdi-close</v-icon>
+            </v-btn>
+        </v-snackbar>
+
+        <v-snackbar v-model="snackbarFavRet" :timeout="3000" color="red">
+            Composition retirée
+            <v-btn
+                    color="white"
+                    text
+                    icon
+                    @click="snackbarFavRet = false"
+            >
+                <v-icon>mdi-close</v-icon>
+            </v-btn>
+        </v-snackbar>
+
         <v-snackbar v-model="snackbarName" :timeout="3000" color="green">
             Nom modifié
             <v-btn
@@ -149,17 +267,36 @@
         props: ['team', 'id'],
         data() {
             return {
+                isFav: null,
+                fullFav: false,
+
                 teamValue: null,
                 teamPlayer: null,
                 teamCalc: 0,
 
+                favDialog: false,
                 compoNameDialog: false,
                 snackbarName: false,
+                snackbarFav: false,
+                snackbarFavRet: false,
 
                 compoName: null,
             }
         },
         methods: {
+            favFunc: function() {
+                let fav = this.isFav;
+                this.favDialog = false;
+                firebase.database().ref('teams/' + firebase.auth().currentUser.uid + '/' + this.team + '/compo/' + this.id).update({
+                    isFav: !this.isFav,
+                }).then(() => {
+                    if (fav) {
+                        this.snackbarFavRet = true;
+                    } else {
+                        this.snackbarFav = true;
+                    }
+                })
+            },
           changeCompoName: function () {
               if (this.compoName != null) {
                   firebase.database().ref('teams/' + firebase.auth().currentUser.uid + '/' + this.team + '/compo/' + this.id).update({
@@ -175,6 +312,18 @@
         created() {
             firebase.database().ref('teams/' + firebase.auth().currentUser.uid + '/' + this.team).once('value').then((snapshot) => {
                 this.teamPlayer = snapshot.val();
+
+                let favCalc = 0;
+                //Calcul du nombre de fav
+                Object.keys(snapshot.val().compo || {}).forEach(id => {
+                    const compo = snapshot.val().compo[id];
+                    if (compo.isFav) {
+                        favCalc += 1;
+                    }
+                });
+                if (favCalc >= 4) {
+                    this.fullFav = true;
+                }
 
                 //Calcul du nombre utilisation de la composition
                 Object.keys(snapshot.val().matchs || {}).forEach(id => {
@@ -192,6 +341,12 @@
                 // alert(JSON.stringify(snapshot.val()))
                 this.teamValue = snapshot.val();
 
+                if (this.teamValue.isFav) {
+                    this.isFav = true;
+                }
+                if (!this.teamValue.isFav) {
+                    this.isFav = false;
+                }
                 if (this.teamValue.isNew) {
                     firebase.database().ref('teams/' + firebase.auth().currentUser.uid + '/' + this.team + '/compo/' + this.id).update({
                         isNew: false,

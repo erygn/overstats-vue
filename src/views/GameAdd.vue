@@ -369,6 +369,12 @@
 
                             <v-window-item :value="3">
                                 <v-card-text v-if="configStatus === 'Attaque'">
+                                    <h3 v-if="favCompo.length > 0">Favorite Composition</h3>
+                                    <v-row v-if="favCompo.length > 0">
+                                        <div v-for="(item, index) in favCompo" :key="index">
+                                            <v-btn @click="addCompo(item.Compo.mainTank, item.Compo.offTank, item.Compo.mainDps, item.Compo.offDps, item.Compo.mainHeal, item.Compo.offHeal)" text style="padding: 2px 10px; background-color: #69697f; color: #FFF; border-radius: 20px; margin: 1px 5px; text-transform: initial">{{ item.Name }}</v-btn>
+                                        </div>
+                                    </v-row>
                                     <h3>Choix des TANKS - Attaque</h3>
                                     <v-row>
                                         <v-col class="d-flex" cols="6">
@@ -438,6 +444,12 @@
                                 </v-card-text>
 
                                 <v-card-text v-if="configStatus === 'Défense'">
+                                    <h3 v-if="favCompo.length > 0">Favorite Composition</h3>
+                                    <v-row v-if="favCompo.length > 0">
+                                        <div v-for="(item, index) in favCompo" :key="index">
+                                            <v-btn @click="addCompo(item.Compo.mainTank, item.Compo.offTank, item.Compo.mainDps, item.Compo.offDps, item.Compo.mainHeal, item.Compo.offHeal)" text style="padding: 2px 10px; background-color: #69697f; color: #FFF; border-radius: 20px; margin: 1px 5px; text-transform: initial">{{ item.Name }}</v-btn>
+                                        </div>
+                                    </v-row>
                                     <h3>Choix des TANKS - Défense</h3>
                                     <v-row>
                                         <v-col class="d-flex" cols="6">
@@ -509,6 +521,12 @@
 
                             <v-window-item :value="4">
                                 <v-card-text v-if="configStatus === 'Attaque'">
+                                    <h3 v-if="favCompo.length > 0">Favorite Composition</h3>
+                                    <v-row v-if="favCompo.length > 0">
+                                        <div v-for="(item, index) in favCompo" :key="index">
+                                            <v-btn @click="addCompo(item.Compo.mainTank, item.Compo.offTank, item.Compo.mainDps, item.Compo.offDps, item.Compo.mainHeal, item.Compo.offHeal)" text style="padding: 2px 10px; background-color: #69697f; color: #FFF; border-radius: 20px; margin: 1px 5px; text-transform: initial">{{ item.Name }}</v-btn>
+                                        </div>
+                                    </v-row>
                                     <h3>Choix des TANKS - Défense</h3>
                                     <v-row>
                                         <v-col class="d-flex" cols="6">
@@ -578,6 +596,12 @@
                                 </v-card-text>
 
                                 <v-card-text v-if="configStatus === 'Défense'">
+                                    <h3 v-if="favCompo.length > 0">Favorite Composition</h3>
+                                    <v-row v-if="favCompo.length > 0">
+                                        <div v-for="(item, index) in favCompo" :key="index">
+                                            <v-btn @click="addCompo(item.Compo.mainTank, item.Compo.offTank, item.Compo.mainDps, item.Compo.offDps, item.Compo.mainHeal, item.Compo.offHeal)" text style="padding: 2px 10px; background-color: #69697f; color: #FFF; border-radius: 20px; margin: 1px 5px; text-transform: initial">{{ item.Name }}</v-btn>
+                                        </div>
+                                    </v-row>
                                     <h3>Choix des TANKS - Attaque</h3>
                                     <v-row>
                                         <v-col class="d-flex" cols="6">
@@ -747,7 +771,7 @@
                 dialogJoueur: false,
 
                 favorite: false,
-
+                favCompo: [],
 
                 configModel: null,
 
@@ -787,6 +811,24 @@
             }
         },
         methods: {
+            addCompo: function (mainTank, offTank, mainDps, offDps, mainHeal, offHeal) {
+                if (this.step === 3) {
+                    this.configTankOne = mainTank;
+                    this.configTankTwo = offTank;
+                    this.configDpsOne = mainDps;
+                    this.configDpsTwo = offDps;
+                    this.configHealOne = mainHeal;
+                    this.configHealTwo = offHeal;
+                }
+                if (this.step === 4) {
+                    this.configTankOneD = mainTank;
+                    this.configTankTwoD = offTank;
+                    this.configDpsOneD = mainDps;
+                    this.configDpsTwoD = offDps;
+                    this.configHealOneD = mainHeal;
+                    this.configHealTwoD = offHeal;
+                }
+            },
             resetSwitchOne: function () {
               this.configSwitchOne = null;
             },
@@ -966,6 +1008,16 @@
             firebase.database().ref('teams/' + firebase.auth().currentUser.uid + '/' + this.team).on('value', (snapshot) => {
                 // alert(JSON.stringify(snapshot.val()))
                 this.teamValue = snapshot.val()
+
+                //Ajout favorite Compo
+                let list = [];
+                Object.keys(snapshot.val().compo || {}).forEach(id => {
+                    const favComp = snapshot.val().compo[id];
+                    if (favComp.isFav) {
+                        list.push(snapshot.val().compo[id]);
+                    }
+                });
+                this.favCompo = list;
             })
 
             // firebase.database().ref('teams/' + firebase.auth().currentUser.uid + '/' + this.team).on('value',  (snapshot) => {

@@ -220,7 +220,7 @@
                                     <v-row>
                                         <div class="col-12" style="margin-top: -20px">
                                             <div style="margin: 0px 20px; overflow:auto; height: 370px">
-                                                <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #2D2D39; margin-bottom: 10px" v-for="(item, index) in teamValue.compo" :key="index">
+                                                <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #2D2D39; margin-bottom: 10px" v-for="(item, index) in listCompo" :key="index">
                                                     <div>
                                                         <p style="color: #363645; font-weight: 600">{{ item.Name }} <span v-if="item.isNew" style="text-transform: uppercase; font-weight: 400; font-size: 12px; background-color: #d3d8e3; padding: 5px 15px; border-radius: 20px">New</span> <v-icon style="margin-top: -2px" small v-if="item.isFav">fa-star</v-icon></p>
                                                         <p style="margin-top: -14px; font-size: 12px">{{ item.CompoDate }}</p>
@@ -723,6 +723,11 @@
                 return mapUrl
             }
         },
+        computed: {
+            listCompo: function () {
+                return _.orderBy(this.teamValue.compo, 'isFav')
+            }
+        },
         created() {
             firebase.database().ref('teams/' + firebase.auth().currentUser.uid + '/' + this.team).on('value', (snapshot) => {
                 // alert(JSON.stringify(snapshot.val()))
@@ -801,7 +806,7 @@
 
                 //Calcul de la area
                 let list = [];
-                Object.keys(snapshot.val().compo || {}).forEach(id => {
+                Object.keys(snapshot.val().matchs || {}).forEach(id => {
                     list.push(snapshot.val().matchs[id]);
                 });
 
