@@ -334,6 +334,9 @@
                     if (match.GameCompositionSide2 == this.id) {
                         this.teamCalc += 1;
                     }
+                    if (match.GameCompositionSide3 == this.id) {
+                        this.teamCalc += 1;
+                    }
                 });
             })
 

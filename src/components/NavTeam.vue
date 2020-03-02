@@ -5,7 +5,7 @@
                 :mini-variant="true"
                 color="#051E34"
                 src="https://genesis-mc.fr/images/background.jpg"
-                mobile-break-point="800"
+                mobile-break-point="700"
                 app
         >
             <v-list dense>
@@ -29,7 +29,7 @@
                 <span class="font-weight-light">Team</span>
                 <span>Manager</span></v-toolbar-title>
             <v-spacer/>
-            <router-link :to="{path: '/teamPlayer', query: {team: this.$route.query.team}}"><v-icon id="setting">mdi-settings</v-icon></router-link>
+            <router-link :to="{path: '/GameAdd', query: {team: this.$route.query.team}}"><v-icon id="setting">mdi-plus</v-icon></router-link>
         </v-app-bar>
     </nav>
 </template>

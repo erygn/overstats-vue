@@ -261,6 +261,15 @@
                 Object.keys(snapshot.val().matchs || {}).forEach(id => {
                     const match = snapshot.val().matchs[id];
                     if (match.GamePlay === 'Ranked') {
+                        if (match.GameType === 'KOTH') {
+                            if (match.GameScoreA > match.GameScoreB) {
+                                this.vicKoth += 1;
+                            } else if (match.GameScoreA < match.GameScoreB) {
+                                this.defKoth += 1;
+                            } else {
+                                this.egKoth += 1;
+                            }
+                        }
                         if (match.GameType === 'Escorte') {
                             if (match.GameScoreA > match.GameScoreB) {
                                 this.vicEscorte += 1;

@@ -12,13 +12,13 @@
             </v-row>
         </v-container>
 
-        <v-container fluid>
-            <v-row justify="center">
-                <div class="col-lg-10 col-md-10 col-sm-12 text-center">
-                    <h2 style="font-weight: 300; font-size: 20px; color: red; margin-bottom: -60px">Attention, système en cours de développement <v-icon color="red">mdi-alert</v-icon></h2>
-                </div>
-            </v-row>
-        </v-container>
+<!--        <v-container fluid>-->
+<!--            <v-row justify="center">-->
+<!--                <div class="col-lg-10 col-md-10 col-sm-12 text-center">-->
+<!--                    <h2 style="font-weight: 300; font-size: 20px; color: red; margin-bottom: -60px">Attention, système en cours de développement <v-icon color="red">mdi-alert</v-icon></h2>-->
+<!--                </div>-->
+<!--            </v-row>-->
+<!--        </v-container>-->
 
         <v-container fluid style="align-items: center" class="my-5">
             <v-row align="center" style="justify-content: center">
@@ -63,24 +63,24 @@
                                 <v-img
                                         class="white--text align-end"
                                         height="200px"
-                                        src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+                                        src="https://subswapr.fr/img/overstats/busan.jpg"
                                 >
                                 </v-img>
 
-                                <v-card-title>Ajouter votre équipe</v-card-title>
-                                <v-card-subtitle class="pb-0">Votre panel au plus proche de vous</v-card-subtitle>
+                                <v-card-title>Le KOTH</v-card-title>
+                                <v-card-subtitle class="pb-0">Les matchs KOTH sont disponibles</v-card-subtitle>
                                 <v-card-text class="text--primary">
-                                    <div>Il est désormais possible de créer des équipes</div>
+                                    <div>L'ajout de matchs KOTH est désormais possible !<br> Vous pouvez gérer les différents cas qui peuvent être  rencontrés durant une partie.</div>
 
-                                    <div> t de les gérer à partir de son interface</div>
+                                    <div>Mais également utiliser vos compositions favorites pour remplir votre feuille de match plus rapidement</div>
                                 </v-card-text>
 
                                 <v-card-actions>
                                     <v-spacer/>
                                     <v-btn
-                                            to="/add"
                                             color="grey"
                                             text
+                                            @click="dialog = !dialog"
                                     >
                                         Voir <v-icon small>fa-eye</v-icon>
                                     </v-btn>
@@ -92,16 +92,16 @@
                                 <v-img
                                         class="white--text align-end"
                                         height="200px"
-                                        src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
+                                        src="https://subswapr.fr/img/overstats/row.jpg"
                                 >
                                 </v-img>
 
-                                <v-card-title>PWA</v-card-title>
-                                <v-card-subtitle class="pb-0">Votre panel au plus proche de vous</v-card-subtitle>
+                                <v-card-title>Fav Composition</v-card-title>
+                                <v-card-subtitle class="pb-0">Ajouter rapidement des matchs</v-card-subtitle>
                                 <v-card-text class="text--primary">
-                                    <div>Récupérer l'application directement depuis le site</div>
+                                    <div>Un composition dans votre équipe revient souvent ?<br>Vous pouvez désormais ajouter votre composition comme un modèle qui peut ^étre appliquer en un seul clique lors de l'ajout d'un match</div>
 
-                                    <div>En l'ajoutant au bureau</div>
+                                    <div>Plus facile et rapide à utiliser</div>
                                 </v-card-text>
 
                                 <v-card-actions>
@@ -109,8 +109,9 @@
                                     <v-btn
                                             color="grey"
                                             text
+                                            @click="dialog = !dialog"
                                     >
-                                        Installer
+                                        Voir <v-icon small>fa-eye</v-icon>
                                     </v-btn>
                                 </v-card-actions>
                             </v-card>
@@ -183,50 +184,6 @@
 <!--                </div>-->
 <!--            </v-row>-->
 <!--        </v-container>-->
-
-
-        <v-container fluid>
-            <v-divider dark class="my-12"/>
-
-            <v-row justify="center" style="margin: 5px">
-                <h2>Nouveautés</h2>
-            </v-row>
-
-            <v-row justify="center" style="margin: 5px">
-                        <v-card
-                                style="border-radius: 8px"
-                                width="900px"
-                                class="mx-auto"
-                        >
-                            <v-list-item three-line>
-                                <v-list-item-content>
-                                    <v-list-item-title class="headline mb-1">Un système de connexion</v-list-item-title>
-                                    <v-list-item-subtitle>Utilisez votre compte pour vous connecter</v-list-item-subtitle>
-                                    <v-container>
-                                        <label>Votre compte vous permet d'accéder à toutes les fonctionnalités de Overstats.<br>Comme la gestion d'une équipe dans l'interface, l'ajout de match avec des données précises comme le score final.<br>Le système se gère ensuite de traiter les données et de vous rendre un visuel compréhensif.</label>
-                                    </v-container>
-                                    <v-list-item-subtitle style="margin-top: 10px">Pas de compte OverStats ? <router-link style="text-decoration: none" to="/register">Créer un compte</router-link></v-list-item-subtitle>
-                                </v-list-item-content>
-                            </v-list-item>
-                        </v-card>
-            </v-row>
-            <v-row justify="center" style="margin: 5px">
-                        <v-card
-                                style="border-radius: 8px; margin-top: 50px"
-                                width="900px"
-                                class="mx-auto"
-                        >
-                            <v-list-item three-line>
-                                <v-list-item-content>
-                                    <v-list-item-title class="headline mb-1">Une Interface développée</v-list-item-title>
-                                    <v-list-item-subtitle>Pour une meilleure utilisation</v-list-item-subtitle>
-                                        <label>Notre système est basé sur la compréhension rapide et efficace de l'utilisateur pour accroîte la vitesse de traitement des données et de l'analyse</label>
-                                    <v-list-item-subtitle style="margin-top: 10px">Si vous avez une suggestion, n'hésitez pas à nous le faire parvenir</v-list-item-subtitle>
-                                </v-list-item-content>
-                            </v-list-item>
-                        </v-card>
-            </v-row>
-        </v-container>
 
         <v-dialog
                 v-model="dialog"

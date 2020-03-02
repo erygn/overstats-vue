@@ -4,7 +4,7 @@
       <v-row justify="center" style="margin: 0px 1px; color: #FFF">
         <div class="col-sm-12 col-lg-6 col-md-8">
           <h1 style="margin-top: 40px; font-weight: 300; margin-bottom: 10px">{{randomWelcome}} <span style="font-weight: 500">{{ displayName.Pseudo }}</span></h1>
-            <p style="margin-top: -15px; font-weight: 200">Version 0.1.2</p>
+            <p style="margin-top: -15px; font-weight: 200">Version 0.1.3</p>
             <div>
                 <router-link to="/teams" style="text-decoration: none; color: #dcdcdc; border: 1px solid #00577a; border-radius: 20px; padding: 5px 20px; background-color: #00577a">Gérer vos équipes <v-icon style="margin-bottom: 2px; margin-right: -5px; color: #dcdcdc" small>mdi-account-group</v-icon></router-link>
             </div>
@@ -39,122 +39,108 @@
           </v-row>
 
 
-          <v-row align="center" style="justify-content: center; height: 1px; margin-top: 10px">
-              <div class="col-lg-6 col-sm-12 col-md-8">
-                  <h2>Nouveautés sur Overstats</h2>
-              </div>
-          </v-row>
-      </v-container>
-
-    <v-container fluid style="align-items: center" class="my-5">
-      <v-row align="center" style="justify-content: center">
-        <div class="col-lg-6 col-md-8 col-sm-12">
-          <v-row align="center" style="justify-content: center">
-            <div class="col-sm-6">
-              <v-card style="border-radius: 5px" class="mx-auto">
-                <v-img
-                        class="white--text align-end"
-                        height="200px"
-                        src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
-                >
-                </v-img>
-
-                <v-card-title>Ajouter votre équipe</v-card-title>
-                <v-card-subtitle class="pb-0">Votre panel au plus proche de vous</v-card-subtitle>
-                <v-card-text class="text--primary">
-                  <div>Il est désormais possible de créer des équipes</div>
-
-                  <div> t de les gérer à partir de son interface</div>
-                </v-card-text>
-
-                <v-card-actions>
-                  <v-spacer/>
-                  <v-btn
-                          to="/teams"
-                          color="grey"
-                          text
-                  >
-                    Voir <v-icon small>fa-eye</v-icon>
-                  </v-btn>
-                </v-card-actions>
-              </v-card>
-            </div>
-            <div class="col-sm-6">
-              <v-card style="border-radius: 5px" class="mx-auto">
-                <v-img
-                        class="white--text align-end"
-                        height="200px"
-                        src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
-                >
-                </v-img>
-
-                <v-card-title>PWA</v-card-title>
-                <v-card-subtitle class="pb-0">Votre panel au plus proche de vous</v-card-subtitle>
-                <v-card-text class="text--primary">
-                  <div>Récupérer l'application directement depuis le site</div>
-
-                  <div>En l'ajoutant au bureau</div>
-                </v-card-text>
-
-                <v-card-actions>
-                  <v-spacer/>
-                  <v-btn
-                          color="grey"
-                          text
-                  >
-                    Installer
-                  </v-btn>
-                </v-card-actions>
-              </v-card>
-            </div>
-          </v-row>
-        </div>
-      </v-row>
-    </v-container>
-
-      <v-container fluid>
-          <v-row align="center" style="justify-content: center">
-              <div class="col-lg-6 col-sm-12 col-md-8">
-                  <v-divider></v-divider>
-              </div>
-          </v-row>
-
-
           <v-row align="center" style="justify-content: center; height: 1px; margin-top: 10px; margin-bottom: 20px">
               <div class="col-lg-6 col-sm-12 col-md-8">
-                  <h1>Votre équipe favorite</h1>
+                  <h1>Apprendre à utiliser OverStats</h1>
               </div>
           </v-row>
       </v-container>
 
-    <v-container fluid style="align-items: center" class="my-5">
-      <v-row align="center" style="justify-content: center">
-        <div class="col-sm-12 col-lg-6 col-md-8"
-             v-for="(team, i) in teamValue"
-             :key="i"
-        >
-          <h2>{{ team.TeamName }}</h2>
-          <v-card tile style="border-radius: 20px">
-            <v-container>
-              <v-row justify="space-between">
-                <div class="col-sm-12 col-md-6 col-lg-6">
-                  <pie-chart donut="true" :data="pieData" />
-                </div>
-                <div class="col-sm-12 col-md-6 col-lg-6">
-                  <v-data-table :items="table" :items-per-page="5" :headers="[{text: 'Game', align: 'left', value: 'game', }, { text: 'Map', value: 'map' }, { text: 'Score', value: 'score' },]"/>
-                </div>
-              </v-row>
-              <v-card-actions>
-                <v-spacer/>
-                <v-btn :to="{path: '/team', query: {team: i}}" text>
-                  Voir <v-icon>mdi-eye</v-icon>
-                </v-btn>
-              </v-card-actions>
-            </v-container>
-          </v-card>
-        </div>
-      </v-row>
-    </v-container>
+      <v-container fluid style="align-items: center" class="my-5">
+          <v-row align="center" style="justify-content: center">
+              <div class="col-lg-6 col-sm-12 col-md-8">
+                  <v-row align="center" style="justify-content: center">
+                      <div class="col-sm-6">
+                          <v-card style="border-radius: 5px" class="mx-auto">
+                              <v-img
+                                      class="white--text align-end"
+                                      height="200px"
+                                      src="https://subswapr.fr/img/overstats/busan.jpg"
+                              >
+                              </v-img>
+
+                              <v-card-title>Le KOTH</v-card-title>
+                              <v-card-subtitle class="pb-0">Les matchs KOTH sont disponibles</v-card-subtitle>
+                              <v-card-text class="text--primary">
+                                  <div>L'ajout de matchs KOTH est désormais possible !<br> Vous pouvez gérer les différents cas qui peuvent être  rencontrés durant une partie.</div>
+
+                                  <div>Mais également utiliser vos compositions favorites pour remplir votre feuille de match plus rapidement</div>
+                              </v-card-text>
+
+                              <v-card-actions>
+                                  <v-spacer/>
+                                  <v-btn
+                                          color="grey"
+                                          text
+                                          to="/teams"
+                                  >
+                                      Voir <v-icon small>fa-eye</v-icon>
+                                  </v-btn>
+                              </v-card-actions>
+                          </v-card>
+                      </div>
+                      <div class="col-sm-6">
+                          <v-card style="border-radius: 5px" class="mx-auto">
+                              <v-img
+                                      class="white--text align-end"
+                                      height="200px"
+                                      src="https://subswapr.fr/img/overstats/row.jpg"
+                              >
+                              </v-img>
+
+                              <v-card-title>Fav Composition</v-card-title>
+                              <v-card-subtitle class="pb-0">Ajouter rapidement des matchs</v-card-subtitle>
+                              <v-card-text class="text--primary">
+                                  <div>Un composition dans votre équipe revient souvent ?<br>Vous pouvez désormais ajouter votre composition comme un modèle qui peut ^étre appliquer en un seul clique lors de l'ajout d'un match</div>
+
+                                  <div>Plus facile et rapide à utiliser</div>
+                              </v-card-text>
+
+                              <v-card-actions>
+                                  <v-spacer/>
+                                  <v-btn
+                                          color="grey"
+                                          text
+                                          to="/teams"
+                                  >
+                                      Voir <v-icon small>fa-eye</v-icon>
+                                  </v-btn>
+                              </v-card-actions>
+                          </v-card>
+                      </div>
+                  </v-row>
+              </div>
+          </v-row>
+      </v-container>
+
+<!--    <v-container fluid style="align-items: center" class="my-5">-->
+<!--      <v-row align="center" style="justify-content: center">-->
+<!--        <div class="col-sm-12 col-lg-6 col-md-8"-->
+<!--             v-for="(team, i) in teamValue"-->
+<!--             :key="i"-->
+<!--        >-->
+<!--          <h2>{{ team.TeamName }}</h2>-->
+<!--          <v-card tile style="border-radius: 20px">-->
+<!--            <v-container>-->
+<!--              <v-row justify="space-between">-->
+<!--                <div class="col-sm-12 col-md-6 col-lg-6">-->
+<!--                  <pie-chart donut="true" :data="pieData" />-->
+<!--                </div>-->
+<!--                <div class="col-sm-12 col-md-6 col-lg-6">-->
+<!--                  <v-data-table :items="table" :items-per-page="5" :headers="[{text: 'Game', align: 'left', value: 'game', }, { text: 'Map', value: 'map' }, { text: 'Score', value: 'score' },]"/>-->
+<!--                </div>-->
+<!--              </v-row>-->
+<!--              <v-card-actions>-->
+<!--                <v-spacer/>-->
+<!--                <v-btn :to="{path: '/team', query: {team: i}}" text>-->
+<!--                  Voir <v-icon>mdi-eye</v-icon>-->
+<!--                </v-btn>-->
+<!--              </v-card-actions>-->
+<!--            </v-container>-->
+<!--          </v-card>-->
+<!--        </div>-->
+<!--      </v-row>-->
+<!--    </v-container>-->
   </div>
 </template>
 

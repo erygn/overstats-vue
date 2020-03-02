@@ -20,31 +20,31 @@
                                 <v-container>
                                     <v-row>
                                         <div class="col-12">
-                                            <v-row style="font-size: 15px; color: #2e313a; justify-content: space-around">
-                                                <div>
+                                            <v-row style="font-size: 15px; color: #2e313a; margin-left: 8px">
+                                                <div class="col-sm-6">
                                                     Main Tank: <strong>{{ teamValue.Players.mainTank }}</strong> <v-btn @click="openChange('mTank')" text x-small><v-icon small color="#2e313a">mdi-pencil</v-icon></v-btn>
                                                 </div>
-                                                <div>
+                                                <div class="col-sm-6">
                                                     Off Tank: <strong>{{ teamValue.Players.offTank }}</strong> <v-btn @click="openChange('oTank')" text x-small><v-icon small color="#2e313a">mdi-pencil</v-icon></v-btn>
                                                 </div>
                                             </v-row>
                                         </div>
                                         <div class="col-12">
-                                            <v-row style="font-size: 15px; color: #2e313a; justify-content: space-around">
-                                                <div>
+                                            <v-row style="font-size: 15px; color: #2e313a; margin-left: 8px">
+                                                <div class="col-sm-6">
                                                     Main Dps: <strong>{{ teamValue.Players.mainDps }}</strong> <v-btn @click="openChange('mDps')" text x-small><v-icon small color="#2e313a">mdi-pencil</v-icon></v-btn>
                                                 </div>
-                                                <div>
+                                                <div class="col-sm-6">
                                                     Off Dps: <strong>{{ teamValue.Players.offDps }}</strong> <v-btn @click="openChange('oDps')" text x-small><v-icon small color="#2e313a">mdi-pencil</v-icon></v-btn>
                                                 </div>
                                             </v-row>
                                         </div>
                                         <div class="col-12">
-                                            <v-row style="font-size: 15px; color: #2e313a; justify-content: space-around">
-                                                <div>
+                                            <v-row style="font-size: 15px; color: #2e313a; margin-left: 8px">
+                                                <div class="col-sm-6">
                                                     Main Heal: <strong>{{ teamValue.Players.mainHeal }}</strong> <v-btn @click="openChange('mHeal')" text x-small><v-icon small color="#2e313a">mdi-pencil</v-icon></v-btn>
                                                 </div>
-                                                <div>
+                                                <div class="col-sm-6">
                                                     Off Heal: <strong>{{ teamValue.Players.offHeal }}</strong> <v-btn @click="openChange('oHeal')" text x-small><v-icon small color="#2e313a">mdi-pencil</v-icon></v-btn>
                                                 </div>
                                             </v-row>

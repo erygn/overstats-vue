@@ -123,8 +123,8 @@
 
                                 >
                                     <v-row class="fill-height align-end text-center" justify="center">
-                                        <v-card-title v-if="item.GameMap != 'Rialto'" style="color: #FFF; font-weight: 600; margin-bottom: -107px; text-shadow: 0px 0px 6px rgba(0,0,0,0.89);">{{ item.GameMap }}</v-card-title>
-                                        <v-card-title v-if="item.GameMap === 'Rialto'" style="color: #FFF; font-weight: 600; margin-bottom: -107px; text-shadow: 0px 0px 6px rgba(0,0,0,0.89);">{{ item.GameMap }} /R</v-card-title>
+                                        <v-card-title v-if="item.GameMap != 'Rialto' && item.GameMap != 'Busan' && item.GameMap != 'Ilios' && item.GameMap != 'Oasis' && item.GameMap != 'Nepal'" style="color: #FFF; font-weight: 600; margin-bottom: -107px; text-shadow: 0px 0px 6px rgba(0,0,0,0.89);">{{ item.GameMap }}</v-card-title>
+                                        <v-card-title v-if="item.GameMap === 'Rialto' || item.GameMap === 'Busan' || item.GameMap === 'Ilios' || item.GameMap === 'Oasis' || item.GameMap === 'Nepal'" style="color: #FFF; font-weight: 600; margin-bottom: -107px; text-shadow: 0px 0px 6px rgba(0,0,0,0.89);">{{ item.GameMap }} /R</v-card-title>
 <!--                                        <v-card-subtitle style="color: #FFF; font-weight: 400; font-size: 12px; margin-top: -200px">{{ item.GameDate }}</v-card-subtitle>-->
                                         <v-btn small style="margin-bottom: 5px; background-color: transparent; color: #FFF; text-shadow: 0px 0px 6px rgba(0,0,0,0.89);" depressed :to="{path: '/game', query: {id: index}}">Show</v-btn>
                                     </v-row>
@@ -220,7 +220,7 @@
                                     <v-row>
                                         <div class="col-12" style="margin-top: -20px">
                                             <div style="margin: 0px 20px; overflow:auto; height: 370px">
-                                                <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #2D2D39; margin-bottom: 10px" v-for="(item, index) in listCompo" :key="index">
+                                                <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #2D2D39; margin-bottom: 10px" v-for="(item, index) in teamValue.compo" :key="index">
                                                     <div>
                                                         <p style="color: #363645; font-weight: 600">{{ item.Name }} <span v-if="item.isNew" style="text-transform: uppercase; font-weight: 400; font-size: 12px; background-color: #d3d8e3; padding: 5px 15px; border-radius: 20px">New</span> <v-icon style="margin-top: -2px" small v-if="item.isFav">fa-star</v-icon></p>
                                                         <p style="margin-top: -14px; font-size: 12px">{{ item.CompoDate }}</p>
@@ -596,6 +596,11 @@
                 snackbarAddVal: false,
 
                 mapIcon: {
+                    'Lidjiang': 'https://subswapr.fr/img/overstats/lidjiang.jpg',
+                    'Oasis': 'https://subswapr.fr/img/overstats/oasis.jpg',
+                    'Nepal': 'https://subswapr.fr/img/overstats/nepal.jpg',
+                    'Ilios': 'https://subswapr.fr/img/overstats/ilios.jpg',
+                    'Busan': 'https://subswapr.fr/img/overstats/busan.jpg',
                     'Dorado': 'https://subswapr.fr/img/overstats/dorado.jpg',
                     'Junkertown': 'https://subswapr.fr/img/overstats/junker.jpg',
                     'La Havane': 'https://subswapr.fr/img/overstats/havane.jpg',
@@ -721,11 +726,6 @@
             getIconMap: function (map) {
                 let mapUrl = this.mapIcon[map]
                 return mapUrl
-            }
-        },
-        computed: {
-            listCompo: function () {
-                return _.orderBy(this.teamValue.compo, 'isFav')
             }
         },
         created() {
