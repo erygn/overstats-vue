@@ -126,7 +126,7 @@
                                         <v-card-title v-if="item.GameMap != 'Rialto' && item.GameMap != 'Busan' && item.GameMap != 'Ilios' && item.GameMap != 'Oasis' && item.GameMap != 'Nepal'" style="color: #FFF; font-weight: 600; margin-bottom: -107px; text-shadow: 0px 0px 6px rgba(0,0,0,0.89);">{{ item.GameMap }}</v-card-title>
                                         <v-card-title v-if="item.GameMap === 'Rialto' || item.GameMap === 'Busan' || item.GameMap === 'Ilios' || item.GameMap === 'Oasis' || item.GameMap === 'Nepal'" style="color: #FFF; font-weight: 600; margin-bottom: -107px; text-shadow: 0px 0px 6px rgba(0,0,0,0.89);">{{ item.GameMap }} /R</v-card-title>
 <!--                                        <v-card-subtitle style="color: #FFF; font-weight: 400; font-size: 12px; margin-top: -200px">{{ item.GameDate }}</v-card-subtitle>-->
-                                        <v-btn small style="margin-bottom: 5px; background-color: transparent; color: #FFF; text-shadow: 0px 0px 6px rgba(0,0,0,0.89);" depressed :to="{path: '/game', query: {id: index}}">Show</v-btn>
+                                        <v-btn small style="margin-bottom: 5px; background-color: transparent; color: #FFF; text-shadow: 0px 0px 6px rgba(0,0,0,0.89);" depressed :to="{path: '/game', query: {team: team, id: index}}">Show</v-btn>
                                     </v-row>
                                 </v-card>
                             </v-slide-item>
@@ -726,7 +726,29 @@
             getIconMap: function (map) {
                 let mapUrl = this.mapIcon[map]
                 return mapUrl
-            }
+            },
+            compareValues: function(key, order = 'asc') {
+            return function innerSort(a, b) {
+                if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
+                    return 0;
+                }
+
+                const varA = (typeof a[key] === 'string')
+                    ? a[key].toUpperCase() : a[key];
+                const varB = (typeof b[key] === 'string')
+                    ? b[key].toUpperCase() : b[key];
+
+                let comparison = 0;
+                if (varA > varB) {
+                    comparison = 1;
+                } else if (varA < varB) {
+                    comparison = -1;
+                }
+                return (
+                    (order === 'desc') ? (comparison * -1) : comparison
+                );
+            };
+        }
         },
         created() {
             firebase.database().ref('teams/' + firebase.auth().currentUser.uid + '/' + this.team).on('value', (snapshot) => {
@@ -745,7 +767,7 @@
                     }
                 });
 
-                // Calcul du nombre de QuickPlay
+                // Calcul du nombre de Compo
                 Object.keys(snapshot.val().compo || {}).forEach(() => {
                     this.matchCompo += 1;
                 });
@@ -781,7 +803,7 @@
                 //     this.compoTank.push(tan);
                 // });
 
-                //Calcul de PieDataRank
+                //Calcul de PieDataRank et QuickPlay
                 Object.keys(snapshot.val().matchs || {}).forEach(id => {
                     const match = snapshot.val().matchs[id];
                     if (match.GamePlay === 'Ranked') {

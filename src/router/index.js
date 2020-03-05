@@ -113,6 +113,17 @@ const routes = [
       requireAuth: true
     }
   },
+  {
+    path: '/game',
+    name: 'Game',
+    component: Game,
+    props(route) {
+      return route.query || {}
+    },
+    meta: {
+      requireAuth: true
+    }
+  },
 
   {
     path: '/login',
@@ -149,6 +160,7 @@ import tee from "@/views/tee";
 import teamPlayer from "@/views/teamPlayer";
 import winRate from "@/views/winRate";
 import Compo from "@/views/Compo";
+import Game from "@/views/Game";
 
 router.beforeEach((to, from, next) => {
   window.scrollTo(0, 0);

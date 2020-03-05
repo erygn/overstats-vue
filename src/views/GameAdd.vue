@@ -8,10 +8,10 @@
             </v-row>
         </v-container>
 
-        {{ teamValue.compo }}
-        <br>
-
-        {{ advanced }}
+<!--        <div v-for="(item, key) in mapList.KothZone[configModel]" :key="key">-->
+<!--            <p>{{ item.name }}</p>-->
+<!--            <p>{{ item.link}}</p>-->
+<!--        </div>-->
 
         <v-container fluid>
             <v-row justify="center">
@@ -54,8 +54,8 @@
                                             <h3>Choisir la carte joué pour {{ configMap }}</h3>
                                             <v-radio-group v-model="configModel">
                                                 <v-row>
-                                                    <div class="col-sm-6 col-lg-4 col-md-4">
-                                                        <v-radio color="#69697f" value="Busan" style="height: 100px">
+                                                    <div class="col-sm-6 col-lg-4 col-md-4" v-for="(item, index) in mapList.KothMap" :key="index">
+                                                        <v-radio color="#69697f" :value="item.name" style="height: 100px">
                                                             <v-card
                                                                     slot="label"
                                                                     max-width="400"
@@ -64,77 +64,9 @@
                                                                         class="white--text align-end"
                                                                         height="100px"
                                                                         width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/busan.jpg"
+                                                                        :src="item.link"
                                                                 >
-                                                                    <v-card-title>Busan</v-card-title>
-                                                                </v-img>
-                                                            </v-card>
-                                                        </v-radio>
-                                                    </div>
-                                                    <div class="col-sm-6 col-lg-4">
-                                                        <v-radio color="#69697f" value="Ilios" style="height: 100px">
-                                                            <v-card
-                                                                    slot="label"
-                                                                    max-width="400"
-                                                            >
-                                                                <v-img
-                                                                        class="white--text align-end"
-                                                                        height="100px"
-                                                                        width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/ilios.jpg"
-                                                                >
-                                                                    <v-card-title>Ilios</v-card-title>
-                                                                </v-img>
-                                                            </v-card>
-                                                        </v-radio>
-                                                    </div>
-                                                    <div class="col-sm-6 col-lg-4 col-md-4">
-                                                        <v-radio color="#69697f" value="Nepal" style="height: 100px">
-                                                            <v-card
-                                                                    slot="label"
-                                                                    max-width="400"
-                                                            >
-                                                                <v-img
-                                                                        class="white--text align-end"
-                                                                        height="100px"
-                                                                        width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/nepal.jpg"
-                                                                >
-                                                                    <v-card-title>Nepal</v-card-title>
-                                                                </v-img>
-                                                            </v-card>
-                                                        </v-radio>
-                                                    </div>
-                                                    <div class="col-sm-6 col-lg-4 col-md-4">
-                                                        <v-radio color="#69697f" value="Oasis" style="height: 100px">
-                                                            <v-card
-                                                                    slot="label"
-                                                                    max-width="400"
-                                                            >
-                                                                <v-img
-                                                                        class="white--text align-end"
-                                                                        height="100px"
-                                                                        width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/oasis.jpg"
-                                                                >
-                                                                    <v-card-title>Oasis</v-card-title>
-                                                                </v-img>
-                                                            </v-card>
-                                                        </v-radio>
-                                                    </div>
-                                                    <div class="col-sm-6 col-lg-4 col-md-4">
-                                                        <v-radio color="#69697f" value="Lidjiang" style="height: 100px">
-                                                            <v-card
-                                                                    slot="label"
-                                                                    max-width="400"
-                                                            >
-                                                                <v-img
-                                                                        class="white--text align-end"
-                                                                        height="100px"
-                                                                        width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/lidjiang.jpg"
-                                                                >
-                                                                    <v-card-title>Lidjiang</v-card-title>
+                                                                    <v-card-title>{{ item.name }}</v-card-title>
                                                                 </v-img>
                                                             </v-card>
                                                         </v-radio>
@@ -148,10 +80,10 @@
 
                                         <v-window-item :value="2">
                                             <h3>Map pour {{ configModel }}</h3>
-                                            <v-radio-group v-if="configModel === 'Oasis'" v-model="configModelKothOne">
+                                            <v-radio-group v-model="configModelKothOne">
                                                 <v-row>
-                                                    <div class="col-sm-6 col-lg-4 col-md-4">
-                                                        <v-radio color="#69697f" value="Centre" style="height: 100px">
+                                                    <div class="col-sm-6 col-lg-4 col-md-4" v-for="(item, index) in mapList.KothZone[configModel]" :key="index">
+                                                        <v-radio color="#69697f" :value="item.name" style="height: 100px">
                                                             <v-card
                                                                     slot="label"
                                                                     max-width="400"
@@ -160,43 +92,9 @@
                                                                         class="white--text align-end"
                                                                         height="100px"
                                                                         width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/ville.jpg"
+                                                                        :src="item.link"
                                                                 >
-                                                                    <v-card-title>Centre</v-card-title>
-                                                                </v-img>
-                                                            </v-card>
-                                                        </v-radio>
-                                                    </div>
-                                                    <div class="col-sm-6 col-lg-4">
-                                                        <v-radio color="#69697f" value="Jardin" style="height: 100px">
-                                                            <v-card
-                                                                    slot="label"
-                                                                    max-width="400"
-                                                            >
-                                                                <v-img
-                                                                        class="white--text align-end"
-                                                                        height="100px"
-                                                                        width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/susp.jpg"
-                                                                >
-                                                                    <v-card-title>Jardin</v-card-title>
-                                                                </v-img>
-                                                            </v-card>
-                                                        </v-radio>
-                                                    </div>
-                                                    <div class="col-sm-6 col-lg-4 col-md-4">
-                                                        <v-radio color="#69697f" value="Universite" style="height: 100px">
-                                                            <v-card
-                                                                    slot="label"
-                                                                    max-width="400"
-                                                            >
-                                                                <v-img
-                                                                        class="white--text align-end"
-                                                                        height="100px"
-                                                                        width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/univ.jpg"
-                                                                >
-                                                                    <v-card-title>Universite</v-card-title>
+                                                                    <v-card-title>{{ item.name }}</v-card-title>
                                                                 </v-img>
                                                             </v-card>
                                                         </v-radio>
@@ -204,229 +102,6 @@
                                                 </v-row>
                                             </v-radio-group>
 
-                                            <v-radio-group v-if="configModel === 'Busan'" v-model="configModelKothOne">
-                                                <v-row>
-                                                    <div class="col-sm-6 col-lg-4 col-md-4">
-                                                        <v-radio color="#69697f" value="Centre" style="height: 100px">
-                                                            <v-card
-                                                                    slot="label"
-                                                                    max-width="400"
-                                                            >
-                                                                <v-img
-                                                                        class="white--text align-end"
-                                                                        height="100px"
-                                                                        width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/center.jpg"
-                                                                >
-                                                                    <v-card-title>Centre</v-card-title>
-                                                                </v-img>
-                                                            </v-card>
-                                                        </v-radio>
-                                                    </div>
-                                                    <div class="col-sm-6 col-lg-4">
-                                                        <v-radio color="#69697f" value="Sanctuaire" style="height: 100px">
-                                                            <v-card
-                                                                    slot="label"
-                                                                    max-width="400"
-                                                            >
-                                                                <v-img
-                                                                        class="white--text align-end"
-                                                                        height="100px"
-                                                                        width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/sanctu.jpg"
-                                                                >
-                                                                    <v-card-title>Sanctuaire</v-card-title>
-                                                                </v-img>
-                                                            </v-card>
-                                                        </v-radio>
-                                                    </div>
-                                                    <div class="col-sm-6 col-lg-4 col-md-4">
-                                                        <v-radio color="#69697f" value="Meka" style="height: 100px">
-                                                            <v-card
-                                                                    slot="label"
-                                                                    max-width="400"
-                                                            >
-                                                                <v-img
-                                                                        class="white--text align-end"
-                                                                        height="100px"
-                                                                        width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/meka.jpg"
-                                                                >
-                                                                    <v-card-title>Meka</v-card-title>
-                                                                </v-img>
-                                                            </v-card>
-                                                        </v-radio>
-                                                    </div>
-                                                </v-row>
-                                            </v-radio-group>
-
-                                            <v-radio-group v-if="configModel === 'Ilios'" v-model="configModelKothOne">
-                                                <v-row>
-                                                    <div class="col-sm-6 col-lg-4 col-md-4">
-                                                        <v-radio color="#69697f" value="Puit" style="height: 100px">
-                                                            <v-card
-                                                                    slot="label"
-                                                                    max-width="400"
-                                                            >
-                                                                <v-img
-                                                                        class="white--text align-end"
-                                                                        height="100px"
-                                                                        width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/puit.jpg"
-                                                                >
-                                                                    <v-card-title>Puit</v-card-title>
-                                                                </v-img>
-                                                            </v-card>
-                                                        </v-radio>
-                                                    </div>
-                                                    <div class="col-sm-6 col-lg-4">
-                                                        <v-radio color="#69697f" value="Phare" style="height: 100px">
-                                                            <v-card
-                                                                    slot="label"
-                                                                    max-width="400"
-                                                            >
-                                                                <v-img
-                                                                        class="white--text align-end"
-                                                                        height="100px"
-                                                                        width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/phare.jpg"
-                                                                >
-                                                                    <v-card-title>Phare</v-card-title>
-                                                                </v-img>
-                                                            </v-card>
-                                                        </v-radio>
-                                                    </div>
-                                                    <div class="col-sm-6 col-lg-4 col-md-4">
-                                                        <v-radio color="#69697f" value="Ruine" style="height: 100px">
-                                                            <v-card
-                                                                    slot="label"
-                                                                    max-width="400"
-                                                            >
-                                                                <v-img
-                                                                        class="white--text align-end"
-                                                                        height="100px"
-                                                                        width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/ruine.jpg"
-                                                                >
-                                                                    <v-card-title>Ruine</v-card-title>
-                                                                </v-img>
-                                                            </v-card>
-                                                        </v-radio>
-                                                    </div>
-                                                </v-row>
-                                            </v-radio-group>
-
-                                            <v-radio-group v-if="configModel === 'Lidjiang'" v-model="configModelKothOne">
-                                                <v-row>
-                                                    <div class="col-sm-6 col-lg-4 col-md-4">
-                                                        <v-radio color="#69697f" value="Tour" style="height: 100px">
-                                                            <v-card
-                                                                    slot="label"
-                                                                    max-width="400"
-                                                            >
-                                                                <v-img
-                                                                        class="white--text align-end"
-                                                                        height="100px"
-                                                                        width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/tour.jpg"
-                                                                >
-                                                                    <v-card-title>Tour</v-card-title>
-                                                                </v-img>
-                                                            </v-card>
-                                                        </v-radio>
-                                                    </div>
-                                                    <div class="col-sm-6 col-lg-4">
-                                                        <v-radio color="#69697f" value="Jardin" style="height: 100px">
-                                                            <v-card
-                                                                    slot="label"
-                                                                    max-width="400"
-                                                            >
-                                                                <v-img
-                                                                        class="white--text align-end"
-                                                                        height="100px"
-                                                                        width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/jardin.jpg"
-                                                                >
-                                                                    <v-card-title>Jardin</v-card-title>
-                                                                </v-img>
-                                                            </v-card>
-                                                        </v-radio>
-                                                    </div>
-                                                    <div class="col-sm-6 col-lg-4 col-md-4">
-                                                        <v-radio color="#69697f" value="Marche" style="height: 100px">
-                                                            <v-card
-                                                                    slot="label"
-                                                                    max-width="400"
-                                                            >
-                                                                <v-img
-                                                                        class="white--text align-end"
-                                                                        height="100px"
-                                                                        width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/marche.jpg"
-                                                                >
-                                                                    <v-card-title>Marché</v-card-title>
-                                                                </v-img>
-                                                            </v-card>
-                                                        </v-radio>
-                                                    </div>
-                                                </v-row>
-                                            </v-radio-group>
-
-                                            <v-radio-group v-if="configModel === 'Nepal'" v-model="configModelKothOne">
-                                                <v-row>
-                                                    <div class="col-sm-6 col-lg-4 col-md-4">
-                                                        <v-radio color="#69697f" value="Sanctuaire" style="height: 100px">
-                                                            <v-card
-                                                                    slot="label"
-                                                                    max-width="400"
-                                                            >
-                                                                <v-img
-                                                                        class="white--text align-end"
-                                                                        height="100px"
-                                                                        width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/sanc.jpg"
-                                                                >
-                                                                    <v-card-title>Sanctuaire</v-card-title>
-                                                                </v-img>
-                                                            </v-card>
-                                                        </v-radio>
-                                                    </div>
-                                                    <div class="col-sm-6 col-lg-4">
-                                                        <v-radio color="#69697f" value="Autel" style="height: 100px">
-                                                            <v-card
-                                                                    slot="label"
-                                                                    max-width="400"
-                                                            >
-                                                                <v-img
-                                                                        class="white--text align-end"
-                                                                        height="100px"
-                                                                        width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/autel.jpg"
-                                                                >
-                                                                    <v-card-title>Autel</v-card-title>
-                                                                </v-img>
-                                                            </v-card>
-                                                        </v-radio>
-                                                    </div>
-                                                    <div class="col-sm-6 col-lg-4 col-md-4">
-                                                        <v-radio color="#69697f" value="Village" style="height: 100px">
-                                                            <v-card
-                                                                    slot="label"
-                                                                    max-width="400"
-                                                            >
-                                                                <v-img
-                                                                        class="white--text align-end"
-                                                                        height="100px"
-                                                                        width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/village.jpg"
-                                                                >
-                                                                    <v-card-title>Village</v-card-title>
-                                                                </v-img>
-                                                            </v-card>
-                                                        </v-radio>
-                                                    </div>
-                                                </v-row>
-                                            </v-radio-group>
                                             <span class="caption grey--text text--darken-1">
             Veuillez choisir une carte de jeu
           </span>
@@ -516,285 +191,30 @@
 
                                         <v-window-item :value="4">
                                             <h3>Map pour {{ configModel }}</h3>
-                                            <v-radio-group v-if="configModel === 'Oasis'" v-model="configModelKothTwo">
+                                            <v-radio-group v-model="configModelKothTwo">
                                                 <v-row>
-                                                    <div v-if="configModelKothOne != 'Centre'" class="col-sm-6 col-lg-4 col-md-4">
-                                                        <v-radio color="#69697f" value="Centre" style="height: 100px">
-                                                            <v-card
-                                                                    slot="label"
-                                                                    max-width="400"
-                                                            >
-                                                                <v-img
-                                                                        class="white--text align-end"
-                                                                        height="100px"
-                                                                        width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/ville.jpg"
+                                                    <div v-for="(item, index) in mapList.KothZone[configModel]" :key="index">
+                                                        <div class="col-sm-6 col-lg-4 col-md-4" v-if="configModelKothOne != item.name">
+                                                            <v-radio color="#69697f" :value="item.name" style="height: 100px">
+                                                                <v-card
+                                                                        slot="label"
+                                                                        max-width="400"
                                                                 >
-                                                                    <v-card-title>Centre</v-card-title>
-                                                                </v-img>
-                                                            </v-card>
-                                                        </v-radio>
-                                                    </div>
-                                                    <div v-if="configModelKothOne != 'Jardin'" class="col-sm-6 col-lg-4">
-                                                        <v-radio color="#69697f" value="Jardin" style="height: 100px">
-                                                            <v-card
-                                                                    slot="label"
-                                                                    max-width="400"
-                                                            >
-                                                                <v-img
-                                                                        class="white--text align-end"
-                                                                        height="100px"
-                                                                        width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/susp.jpg"
-                                                                >
-                                                                    <v-card-title>Jardin</v-card-title>
-                                                                </v-img>
-                                                            </v-card>
-                                                        </v-radio>
-                                                    </div>
-                                                    <div v-if="configModelKothOne != 'Universite'" class="col-sm-6 col-lg-4 col-md-4">
-                                                        <v-radio color="#69697f" value="Universite" style="height: 100px">
-                                                            <v-card
-                                                                    slot="label"
-                                                                    max-width="400"
-                                                            >
-                                                                <v-img
-                                                                        class="white--text align-end"
-                                                                        height="100px"
-                                                                        width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/univ.jpg"
-                                                                >
-                                                                    <v-card-title>Universite</v-card-title>
-                                                                </v-img>
-                                                            </v-card>
-                                                        </v-radio>
+                                                                    <v-img
+                                                                            class="white--text align-end"
+                                                                            height="100px"
+                                                                            width="220px"
+                                                                            :src="item.link"
+                                                                    >
+                                                                        <v-card-title>{{ item.name }}</v-card-title>
+                                                                    </v-img>
+                                                                </v-card>
+                                                            </v-radio>
+                                                        </div>
                                                     </div>
                                                 </v-row>
                                             </v-radio-group>
 
-                                            <v-radio-group v-if="configModel === 'Busan'" v-model="configModelKothTwo">
-                                                <v-row>
-                                                    <div v-if="configModelKothOne != 'Centre'" class="col-sm-6 col-lg-4 col-md-4">
-                                                        <v-radio color="#69697f" value="Centre" style="height: 100px">
-                                                            <v-card
-                                                                    slot="label"
-                                                                    max-width="400"
-                                                            >
-                                                                <v-img
-                                                                        class="white--text align-end"
-                                                                        height="100px"
-                                                                        width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/center.jpg"
-                                                                >
-                                                                    <v-card-title>Centre</v-card-title>
-                                                                </v-img>
-                                                            </v-card>
-                                                        </v-radio>
-                                                    </div>
-                                                    <div v-if="configModelKothOne != 'Sanctuaire'" class="col-sm-6 col-lg-4">
-                                                        <v-radio color="#69697f" value="Sanctuaire" style="height: 100px">
-                                                            <v-card
-                                                                    slot="label"
-                                                                    max-width="400"
-                                                            >
-                                                                <v-img
-                                                                        class="white--text align-end"
-                                                                        height="100px"
-                                                                        width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/sanctu.jpg"
-                                                                >
-                                                                    <v-card-title>Sanctuaire</v-card-title>
-                                                                </v-img>
-                                                            </v-card>
-                                                        </v-radio>
-                                                    </div>
-                                                    <div v-if="configModelKothOne != 'Meka'" class="col-sm-6 col-lg-4 col-md-4">
-                                                        <v-radio color="#69697f" value="Meka" style="height: 100px">
-                                                            <v-card
-                                                                    slot="label"
-                                                                    max-width="400"
-                                                            >
-                                                                <v-img
-                                                                        class="white--text align-end"
-                                                                        height="100px"
-                                                                        width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/meka.jpg"
-                                                                >
-                                                                    <v-card-title>Meka</v-card-title>
-                                                                </v-img>
-                                                            </v-card>
-                                                        </v-radio>
-                                                    </div>
-                                                </v-row>
-                                            </v-radio-group>
-
-                                            <v-radio-group v-if="configModel === 'Ilios'" v-model="configModelKothTwo">
-                                                <v-row>
-                                                    <div v-if="configModelKothOne != 'Puit'" class="col-sm-6 col-lg-4 col-md-4">
-                                                        <v-radio color="#69697f" value="Puit" style="height: 100px">
-                                                            <v-card
-                                                                    slot="label"
-                                                                    max-width="400"
-                                                            >
-                                                                <v-img
-                                                                        class="white--text align-end"
-                                                                        height="100px"
-                                                                        width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/puit.jpg"
-                                                                >
-                                                                    <v-card-title>Puit</v-card-title>
-                                                                </v-img>
-                                                            </v-card>
-                                                        </v-radio>
-                                                    </div>
-                                                    <div v-if="configModelKothOne != 'Phare'" class="col-sm-6 col-lg-4">
-                                                        <v-radio color="#69697f" value="Phare" style="height: 100px">
-                                                            <v-card
-                                                                    slot="label"
-                                                                    max-width="400"
-                                                            >
-                                                                <v-img
-                                                                        class="white--text align-end"
-                                                                        height="100px"
-                                                                        width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/phare.jpg"
-                                                                >
-                                                                    <v-card-title>Phare</v-card-title>
-                                                                </v-img>
-                                                            </v-card>
-                                                        </v-radio>
-                                                    </div>
-                                                    <div v-if="configModelKothOne != 'Ruine'" class="col-sm-6 col-lg-4 col-md-4">
-                                                        <v-radio color="#69697f" value="Ruine" style="height: 100px">
-                                                            <v-card
-                                                                    slot="label"
-                                                                    max-width="400"
-                                                            >
-                                                                <v-img
-                                                                        class="white--text align-end"
-                                                                        height="100px"
-                                                                        width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/ruine.jpg"
-                                                                >
-                                                                    <v-card-title>Ruine</v-card-title>
-                                                                </v-img>
-                                                            </v-card>
-                                                        </v-radio>
-                                                    </div>
-                                                </v-row>
-                                            </v-radio-group>
-
-                                            <v-radio-group v-if="configModel === 'Lidjiang'" v-model="configModelKothTwo">
-                                                <v-row>
-                                                    <div v-if="configModelKothOne != 'Tour'" class="col-sm-6 col-lg-4 col-md-4">
-                                                        <v-radio color="#69697f" value="Tour" style="height: 100px">
-                                                            <v-card
-                                                                    slot="label"
-                                                                    max-width="400"
-                                                            >
-                                                                <v-img
-                                                                        class="white--text align-end"
-                                                                        height="100px"
-                                                                        width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/tour.jpg"
-                                                                >
-                                                                    <v-card-title>Tour</v-card-title>
-                                                                </v-img>
-                                                            </v-card>
-                                                        </v-radio>
-                                                    </div>
-                                                    <div v-if="configModelKothOne != 'Jardin'" class="col-sm-6 col-lg-4">
-                                                        <v-radio color="#69697f" value="Jardin" style="height: 100px">
-                                                            <v-card
-                                                                    slot="label"
-                                                                    max-width="400"
-                                                            >
-                                                                <v-img
-                                                                        class="white--text align-end"
-                                                                        height="100px"
-                                                                        width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/jardin.jpg"
-                                                                >
-                                                                    <v-card-title>Jardin</v-card-title>
-                                                                </v-img>
-                                                            </v-card>
-                                                        </v-radio>
-                                                    </div>
-                                                    <div v-if="configModelKothOne != 'Marche'" class="col-sm-6 col-lg-4 col-md-4">
-                                                        <v-radio color="#69697f" value="Marche" style="height: 100px">
-                                                            <v-card
-                                                                    slot="label"
-                                                                    max-width="400"
-                                                            >
-                                                                <v-img
-                                                                        class="white--text align-end"
-                                                                        height="100px"
-                                                                        width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/marche.jpg"
-                                                                >
-                                                                    <v-card-title>Marché</v-card-title>
-                                                                </v-img>
-                                                            </v-card>
-                                                        </v-radio>
-                                                    </div>
-                                                </v-row>
-                                            </v-radio-group>
-
-                                            <v-radio-group v-if="configModel === 'Nepal'" v-model="configModelKothTwo">
-                                                <v-row>
-                                                    <div v-if="configModelKothOne != 'Sanctuaire'" class="col-sm-6 col-lg-4 col-md-4">
-                                                        <v-radio color="#69697f" value="Sanctuaire" style="height: 100px">
-                                                            <v-card
-                                                                    slot="label"
-                                                                    max-width="400"
-                                                            >
-                                                                <v-img
-                                                                        class="white--text align-end"
-                                                                        height="100px"
-                                                                        width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/sanc.jpg"
-                                                                >
-                                                                    <v-card-title>Sanctuaire</v-card-title>
-                                                                </v-img>
-                                                            </v-card>
-                                                        </v-radio>
-                                                    </div>
-                                                    <div v-if="configModelKothOne != 'Autel'" class="col-sm-6 col-lg-4">
-                                                        <v-radio color="#69697f" value="Autel" style="height: 100px">
-                                                            <v-card
-                                                                    slot="label"
-                                                                    max-width="400"
-                                                            >
-                                                                <v-img
-                                                                        class="white--text align-end"
-                                                                        height="100px"
-                                                                        width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/autel.jpg"
-                                                                >
-                                                                    <v-card-title>Autel</v-card-title>
-                                                                </v-img>
-                                                            </v-card>
-                                                        </v-radio>
-                                                    </div>
-                                                    <div v-if="configModelKothOne != 'Village'" class="col-sm-6 col-lg-4 col-md-4">
-                                                        <v-radio color="#69697f" value="Village" style="height: 100px">
-                                                            <v-card
-                                                                    slot="label"
-                                                                    max-width="400"
-                                                            >
-                                                                <v-img
-                                                                        class="white--text align-end"
-                                                                        height="100px"
-                                                                        width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/village.jpg"
-                                                                >
-                                                                    <v-card-title>Village</v-card-title>
-                                                                </v-img>
-                                                            </v-card>
-                                                        </v-radio>
-                                                    </div>
-                                                </v-row>
-                                            </v-radio-group>
                                             <span class="caption grey--text text--darken-1">
             Veuillez choisir une carte de jeu
           </span>
@@ -884,285 +304,30 @@
 
                                         <v-window-item :value="6">
                                             <h3>Map pour {{ configModel }}</h3>
-                                            <v-radio-group v-if="configModel === 'Oasis'" v-model="configModelKothThree">
+                                            <v-radio-group v-model="configModelKothThree">
                                                 <v-row>
-                                                    <div v-if="configModelKothOne != 'Centre' && configModelKothTwo != 'Centre'" class="col-sm-6 col-lg-4 col-md-4">
-                                                        <v-radio color="#69697f" value="Centre" style="height: 100px">
-                                                            <v-card
-                                                                    slot="label"
-                                                                    max-width="400"
-                                                            >
-                                                                <v-img
-                                                                        class="white--text align-end"
-                                                                        height="100px"
-                                                                        width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/ville.jpg"
+                                                    <div v-for="(item, index) in mapList.KothZone[configModel]" :key="index">
+                                                        <div class="col-sm-6 col-lg-4 col-md-4" v-if="configModelKothOne != item.name && configModelKothTwo != item.name">
+                                                            <v-radio color="#69697f" :value="item.name" style="height: 100px">
+                                                                <v-card
+                                                                        slot="label"
+                                                                        max-width="400"
                                                                 >
-                                                                    <v-card-title>Centre</v-card-title>
-                                                                </v-img>
-                                                            </v-card>
-                                                        </v-radio>
-                                                    </div>
-                                                    <div v-if="configModelKothOne != 'Jardin' && configModelKothTwo != 'Jardin'" class="col-sm-6 col-lg-4">
-                                                        <v-radio color="#69697f" value="Jardin" style="height: 100px">
-                                                            <v-card
-                                                                    slot="label"
-                                                                    max-width="400"
-                                                            >
-                                                                <v-img
-                                                                        class="white--text align-end"
-                                                                        height="100px"
-                                                                        width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/susp.jpg"
-                                                                >
-                                                                    <v-card-title>Jardin</v-card-title>
-                                                                </v-img>
-                                                            </v-card>
-                                                        </v-radio>
-                                                    </div>
-                                                    <div v-if="configModelKothOne != 'Universite' && configModelKothTwo != 'Universite'" class="col-sm-6 col-lg-4 col-md-4">
-                                                        <v-radio color="#69697f" value="Universite" style="height: 100px">
-                                                            <v-card
-                                                                    slot="label"
-                                                                    max-width="400"
-                                                            >
-                                                                <v-img
-                                                                        class="white--text align-end"
-                                                                        height="100px"
-                                                                        width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/univ.jpg"
-                                                                >
-                                                                    <v-card-title>Universite</v-card-title>
-                                                                </v-img>
-                                                            </v-card>
-                                                        </v-radio>
+                                                                    <v-img
+                                                                            class="white--text align-end"
+                                                                            height="100px"
+                                                                            width="220px"
+                                                                            :src="item.link"
+                                                                    >
+                                                                        <v-card-title>{{ item.name }}</v-card-title>
+                                                                    </v-img>
+                                                                </v-card>
+                                                            </v-radio>
+                                                        </div>
                                                     </div>
                                                 </v-row>
                                             </v-radio-group>
 
-                                            <v-radio-group v-if="configModel === 'Busan'" v-model="configModelKothThree">
-                                                <v-row>
-                                                    <div v-if="configModelKothOne != 'Centre' && configModelKothTwo != 'Centre'" class="col-sm-6 col-lg-4 col-md-4">
-                                                        <v-radio color="#69697f" value="Centre" style="height: 100px">
-                                                            <v-card
-                                                                    slot="label"
-                                                                    max-width="400"
-                                                            >
-                                                                <v-img
-                                                                        class="white--text align-end"
-                                                                        height="100px"
-                                                                        width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/center.jpg"
-                                                                >
-                                                                    <v-card-title>Centre</v-card-title>
-                                                                </v-img>
-                                                            </v-card>
-                                                        </v-radio>
-                                                    </div>
-                                                    <div v-if="configModelKothOne != 'Sanctuaire' && configModelKothTwo != 'Sanctuaire'" class="col-sm-6 col-lg-4">
-                                                        <v-radio color="#69697f" value="Sanctuaire" style="height: 100px">
-                                                            <v-card
-                                                                    slot="label"
-                                                                    max-width="400"
-                                                            >
-                                                                <v-img
-                                                                        class="white--text align-end"
-                                                                        height="100px"
-                                                                        width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/sanctu.jpg"
-                                                                >
-                                                                    <v-card-title>Sanctuaire</v-card-title>
-                                                                </v-img>
-                                                            </v-card>
-                                                        </v-radio>
-                                                    </div>
-                                                    <div v-if="configModelKothOne != 'Meka' && configModelKothTwo != 'Meka'" class="col-sm-6 col-lg-4 col-md-4">
-                                                        <v-radio color="#69697f" value="Meka" style="height: 100px">
-                                                            <v-card
-                                                                    slot="label"
-                                                                    max-width="400"
-                                                            >
-                                                                <v-img
-                                                                        class="white--text align-end"
-                                                                        height="100px"
-                                                                        width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/meka.jpg"
-                                                                >
-                                                                    <v-card-title>Meka</v-card-title>
-                                                                </v-img>
-                                                            </v-card>
-                                                        </v-radio>
-                                                    </div>
-                                                </v-row>
-                                            </v-radio-group>
-
-                                            <v-radio-group v-if="configModel === 'Ilios'" v-model="configModelKothThree">
-                                                <v-row>
-                                                    <div v-if="configModelKothOne != 'Puit' && configModelKothTwo != 'Puit'" class="col-sm-6 col-lg-4 col-md-4">
-                                                        <v-radio color="#69697f" value="Puit" style="height: 100px">
-                                                            <v-card
-                                                                    slot="label"
-                                                                    max-width="400"
-                                                            >
-                                                                <v-img
-                                                                        class="white--text align-end"
-                                                                        height="100px"
-                                                                        width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/puit.jpg"
-                                                                >
-                                                                    <v-card-title>Puit</v-card-title>
-                                                                </v-img>
-                                                            </v-card>
-                                                        </v-radio>
-                                                    </div>
-                                                    <div v-if="configModelKothOne != 'Phare' && configModelKothTwo != 'Phare'" class="col-sm-6 col-lg-4">
-                                                        <v-radio color="#69697f" value="Phare" style="height: 100px">
-                                                            <v-card
-                                                                    slot="label"
-                                                                    max-width="400"
-                                                            >
-                                                                <v-img
-                                                                        class="white--text align-end"
-                                                                        height="100px"
-                                                                        width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/phare.jpg"
-                                                                >
-                                                                    <v-card-title>Phare</v-card-title>
-                                                                </v-img>
-                                                            </v-card>
-                                                        </v-radio>
-                                                    </div>
-                                                    <div v-if="configModelKothOne != 'Ruine' && configModelKothTwo != 'Ruine'" class="col-sm-6 col-lg-4 col-md-4">
-                                                        <v-radio color="#69697f" value="Ruine" style="height: 100px">
-                                                            <v-card
-                                                                    slot="label"
-                                                                    max-width="400"
-                                                            >
-                                                                <v-img
-                                                                        class="white--text align-end"
-                                                                        height="100px"
-                                                                        width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/ruine.jpg"
-                                                                >
-                                                                    <v-card-title>Ruine</v-card-title>
-                                                                </v-img>
-                                                            </v-card>
-                                                        </v-radio>
-                                                    </div>
-                                                </v-row>
-                                            </v-radio-group>
-
-                                            <v-radio-group v-if="configModel === 'Lidjiang'" v-model="configModelKothThree">
-                                                <v-row>
-                                                    <div v-if="configModelKothOne != 'Tour' && configModelKothTwo != 'Tour'" class="col-sm-6 col-lg-4 col-md-4">
-                                                        <v-radio color="#69697f" value="Tour" style="height: 100px">
-                                                            <v-card
-                                                                    slot="label"
-                                                                    max-width="400"
-                                                            >
-                                                                <v-img
-                                                                        class="white--text align-end"
-                                                                        height="100px"
-                                                                        width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/tour.jpg"
-                                                                >
-                                                                    <v-card-title>Tour</v-card-title>
-                                                                </v-img>
-                                                            </v-card>
-                                                        </v-radio>
-                                                    </div>
-                                                    <div v-if="configModelKothOne != 'Jardin' && configModelKothTwo != 'Jardin'" class="col-sm-6 col-lg-4">
-                                                        <v-radio color="#69697f" value="Jardin" style="height: 100px">
-                                                            <v-card
-                                                                    slot="label"
-                                                                    max-width="400"
-                                                            >
-                                                                <v-img
-                                                                        class="white--text align-end"
-                                                                        height="100px"
-                                                                        width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/jardin.jpg"
-                                                                >
-                                                                    <v-card-title>Jardin</v-card-title>
-                                                                </v-img>
-                                                            </v-card>
-                                                        </v-radio>
-                                                    </div>
-                                                    <div v-if="configModelKothOne != 'Marche' && configModelKothTwo != 'Marche'" class="col-sm-6 col-lg-4 col-md-4">
-                                                        <v-radio color="#69697f" value="Marche" style="height: 100px">
-                                                            <v-card
-                                                                    slot="label"
-                                                                    max-width="400"
-                                                            >
-                                                                <v-img
-                                                                        class="white--text align-end"
-                                                                        height="100px"
-                                                                        width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/marche.jpg"
-                                                                >
-                                                                    <v-card-title>Marché</v-card-title>
-                                                                </v-img>
-                                                            </v-card>
-                                                        </v-radio>
-                                                    </div>
-                                                </v-row>
-                                            </v-radio-group>
-
-                                            <v-radio-group v-if="configModel === 'Nepal'" v-model="configModelKothThree">
-                                                <v-row>
-                                                    <div v-if="configModelKothOne != 'Sanctuaire' && configModelKothTwo != 'Sanctuaire'" class="col-sm-6 col-lg-4 col-md-4">
-                                                        <v-radio color="#69697f" value="Sanctuaire" style="height: 100px">
-                                                            <v-card
-                                                                    slot="label"
-                                                                    max-width="400"
-                                                            >
-                                                                <v-img
-                                                                        class="white--text align-end"
-                                                                        height="100px"
-                                                                        width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/sanc.jpg"
-                                                                >
-                                                                    <v-card-title>Sanctuaire</v-card-title>
-                                                                </v-img>
-                                                            </v-card>
-                                                        </v-radio>
-                                                    </div>
-                                                    <div v-if="configModelKothOne != 'Autel' && configModelKothTwo != 'Autel'" class="col-sm-6 col-lg-4">
-                                                        <v-radio color="#69697f" value="Autel" style="height: 100px">
-                                                            <v-card
-                                                                    slot="label"
-                                                                    max-width="400"
-                                                            >
-                                                                <v-img
-                                                                        class="white--text align-end"
-                                                                        height="100px"
-                                                                        width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/autel.jpg"
-                                                                >
-                                                                    <v-card-title>Autel</v-card-title>
-                                                                </v-img>
-                                                            </v-card>
-                                                        </v-radio>
-                                                    </div>
-                                                    <div v-if="configModelKothOne != 'Village' && configModelKothTwo != 'Village'" class="col-sm-6 col-lg-4 col-md-4">
-                                                        <v-radio color="#69697f" value="Village" style="height: 100px">
-                                                            <v-card
-                                                                    slot="label"
-                                                                    max-width="400"
-                                                            >
-                                                                <v-img
-                                                                        class="white--text align-end"
-                                                                        height="100px"
-                                                                        width="220px"
-                                                                        src="https://subswapr.fr/img/overstats/village.jpg"
-                                                                >
-                                                                    <v-card-title>Village</v-card-title>
-                                                                </v-img>
-                                                            </v-card>
-                                                        </v-radio>
-                                                    </div>
-                                                </v-row>
-                                            </v-radio-group>
                                             <span class="caption grey--text text--darken-1">
             Veuillez choisir une carte de jeu
           </span>
@@ -1253,12 +418,12 @@
                                     </v-window>
                                 </v-card-text>
 
-                                <v-card-text v-if="configMap === 'Escorte'">
+                                <v-card-text v-if="configMap === 'Escorte' || configMap === 'Hybride' || configMap === '2CP'">
                                     <h3>Choisir la carte joué pour {{ configMap }}</h3>
                                     <v-radio-group v-model="configModel">
                                         <v-row>
-                                            <div class="col-sm-6 col-lg-4 col-md-4">
-                                                <v-radio color="#69697f" value="Dorado" style="height: 100px">
+                                            <div v-for="(item, index) in mapList[configMap]" :key="index" class="col-sm-6 col-lg-4 col-md-4">
+                                                <v-radio color="#69697f" :value="item.name" style="height: 100px">
                                                     <v-card
                                                             slot="label"
                                                             max-width="400"
@@ -1267,94 +432,9 @@
                                                                 class="white--text align-end"
                                                                 height="100px"
                                                                 width="220px"
-                                                                src="https://subswapr.fr/img/overstats/dorado.jpg"
+                                                                :src="item.link"
                                                         >
-                                                            <v-card-title>Dorado</v-card-title>
-                                                        </v-img>
-                                                    </v-card>
-                                                </v-radio>
-                                            </div>
-                                            <div class="col-sm-6 col-lg-4">
-                                                <v-radio color="#69697f" value="La Havane" style="height: 100px">
-                                                    <v-card
-                                                            slot="label"
-                                                            max-width="400"
-                                                    >
-                                                        <v-img
-                                                                class="white--text align-end"
-                                                                height="100px"
-                                                                width="220px"
-                                                                src="https://subswapr.fr/img/overstats/havane.jpg"
-                                                        >
-                                                            <v-card-title>La Havane</v-card-title>
-                                                        </v-img>
-                                                    </v-card>
-                                                </v-radio>
-                                            </div>
-                                            <div class="col-sm-6 col-lg-4 col-md-4">
-                                                <v-radio color="#69697f" value="Junkertown" style="height: 100px">
-                                                    <v-card
-                                                            slot="label"
-                                                            max-width="400"
-                                                    >
-                                                        <v-img
-                                                                class="white--text align-end"
-                                                                height="100px"
-                                                                width="220px"
-                                                                src="https://subswapr.fr/img/overstats/junker.jpg"
-                                                        >
-                                                            <v-card-title>Junkertown</v-card-title>
-                                                        </v-img>
-                                                    </v-card>
-                                                </v-radio>
-                                            </div>
-                                            <div class="col-sm-6 col-lg-4 col-md-4">
-                                                <v-radio color="#69697f" value="Rialto" style="height: 100px">
-                                                    <v-card
-                                                            slot="label"
-                                                            max-width="400"
-                                                    >
-                                                        <v-img
-                                                                class="white--text align-end"
-                                                                height="100px"
-                                                                width="220px"
-                                                                src="https://subswapr.fr/img/overstats/rialto.jpg"
-                                                        >
-                                                            <v-card-title>Rialto</v-card-title>
-                                                        </v-img>
-                                                    </v-card>
-                                                </v-radio>
-                                            </div>
-                                            <div class="col-sm-6 col-lg-4 col-md-4">
-                                                <v-radio color="#69697f" value="Route 66" style="height: 100px">
-                                                    <v-card
-                                                            slot="label"
-                                                            max-width="400"
-                                                    >
-                                                        <v-img
-                                                                class="white--text align-end"
-                                                                height="100px"
-                                                                width="220px"
-                                                                src="https://subswapr.fr/img/overstats/route.jpg"
-                                                        >
-                                                            <v-card-title>Route 66</v-card-title>
-                                                        </v-img>
-                                                    </v-card>
-                                                </v-radio>
-                                            </div>
-                                            <div class="col-sm-6 col-lg-4 col-md-4">
-                                                <v-radio color="#69697f" value="Gibraltar" style="height: 100px">
-                                                    <v-card
-                                                            slot="label"
-                                                            max-width="400"
-                                                    >
-                                                        <v-img
-                                                                class="white--text align-end"
-                                                                height="100px"
-                                                                width="220px"
-                                                                src="https://subswapr.fr/img/overstats/gibraltar.jpg"
-                                                        >
-                                                            <v-card-title>Gibraltar</v-card-title>
+                                                            <v-card-title>{{ item.name }}</v-card-title>
                                                         </v-img>
                                                     </v-card>
                                                 </v-radio>
@@ -1367,212 +447,6 @@
                                     <v-radio-group v-model="configStatus" row>
                                         <v-radio color="#69697f" class="labelColor" label="Attaque" value="Attaque"></v-radio>
                                         <v-radio color="#69697f" class="labelColor" label="Défense" value="Défense"></v-radio>
-                                    </v-radio-group>
-                                    <span class="caption grey--text text--darken-1">
-            Veuillez choisir une carte de jeu
-          </span>
-                                </v-card-text>
-
-                                <v-card-text v-if="configMap === 'Hybride'">
-                                    <h3>Choisir la carte joué pour {{ configMap }}</h3>
-                                    <v-radio-group v-model="configModel">
-                                        <v-row>
-                                            <div class="col-sm-6 col-lg-4 col-md-4">
-                                                <v-radio class="labelColor" color="#69697f" value="Blizzard World" style="height: 100px">
-                                                    <v-card
-                                                            slot="label"
-                                                            max-width="400"
-                                                    >
-                                                        <v-img
-                                                                class="white--text align-end"
-                                                                height="100px"
-                                                                width="220px"
-                                                                src="https://subswapr.fr/img/overstats/world.jpg"
-                                                        >
-                                                            <v-card-title>Blizzard World</v-card-title>
-                                                        </v-img>
-                                                    </v-card>
-                                                </v-radio>
-                                            </div>
-                                            <div class="col-sm-6 col-lg-4 col-md-4">
-                                                <v-radio class="labelColor" color="#69697f" value="Eichenwald" style="height: 100px">
-                                                    <v-card
-                                                            slot="label"
-                                                            max-width="400"
-                                                    >
-                                                        <v-img
-                                                                class="white--text align-end"
-                                                                height="100px"
-                                                                width="220px"
-                                                                src="https://subswapr.fr/img/overstats/eichenvald.jpg"
-                                                        >
-                                                            <v-card-title>Eichenwald</v-card-title>
-                                                        </v-img>
-                                                    </v-card>
-                                                </v-radio>
-                                            </div>
-                                            <div class="col-sm-6 col-lg-4 col-md-4">
-                                                <v-radio class="labelColor" color="#69697f" value="Hollywood" style="height: 100px">
-                                                    <v-card
-                                                            slot="label"
-                                                            max-width="400"
-                                                    >
-                                                        <v-img
-                                                                class="white--text align-end"
-                                                                height="100px"
-                                                                width="220px"
-                                                                src="https://subswapr.fr/img/overstats/hollywood.jpg"
-                                                        >
-                                                            <v-card-title>Hollywood</v-card-title>
-                                                        </v-img>
-                                                    </v-card>
-                                                </v-radio>
-                                            </div>
-                                            <div class="col-sm-6 col-lg-4 col-md-4">
-                                                <v-radio class="labelColor" color="#69697f" value="King's Row" style="height: 100px">
-                                                    <v-card
-                                                            slot="label"
-                                                            max-width="400"
-                                                    >
-                                                        <v-img
-                                                                class="white--text align-end"
-                                                                height="100px"
-                                                                width="220px"
-                                                                src="https://subswapr.fr/img/overstats/row.jpg"
-                                                        >
-                                                            <v-card-title>King's Row</v-card-title>
-                                                        </v-img>
-                                                    </v-card>
-                                                </v-radio>
-                                            </div>
-                                            <div class="col-sm-6 col-lg-4 col-md-4">
-                                                <v-radio class="labelColor" color="#69697f" value="Numbani" style="height: 100px">
-                                                    <v-card
-                                                            slot="label"
-                                                            max-width="400"
-                                                    >
-                                                        <v-img
-                                                                class="white--text align-end"
-                                                                height="100px"
-                                                                width="220px"
-                                                                src="https://subswapr.fr/img/overstats/numbani.jpg"
-                                                        >
-                                                            <v-card-title>Numbani</v-card-title>
-                                                        </v-img>
-                                                    </v-card>
-                                                </v-radio>
-                                            </div>
-                                        </v-row>
-                                    </v-radio-group>
-                                    <hr>
-                                    <br>
-                                    <h3>Côté commencé</h3>
-                                    <v-radio-group v-model="configStatus" row>
-                                        <v-radio class="labelColor" color="#69697f" label="Attaque" value="Attaque"></v-radio>
-                                        <v-radio class="labelColor" color="#69697f" label="Défense" value="Défense"></v-radio>
-                                    </v-radio-group>
-                                    <span class="caption grey--text text--darken-1">
-            Veuillez choisir une carte de jeu
-          </span>
-                                </v-card-text>
-
-                                <v-card-text v-if="configMap === '2CP'">
-                                    <h3>Choisir la carte joué pour {{ configMap }}</h3>
-                                    <v-radio-group v-model="configModel">
-                                        <v-row>
-                                            <div class="col-sm-6 col-lg-4 col-md-4">
-                                                <v-radio class="labelColor" color="#69697f" value="Hanamura" style="height: 100px">
-                                                    <v-card
-                                                            slot="label"
-                                                            max-width="400"
-                                                    >
-                                                        <v-img
-                                                                class="white--text align-end"
-                                                                height="100px"
-                                                                width="220px"
-                                                                src="https://subswapr.fr/img/overstats/hamanura.jpg"
-                                                        >
-                                                            <v-card-title>Hanamura</v-card-title>
-                                                        </v-img>
-                                                    </v-card>
-                                                </v-radio>
-                                            </div>
-                                            <div class="col-sm-6 col-lg-4 col-md-4">
-                                                <v-radio class="labelColor" color="#69697f" value="Horizon" style="height: 100px">
-                                                    <v-card
-                                                            slot="label"
-                                                            max-width="400"
-                                                    >
-                                                        <v-img
-                                                                class="white--text align-end"
-                                                                height="100px"
-                                                                width="220px"
-                                                                src="https://subswapr.fr/img/overstats/horizon.jpg"
-                                                        >
-                                                            <v-card-title>Horizon</v-card-title>
-                                                        </v-img>
-                                                    </v-card>
-                                                </v-radio>
-                                            </div>
-                                            <div class="col-sm-6 col-lg-4 col-md-4">
-                                                <v-radio class="labelColor" color="#69697f" value="Paris" style="height: 100px">
-                                                    <v-card
-                                                            slot="label"
-                                                            max-width="400"
-                                                    >
-                                                        <v-img
-                                                                class="white--text align-end"
-                                                                height="100px"
-                                                                width="220px"
-                                                                src="https://subswapr.fr/img/overstats/paris.jpg"
-                                                        >
-                                                            <v-card-title>Paris</v-card-title>
-                                                        </v-img>
-                                                    </v-card>
-                                                </v-radio>
-                                            </div>
-                                            <div class="col-sm-6 col-lg-4 col-md-4">
-                                                <v-radio class="labelColor" color="#69697f" value="Anubis" style="height: 100px">
-                                                    <v-card
-                                                            slot="label"
-                                                            max-width="400"
-                                                    >
-                                                        <v-img
-                                                                class="white--text align-end"
-                                                                height="100px"
-                                                                width="220px"
-                                                                src="https://subswapr.fr/img/overstats/anubis.jpg"
-                                                        >
-                                                            <v-card-title>Temple d'Anubis</v-card-title>
-                                                        </v-img>
-                                                    </v-card>
-                                                </v-radio>
-                                            </div>
-                                            <div class="col-sm-6 col-lg-4 col-md-4">
-                                                <v-radio class="labelColor" color="#69697f" value="Volskaya" style="height: 100px">
-                                                    <v-card
-                                                            slot="label"
-                                                            max-width="400"
-                                                    >
-                                                        <v-img
-                                                                class="white--text align-end"
-                                                                height="100px"
-                                                                width="220px"
-                                                                src="https://subswapr.fr/img/overstats/usine.jpg"
-                                                        >
-                                                            <v-card-title>Usine Volskaya</v-card-title>
-                                                        </v-img>
-                                                    </v-card>
-                                                </v-radio>
-                                            </div>
-                                        </v-row>
-                                    </v-radio-group>
-                                    <hr>
-                                    <br>
-                                    <h3>Côté commencé</h3>
-                                    <v-radio-group v-model="configStatus" row>
-                                        <v-radio class="labelColor" color="#69697f" label="Attaque" value="Attaque"></v-radio>
-                                        <v-radio class="labelColor" color="#69697f" label="Défense" value="Défense"></v-radio>
                                     </v-radio-group>
                                     <span class="caption grey--text text--darken-1">
             Veuillez choisir une carte de jeu
@@ -1886,7 +760,7 @@
                             </v-window-item>
 
                             <v-window-item :value="5">
-                                <div class="pa-4">
+                                <div class="pa-4" v-if="configPlay == 'Ranked'">
                                     <h3>Score</h3>
                                     <v-row>
                                         <v-col cols="6" sm="6">
@@ -1894,6 +768,17 @@
                                         </v-col>
                                         <v-col cols="6" sm="6">
                                             <v-text-field color="#69697f" type="number" label="Equipe adverse" v-model="configScoreTwo"></v-text-field>
+                                        </v-col>
+                                    </v-row>
+                                </div>
+                                <div class="pa-4" v-else>
+                                    <h3>Score</h3>
+                                    <v-row>
+                                        <v-col cols="12">
+                                            <v-radio-group v-model="quickScore" row>
+                                                <v-radio class="labelColor" color="#69697f" label="Victoire" :value="2"></v-radio>
+                                                <v-radio class="labelColor" label="Défaite" color="#69697f" :value="1"></v-radio>
+                                            </v-radio-group>
                                         </v-col>
                                     </v-row>
                                 </div>
@@ -1985,7 +870,7 @@
 
                         <v-card-actions v-if="configMap != 'KOTH' || step != 2">
                             <v-btn
-                                    v-if="configMap != 'KOTH'"
+                                    v-if="configMap != 'KOTH' && step != 5 || step === 5 && configPlay != 'QuickPlay' || step === 3 && configPlay != 'QuickPlay'"
                                     :disabled="step === 1"
                                     depressed
                                     icon
@@ -2004,8 +889,38 @@
                             >
                                 <v-icon>fa-angle-left</v-icon>
                             </v-btn>
+                            <v-btn
+                                    v-if="step === 5 && configPlay == 'QuickPlay'"
+                                    color="#69697f"
+                                    depressed
+                                    icon
+                                    @click="step = 3"
+                            >
+                                <v-icon>fa-angle-left</v-icon>
+                            </v-btn>
                             <v-spacer></v-spacer>
                             <v-btn
+                                    v-if="step === 3 && configPlay == 'QuickPlay'"
+                                    :disabled="step === 2 && configStatus === null || step === 6 || step === 5 && configScoreOne === null || step === 5 && configScoreTwo === null || step === 3 && configDpsOne === null || step === 3 && configDpsTwo === null || step === 3 && configTankOne === null || step === 3 &&  configTankTwo === null || step === 3 && configHealOne === null || step === 3 && configHealTwo === null || step === 3 && configSwitchOne === null || step === 4 && configSwitchTwo === null || step === 4 && configDpsOneD === null || step === 4 && configDpsTwoD === null || step === 4 && configTankOneD === null || step === 4 &&  configTankTwoD === null || step === 4 && configHealOneD === null || step === 4 && configHealTwoD === null || step === 2 && configModel === null || configMap === null || configPlay === null"
+                                    color="#45cd8a"
+                                    depressed
+                                    icon
+                                    @click="step = 5"
+                            >
+                                <v-icon>fa-angle-right</v-icon>
+                            </v-btn>
+                            <v-btn
+                                    v-if="step === 5 && configPlay == 'QuickPlay'"
+                                    :disabled="quickScore === null"
+                                    color="#45cd8a"
+                                    depressed
+                                    icon
+                                    @click="step++"
+                            >
+                                <v-icon>fa-angle-right</v-icon>
+                            </v-btn>
+                            <v-btn
+                                    v-if="step === 1 || step === 2 || step === 3 && configPlay != 'QuickPlay' || step === 4 || step === 5 && configPlay != 'QuickPlay'"
                                     :disabled="step === 2 && configStatus === null || step === 6 || step === 5 && configScoreOne === null || step === 5 && configScoreTwo === null || step === 3 && configDpsOne === null || step === 3 && configDpsTwo === null || step === 3 && configTankOne === null || step === 3 &&  configTankTwo === null || step === 3 && configHealOne === null || step === 3 && configHealTwo === null || step === 3 && configSwitchOne === null || step === 4 && configSwitchTwo === null || step === 4 && configDpsOneD === null || step === 4 && configDpsTwoD === null || step === 4 && configTankOneD === null || step === 4 &&  configTankTwoD === null || step === 4 && configHealOneD === null || step === 4 && configHealTwoD === null || step === 2 && configModel === null || configMap === null || configPlay === null"
                                     color="#45cd8a"
                                     depressed
@@ -2042,11 +957,72 @@
         props: ["team"],
         data() {
             return {
+                quickScore: null,
+
                 advanced: ["Attente"],
 
                 dps: ['Ashe', 'Bastion', 'Dommfist', 'Genji', 'Hanzo', 'Junkrat', 'Mccree', 'Mei', 'Pharah', 'Reaper', 'Soldier 76', 'Sombra', 'Symmetra', 'Torbjorn', 'Tracer', 'Widowmaker'],
                 tank: ['Dva', 'Orisa', 'Reinhardt', 'Roadhog', 'Sigma', 'Winston', 'Wrecking ball', 'Zarya'],
                 heal: ['Ana', 'Baptiste', 'Brigitte', 'Lucio', 'Mercy', 'Moira', 'Zenyatta'],
+
+                mapList: {
+                    Escorte: {
+                        Rialto: { link: 'https://subswapr.fr/img/overstats/rialto.jpg', name: 'Rialto' },
+                        Gibraltar: { link: 'https://subswapr.fr/img/overstats/gibraltar.jpg', name: 'Gibraltar' },
+                        Route: { link: 'https://subswapr.fr/img/overstats/route.jpg', name: 'Route 66' },
+                        Dorado: { link: 'https://subswapr.fr/img/overstats/dorado.jpg', name: 'Dorado' },
+                        Havane: { link: 'https://subswapr.fr/img/overstats/havane.jpg', name: 'La Havane' },
+                        Junkertown: { link: 'https://subswapr.fr/img/overstats/junker.jpg', name: 'Junkertown' },
+                    },
+                    Hybride: {
+                        BlizzardWorld: { link: 'https://subswapr.fr/img/overstats/world.jpg', name: 'Blizzard World' },
+                        Eichenwald: { link: 'https://subswapr.fr/img/overstats/eichenvald.jpg', name: 'Eichenwald' },
+                        KingRow: { link: 'https://subswapr.fr/img/overstats/row.jpg', name: 'King\'s Row' },
+                        Hollywood: { link: 'https://subswapr.fr/img/overstats/hollywood.jpg', name: 'Hollywood' },
+                        Numbani: { link: 'https://subswapr.fr/img/overstats/numbani.jpg', name: 'Numbani' },
+                    },
+                    '2CP': {
+                        Hanamura: { link: 'https://subswapr.fr/img/overstats/hamanura.jpg', name: 'Hanamura' },
+                        Horizon: { link: 'https://subswapr.fr/img/overstats/horizon.jpg', name: 'Horizon' },
+                        Paris: { link: 'https://subswapr.fr/img/overstats/paris.jpg', name: 'Paris' },
+                        Anubis: { link: 'https://subswapr.fr/img/overstats/anubis.jpg', name: 'Anubis' },
+                        Volskaya: { link: 'https://subswapr.fr/img/overstats/usine.jpg', name: 'Volskaya' },
+                    },
+                    KothMap: {
+                        Busan: { link: 'https://subswapr.fr/img/overstats/busan.jpg', name: 'Busan' },
+                        Ilios: { link: 'https://subswapr.fr/img/overstats/ilios.jpg', name: 'Ilios' },
+                        Lidjiang: { link: 'https://subswapr.fr/img/overstats/lidjiang.jpg', name: 'Lidjiang' },
+                        Nepal: { link: 'https://subswapr.fr/img/overstats/nepal.jpg', name: 'Nepal' },
+                        Oasis: { link: 'https://subswapr.fr/img/overstats/oasis.jpg', name: 'Oasis' },
+                    },
+                    KothZone: {
+                        Busan: {
+                            Centre: { link: 'https://subswapr.fr/img/overstats/center.jpg', name: 'Centre' },
+                            Sanctuaire: { link: 'https://subswapr.fr/img/overstats/sanctu.jpg', name: 'Sanctuaire' },
+                            Meka: { link: 'https://subswapr.fr/img/overstats/meka.jpg', name: 'Meka' },
+                        },
+                        Oasis: {
+                            Centre: { link: 'https://subswapr.fr/img/overstats/ville.jpg', name: 'Centre' },
+                            Jardin: { link: 'https://subswapr.fr/img/overstats/susp.jpg', name: 'Jardin' },
+                            Universite: { link: 'https://subswapr.fr/img/overstats/univ.jpg', name: 'Universite' },
+                        },
+                        Ilios: {
+                            Centre: { link: 'https://subswapr.fr/img/overstats/puit.jpg', name: 'Puit' },
+                            Jardin: { link: 'https://subswapr.fr/img/overstats/phare.jpg', name: 'Phare' },
+                            Universite: { link: 'https://subswapr.fr/img/overstats/ruine.jpg', name: 'Ruine' },
+                        },
+                        Nepal: {
+                            Sanctuaire: { link: 'https://subswapr.fr/img/overstats/sanc.jpg', name: 'Sanctuaire' },
+                            Autel: { link: 'https://subswapr.fr/img/overstats/autel.jpg', name: 'Autel' },
+                            Village: { link: 'https://subswapr.fr/img/overstats/village.jpg', name: 'Village' },
+                        },
+                        Lidjiang: {
+                            Marche: { link: 'https://subswapr.fr/img/overstats/marche.jpg', name: 'Marche' },
+                            Jardin: { link: 'https://subswapr.fr/img/overstats/jardin.jpg', name: 'Jardin' },
+                            Tour: { link: 'https://subswapr.fr/img/overstats/tour.jpg', name: 'Tour' },
+                        },
+                    }
+                },
 
                 teamValue: '',
 
@@ -2159,7 +1135,11 @@
                 var side2 = {mainDps: this.configDpsOneD, offDps: this.configDpsTwoD, mainTank: this.configTankOneD, offTank: this.configTankTwoD, mainHeal: this.configHealOneD, offHeal: this.configHealTwoD};
                 var side3 = {mainDps: this.configDpsOneF, offDps: this.configDpsTwoF, mainTank: this.configTankOneF, offTank: this.configTankTwoF, mainHeal: this.configHealOneF, offHeal: this.configHealTwoF};
                 this.randomIdCompoSide1 = this.randomID();
-                this.randomIdCompoSide2 = this.randomID();
+                if (this.configTankOneD != null) {
+                    this.randomIdCompoSide2 = this.randomID();
+                } else {
+                    this.randomIdCompoSide2 = null;
+                }
                 if (this.kothThreeScore != null) {
                     this.randomIdCompoSide3 = this.randomID();
                 } else {
@@ -2193,7 +1173,7 @@
                     var compoCreate23 = 0;
                     var compoCreate123 = 0;
 
-                    if (this.isEquil(side1, side2) && this.isEquil(side1, side3) && this.isEquil(side2, side3) && this.randomIdCompoSide3 != null && this.countOne == 0 && this.countTwo == 0 && this.countThree == 0) {
+                    if (this.isEquil(side1, side2) && this.isEquil(side1, side3) && this.isEquil(side2, side3) && this.randomIdCompoSide3 != null && this.randomIdCompoSide2 != null  && this.countOne == 0 && this.countTwo == 0 && this.countThree == 0) {
                         this.advanced.push('Compo All equal');
                         this.randomIdCompoSide2 = this.randomIdCompoSide1;
                         this.randomIdCompoSide3 = this.randomIdCompoSide1;
@@ -2213,7 +1193,7 @@
                         })
                         compoCreate123= 1;
                     }
-                    if (this.isEquil(side2, side3) && !this.isEquil(side1, side3) && this.countTwo == 0 && this.countThree == 0 && this.randomIdCompoSide3 != null) {
+                    if (this.isEquil(side2, side3) && !this.isEquil(side1, side3) && this.countTwo == 0 && this.countThree == 0 && this.randomIdCompoSide3 != null && this.randomIdCompoSide2 != null ) {
                         this.advanced.push('Compo side2 = side3');
                         this.randomIdCompoSide2 = this.randomIdCompoSide3;
                         firebase.database().ref('teams/' + firebase.auth().currentUser.uid + '/' + this.team + '/compo/' + this.randomIdCompoSide2).update({
@@ -2251,7 +1231,7 @@
                         })
                         compoCreate13 = 1;
                     }
-                    if (this.isEquil(side1, side2) && !this.isEquil(side1, side3) && this.countOne == 0 && this.countTwo == 0) {
+                    if (this.isEquil(side1, side2) && !this.isEquil(side1, side3) && this.countOne == 0 && this.countTwo == 0 && this.randomIdCompoSide2 != null ) {
                         this.advanced.push('Compo side 1 = side 2');
                         this.randomIdCompoSide2 = this.randomIdCompoSide1;
                         firebase.database().ref('teams/' + firebase.auth().currentUser.uid + '/' + this.team + '/compo/' + this.randomIdCompoSide1).update({
@@ -2288,7 +1268,7 @@
                             })
                         }
 
-                        if (this.countTwo == 0 && compoCreate12 != 1 && compoCreate23 != 1 && compoCreate123 != 1) { //Le side2 n'existe pas, il faut donc le créer
+                        if (this.countTwo == 0 && this.randomIdCompoSide2 != null  && compoCreate12 != 1 && compoCreate23 != 1 && compoCreate123 != 1) { //Le side2 n'existe pas, il faut donc le créer
                             this.advanced.push('Side 2 create');
                             firebase.database().ref('teams/' + firebase.auth().currentUser.uid + '/' + this.team + '/compo/' + this.randomIdCompoSide2).update({
                                 Name: this.randomIdCompoSide2,
@@ -2345,6 +1325,15 @@
                 if (this.kothThreeScore === 8) {
                     this.configScoreOne = 1;
                     this.configScoreTwo = 2;
+                }
+
+                if (this.quickScore === 2) {
+                    this.configScoreOne = 3;
+                    this.configScoreTwo = 0;
+                }
+                if (this.quickScore === 1) {
+                    this.configScoreOne = 0;
+                    this.configScoreTwo = 3;
                 }
 
                 firebase.database().ref('teams/' + firebase.auth().currentUser.uid + '/' + this.team + '/matchs/' + this.randomID()).update({

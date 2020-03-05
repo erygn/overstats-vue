@@ -39,9 +39,9 @@
           </v-row>
 
 
-          <v-row align="center" style="justify-content: center; height: 1px; margin-top: 10px; margin-bottom: 20px">
+          <v-row align="center" style="justify-content: center; height: 1px; margin-top: 10px">
               <div class="col-lg-6 col-sm-12 col-md-8">
-                  <h1>Apprendre à utiliser OverStats</h1>
+                  <h2>Nouveautés sur Overstats</h2>
               </div>
           </v-row>
       </v-container>
@@ -72,7 +72,7 @@
                                   <v-btn
                                           color="grey"
                                           text
-                                          to="/teams"
+                                          @click="dialog = !dialog"
                                   >
                                       Voir <v-icon small>fa-eye</v-icon>
                                   </v-btn>
@@ -101,7 +101,7 @@
                                   <v-btn
                                           color="grey"
                                           text
-                                          to="/teams"
+                                          @click="dialog = !dialog"
                                   >
                                       Voir <v-icon small>fa-eye</v-icon>
                                   </v-btn>

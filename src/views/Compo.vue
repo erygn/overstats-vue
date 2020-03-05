@@ -89,6 +89,86 @@
             </v-row>
         </v-container>
 
+        <v-container fluid>
+            <v-row justify="center" style="margin: 0px 1px; color: #9696A3">
+                <div class="col-lg-10 col-md-10 col-sm-12">
+                    <v-row>
+                        <div class="col-lg-6 col-sm-12">
+                            <v-card tile style="border-radius: 5px; color: #363645; font-weight: 500">
+                                <v-card-title>
+                                    <h1 style="margin-left: 15px; font-size: 15px; font-weight: 700; color: #2e313a">Composition Win Rate</h1>
+                                </v-card-title>
+                                <v-container style="height: 420px; margin-top: -20px">
+                                    <v-tabs :grow="true"
+                                            background-color="transparent"
+                                            color="#363645"
+                                    >
+                                        <v-tab>
+                                            Ranked / {{ parseFloat(100 * (vicRank / (vicRank + defRank + egRank))).toFixed(0) }}%
+                                        </v-tab>
+                                        <v-tab>
+                                            QuickPlay / {{ parseFloat(100 * (vicQuick / (vicQuick + defQuick + egQuick))).toFixed(0) }}%
+                                        </v-tab>
+
+                                        <v-tab-item>
+                                            <v-container>
+                                                <v-row class="mx-2">
+                                                    <v-col
+                                                            class="align-center justify-space-between"
+                                                            cols="12"
+                                                    >
+                                                        <v-row
+                                                                align="center"
+                                                                class="mr-0"
+                                                        >
+                                                            <pie-chart legend="bottom" donut="true" :data="pieDataRank" />
+                                                        </v-row>
+                                                    </v-col>
+                                                </v-row>
+                                            </v-container>
+                                        </v-tab-item>
+                                        <v-tab-item>
+                                            <v-container>
+                                                <v-row class="mx-2">
+                                                    <v-col
+                                                            class="align-center justify-space-between"
+                                                            cols="12"
+                                                    >
+                                                        <v-row
+                                                                align="center"
+                                                                class="mr-0"
+                                                        >
+                                                            <pie-chart legend="bottom" donut="true" :data="pieDataQuick" />
+                                                        </v-row>
+                                                    </v-col>
+                                                </v-row>
+                                            </v-container>
+                                        </v-tab-item>
+                                    </v-tabs>
+                                </v-container>
+                            </v-card>
+                        </div>
+
+                        <div class="col-lg-6 col-sm-12">
+                            <v-card tile elevation="1" style="border-radius: 5px; color: #363645">
+                                <v-card-title>
+                                    <h1 style="margin-left: 15px; font-size: 15px; font-weight: 700; color: #2e313a">TimeLine</h1>
+                                </v-card-title>
+                                <v-container style="height: 400px">
+                                    <v-row>
+                                        <div class="col-12" style="margin-top: -20px">
+                                            <div style="margin: 0px 20px; overflow:auto; height: 370px">
+                                            </div>
+                                        </div>
+                                    </v-row>
+                                </v-container>
+                            </v-card>
+                        </div>
+                    </v-row>
+                </div>
+            </v-row>
+        </v-container>
+
         <v-dialog
                 v-model="favDialog"
                 width="600px"
@@ -274,6 +354,16 @@
                 teamPlayer: null,
                 teamCalc: 0,
 
+                pieDataRank: null,
+                vicRank: 0,
+                defRank: 0,
+                egRank: 0,
+
+                pieDataQuick: null,
+                vicQuick: 0,
+                defQuick: 0,
+                egQuick: 0,
+
                 favDialog: false,
                 compoNameDialog: false,
                 snackbarName: false,
@@ -324,6 +414,43 @@
                 if (favCalc >= 4) {
                     this.fullFav = true;
                 }
+
+                //Calcul de PieDataRank et QuickPlay
+                Object.keys(snapshot.val().matchs || {}).forEach(id => {
+                    const match = snapshot.val().matchs[id];
+                    if (match.GameCompositionSide1 == this.id || match.GameCompositionSide2 == this.id || match.GameCompositionSide3 == this.id) {
+                        if (match.GamePlay === 'Ranked') {
+                            if (match.GameScoreA > match.GameScoreB) {
+                                this.vicRank += 1;
+                            } else if (match.GameScoreA < match.GameScoreB) {
+                                this.defRank += 1;
+                            } else {
+                                this.egRank += 1;
+                            }
+                        }
+                        if (match.GamePlay === 'QuickPlay') {
+                            if (match.GameScoreA > match.GameScoreB) {
+                                this.vicQuick += 1;
+                            } else if (match.GameScoreA < match.GameScoreB) {
+                                this.defQuick += 1;
+                            } else {
+                                this.egQuick += 1;
+                            }
+                        }
+                    }
+                });
+
+                this.pieDataRank = [
+                    ['Victoire', this.vicRank],
+                    ['Défaite', this.defRank],
+                    ['Egalité', this.egRank],
+                ];
+
+                this.pieDataQuick = [
+                    ['Victoire', this.vicQuick],
+                    ['Défaite', this.defQuick],
+                    ['Egalité', this.egQuick],
+                ];
 
                 //Calcul du nombre utilisation de la composition
                 Object.keys(snapshot.val().matchs || {}).forEach(id => {
