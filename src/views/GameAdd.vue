@@ -1177,11 +1177,11 @@
                         this.advanced.push('Compo All equal');
                         this.randomIdCompoSide2 = this.randomIdCompoSide1;
                         this.randomIdCompoSide3 = this.randomIdCompoSide1;
-                        firebase.database().ref('teams/' + firebase.auth().currentUser.uid + '/' + this.team + '/compo/' + this.randomIdCompoSide1).update({
+                        firebase.database().ref('teams/' + this.team + '/compo/' + this.randomIdCompoSide1).update({
                             Name: this.randomIdCompoSide1,
                             isFav: false,
                             isNew: true,
-                            CpmpoDate: new Date().toLocaleString("fr-FR"),
+                            CompoDate: new Date().toLocaleString("fr-FR"),
                             Compo: {
                                 mainDps: this.configDpsOne,
                                 offDps: this.configDpsTwo,
@@ -1196,11 +1196,11 @@
                     if (this.isEquil(side2, side3) && !this.isEquil(side1, side3) && this.countTwo == 0 && this.countThree == 0 && this.randomIdCompoSide3 != null && this.randomIdCompoSide2 != null ) {
                         this.advanced.push('Compo side2 = side3');
                         this.randomIdCompoSide2 = this.randomIdCompoSide3;
-                        firebase.database().ref('teams/' + firebase.auth().currentUser.uid + '/' + this.team + '/compo/' + this.randomIdCompoSide2).update({
+                        firebase.database().ref('teams/' + this.team + '/compo/' + this.randomIdCompoSide2).update({
                             Name: this.randomIdCompoSide2,
                             isFav: false,
                             isNew: true,
-                            CpmpoDate: new Date().toLocaleString("fr-FR"),
+                            CompoDate: new Date().toLocaleString("fr-FR"),
                             Compo: {
                                 mainDps: this.configDpsOne,
                                 offDps: this.configDpsTwo,
@@ -1215,11 +1215,11 @@
                     if (this.isEquil(side1, side3) && !this.isEquil(side1, side2) && this.countThree == 0 && this.randomIdCompoSide3 != null && this.countOne == 0) {
                         this.advanced.push('Compo side 1 = side 3');
                         this.randomIdCompoSide3 = this.randomIdCompoSide1;
-                        firebase.database().ref('teams/' + firebase.auth().currentUser.uid + '/' + this.team + '/compo/' + this.randomIdCompoSide1).update({
+                        firebase.database().ref('teams/' + this.team + '/compo/' + this.randomIdCompoSide1).update({
                             Name: this.randomIdCompoSide1,
                             isFav: false,
                             isNew: true,
-                            CpmpoDate: new Date().toLocaleString("fr-FR"),
+                            CompoDate: new Date().toLocaleString("fr-FR"),
                             Compo: {
                                 mainDps: this.configDpsOne,
                                 offDps: this.configDpsTwo,
@@ -1234,11 +1234,11 @@
                     if (this.isEquil(side1, side2) && !this.isEquil(side1, side3) && this.countOne == 0 && this.countTwo == 0 && this.randomIdCompoSide2 != null ) {
                         this.advanced.push('Compo side 1 = side 2');
                         this.randomIdCompoSide2 = this.randomIdCompoSide1;
-                        firebase.database().ref('teams/' + firebase.auth().currentUser.uid + '/' + this.team + '/compo/' + this.randomIdCompoSide1).update({
+                        firebase.database().ref('teams/' + this.team + '/compo/' + this.randomIdCompoSide1).update({
                             Name: this.randomIdCompoSide1,
                             isFav: false,
                             isNew: true,
-                            CpmpoDate: new Date().toLocaleString("fr-FR"),
+                            CompoDate: new Date().toLocaleString("fr-FR"),
                             Compo: {
                                 mainDps: this.configDpsOne,
                                 offDps: this.configDpsTwo,
@@ -1252,7 +1252,7 @@
                     }
                         if (this.countOne == 0 && compoCreate12 != 1 && compoCreate13 != 1 && compoCreate123 != 1) { //Le side1 n'existe pas, il faut donc le créer
                             this.advanced.push('Side 1 create');
-                            firebase.database().ref('teams/' + firebase.auth().currentUser.uid + '/' + this.team + '/compo/' + this.randomIdCompoSide1).update({
+                            firebase.database().ref('teams/' + this.team + '/compo/' + this.randomIdCompoSide1).update({
                                 Name: this.randomIdCompoSide1,
                                 isFav: false,
                                 isNew: true,
@@ -1270,7 +1270,7 @@
 
                         if (this.countTwo == 0 && this.randomIdCompoSide2 != null  && compoCreate12 != 1 && compoCreate23 != 1 && compoCreate123 != 1) { //Le side2 n'existe pas, il faut donc le créer
                             this.advanced.push('Side 2 create');
-                            firebase.database().ref('teams/' + firebase.auth().currentUser.uid + '/' + this.team + '/compo/' + this.randomIdCompoSide2).update({
+                            firebase.database().ref('teams/' + this.team + '/compo/' + this.randomIdCompoSide2).update({
                                 Name: this.randomIdCompoSide2,
                                 isFav: false,
                                 isNew: true,
@@ -1288,7 +1288,7 @@
 
                         if (this.countThree == 0 && this.randomIdCompoSide3 != null && compoCreate13 != 1 && compoCreate23 != 1 && compoCreate123 != 1) { //Le side3 n'existe pas, il faut donc le créer
                             this.advanced.push('Side 3 create');
-                            firebase.database().ref('teams/' + firebase.auth().currentUser.uid + '/' + this.team + '/compo/' + this.randomIdCompoSide3).update({
+                            firebase.database().ref('teams/' + this.team + '/compo/' + this.randomIdCompoSide3).update({
                                 Name: this.randomIdCompoSide3,
                                 isFav: false,
                                 isNew: true,
@@ -1336,7 +1336,7 @@
                     this.configScoreTwo = 3;
                 }
 
-                firebase.database().ref('teams/' + firebase.auth().currentUser.uid + '/' + this.team + '/matchs/' + this.randomID()).update({
+                firebase.database().ref('teams/' + this.team + '/matchs/' + this.randomID()).update({
                     GamePlay: this.configPlay,
                     GameType: this.configMap,
                     GameMap: this.configModel,
@@ -1498,9 +1498,13 @@
             }
         },
         created() {
-            firebase.database().ref('teams/' + firebase.auth().currentUser.uid + '/' + this.team).on('value', (snapshot) => {
+            firebase.database().ref('teams/' + this.team).on('value', (snapshot) => {
                 // alert(JSON.stringify(snapshot.val()))
                 this.teamValue = snapshot.val()
+
+                if (this.teamValue.OwnerId != firebase.auth().currentUser.uid) {
+                    this.$router.push('/teams');
+                }
 
                 //Ajout favorite Compo
                 var list = [];

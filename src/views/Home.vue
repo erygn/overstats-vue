@@ -41,6 +41,49 @@
 
           <v-row align="center" style="justify-content: center; height: 1px; margin-top: 10px">
               <div class="col-lg-6 col-sm-12 col-md-8">
+                  <h2>Stats Disponibles</h2>
+              </div>
+          </v-row>
+      </v-container>
+
+      <v-container fluid style="align-items: center" class="my-5">
+          <v-row align="center" style="justify-content: center">
+              <div class="col-lg-6 col-sm-12 col-md-8">
+                  <v-row align="center" style="justify-content: center">
+                      <div class="col-sm-6">
+                          <v-card style="border-radius: 5px" class="mx-auto">
+                              <v-card-title>Global Win Rate</v-card-title>
+                              <v-card-text class="text--primary">
+                                  <div>Disponible, Win Rate de KOTH, Hybride, Escorte, 2CP (Ranked seulement). Et Win Rate sur Ranked et QuickPlay global.</div>
+                              </v-card-text>
+                          </v-card>
+                      </div>
+                      <div class="col-sm-6">
+                          <v-card style="border-radius: 5px" class="mx-auto">
+                              <v-card-title>Fav Composition</v-card-title>
+                              <v-card-subtitle class="pb-0">Composition</v-card-subtitle>
+                              <v-card-text class="text--primary">
+                                  <div>Win Rate de la composition en Ranked et QuickPlay</div>
+                                  <br>
+                                  <div>Egalement TimeLine, pour savoir le nombre de fois par jour ou cette composition à été utilisée</div>
+                              </v-card-text>
+                          </v-card>
+                      </div>
+                  </v-row>
+              </div>
+          </v-row>
+      </v-container>
+
+      <v-container fluid>
+          <v-row align="center" style="justify-content: center">
+              <div class="col-lg-6 col-sm-12 col-md-8">
+                  <v-divider></v-divider>
+              </div>
+          </v-row>
+
+
+          <v-row align="center" style="justify-content: center; height: 1px; margin-top: 10px">
+              <div class="col-lg-6 col-sm-12 col-md-8">
                   <h2>Nouveautés sur Overstats</h2>
               </div>
           </v-row>
@@ -91,7 +134,7 @@
                               <v-card-title>Fav Composition</v-card-title>
                               <v-card-subtitle class="pb-0">Ajouter rapidement des matchs</v-card-subtitle>
                               <v-card-text class="text--primary">
-                                  <div>Un composition dans votre équipe revient souvent ?<br>Vous pouvez désormais ajouter votre composition comme un modèle qui peut ^étre appliquer en un seul clique lors de l'ajout d'un match</div>
+                                  <div>Un composition dans votre équipe revient souvent ?<br>Vous pouvez désormais ajouter votre composition comme un modèle qui peut être appliquer en un seul clique lors de l'ajout d'un match</div>
 
                                   <div>Plus facile et rapide à utiliser</div>
                               </v-card-text>
@@ -251,11 +294,6 @@ export default {
        const val = snapshot.val();
        this.displayName = val;
      })
-
-      firebase.database().ref('teams/' + firebase.auth().currentUser.uid).once('value').then((snapshot) => {
-          this.teamValue = snapshot.val()
-      })
-
   },
   components: {
     // HelloWorld

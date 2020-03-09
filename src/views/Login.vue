@@ -1,12 +1,12 @@
 <template>
     <div style="background-color: #f4f7fc">
-        <v-container fluid>
+        <v-container fluid style="background: linear-gradient(#0694cc, #075983); height: 450px; color: #2d3039;">
             <v-row justify="center">
                 <div class="col-lg-10 col-md-10 col-sm-12 text-center">
-                    <h1 style="font-size: 22px; font-weight: 700; text-transform: uppercase; font-size: 25px; color: #2d3039; margin-top: 80px">Développez votre équipe</h1>
-                    <h2 style="font-weight: 300; font-size: 14px; color: #2d3039">Utilisez Overstats pour développer vos équipes Esport</h2>
+                    <h1 style="font-size: 22px; font-weight: 700; text-transform: uppercase; font-size: 25px; color: #FFFFFF; margin-top: 80px">Développez votre équipe</h1>
+                    <h2 style="font-weight: 300; font-size: 14px; color: #FFFFFF">Utilisez Overstats pour développer vos équipes Esport</h2>
                     <v-btn width="200" elevation="1" tile height="40" style="border-radius: 5px; margin-top: 20px; background-color: #FFF; color: #2d3039; text-transform: initial" @click="dialog = !dialog">Connexion</v-btn>
-                    <h2 style="font-weight: 300; color: #2d3039; font-size: 14px; margin-top: 10px">Pas encore de compte ?</h2>
+                    <h2 style="font-weight: 300; color: #FFFFFF; font-size: 14px; margin-top: 10px">Pas encore de compte ?</h2>
                     <button @click="dialogRegister = !dialogRegister" style="font-size: 14px; color: #0084fd">Créer un compte</button>
                 </div>
             </v-row>
@@ -21,7 +21,7 @@
 <!--        </v-container>-->
 
         <v-container fluid style="align-items: center" class="my-5">
-            <v-row align="center" style="justify-content: center">
+            <v-row align="center" style="justify-content: center; margin-top: -100px">
                 <div class="col-lg-6 col-sm-12 col-md-8">
                     <v-card
                             elevation="1"

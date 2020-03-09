@@ -454,7 +454,7 @@
 <!--            </v-row>-->
 <!--        </v-container>-->
 
-        <v-menu top :offset-y="offset">
+        <v-menu v-if="accountUid == teamValue.OwnerId" top :offset-y="offset">
             <template v-slot:activator="{ on }">
                 <v-btn
                         bottom
@@ -570,6 +570,8 @@
         props: ['team'],
         data() {
             return {
+                accountUid: null,
+
                 model: null,
                 dialog: false,
                 teamValue: null,
@@ -684,13 +686,13 @@
         methods: {
           selectFavorite: function () {
               if (this.favorite) {
-                  firebase.database().ref('teams/' + firebase.auth().currentUser.uid + '/' + this.team).update({
+                  firebase.database().ref('teams/' + this.team).update({
                       isFav: false
                   }).then(() => {
                       this.favorite = false;
                   })
               } else {
-                  firebase.database().ref('teams/' + firebase.auth().currentUser.uid + '/' + this.team).update({
+                  firebase.database().ref('teams/' + this.team).update({
                       isFav: true
                   }).then(() => {
                       this.favorite = true;
@@ -700,7 +702,7 @@
             addComment: function () {
                 if (this.commentText != null) {
                     this.commentLoad = true;
-                    firebase.database().ref('teams/' + firebase.auth().currentUser.uid + '/' + this.team + '/comments/' + this.randomID()).update({
+                    firebase.database().ref('teams/' + this.team + '/comments/' + this.randomID()).update({
                         Comment: this.commentText,
                         CommentDate: new Date().toLocaleString("fr-FR"),
                     }).then(() => {
@@ -751,7 +753,8 @@
         }
         },
         created() {
-            firebase.database().ref('teams/' + firebase.auth().currentUser.uid + '/' + this.team).on('value', (snapshot) => {
+            this.accountUid = firebase.auth().currentUser.uid;
+            firebase.database().ref('teams/' + this.team).on('value', (snapshot) => {
                 // alert(JSON.stringify(snapshot.val()))
                 this.teamValue = snapshot.val();
 

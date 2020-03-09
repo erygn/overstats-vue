@@ -28,6 +28,36 @@
             </v-row>
         </v-container>
 
+        <v-container fluid style="align-items: center" class="my-5" v-if="accountValues.isRole && accountUid != accountTeam.OwnerId">
+            <v-row align="center" style="justify-content: center; height: 1px; margin-bottom: 50px">
+                <div class="col-lg-6 col-sm-12 col-md-8">
+                    <h2>Vous êtes dans cette équipe</h2>
+                </div>
+            </v-row>
+
+            <v-row align="center" style="justify-content: center">
+                <div class="col-lg-6 col-sm-12 col-md-8">
+                    <v-card style="border-radius: 5px" class="mx-auto">
+                        <v-card-title>{{ accountTeam.TeamName}}</v-card-title>
+                        <v-card-subtitle class="pb-0">{{ accountTeam.Description }}</v-card-subtitle>
+
+                        <v-card-actions>
+                            <v-spacer/>
+                            <v-btn :to="{path: '/team', query: {team: accountValues.roleId}}"
+                                   color="grey"
+                                   depressed
+                                   width="100"
+                                   height="35"
+                                   style="border-radius: 20px; color: #FFF; justify-content: space-evenly"
+                            >
+                                Voir <v-icon small>fa-eye</v-icon>
+                            </v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </div>
+            </v-row>
+        </v-container>
+
         <v-container fluid>
             <v-row align="center" style="justify-content: center">
                 <div class="col-lg-6 col-sm-12 col-md-8">
@@ -54,7 +84,7 @@
         <v-container fluid style="align-items: center" class="my-5">
             <v-row align="center" style="justify-content: center" v-for="(team, i) in teamList"
                    :key="i">
-                <div class="col-lg-6 col-sm-12 col-md-8">
+                <div class="col-lg-6 col-sm-12 col-md-8" v-if="team.OwnerId == accountUid">
                             <v-card style="border-radius: 5px" class="mx-auto">
                                 <v-card-title>{{ team.TeamName }} <v-icon style="margin-left: 6px" small v-if="team.isFav">fa-star</v-icon></v-card-title>
                                 <v-card-subtitle class="pb-0">{{ team.Description }}</v-card-subtitle>
@@ -65,11 +95,11 @@
                                             depressed
                                             :loading="isLoad"
                                             color="red"
-                                            width="150"
+                                            width="50"
                                             height="35"
                                             style="border-radius: 20px; color: #FFF"
                                             @click="openDelete(i)"
-                                    >Supprimer</v-btn>
+                                    ><v-icon small>fa-trash</v-icon></v-btn>
                                     <v-btn :to="{path: '/team', query: {team: i}}"
                                             color="grey"
                                            depressed
@@ -265,6 +295,13 @@
         name: 'Teams',
         data() {
             return {
+                accountUid: null,
+                accountTeam: null,
+
+                teamCount: [],
+
+                teamPart: null,
+
                 isLoad: false,
                 isLoadAdd: false,
                 teamList: [],
@@ -290,9 +327,9 @@
             },
             deleteTeam: function (i) {
                 this.isLoad = true;
-                firebase.database().ref('teams/' + firebase.auth().currentUser.uid + '/' + i).remove().then(() => {
+                firebase.database().ref('teams/' + i).remove().then(() => {
                     firebase.database().ref('users/' + firebase.auth().currentUser.uid).update({
-                        Teams: this.accountValues.Teams - 1
+                        Teams: this.accountValues.Teams - 1,
                     }).then(() => {
                         this.isLoad = false
                         this.dialog = false
@@ -301,15 +338,16 @@
                 })
             },
             addTeam: function () {
-                let long = this.teamName.length
+                let long = this.teamName.length;
                 if (long !== 0) {
                     if (this.accountValues.Teams !== this.accountValues.Grade) {
                         this.isLoadAdd = true;
-                        firebase.database().ref('teams' + '/' + firebase.auth().currentUser.uid + '/' + this.randomID()).set({
+                        firebase.database().ref('teams/' + this.randomID()).set({
                             TeamName: this.teamName,
                             Description: "Description par défaut",
                             isFav: false,
                             compo: true,
+                            OwnerId: firebase.auth().currentUser.uid,
                             Players: {
                                 mainTank: 'MainTank',
                                 offTank: 'OffTank',
@@ -320,7 +358,7 @@
                             }
                         }).then(() => {
                             firebase.database().ref('users/' + firebase.auth().currentUser.uid).update({
-                                Teams: this.accountValues.Teams + 1
+                                Teams: this.accountValues.Teams + 1,
                             }).then(() => {
                                 this.dialogAdd = false
                                 this.isLoadAdd = false;
@@ -349,16 +387,32 @@
             }
         },
         created() {
-            firebase.database().ref('teams/' + firebase.auth().currentUser.uid).on('value',  (snapshot) => {
+            this.accountUid = firebase.auth().currentUser.uid;
+
+            firebase.database().ref('teams/').on('value',  (snapshot) => {
 
                 // alert(JSON.stringify(snapshot.val()))
                 this.teamList = snapshot.val();
+                Object.keys(snapshot.val() || {}).forEach(item => {
+                    const tea = snapshot.val()[item];
+                    if (tea.OwnerId == this.accountUid) {
+                        this.teamCount += 1;
+                    }
+                 })
             })
 
             firebase.database().ref('users/' + firebase.auth().currentUser.uid).on('value',  (snapshot) => {
 
                 // alert(JSON.stringify(snapshot.val()))
                 this.accountValues = snapshot.val();
+
+                if (snapshot.val().isRole) {
+                    firebase.database().ref('teams/' + this.accountValues.roleId).on('value',  (snapshot) => {
+
+                        // alert(JSON.stringify(snapshot.val()))
+                        this.accountTeam = snapshot.val();
+                    })
+                }
             })
         }
     }

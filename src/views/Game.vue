@@ -126,7 +126,7 @@
             }
         },
         created() {
-            firebase.database().ref('teams/' + firebase.auth().currentUser.uid + '/' + this.team + '/matchs/' + this.id).once('value').then((snapshot) => {
+            firebase.database().ref('teams/' + this.team + '/matchs/' + this.id).once('value').then((snapshot) => {
                 this.teamGame = snapshot.val();
 
                 //Calcul de PieDataRank et QuickPlay

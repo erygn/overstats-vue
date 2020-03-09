@@ -15,8 +15,9 @@
                 <div class="col-lg-10 col-md-10 col-sm-12">
                     <v-row>
                         <div class="col-12" style="margin-bottom: -40px">
-                            <h1 style="margin-left: 15px; font-size: 22px; font-weight: 700; color: #2e313a">{{ teamValue.Name }} <v-icon style="margin-top: -2px" small v-if="teamValue.isFav">fa-star</v-icon><v-btn text small @click="compoNameDialog = !compoNameDialog"><v-icon color="#2e313a">mdi-pencil</v-icon></v-btn></h1>
+                            <h1 style="margin-left: 15px; font-size: 22px; font-weight: 700; color: #2e313a">{{ teamValue.Name }} <v-icon style="margin-top: -2px" small v-if="teamValue.isFav">fa-star</v-icon><v-btn v-if="accountUid == teamPlayer.OwnerId" text small @click="compoNameDialog = !compoNameDialog"><v-icon color="#2e313a">mdi-pencil</v-icon></v-btn></h1>
                             <v-btn
+                                    v-if="accountUid == teamPlayer.OwnerId"
                                     width="80"
                                     height="35"
                                     elevation="1" tile style="margin-left: 15px; border-radius: 5px; background-color: #FFF; color: #2d3039; text-transform: initial; margin-top: 10px"
@@ -158,6 +159,7 @@
                                     <v-row>
                                         <div class="col-12" style="margin-top: -20px">
                                             <div style="margin: 0px 20px; overflow:auto; height: 370px">
+                                                <area-chart :data="areaChart"/>
                                             </div>
                                         </div>
                                     </v-row>
@@ -347,6 +349,10 @@
         props: ['team', 'id'],
         data() {
             return {
+                accountUid: null,
+
+                advenced: null,
+
                 isFav: null,
                 fullFav: false,
 
@@ -371,13 +377,17 @@
                 snackbarFavRet: false,
 
                 compoName: null,
+
+                areaChart: null,
+
+                dateTest: null,
             }
         },
         methods: {
             favFunc: function() {
                 let fav = this.isFav;
                 this.favDialog = false;
-                firebase.database().ref('teams/' + firebase.auth().currentUser.uid + '/' + this.team + '/compo/' + this.id).update({
+                firebase.database().ref('teams/' + this.team + '/compo/' + this.id).update({
                     isFav: !this.isFav,
                 }).then(() => {
                     if (fav) {
@@ -389,7 +399,7 @@
             },
           changeCompoName: function () {
               if (this.compoName != null) {
-                  firebase.database().ref('teams/' + firebase.auth().currentUser.uid + '/' + this.team + '/compo/' + this.id).update({
+                  firebase.database().ref('teams/' + this.team + '/compo/' + this.id).update({
                       Name: this.compoName,
                   }).then(() => {
                       this.compoName = null;
@@ -400,7 +410,8 @@
           }
         },
         created() {
-            firebase.database().ref('teams/' + firebase.auth().currentUser.uid + '/' + this.team).once('value').then((snapshot) => {
+            this.accountUid = firebase.auth().currentUser.uid;
+            firebase.database().ref('teams/' + this.team).once('value').then((snapshot) => {
                 this.teamPlayer = snapshot.val();
 
                 let favCalc = 0;
@@ -414,6 +425,86 @@
                 if (favCalc >= 4) {
                     this.fullFav = true;
                 }
+
+                let list = [];
+                let advenced = [];
+                let tour = 1;
+                Object.keys(snapshot.val().matchs || {}).forEach(id => {
+                    let match = snapshot.val().matchs[id];
+                    let ddate = match.GameDate.substring(0, 10);
+                    advenced.push('N° tour = ' + tour);
+                    if (this.id == match.GameCompositionSide1) {
+                        let id = 0;
+                        if (list.length === 0) {
+                            advenced.push('Ajout premiere valeur');
+                            list.push({used: 1, date: ddate});
+                            id += 1;
+                        } else {
+                            list.forEach(item => {
+                                if (item.date == ddate) { //Date existe
+                                    advenced.push('Date existe');
+                                    item.used += 1;
+                                    id += 1;
+                                }
+                            })
+                        }
+                        if (id == 0) {
+                            list.push({used: 1, date: ddate});
+                        }
+                    }
+                    if (this.id == match.GameCompositionSide2) {
+                        let id = 0;
+                        if (list.length === 0) {
+                            advenced.push('Ajout premiere valeur');
+                            list.push({used: 1, date: ddate});
+                            id += 1;
+                        } else {
+                            list.forEach(item => {
+                                if (item.date == ddate) { //Date existe
+                                    advenced.push('Date existe');
+                                    item.used += 1;
+                                    id += 1;
+                                }
+                            })
+                        }
+                        if (id == 0) {
+                            list.push({used: 1, date: ddate});
+                        }
+                    }
+                    if (this.id == match.GameCompositionSide3) {
+                        let id = 0;
+                        if (list.length === 0) {
+                            advenced.push('Ajout premiere valeur');
+                            list.push({used: 1, date: ddate});
+                            id += 1;
+                        } else {
+                            list.forEach(item => {
+                                if (item.date == ddate) { //Date existe
+                                    advenced.push('Date existe');
+                                    item.used += 1;
+                                    id += 1;
+                                }
+                            })
+                        }
+                        if (id == 0) {
+                            list.push({used: 1, date: ddate});
+                        }
+                    }
+                    tour += 1;
+                });
+                this.advenced = advenced;
+
+                let lets = {};
+
+                list.forEach(item => {
+                    let days = item.date.substring(0,2);
+                    let mounth = item.date.substring(3, 5);
+                    let years = item.date.substring(6, 10);
+                    let items = mounth + '/' + days + '/' + years;
+                    lets[items] = item.used;
+                });
+
+                this.areaChart = lets;
 
                 //Calcul de PieDataRank et QuickPlay
                 Object.keys(snapshot.val().matchs || {}).forEach(id => {
@@ -467,7 +558,7 @@
                 });
             })
 
-            firebase.database().ref('teams/' + firebase.auth().currentUser.uid + '/' + this.team + '/compo/' + this.id).on('value',  (snapshot) => {
+            firebase.database().ref('teams/' + this.team + '/compo/' + this.id).on('value',  (snapshot) => {
                 // alert(JSON.stringify(snapshot.val()))
                 this.teamValue = snapshot.val();
 
@@ -478,7 +569,7 @@
                     this.isFav = false;
                 }
                 if (this.teamValue.isNew) {
-                    firebase.database().ref('teams/' + firebase.auth().currentUser.uid + '/' + this.team + '/compo/' + this.id).update({
+                    firebase.database().ref('teams/' + this.team + '/compo/' + this.id).update({
                         isNew: false,
                     })
                 }
