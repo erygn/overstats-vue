@@ -1,65 +1,231 @@
 <template>
-    <div style="background-color: #f4f7fc">
-        <v-container fluid style="background: linear-gradient(#0694cc, #075983); height: 450px; color: #2d3039;">
+    <div style="background-color: #FFFFFF" id="top">
+
+        <v-app-bar
+                app
+                flat
+                style="background-color: #FFFFFF"
+        >
+            <!--            <v-app-bar-nav-icon v-if="!drawer" @click.stop="openDrawer" />-->
             <v-row justify="center">
-                <div class="col-lg-10 col-md-10 col-sm-12 text-center">
-                    <h1 style="font-size: 22px; font-weight: 700; text-transform: uppercase; font-size: 25px; color: #FFFFFF; margin-top: 80px">Développez votre équipe</h1>
-                    <h2 style="font-weight: 300; font-size: 14px; color: #FFFFFF">Utilisez Overstats pour développer vos équipes Esport</h2>
-                    <v-btn width="200" elevation="1" tile height="40" style="border-radius: 5px; margin-top: 20px; background-color: #FFF; color: #2d3039; text-transform: initial" @click="dialog = !dialog">Connexion</v-btn>
-                    <h2 style="font-weight: 300; color: #FFFFFF; font-size: 14px; margin-top: 10px">Pas encore de compte ?</h2>
-                    <button @click="dialogRegister = !dialogRegister" style="font-size: 14px; color: #0084fd">Créer un compte</button>
+                <div class="col-lg-10 col-sm-12">
+                    <v-row style="padding-left: 16px; padding-right: 16px">
+                        <v-toolbar-title class="text-uppercase" style="margin-top: 2px">
+                            <router-link to="/login" style="color: #0e0f17">
+                                <span class="font-weight-light">Over</span>
+                                <span>Stats</span>
+                            </router-link>
+                        </v-toolbar-title>
+                        <v-spacer></v-spacer>
+                        <v-btn style="text-transform: initial" text @click="dialog = !dialog">Login</v-btn>
+                    </v-row>
+                </div>
+            </v-row>
+        </v-app-bar>
+
+        <v-container fluid style="background: linear-gradient(#000a16, #092139);">
+            <v-row justify="center">
+                <div class="col-lg-8 col-md-10 col-sm-12 text-center">
+                    <div class="row">
+                        <div class="row hidden-sm-and-down text-center">
+                            <div class="col-12 text-center">
+                                <h1 style="font-weight: 700; text-transform: uppercase; font-size: 80px; color: #EFEBEE; margin-top: 80px; letter-spacing: 5px">Improve Your Team</h1>
+                                <h2 style="font-weight: 400; font-size: 20px; color: #EFEBEE; margin-top: 10px">With Overstats find the weaknesses of your team<br> and improve them</h2>
+                                <h2 style="font-weight: 700; font-size: 18px; color: #EFEBEE; margin-top: 20px">Are you ready?</h2>
+                                <v-btn width="200" elevation="0" tile height="50" style="border-radius: 25px; margin-top: 20px; background-color: #385982; color: #EFEBEE; text-transform: initial" @click="scrollTo('reg')">Let's Go!</v-btn>
+                                <p style="margin-bottom: 120px; color: #EFEBEE; margin-top: 20px; font-size: 14px; cursor: pointer" @click="dialog = !dialog">or <span style="color: #039be5">Login</span></p>
+                            </div>
+<!--                            <div class="col-6" style="margin-top: 30px; background-image: url(https://subswapr.fr/img/overstats/tra.png); background-repeat: no-repeat; background-size: cover">-->
+<!--&lt;!&ndash;                                <v-img src="https://subswapr.fr/img/overstats/tra.png" />&ndash;&gt;-->
+<!--                            </div>-->
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-12 hidden-md-and-up" style="margin-top: 15px">
+                            <h1 style="font-weight: 700; text-transform: uppercase; font-size: 43px; color: #EFEBEE; margin-top: 60px; letter-spacing: 5px">Improve Your Team</h1>
+                            <h2 style="font-weight: 300; font-size: 14px; color: #EFEBEE">With Overstats find the weaknesses of your team<br> and improve them</h2>
+                            <h2 style="font-weight: 700; font-size: 12px; color: #EFEBEE; margin-top: 20px">Are you ready?</h2>
+                            <v-btn width="200" elevation="0" tile height="50" style="border-radius: 25px; margin-top: 20px; background-color: #385982; color: #EFEBEE; text-transform: initial" @click="scrollTo('reg')">Let's Go!</v-btn>
+                            <p style="margin-bottom: 80px; color: #EFEBEE; margin-top: 20px; font-size: 14px; cursor: pointer" @click="dialog = !dialog">or <span style="color: #039be5">Login</span></p>
+                        </div>
+                    </div>
                 </div>
             </v-row>
         </v-container>
 
-<!--        <v-container fluid>-->
-<!--            <v-row justify="center">-->
-<!--                <div class="col-lg-10 col-md-10 col-sm-12 text-center">-->
-<!--                    <h2 style="font-weight: 300; font-size: 20px; color: red; margin-bottom: -60px">Attention, système en cours de développement <v-icon color="red">mdi-alert</v-icon></h2>-->
-<!--                </div>-->
-<!--            </v-row>-->
-<!--        </v-container>-->
-
-        <v-container fluid style="align-items: center" class="my-5">
-            <v-row align="center" style="justify-content: center; margin-top: -100px">
-                <div class="col-lg-6 col-sm-12 col-md-8">
-                    <v-card
-                            elevation="1"
-                            style="border-radius: 5px; padding: 18px"
-                    >
-                        <v-card-title style="font-weight: 400; font-size: 24px">Overstats</v-card-title>
-                        <v-card-subtitle class="pb-0">Accédez à un panel de gestion de vos équipes</v-card-subtitle>
-                        <v-card-text class="text--primary">
-                            <div>Utilisez les outils disponibles pour voir les points à améliorer sur votre équipe.</div>
-
-                            <div>Gérer vos parties et ajouter des objectifs à réaliser dans les prochaines semaines</div>
-                        </v-card-text>
-                    </v-card>
+        <v-container fluid style="background-color: #F7F7F7" class="hidden-md-and-down hidden-md-and-up">
+            <v-row justify="center">
+                <div class="col-lg-8 col-md-10 col-sm-12 text-center">
+                    <div class="row" style="color: #EFEBEE">
+                        <div class="col-lg-4 col-sm-12">
+                            <div class="bord">
+                                <v-icon large style="margin-bottom: 20px; color: #EFEBEE">mdi-account-plus</v-icon>
+                                <h2 style="font-weight: bold">1. Create an Account</h2>
+                                <p>For your team</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-12">
+                            <div class="bord">
+                                <v-icon large style="margin-bottom: 20px; color: #EFEBEE">mdi-keyboard</v-icon>
+                                <h2 style="font-weight: bold">2. Enter values</h2>
+                                <p>Of your Overwatch game</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-12">
+                            <div class="bord">
+                                <v-icon large style="margin-bottom: 20px; color: #EFEBEE">mdi-chart-arc</v-icon>
+                                <h2 style="font-weight: bold">3. Show Results</h2>
+                                <p>And analyze them</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </v-row>
         </v-container>
 
-        <v-container fluid>
-            <v-row align="center" style="justify-content: center">
-                <div class="col-lg-6 col-sm-12 col-md-8">
-                    <v-divider></v-divider>
+        <v-container fluid style="background-color: #F7F7F7">
+            <v-row justify="center">
+                <div class="col-lg-8 col-md-10 col-sm-12 text-center">
+                    <div class="row">
+                        <div class="col-12">
+                            <h1 style="margin-top: 80px; font-size: 35px; font-weight: bold">What's Overstats?</h1>
+                            <h2 style="font-size: 18px; margin-bottom: 50px">Track Your Overwatch Team Stats</h2>
+                        </div>
+                    </div>
+
+                    <div class="row justify-center">
+                        <div class="col-lg-4 col-md-4 col-sm-6 text-center bordT">
+                            <v-icon large style="margin-bottom: 20px">mdi-account-plus</v-icon>
+                            <h2 style="font-weight: bold">1. Create an Account</h2>
+                            <p>For your team</p>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-sm-6 text-center bordT">
+                            <v-icon large style="margin-bottom: 20px">mdi-keyboard</v-icon>
+                            <h2 style="font-weight: bold">2. Enter values</h2>
+                            <p>Of your Overwatch game</p>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-sm-6 text-center bordT">
+                            <v-icon large style="margin-bottom: 20px">mdi-chart-arc</v-icon>
+                            <h2 style="font-weight: bold">3. Show Results</h2>
+                            <p>And analyze them</p>
+                        </div>
+
+                        <div class="col-lg-4 col-md-4 col-sm-6 text-center bordT">
+                            <v-icon large style="margin-bottom: 20px">mdi-trending-up</v-icon>
+                            <h2 style="font-weight: bold">4. Progress on the game</h2>
+                            <p>With the Stats</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <p style="font-size: 14px; margin-top: 60px; margin-bottom: 30px; color: #cfd4e0">I'm not sure</p>
+                        </div>
+                    </div>
                 </div>
             </v-row>
+        </v-container>
 
+        <v-container fluid id="reg">
+            <v-row justify="center">
+                <div class="col-lg-8 col-md-10 col-sm-12 text-center">
+                    <div class="row">
+                        <div class="col-12">
+                            <h1 style="margin-top: 80px; font-size: 35px; font-weight: bold">Nous rejoindre ?</h1>
+                            <h2 style="font-size: 18px">Choississez votre status</h2>
+                        </div>
+                    </div>
 
-            <v-row align="center" style="justify-content: center; height: 1px; margin-top: 10px">
-                <div class="col-lg-6 col-sm-12 col-md-8">
+                    <div class="row justify-center">
+                        <div class="col-lg-4 col-md-4 col-sm-6">
+                            <v-card tile elevation="1" style="border-radius: 25px; color: #092139; font-weight: 500; border: 1px solid #dde2ee">
+                                <v-container>
+                                    <v-row justify="center">
+                                        <div class="text-center">
+                                            <v-icon style="margin-top: 20px; background-color: 	#e5f3fe; color: #0382ff; padding: 10px; border-radius: 40px" large>mdi-gamepad-variant</v-icon>
+                                            <h2 style="margin-top: 12px; color: #2d3039; font-size: 40px; font-weight: 600">Joueur</h2>
+                                            <h3 style="color: #616777; font-weight: 600">Gratuit</h3>
+                                            <br>
+                                            <p style="color: #2d3039; font-size: 18px; font-weight: bold">Les possibilités</p>
+                                            <p style="color: #768185; font-size: 15px"><v-icon color="green" style="margin-top: -2px; margin-right: 2px">mdi-check</v-icon>Rejoindre des équipes</p>
+                                            <p style="color: #768185; font-size: 15px; margin-top: -10px"><v-icon color="green" style="margin-top: -2px; margin-right: 2px">mdi-check</v-icon>Voir les stats</p>
+                                            <p style="color: #768185; font-size: 15px; margin-top: -10px"><v-icon color="green" style="margin-top: -2px; margin-right: 2px">mdi-check</v-icon>Ajouter des commentaires</p>
+
+                                            <v-btn width="200" elevation="0" tile height="50" style="border-radius: 25px; margin-top: 40px; background-color: #2d3039; color: #EFEBEE; text-transform: initial; margin-bottom: 20px" @click="dialogRegister = !dialogRegister">Go Player</v-btn>
+                                        </div>
+                                    </v-row>
+                                </v-container>
+                            </v-card>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-6">
+                            <v-card tile elevation="1" style="border-radius: 25px; color: #092139; font-weight: 500; border: 1px solid #dde2ee">
+                                <v-container>
+                                    <v-row justify="center">
+                                        <div class="text-center">
+                                            <v-icon style="margin-top: 20px; background-color: 	#e5f3fe; color: #0382ff; padding: 10px; border-radius: 40px" large>mdi-chart-donut</v-icon>
+                                            <h2 style="margin-top: 12px; color: #2d3039; font-size: 40px; font-weight: 600">Coach</h2>
+                                            <h3 style="color: #616777; font-weight: 600">1.99€/Mois</h3>
+                                            <br>
+                                            <p style="color: #2d3039; font-size: 18px; font-weight: bold">Les possibilités</p>
+                                            <p style="color: #768185; font-size: 15px"><v-icon color="green" style="margin-top: -2px; margin-right: 2px">mdi-check</v-icon>Créer des équipes</p>
+                                            <p style="color: #768185; font-size: 15px; margin-top: -10px"><v-icon color="green" style="margin-top: -2px; margin-right: 2px">mdi-check</v-icon>Gérer ces équipes</p>
+                                            <p style="color: #768185; font-size: 15px; margin-top: -10px"><v-icon color="green" style="margin-top: -2px; margin-right: 2px">mdi-check</v-icon>Ajouter des matchs</p>
+                                            <p style="color: #768185; font-size: 15px; margin-top: -10px"><v-icon color="green" style="margin-top: -2px; margin-right: 2px">mdi-check</v-icon>Gérer les joueurs</p>
+                                            <p style="color: #768185; font-size: 15px; margin-top: -10px">...</p>
+                                            <p style="color: #768185; font-size: 15px; margin-top: -10px"><v-icon color="grey" style="margin-top: -2px; margin-right: 2px">mdi-plus</v-icon> les possibilités Joueur</p>
+
+                                            <v-btn width="200" elevation="0" tile height="50" style="border-radius: 25px; margin-top: 40px; background-color: #2d3039; color: #EFEBEE; text-transform: initial; margin-bottom: 20px" @click="dialogRegisterC = !dialogRegisterC">Go Coach</v-btn>
+                                        </div>
+                                    </v-row>
+                                </v-container>
+                            </v-card>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-6">
+                            <v-card tile elevation="1" style="border-radius: 25px; color: #092139; font-weight: 500; border: 1px solid #dde2ee">
+                                <v-container>
+                                    <v-row justify="center">
+                                        <div class="text-center">
+                                            <v-icon style="margin-top: 20px; background-color: 	#e5f3fe; color: #0382ff; padding: 12px; border-radius: 40px" large>mdi-discord</v-icon>
+                                            <h2 style="margin-top: 12px; color: #2d3039; font-size: 40px; font-weight: 600">EQB</h2>
+                                            <h3 style="color: #616777; font-weight: 600">Gratuit</h3>
+                                            <br>
+                                            <p style="color: #2d3039; font-size: 18px; font-weight: bold">Les possibilités</p>
+                                            <p style="color: #768185; font-size: 15px">Joueur // Coach</p>
+
+                                            <p style="color: #2d3039; font-size: 18px; font-weight: bold">Conditions</p>
+                                            <p style="color: #768185; font-size: 15px"><v-icon color="green" style="margin-top: -2px; margin-right: 2px">mdi-check</v-icon>Équipe sur EQB</p>
+
+                                            <v-btn width="200" elevation="0" tile height="50" style="border-radius: 25px; margin-top: 40px; background-color: #2d3039; color: #EFEBEE; text-transform: initial; margin-bottom: 20px">Go Coach</v-btn>
+                                        </div>
+                                    </v-row>
+                                </v-container>
+                            </v-card>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 style="margin-top: 60px; font-size: 20px; font-weight: bold">Déjà un compte ?</h2>
+                            <h2 @click="dialog = !dialog" style="font-size: 14px; margin-top: -6px; color: #0084fd; cursor: pointer">Connexion</h2>
+                        </div>
+                    </div>
+                </div>
+            </v-row>
+        </v-container>
+
+        <v-container fluid style="background: linear-gradient(#000a16, #092139);">
+            <v-row justify="center" style="height: 1px; margin-top: 60px; margin-bottom: 80px; color: #EFEBEE">
+                <div class="col-lg-10 col-sm-12 col-md-8 text-center">
                     <h2>Nouveautés sur Overstats</h2>
                 </div>
             </v-row>
-        </v-container>
 
-        <v-container fluid style="align-items: center" class="my-5">
-            <v-row align="center" style="justify-content: center">
-                <div class="col-lg-6 col-sm-12 col-md-8">
-                    <v-row align="center" style="justify-content: center">
-                        <div class="col-sm-6">
-                            <v-card style="border-radius: 5px" class="mx-auto">
+            <v-row justify="center">
+                <div class="col-lg-8 col-md-10 col-sm-12 text-center">
+                    <v-row justify="center">
+                        <div class="col-sm-5">
+                            <v-card style="border-radius: 5px" class="mx-auto text-left">
                                 <v-img
                                         class="white--text align-end"
                                         height="200px"
@@ -74,21 +240,10 @@
 
                                     <div>Mais également utiliser vos compositions favorites pour remplir votre feuille de match plus rapidement</div>
                                 </v-card-text>
-
-                                <v-card-actions>
-                                    <v-spacer/>
-                                    <v-btn
-                                            color="grey"
-                                            text
-                                            @click="dialog = !dialog"
-                                    >
-                                        Voir <v-icon small>fa-eye</v-icon>
-                                    </v-btn>
-                                </v-card-actions>
                             </v-card>
                         </div>
-                        <div class="col-sm-6">
-                            <v-card style="border-radius: 5px" class="mx-auto">
+                        <div class="col-sm-5">
+                            <v-card style="border-radius: 5px" class="mx-auto text-left">
                                 <v-img
                                         class="white--text align-end"
                                         height="200px"
@@ -99,150 +254,80 @@
                                 <v-card-title>Fav Composition</v-card-title>
                                 <v-card-subtitle class="pb-0">Ajouter rapidement des matchs</v-card-subtitle>
                                 <v-card-text class="text--primary">
-                                    <div>Un composition dans votre équipe revient souvent ?<br>Vous pouvez désormais ajouter votre composition comme un modèle qui peut ^étre appliquer en un seul clique lors de l'ajout d'un match</div>
+                                    <div>Un composition dans votre équipe revient souvent ?<br>Vous pouvez désormais ajouter votre composition comme un modèle qui peut être appliquer en un seul clique lors de l'ajout d'un match</div>
 
                                     <div>Plus facile et rapide à utiliser</div>
                                 </v-card-text>
-
-                                <v-card-actions>
-                                    <v-spacer/>
-                                    <v-btn
-                                            color="grey"
-                                            text
-                                            @click="dialog = !dialog"
-                                    >
-                                        Voir <v-icon small>fa-eye</v-icon>
-                                    </v-btn>
-                                </v-card-actions>
                             </v-card>
                         </div>
                     </v-row>
                 </div>
             </v-row>
+            <br>
+            <br>
+            <br>
         </v-container>
 
-<!--        <v-container style="align-items: center" class="my-5">-->
-<!--            <v-row align="center" style="justify-content: center">-->
-<!--                <div class="col-sm-6 col-lg-3">-->
-<!--                    <v-card-->
-<!--                            color="#004A67"-->
-<!--                            dark-->
-<!--                    >-->
-<!--                        <v-card-title class="headline">Ajouter une équipe</v-card-title>-->
+        <v-container fluid style="background-color: #000a16; color: #EFEBEE">
+            <v-row justify="center">
+                <div class="col-lg-8 col-md-10 col-sm-12 text-center">
+                    <div class="row">
+                        <div class="col-12">
+                            <v-btn text @click="scrollTo('top')"><v-icon color="#EFEBEE">fa-angle-up</v-icon></v-btn>
+                        </div>
+                    </div>
 
-<!--                        <v-card-subtitle>Ajoutez une équipe et commencez à traiter des données.</v-card-subtitle>-->
-
-<!--                        <v-card-actions>-->
-<!--                            <v-btn @click="dialog = !dialog" text>Ajouter</v-btn>-->
-<!--                        </v-card-actions>-->
-<!--                    </v-card>-->
-<!--                </div>-->
-<!--                <div class="col-sm-6 col-lg-3">-->
-<!--                    <v-card-->
-<!--                            color="#003041"-->
-<!--                            dark-->
-<!--                    >-->
-<!--                        <v-card-title class="headline">Accéder aux Stats</v-card-title>-->
-
-<!--                        <v-card-subtitle>Regardez en un clique vos statistiques d'équipe.</v-card-subtitle>-->
-
-<!--                        <v-card-actions>-->
-<!--                            <v-btn @click="dialog = !dialog" text>Voir</v-btn>-->
-<!--                        </v-card-actions>-->
-<!--                    </v-card>-->
-<!--                </div>-->
-<!--            </v-row>-->
-<!--            <v-divider dark class="my-4"/>-->
-<!--            <v-row align="center" style="justify-content: center">-->
-<!--                <div class="col-sm-6 col-lg-3">-->
-<!--                    <v-card-->
-<!--                            color="#004A67"-->
-<!--                            dark-->
-<!--                    >-->
-<!--                        <v-card-title class="headline">Partagez votre avancée</v-card-title>-->
-
-<!--                        <v-card-subtitle>Montrez aux autres équipes votre progression et organisez des matchs.</v-card-subtitle>-->
-
-<!--                        <v-card-actions>-->
-<!--                            <v-btn @click="dialog = !dialog" text>Partager</v-btn>-->
-<!--                        </v-card-actions>-->
-<!--                    </v-card>-->
-<!--                </div>-->
-<!--                <div class="col-sm-6 col-lg-3">-->
-<!--                    <v-card-->
-<!--                            color="#003041"-->
-<!--                            dark-->
-<!--                    >-->
-<!--                        <v-card-title class="headline">Organiser des tournois</v-card-title>-->
-
-<!--                        <v-card-subtitle>Organisez des tournois avec les équipes déjà présente sur Overstats.</v-card-subtitle>-->
-
-<!--                        <v-card-actions>-->
-<!--                            <v-btn @click="dialog = !dialog" text>Organiser</v-btn>-->
-<!--                        </v-card-actions>-->
-<!--                    </v-card>-->
-<!--                </div>-->
-<!--            </v-row>-->
-<!--        </v-container>-->
+                    <div class="row">
+                        <div class="col-12">
+                            <h1 style="font-size: 18px; font-weight: bold">Overstats</h1>
+                            <h2 style="font-size: 11px">Statistiques</h2>
+                        </div>
+                    </div>
+                </div>
+            </v-row>
+        </v-container>
 
         <v-dialog
                 v-model="dialog"
                 width="600px"
         >
-            <v-card tile style="border-radius: 5px; background-color: #FFF; color: #2d3039;">
-                <v-card-title style="font-size: 17px; font-weight: 400; border-bottom: 2px solid #d5d8dd">
-                    <span style="margin-left: 10px;">Connexion</span>
+            <v-card tile style="background-color: #FFF; color: #2d3039;">
+                <v-card-title style="font-size: 22px; font-weight: 400">
+                    <v-spacer/>
+                    <span style="margin-top: 20px; margin-bottom: 10px">Login</span>
+                    <v-spacer/>
+<!--                    <v-btn @click="dialog = !dialog" text depressed><v-icon color="#2d3039">mdi-close</v-icon></v-btn>-->
                 </v-card-title>
                 <v-container>
-                    <v-row class="mx-2">
-                        <v-col
-                                class="align-center justify-space-between"
-                                cols="12"
-                        >
-                            <v-row
-                                    align="center"
-                                    class="mr-0"
-                            >
-                                <v-list-item-subtitle><v-text-field color="#69697f" type="text" label="Adresse mail*" prepend-icon="mdi-mail" v-model="email"/></v-list-item-subtitle>
-                            </v-row>
-                            <v-row
-                                    align="center"
-                                    class="mr-0"
-                            ><v-list-item-subtitle><v-text-field
+                    <v-row justify="center" class="row text-center mx-2">
+                        <div class="col-sm-12 col-lg-8">
+                            <v-text-field color="#69697f" prepend-icon="mdi-account" type="text" label="Mail*" v-model="email"/>
+                            <v-text-field
                                     color="#69697f"
                                     :append-icon="show3 ? 'mdi-eye' : 'mdi-eye-off'"
-                                    prepend-icon="mdi-lock"
                                     :type="show3 ? 'text' : 'password'"
-                                    name="input-10-2"
-                                    label="Mot de passe*"
+                                    label="Password*"
+                                    prepend-icon="mdi-lock"
                                     class="input-group--focused"
                                     v-model="password"
                                     @click:append="show3 = !show3"
-                            /></v-list-item-subtitle>
-                            </v-row>
-                            <v-row align="center"
-                                   class="mr-0">
-                                <v-spacer/>
-                                <p style="color: red">{{errorMessage}}</p>
-                            </v-row>
-                        </v-col>
+                            />
+                            <div class="text-right">
+                                <p style="color: cornflowerblue; font-size: 12px; cursor: pointer;">Forgot your password</p>
+                            </div>
+                            <p style="color: red; font-size: 12px">{{errorMessage}}</p>
+
+                            <v-btn
+                                    width="200"
+                                    height="50"
+                                    :loading="registJ"
+                                    elevation="1" tile style="border-radius: 25px; background-color: #2d3039; color: #EFEBEE; text-transform: initial; margin-top: 30px"
+                                    @click="login"
+                            >Login</v-btn>
+                            <p style="color: cornflowerblue; font-size: 12px; cursor: pointer; margin-top: 20px" @click="notRegister">Not Register?</p>
+                        </div>
                     </v-row>
                 </v-container>
-                <v-card-actions>
-                    <v-spacer />
-                    <v-btn
-                            width="150"
-                            height="35"
-                            elevation="1" tile style="border-radius: 5px; background-color: #FFF; color: #2d3039; text-transform: initial"
-                            @click="login"
-                    >Connexion</v-btn>
-                    <v-btn
-                            style="margin-right: 5px; text-transform: initial"
-                            text
-                            color="#003041"
-                            @click="dialog = false"
-                    >Fermer</v-btn>
-                </v-card-actions>
             </v-card>
         </v-dialog>
 
@@ -253,7 +338,9 @@
         >
             <v-card tile style="border-radius: 5px; background-color: #FFF; color: #2d3039;">
                 <v-card-title style="font-size: 17px; font-weight: 400; background-color: #2d3039; color: #FFF">
-                    <span style="margin-left: 10px;">Inscription</span>
+                    <span style="margin-left: 10px;">Create Player</span>
+                    <v-spacer/>
+                    <v-btn @click="dialogRegister = !dialogRegister" text depressed><v-icon color="#FFFFFF">mdi-close</v-icon></v-btn>
                 </v-card-title>
                 <v-container>
                     <v-row class="mx-2">
@@ -266,6 +353,7 @@
                                     class="mr-0"
                             >
                                 <v-list-item-subtitle><v-text-field color="#69697f" type="text" label="Pseudo*" prepend-icon="mdi-account" v-model="pseudo"/></v-list-item-subtitle>
+                                <v-list-item-subtitle><v-text-field color="#69697f" type="text" label="BattleTag*" prepend-icon="mdi-numeric" v-model="battleTag"/></v-list-item-subtitle>
                                 <v-list-item-subtitle><v-text-field color="#69697f" type="text" label="Adresse mail*" prepend-icon="mdi-mail" v-model="email"/></v-list-item-subtitle>
                                 <v-list-item-subtitle><v-text-field
                                         color="#69697f"
@@ -307,7 +395,8 @@
                             width="150"
                             height="35"
                             elevation="1" tile style="border-radius: 5px; background-color: #FFF; color: #2d3039; text-transform: initial"
-                            @click="register"
+                            :loading="registJ"
+                            @click="register(3)"
                     >Inscription</v-btn>
                     <v-btn
                             style="margin-right: 5px; text-transform: initial"
@@ -319,8 +408,81 @@
             </v-card>
         </v-dialog>
 
+        <v-dialog
+                v-model="dialogRegisterC"
+                width="600px"
+        >
+            <v-card tile style="border-radius: 5px; background-color: #FFF; color: #2d3039;">
+                <v-card-title style="font-size: 17px; font-weight: 400; background-color: #2d3039; color: #FFF">
+                    <span style="margin-left: 10px;">Create Coach</span>
+                    <v-spacer/>
+                    <v-btn @click="dialogRegisterC = !dialogRegisterC" text depressed><v-icon color="#FFFFFF">mdi-close</v-icon></v-btn>
+                </v-card-title>
+                <v-container>
+                    <v-row class="mx-2">
+                        <v-col
+                                class="align-center justify-space-between"
+                                cols="12"
+                        >
+                            <v-row
+                                    align="center"
+                                    class="mr-0"
+                            >
+                                <v-list-item-subtitle><v-text-field color="#69697f" type="text" label="Pseudo*" prepend-icon="mdi-account" v-model="pseudo"/></v-list-item-subtitle>
+                                <v-list-item-subtitle><v-text-field color="#69697f" type="text" label="BattleTag*" prepend-icon="mdi-numeric" v-model="battleTag"/></v-list-item-subtitle>
+                                <v-list-item-subtitle><v-text-field color="#69697f" type="text" label="Adresse mail*" prepend-icon="mdi-mail" v-model="email"/></v-list-item-subtitle>
+                                <v-list-item-subtitle><v-text-field
+                                        color="#69697f"
+                                        :append-icon="show3 ? 'mdi-eye' : 'mdi-eye-off'"
+                                        prepend-icon="mdi-lock"
+                                        :type="show3 ? 'text' : 'password'"
+                                        name="input-10-2"
+                                        label="Mot de passe*"
+                                        class="input-group--focused"
+                                        :rules="rules" counter
+                                        v-model="password"
+                                        @click:append="show3 = !show3"
+                                /></v-list-item-subtitle>
+                                <v-list-item-subtitle><v-text-field
+                                        color="#69697f"
+                                        :append-icon="show4 ? 'mdi-eye' : 'mdi-eye-off'"
+                                        prepend-icon="mdi-lock"
+                                        :type="show4 ? 'text' : 'password'"
+                                        name="input-10-2"
+                                        label="Confirmation du mot de passe*"
+                                        :rules="rules" counter
+                                        class="input-group--focused"
+                                        v-model="password2"
+                                        @click:append="show4 = !show4"
+                                /></v-list-item-subtitle>
+                            </v-row>
 
-        <v-divider dark class="my-12"/>
+                            <v-row align="center"
+                                   class="mr-0">
+                                <v-spacer/>
+                                <p style="color: red">{{errorMessage}}</p>
+                            </v-row>
+                        </v-col>
+                    </v-row>
+                </v-container>
+                <v-card-actions>
+                    <v-spacer />
+                    <v-btn
+                            width="150"
+                            height="35"
+                            elevation="1" tile style="border-radius: 5px; background-color: #FFF; color: #2d3039; text-transform: initial"
+                            :loading="registJ"
+                            @click="register(1)"
+                    >Inscription</v-btn>
+                    <v-btn
+                            style="margin-right: 5px; text-transform: initial"
+                            text
+                            color="#003041"
+                            @click="dialogRegisterC = false"
+                    >Fermer</v-btn>
+                </v-card-actions>
+            </v-card>
+        </v-dialog>
 
     </div>
 </template>
@@ -335,9 +497,12 @@
 
                 show4: false,
                 pseudo: null,
+                battleTag: null,
                 password2: null,
 
                 dialogRegister: false,
+                dialogRegisterC: false,
+                registJ: false,
                 dialog: false,
 
                 show3: false,
@@ -356,43 +521,93 @@
             }
         },
         methods: {
+            notRegister: function() {
+                this.dialog = false;
+                var doc = document.querySelector('#reg');
+                doc.scrollIntoView({behavior: 'smooth'});
+            },
+            scrollTo: function(n) {
+                var doc = document.querySelector('#' + n);
+                doc.scrollIntoView({behavior: 'smooth'});
+                // location.hash = '#' + n;
+            },
             login: function() {
+                this.registJ = true;
                 firebase.auth().signInWithEmailAndPassword(this.email, this.password).then(
                     () => {
+                        this.registJ = false;
                         this.$router.replace('/')
                     },
                     (err) => {
+                        this.registJ = false;
                         this.errorMessage = 'Oops. ' + err.message;
                     }
                 );
             },
-            register: function() {
-                if (this.pseudo != null && this.email != null && this.password != null && this.password2 != null) {
-                    if (this.password == this.password2) {
-                        firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
-                            (userCredential) => {
-                                firebase.database().ref('users' + '/' + userCredential.user.uid).set({
-                                    Pseudo: this.pseudo,
-                                    Mail: this.email,
-                                    Teams: 0,
-                                    Description: 'Nouveau',
-                                    Grade: 1,
-                                    isRole: false,
-                                    roleId: false,
-                                    InscriptionDate: new Date().toLocaleString("fr-FR"),
-                                }).then(() => {
-                                        this.$router.replace('/')
-                                    },
-                                    (err2) => {
-                                        alert(err2.message())
-                                    })
-                            },
-                            (err) => {
-                                this.errorMessage = err.message;
-                            }
-                        );
-                    } else {
-                        this.errorMessage = 'Les mots de passe ne correspondent pas';
+            register: function(n) {
+                this.registJ = true;
+                if (this.pseudo != null && this.email != null && this.password != null && this.password2 != null && this.battleTag != null) {
+                    if (n == 3) {
+                        if (this.password == this.password2) {
+                            firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
+                                (userCredential) => {
+                                    firebase.database().ref('users' + '/' + userCredential.user.uid).set({
+                                        Pseudo: this.pseudo,
+                                        BattleTag: this.battleTag,
+                                        Mail: this.email,
+                                        Teams: 0,
+                                        Description: 'Player',
+                                        Grade: 3,
+                                        isRole: false,
+                                        roleId: false,
+                                        InscriptionDate: new Date().toLocaleString("fr-FR"),
+                                    }).then(() => {
+                                            this.registJ = false;
+                                            this.$router.replace('/')
+                                        },
+                                        (err2) => {
+                                        this.registJ = false;
+                                            alert(err2.message())
+                                        })
+                                },
+                                (err) => {
+                                    this.errorMessage = err.message;
+                                }
+                            );
+                        } else {
+                            this.errorMessage = 'Les mots de passe ne correspondent pas';
+                        }
+                    }
+                    if (n == 1) {
+                        if (this.password == this.password2) {
+                            firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
+                                (userCredential) => {
+                                    firebase.database().ref('users' + '/' + userCredential.user.uid).set({
+                                        Pseudo: this.pseudo,
+                                        BattleTag: this.battleTag,
+                                        Mail: this.email,
+                                        Teams: 0,
+                                        Description: 'Coach',
+                                        Grade: 1,
+                                        isRole: false,
+                                        roleId: false,
+                                        InscriptionDate: new Date().toLocaleString("fr-FR"),
+                                    }).then(() => {
+                                            this.registJ = false;
+                                            this.$router.replace('/')
+                                        },
+                                        (err2) => {
+                                            this.registJ = false;
+                                            alert(err2.message())
+                                        })
+                                },
+                                (err) => {
+                                    this.errorMessage = err.message;
+                                }
+                            );
+                        } else {
+                            this.errorMessage = 'Les mots de passe ne correspondent pas';
+                        }
                     }
                 } else {
                     this.errorMessage = 'Veuillez completer tous les champs';
@@ -403,5 +618,17 @@
 </script>
 
 <style scoped>
-
+    .bord {
+        margin-top: -110px;
+        color: #EFEBEE;
+        background-color: #385982;
+        border-radius: 25px;
+        padding: 25px;
+    }
+    .bordT {
+        margin: 10px 20px 40px;
+        border: 1px solid #dde2ee;
+        border-radius: 25px;
+        padding: 25px;
+    }
 </style>

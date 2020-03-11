@@ -1,7 +1,7 @@
 <template>
   <v-app id="inspire" style="background: #F6F7F9">
       <Navbar v-if="this.$route.path != '/login' && this.$route.path != '/about' && this.$route.path != '/register' && this.$route.path != '/team' && this.$route.path != '/teamPlayer' && this.$route.path != '/GameAdd' && this.$route.path != '/winRate' && this.$route.path != '/compo' && this.$route.path != '/game'" />
-      <NavNew v-if="this.$route.path == '/login' || this.$route.path == '/register' || this.$route.path == '/about'"/>
+      <NavNew v-if="this.$route.path == '/register' || this.$route.path == '/about'"/>
       <NavTeam v-if="this.$route.path == '/team' || this.$route.path == '/GameAdd' || this.$route.path == '/teamPlayer' || this.$route.path == '/winRate' || this.$route.path == '/compo' || this.$route.path == '/game'"/>
     <v-content>
         <router-view/>
@@ -30,8 +30,8 @@
 </script>
 
 <style>
-    @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+    @import url('https://fonts.googleapis.com/css?family=Montserrat|Poppins&display=swap');
     #inspire {
-        font-family: 'Montserrat';
+        font-family: 'Montserrat', sans-serif, 'Poppins';
     }
 </style>

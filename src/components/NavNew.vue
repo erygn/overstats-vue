@@ -3,13 +3,25 @@
         <v-app-bar
                 app
                 flat
-                dense
+                style="background-color: #FFFFFF"
         >
 <!--            <v-app-bar-nav-icon v-if="!drawer" @click.stop="openDrawer" />-->
-            <v-toolbar-title class="text-uppercase">
-                <span class="font-weight-light">Over</span>
-                <span>Stats</span>
-            </v-toolbar-title>
+            <v-row justify="center">
+                <div class="col-lg-10 col-sm-12">
+                    <v-row style="padding-left: 16px; padding-right: 16px">
+                        <v-toolbar-title class="text-uppercase" style="margin-top: 2px">
+                            <router-link to="/login" style="color: #0e0f17">
+                                <span class="font-weight-light">Over</span>
+                                <span>Stats</span>
+                            </router-link>
+                        </v-toolbar-title>
+                        <v-spacer></v-spacer>
+<!--                        <router-link to="/about" style="color: #0e0f17">-->
+<!--                            <v-btn tile depressed text>About</v-btn>-->
+<!--                        </router-link>-->
+                    </v-row>
+                </div>
+            </v-row>
         </v-app-bar>
 
 <!--        <v-navigation-drawer-->
