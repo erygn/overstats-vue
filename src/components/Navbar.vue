@@ -2,232 +2,97 @@
     <nav>
         <v-app-bar
                 app
-                dense
                 flat
+                style="background-color: #FFFFFF"
         >
-            <v-app-bar-nav-icon v-if="!drawer" @click.stop="openDrawer" />
-            <v-toolbar-title class="text-uppercase">
-                <span class="font-weight-light">Over</span>
-                <span>Stats</span>
-            </v-toolbar-title>
-            <v-spacer />
-            <v-btn icon>
-                <v-icon>mdi-bell</v-icon>
-            </v-btn>
-            <v-menu offset-y :close-on-click="true" transition="slide-y-transition">
-                <template v-slot:activator="{ on }">
-                    <v-btn icon v-on="on">
-                        <v-avatar
-                                size="32px"
-                                item
-                        >
-                            <v-img
-                                    style="color: #333333"
-                                    src="https://genesis-mc.fr/images/overstats.png"
-                                    alt="Overstats"
-                            /></v-avatar>
-                    </v-btn>
-                </template>
-                <v-card>
-                    <v-list>
-                        <v-list-item>
-                            <v-list-item-avatar>
-                                <img src="https://genesis-mc.fr/images/overstats.png" alt="Logo">
-                            </v-list-item-avatar>
+            <v-row justify="center">
+                <div class="col-lg-10 col-sm-12">
+                    <v-row style="padding-left: 16px; padding-right: 16px">
+                        <v-toolbar-title class="text-uppercase" style="margin-top: 8px">
+                            <router-link to="/" style="color: #0e0f17">
+                                <span class="font-weight-light">Over</span>
+                                <span>Stats</span>
+                            </router-link>
+                        </v-toolbar-title>
+                        <v-spacer></v-spacer>
+                        <v-menu offset-y :close-on-click="true" transition="slide-y-transition">
+                            <template v-slot:activator="{ on }">
+                                <v-btn icon v-on="on">
+                                    <v-avatar
+                                            size="32px"
+                                            item
+                                    >
+                                        <v-img
+                                                style="color: #333333"
+                                                src="https://genesis-mc.fr/images/overstats.png"
+                                                alt="Overstats"
+                                        /></v-avatar>
+                                </v-btn>
+                            </template>
+                            <v-card>
+                                <v-list>
+                                    <v-list-item>
+                                        <v-list-item-avatar>
+                                            <img src="https://genesis-mc.fr/images/overstats.png" alt="Logo">
+                                        </v-list-item-avatar>
 
-                            <v-list-item-content>
-                                <v-list-item-title>{{ displayName.Pseudo }}</v-list-item-title>
-                                <v-list-item-subtitle>{{ displayName.Description}}</v-list-item-subtitle>
-                            </v-list-item-content>
+                                        <v-list-item-content>
+                                            <v-list-item-title>{{ displayName.Pseudo }}</v-list-item-title>
+                                            <v-list-item-subtitle>{{ displayName.Description}}</v-list-item-subtitle>
+                                        </v-list-item-content>
 
-                            <v-list-item-action>
-                                    <v-icon color="green">mdi-check</v-icon>
-                            </v-list-item-action>
-                        </v-list-item>
-                    </v-list>
+                                        <v-list-item-action>
+                                            <v-icon color="green">mdi-check</v-icon>
+                                        </v-list-item-action>
+                                    </v-list-item>
+                                </v-list>
 
-                    <v-divider/>
+                                <v-divider/>
 
-                    <v-list>
-                        <v-list-item link to="/">
-                            <v-list-item-action>
-                                <v-icon color="grey darken-1">mdi-home</v-icon>
-                            </v-list-item-action>
-                            <v-list-item-content>
-                                <v-list-item-title class="grey--text text--darken-1">
-                                    Accueil
-                                </v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
+                                <v-list>
+                                    <v-list-item link to="/">
+                                        <v-list-item-action>
+                                            <v-icon color="grey darken-1">mdi-home</v-icon>
+                                        </v-list-item-action>
+                                        <v-list-item-content>
+                                            <v-list-item-title class="grey--text text--darken-1">
+                                                Accueil
+                                            </v-list-item-title>
+                                        </v-list-item-content>
+                                    </v-list-item>
 
-                        <v-list-item link to="/teams">
-                            <v-list-item-action>
-                                <v-icon color="grey darken-1">mdi-account-group</v-icon>
-                            </v-list-item-action>
-                            <v-list-item-content>
-                                <v-list-item-title class="grey--text text--darken-1">
-                                    Equipes
-                                </v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-                        <v-list-item link to="/settings">
-                            <v-list-item-action>
-                                <v-icon color="grey darken-1">mdi-settings</v-icon>
-                            </v-list-item-action>
-                            <v-list-item-content>
-                                <v-list-item-title class="grey--text text--darken-1">
-                                    Paramètres
-                                </v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-                    </v-list>
+                                    <v-list-item link to="/settings">
+                                        <v-list-item-action>
+                                            <v-icon color="grey darken-1">mdi-cog</v-icon>
+                                        </v-list-item-action>
+                                        <v-list-item-content>
+                                            <v-list-item-title class="grey--text text--darken-1">
+                                                Paramètres
+                                            </v-list-item-title>
+                                        </v-list-item-content>
+                                    </v-list-item>
+                                </v-list>
 
-                    <v-divider/>
+                                <v-divider/>
 
-                    <v-list>
-                        <v-list-item link @click="signout">
-                            <v-list-item-action>
-                                <v-icon color="grey darken-1">mdi-logout-variant</v-icon>
-                            </v-list-item-action>
-                            <v-list-item-content>
-                                <v-list-item-title class="grey--text text--darken-1">
-                                    Deconnexion
-                                </v-list-item-title>
-                            </v-list-item-content>
-                        </v-list-item>
-                    </v-list>
-                </v-card>
-            </v-menu>
+                                <v-list>
+                                    <v-list-item link @click="signout">
+                                        <v-list-item-action>
+                                            <v-icon color="grey darken-1">mdi-logout-variant</v-icon>
+                                        </v-list-item-action>
+                                        <v-list-item-content>
+                                            <v-list-item-title class="grey--text text--darken-1">
+                                                Deconnexion
+                                            </v-list-item-title>
+                                        </v-list-item-content>
+                                    </v-list-item>
+                                </v-list>
+                            </v-card>
+                        </v-menu>
+                    </v-row>
+                </div>
+            </v-row>
         </v-app-bar>
-
-<!--        :mini-variant.sync="mini"-->
-
-        <v-navigation-drawer
-                :mini-variant.sync="mini"
-                src="https://genesis-mc.fr/images/background.jpg"
-                v-model="drawer"
-                color="#051E34"
-                app
-                mobile-break-point="920"
-        >
-            <v-list dense>
-                <v-list-item to="/">
-                    <v-list-item-action>
-                        <v-icon style="color: #c2cbd4">mdi-home</v-icon>
-                    </v-list-item-action>
-                    <v-list-item-content>
-                        <v-list-item-title style="color: #c2cbd4">
-                            Accueil
-                        </v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>
-
-                <v-list-item>
-                    <v-list-item-action>
-                        <v-icon style="color: #c2cbd4">mdi-trophy</v-icon>
-                    </v-list-item-action>
-                    <v-list-item-content>
-                        <v-list-item-title style="color: #c2cbd4">
-                            Tournoi
-                        </v-list-item-title>
-                    </v-list-item-content>
-                </v-list-item>
-
-                <v-divider dark
-                           class="my-4" />
-
-                <v-list-item
-                        to="/teams"
-                        class="mt-4"
-                >
-                    <v-list-item-action>
-                        <v-icon color="#c2cbd4">mdi-account-group</v-icon>
-                    </v-list-item-action>
-                    <v-list-item-title style="color: #c2cbd4">Gérer vos équipes</v-list-item-title>
-                </v-list-item>
-
-                <v-list-group
-                        no-action
-                        append-icon="">
-                    <template v-slot:activator>
-                            <v-list-item-action>
-                                <v-icon size="20" color="#c2cbd4">fa-gamepad</v-icon>
-                            </v-list-item-action>
-                            <v-list-item-content>
-                                <v-list-item-title style="color: #c2cbd4">
-                                    Mes équipes
-                                </v-list-item-title>
-                            </v-list-item-content>
-                        <v-list-item-action>
-                            <v-icon color="#c2cbd4">fa-angle-down</v-icon>
-                        </v-list-item-action>
-                    </template>
-                    <v-list-item
-                            v-for="(team, i) in teamList"
-                            :key="i"
-                            link
-                            :to="{path: '/team', query: {team: i}}"
-                    >
-                            <v-list-item-content>
-                                <v-list-item-title style="color: #c2cbd4">
-                                    {{ team.TeamName }}
-                                </v-list-item-title>
-                            </v-list-item-content>
-                    </v-list-item>
-                </v-list-group>
-                <v-divider
-                        dark
-                        class="my-4"
-                />
-                <v-list-item>
-                    <v-list-item-action>
-                        <v-icon color="#c2cbd4">mdi-account</v-icon>
-                    </v-list-item-action>
-                    <v-list-item-title style="color: #c2cbd4">Profil</v-list-item-title>
-                </v-list-item>
-                <v-list-item to="/settings">
-                    <v-list-item-action>
-                        <v-icon color="#c2cbd4">mdi-settings</v-icon>
-                    </v-list-item-action>
-                    <v-list-item-title style="color: #c2cbd4">Paramètres</v-list-item-title>
-                </v-list-item>
-
-                <v-divider
-                        dark
-                        class="my-4"
-                />
-
-                <v-list-item>
-                    <v-list-item-action>
-                        <v-icon color="#c2cbd4">mdi-information-outline</v-icon>
-                    </v-list-item-action>
-                    <v-list-item-title style="color: #c2cbd4">Aide</v-list-item-title>
-                </v-list-item>
-            </v-list>
-
-            <v-list>
-                <v-list-item v-if="!mini && miniMD">
-                    <v-spacer/>
-                        <v-btn @click.stop="mini = !mini" icon>
-                            <v-icon color="#c2cbd4">fa-angle-left</v-icon>
-                        </v-btn>
-                </v-list-item>
-                <v-list-item v-if="mini">
-                    <v-list-item-action>
-                        <v-icon style="color: #c2cbd4; margin-left: 5px">fa-angle-right</v-icon>
-                    </v-list-item-action>
-                </v-list-item>
-                <v-list-item v-if="!mini && !miniMD">
-                    <v-spacer/>
-                    <v-btn @click.stop="drawer = !drawer" icon>
-                        <v-icon color="#c2cbd4">fa-angle-left</v-icon>
-                    </v-btn>
-                </v-list-item>
-            </v-list>
-        </v-navigation-drawer>
-
-
-
     </nav>
 </template>
 

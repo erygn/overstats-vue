@@ -3,7 +3,7 @@
         <v-container fluid>
             <v-row justify="center" style="color: #2e313a">
                 <div class="col-lg-10 col-md-10 col-sm-12">
-                    <h1 style="margin-left: 15px; font-weight: 400; margin-bottom: 10px; font-size: 30px"><router-link to="/teams" style="text-decoration: none"><v-btn style="background-color: transparent; color: #2e313a;" fab x-small depressed><v-icon>fa-angle-left</v-icon></v-btn></router-link> {{ teamValue.TeamName }} </h1>
+                    <h1 style="margin-left: 15px; font-weight: 400; margin-bottom: 10px; font-size: 30px"><router-link to="/" style="text-decoration: none"><v-btn style="background-color: transparent; color: #2e313a;" fab x-small depressed><v-icon>fa-angle-left</v-icon></v-btn></router-link> {{ teamValue.TeamName }} </h1>
 <!--                    <v-btn @click="selectFavorite" style="margin-top: -2px; background-color: transparent" small fab depressed v-if="!favorite"><v-icon small>fa-star</v-icon></v-btn><v-btn @click="selectFavorite" style="margin-top: -5px; background-color: transparent" fab depressed v-if="favorite"><v-icon color="yellow">fa-star</v-icon></v-btn>-->
                     <p style="margin-left: 15px; margin-top: -10px; font-size: 16px">{{ teamValue.Description}}</p>
                 </div>

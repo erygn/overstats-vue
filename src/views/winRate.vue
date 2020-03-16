@@ -226,7 +226,7 @@
             }
         },
         created() {
-            firebase.database().ref('teams/' + firebase.auth().currentUser.uid + '/' + this.team).once('value').then((snapshot) => {
+            firebase.database().ref('teams/' + this.team).once('value').then((snapshot) => {
                 this.teamValue = snapshot.val();
 
                 //Calcul de PieDataRank

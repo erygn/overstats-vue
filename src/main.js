@@ -5,6 +5,10 @@ import Chartkick from 'vue-chartkick'
 import Chart from 'chart.js'
 import vuetify from './plugins/vuetify';
 
+import ScrollAnimation from './assets/scroll';
+
+Vue.directive('scroll', ScrollAnimation);
+
 import firebase from "firebase";
 import firebaseConfig from "@/fb";
 import './registerServiceWorker'

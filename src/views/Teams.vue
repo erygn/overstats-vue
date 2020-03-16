@@ -406,6 +406,10 @@
                 // alert(JSON.stringify(snapshot.val()))
                 this.accountValues = snapshot.val();
 
+                if (snapshot.val().Grade < 2) {
+                    this.$router.push("/");
+                }
+
                 if (snapshot.val().isRole) {
                     firebase.database().ref('teams/' + this.accountValues.roleId).on('value',  (snapshot) => {
 

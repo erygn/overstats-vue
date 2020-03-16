@@ -26,28 +26,30 @@
         <v-container fluid style="background: linear-gradient(#000a16, #092139);">
             <v-row justify="center">
                 <div class="col-lg-8 col-md-10 col-sm-12 text-center">
-                    <div class="row">
-                        <div class="row hidden-sm-and-down text-center">
-                            <div class="col-12 text-center">
-                                <h1 style="font-weight: 700; text-transform: uppercase; font-size: 80px; color: #EFEBEE; margin-top: 80px; letter-spacing: 5px">Improve Your Team</h1>
-                                <h2 style="font-weight: 400; font-size: 20px; color: #EFEBEE; margin-top: 10px">With Overstats find the weaknesses of your team<br> and improve them</h2>
-                                <h2 style="font-weight: 700; font-size: 18px; color: #EFEBEE; margin-top: 20px">Are you ready?</h2>
-                                <v-btn width="200" elevation="0" tile height="50" style="border-radius: 25px; margin-top: 20px; background-color: #385982; color: #EFEBEE; text-transform: initial" @click="scrollTo('reg')">Let's Go!</v-btn>
-                                <p style="margin-bottom: 120px; color: #EFEBEE; margin-top: 20px; font-size: 14px; cursor: pointer" @click="dialog = !dialog">or <span style="color: #039be5">Login</span></p>
+                    <transition name="fade" appear >
+                        <div class="row">
+                            <div class="row hidden-sm-and-down text-center">
+                                <div class="col-12 text-center">
+                                    <h1 style="font-weight: 700; text-transform: uppercase; font-size: 80px; color: #EFEBEE; margin-top: 80px; letter-spacing: 5px">Improve Your Team</h1>
+                                    <h2 style="font-weight: 400; font-size: 20px; color: #EFEBEE; margin-top: 10px">With Overstats find the weaknesses of your team<br> and improve them</h2>
+                                    <h2 style="font-weight: 700; font-size: 18px; color: #EFEBEE; margin-top: 20px">Are you ready?</h2>
+                                    <v-btn width="200" elevation="0" tile height="50" style="border-radius: 25px; margin-top: 20px; background-color: #385982; color: #EFEBEE; text-transform: initial" @click="scrollTo('reg')">Let's Go!</v-btn>
+                                    <p style="margin-bottom: 120px; color: #EFEBEE; margin-top: 20px; font-size: 14px; cursor: pointer" @click="dialog = !dialog">or <span style="color: #039be5">Login</span></p>
+                                </div>
+                                <!--                            <div class="col-6" style="margin-top: 30px; background-image: url(https://subswapr.fr/img/overstats/tra.png); background-repeat: no-repeat; background-size: cover">-->
+                                <!--&lt;!&ndash;                                <v-img src="https://subswapr.fr/img/overstats/tra.png" />&ndash;&gt;-->
+                                <!--                            </div>-->
                             </div>
-<!--                            <div class="col-6" style="margin-top: 30px; background-image: url(https://subswapr.fr/img/overstats/tra.png); background-repeat: no-repeat; background-size: cover">-->
-<!--&lt;!&ndash;                                <v-img src="https://subswapr.fr/img/overstats/tra.png" />&ndash;&gt;-->
-<!--                            </div>-->
-                        </div>
 
-                        <div class="col-lg-6 col-md-6 col-sm-12 hidden-md-and-up" style="margin-top: 15px">
-                            <h1 style="font-weight: 700; text-transform: uppercase; font-size: 43px; color: #EFEBEE; margin-top: 60px; letter-spacing: 5px">Improve Your Team</h1>
-                            <h2 style="font-weight: 300; font-size: 14px; color: #EFEBEE">With Overstats find the weaknesses of your team<br> and improve them</h2>
-                            <h2 style="font-weight: 700; font-size: 12px; color: #EFEBEE; margin-top: 20px">Are you ready?</h2>
-                            <v-btn width="200" elevation="0" tile height="50" style="border-radius: 25px; margin-top: 20px; background-color: #385982; color: #EFEBEE; text-transform: initial" @click="scrollTo('reg')">Let's Go!</v-btn>
-                            <p style="margin-bottom: 80px; color: #EFEBEE; margin-top: 20px; font-size: 14px; cursor: pointer" @click="dialog = !dialog">or <span style="color: #039be5">Login</span></p>
+                            <div class="col-lg-6 col-md-6 col-sm-12 hidden-md-and-up" style="margin-top: 15px">
+                                <h1 style="font-weight: 700; text-transform: uppercase; font-size: 43px; color: #EFEBEE; margin-top: 60px; letter-spacing: 5px">Improve Your Team</h1>
+                                <h2 style="font-weight: 300; font-size: 14px; color: #EFEBEE">With Overstats find the weaknesses of your team<br> and improve them</h2>
+                                <h2 style="font-weight: 700; font-size: 12px; color: #EFEBEE; margin-top: 20px">Are you ready?</h2>
+                                <v-btn width="200" elevation="0" tile height="50" style="border-radius: 25px; margin-top: 20px; background-color: #385982; color: #EFEBEE; text-transform: initial" @click="scrollTo('reg')">Let's Go!</v-btn>
+                                <p style="margin-bottom: 80px; color: #EFEBEE; margin-top: 20px; font-size: 14px; cursor: pointer" @click="dialog = !dialog">or <span style="color: #039be5">Login</span></p>
+                            </div>
                         </div>
-                    </div>
+                    </transition>
                 </div>
             </v-row>
         </v-container>
@@ -93,25 +95,25 @@
                     </div>
 
                     <div class="row justify-center">
-                        <div class="col-lg-4 col-md-4 col-sm-6 text-center bordT">
+                        <div class="col-lg-4 col-md-4 col-sm-6 text-center bordT" v-scroll>
                             <v-icon large style="margin-bottom: 20px">mdi-account-plus</v-icon>
                             <h2 style="font-weight: bold">1. Create an Account</h2>
                             <p>For your team</p>
                         </div>
 
-                        <div class="col-lg-4 col-md-4 col-sm-6 text-center bordT">
+                        <div class="col-lg-4 col-md-4 col-sm-6 text-center bordT" v-scroll>
                             <v-icon large style="margin-bottom: 20px">mdi-keyboard</v-icon>
                             <h2 style="font-weight: bold">2. Enter values</h2>
                             <p>Of your Overwatch game</p>
                         </div>
 
-                        <div class="col-lg-4 col-md-4 col-sm-6 text-center bordT">
+                        <div class="col-lg-4 col-md-4 col-sm-6 text-center bordT" v-scroll>
                             <v-icon large style="margin-bottom: 20px">mdi-chart-arc</v-icon>
                             <h2 style="font-weight: bold">3. Show Results</h2>
                             <p>And analyze them</p>
                         </div>
 
-                        <div class="col-lg-4 col-md-4 col-sm-6 text-center bordT">
+                        <div class="col-lg-4 col-md-4 col-sm-6 text-center bordT" v-scroll>
                             <v-icon large style="margin-bottom: 20px">mdi-trending-up</v-icon>
                             <h2 style="font-weight: bold">4. Progress on the game</h2>
                             <p>With the Stats</p>
@@ -166,6 +168,7 @@
                                             <v-icon style="margin-top: 20px; background-color: 	#e5f3fe; color: #0382ff; padding: 10px; border-radius: 40px" large>mdi-chart-donut</v-icon>
                                             <h2 style="margin-top: 12px; color: #2d3039; font-size: 40px; font-weight: 600">Coach</h2>
                                             <h3 style="color: #616777; font-weight: 600">1.99€/Mois</h3>
+                                            <h3 style="color: #616777; font-weight: 300; font-size: 12px">ou  19.99€ à vie</h3>
                                             <br>
                                             <p style="color: #2d3039; font-size: 18px; font-weight: bold">Les possibilités</p>
                                             <p style="color: #768185; font-size: 15px"><v-icon color="green" style="margin-top: -2px; margin-right: 2px">mdi-check</v-icon>Créer des équipes</p>
@@ -196,7 +199,7 @@
                                             <p style="color: #2d3039; font-size: 18px; font-weight: bold">Conditions</p>
                                             <p style="color: #768185; font-size: 15px"><v-icon color="green" style="margin-top: -2px; margin-right: 2px">mdi-check</v-icon>Équipe sur EQB</p>
 
-                                            <v-btn width="200" elevation="0" tile height="50" style="border-radius: 25px; margin-top: 40px; background-color: #2d3039; color: #EFEBEE; text-transform: initial; margin-bottom: 20px">Go Coach</v-btn>
+                                            <v-btn width="200" elevation="0" tile height="50" style="border-radius: 25px; margin-top: 40px; background-color: #2d3039; color: #EFEBEE; text-transform: initial; margin-bottom: 20px">Go EQB</v-btn>
                                         </div>
                                     </v-row>
                                 </v-container>
@@ -281,6 +284,7 @@
                         <div class="col-12">
                             <h1 style="font-size: 18px; font-weight: bold">Overstats</h1>
                             <h2 style="font-size: 11px">Statistiques</h2>
+                            <h2 style="font-size: 11px">Create by <a target="_blank" href="https://genesis-mc.fr">Genesis</a> // 2020</h2>
                         </div>
                     </div>
                 </div>
@@ -301,7 +305,7 @@
                 <v-container>
                     <v-row justify="center" class="row text-center mx-2">
                         <div class="col-sm-12 col-lg-8">
-                            <v-text-field color="#69697f" prepend-icon="mdi-account" type="text" label="Mail*" v-model="email"/>
+                            <v-text-field color="#69697f" prepend-icon="mdi-account" type="email" label="Mail*" v-model="email"/>
                             <v-text-field
                                     color="#69697f"
                                     :append-icon="show3 ? 'mdi-eye' : 'mdi-eye-off'"
@@ -336,151 +340,126 @@
                 v-model="dialogRegister"
                 width="600px"
         >
-            <v-card tile style="border-radius: 5px; background-color: #FFF; color: #2d3039;">
-                <v-card-title style="font-size: 17px; font-weight: 400; background-color: #2d3039; color: #FFF">
-                    <span style="margin-left: 10px;">Create Player</span>
+            <v-card tile style="border-radius: 5px; background-color: #2d3039; color: #EFEBEE;">
+                <v-card-title style="font-size: 22px; font-weight: 400">
                     <v-spacer/>
-                    <v-btn @click="dialogRegister = !dialogRegister" text depressed><v-icon color="#FFFFFF">mdi-close</v-icon></v-btn>
+                    <span style="margin-top: 20px; margin-bottom: 10px">Become a Player</span>
+                    <v-spacer/>
+                    <!--                    <v-btn @click="dialog = !dialog" text depressed><v-icon color="#2d3039">mdi-close</v-icon></v-btn>-->
                 </v-card-title>
                 <v-container>
-                    <v-row class="mx-2">
-                        <v-col
-                                class="align-center justify-space-between"
-                                cols="12"
-                        >
-                            <v-row
-                                    align="center"
-                                    class="mr-0"
-                            >
-                                <v-list-item-subtitle><v-text-field color="#69697f" type="text" label="Pseudo*" prepend-icon="mdi-account" v-model="pseudo"/></v-list-item-subtitle>
-                                <v-list-item-subtitle><v-text-field color="#69697f" type="text" label="BattleTag*" prepend-icon="mdi-numeric" v-model="battleTag"/></v-list-item-subtitle>
-                                <v-list-item-subtitle><v-text-field color="#69697f" type="text" label="Adresse mail*" prepend-icon="mdi-mail" v-model="email"/></v-list-item-subtitle>
-                                <v-list-item-subtitle><v-text-field
-                                        color="#69697f"
-                                        :append-icon="show3 ? 'mdi-eye' : 'mdi-eye-off'"
-                                        prepend-icon="mdi-lock"
-                                        :type="show3 ? 'text' : 'password'"
-                                        name="input-10-2"
-                                        label="Mot de passe*"
-                                        class="input-group--focused"
-                                        :rules="rules" counter
-                                        v-model="password"
-                                        @click:append="show3 = !show3"
-                                /></v-list-item-subtitle>
-                                <v-list-item-subtitle><v-text-field
-                                        color="#69697f"
-                                        :append-icon="show4 ? 'mdi-eye' : 'mdi-eye-off'"
-                                        prepend-icon="mdi-lock"
-                                        :type="show4 ? 'text' : 'password'"
-                                        name="input-10-2"
-                                        label="Confirmation du mot de passe*"
-                                        :rules="rules" counter
-                                        class="input-group--focused"
-                                        v-model="password2"
-                                        @click:append="show4 = !show4"
-                                /></v-list-item-subtitle>
-                            </v-row>
+                    <v-row justify="center" class="row text-center mx-2">
+                        <div class="col-sm-12 col-lg-8">
+                            <v-text-field color="#EFEBEE" dark type="text" label="Pseudo*" prepend-icon="mdi-account" v-model="pseudo"/>
+                            <v-text-field color="#EFEBEE" prepend-icon="mdi-mail" dark type="email" label="Mail*" v-model="email"/>
+                            <v-text-field
+                                    dark
+                                    color="#EFEBEE"
+                                    :append-icon="show3 ? 'mdi-eye' : 'mdi-eye-off'"
+                                    prepend-icon="mdi-lock"
+                                    :type="show3 ? 'text' : 'password'"
+                                    name="input-10-2"
+                                    label="Password*"
+                                    class="input-group--focused"
+                                    :rules="rules" counter
+                                    v-model="password"
+                                    @click:append="show3 = !show3"
+                            />
+                            <v-text-field
+                                    dark
+                                    color="#EFEBEE"
+                                    :append-icon="show4 ? 'mdi-eye' : 'mdi-eye-off'"
+                                    prepend-icon="mdi-lock"
+                                    :type="show4 ? 'text' : 'password'"
+                                    name="input-10-2"
+                                    label="Confirm Password*"
+                                    :rules="rules" counter
+                                    class="input-group--focused"
+                                    v-model="password2"
+                                    @click:append="show4 = !show4"
+                            />
+                            <v-checkbox
+                                    dark
+                                    v-model="checkbox"
+                                    color="#EFEBEE"
+                                    label="I agree to the terms of service"
+                            ></v-checkbox>
+                            <p style="color: red; font-size: 12px">{{errorMessage}}</p>
 
-                            <v-row align="center"
-                                   class="mr-0">
-                                <v-spacer/>
-                                <p style="color: red">{{errorMessage}}</p>
-                            </v-row>
-                        </v-col>
+                            <v-btn
+                                    width="200"
+                                    height="50"
+                                    :loading="registJ"
+                                    elevation="1" tile style="border-radius: 25px; background-color: #EFEBEE; color: #2d3039; text-transform: initial; margin-top: 30px; margin-bottom: 20px"
+                                    @click="register(1)"
+                            >Register</v-btn>
+                        </div>
                     </v-row>
                 </v-container>
-                <v-card-actions>
-                    <v-spacer />
-                    <v-btn
-                            width="150"
-                            height="35"
-                            elevation="1" tile style="border-radius: 5px; background-color: #FFF; color: #2d3039; text-transform: initial"
-                            :loading="registJ"
-                            @click="register(3)"
-                    >Inscription</v-btn>
-                    <v-btn
-                            style="margin-right: 5px; text-transform: initial"
-                            text
-                            color="#003041"
-                            @click="dialogRegister = false"
-                    >Fermer</v-btn>
-                </v-card-actions>
             </v-card>
         </v-dialog>
+
 
         <v-dialog
                 v-model="dialogRegisterC"
                 width="600px"
         >
-            <v-card tile style="border-radius: 5px; background-color: #FFF; color: #2d3039;">
-                <v-card-title style="font-size: 17px; font-weight: 400; background-color: #2d3039; color: #FFF">
-                    <span style="margin-left: 10px;">Create Coach</span>
+            <v-card tile style="border-radius: 5px; background-color: #2d3039; color: #EFEBEE;">
+                <v-card-title style="font-size: 22px; font-weight: 400">
                     <v-spacer/>
-                    <v-btn @click="dialogRegisterC = !dialogRegisterC" text depressed><v-icon color="#FFFFFF">mdi-close</v-icon></v-btn>
+                    <span style="margin-top: 20px; margin-bottom: 10px">Become a Coach</span>
+                    <v-spacer/>
+                    <!--                    <v-btn @click="dialog = !dialog" text depressed><v-icon color="#2d3039">mdi-close</v-icon></v-btn>-->
                 </v-card-title>
                 <v-container>
-                    <v-row class="mx-2">
-                        <v-col
-                                class="align-center justify-space-between"
-                                cols="12"
-                        >
-                            <v-row
-                                    align="center"
-                                    class="mr-0"
-                            >
-                                <v-list-item-subtitle><v-text-field color="#69697f" type="text" label="Pseudo*" prepend-icon="mdi-account" v-model="pseudo"/></v-list-item-subtitle>
-                                <v-list-item-subtitle><v-text-field color="#69697f" type="text" label="BattleTag*" prepend-icon="mdi-numeric" v-model="battleTag"/></v-list-item-subtitle>
-                                <v-list-item-subtitle><v-text-field color="#69697f" type="text" label="Adresse mail*" prepend-icon="mdi-mail" v-model="email"/></v-list-item-subtitle>
-                                <v-list-item-subtitle><v-text-field
-                                        color="#69697f"
-                                        :append-icon="show3 ? 'mdi-eye' : 'mdi-eye-off'"
-                                        prepend-icon="mdi-lock"
-                                        :type="show3 ? 'text' : 'password'"
-                                        name="input-10-2"
-                                        label="Mot de passe*"
-                                        class="input-group--focused"
-                                        :rules="rules" counter
-                                        v-model="password"
-                                        @click:append="show3 = !show3"
-                                /></v-list-item-subtitle>
-                                <v-list-item-subtitle><v-text-field
-                                        color="#69697f"
-                                        :append-icon="show4 ? 'mdi-eye' : 'mdi-eye-off'"
-                                        prepend-icon="mdi-lock"
-                                        :type="show4 ? 'text' : 'password'"
-                                        name="input-10-2"
-                                        label="Confirmation du mot de passe*"
-                                        :rules="rules" counter
-                                        class="input-group--focused"
-                                        v-model="password2"
-                                        @click:append="show4 = !show4"
-                                /></v-list-item-subtitle>
-                            </v-row>
+                    <v-row justify="center" class="row text-center mx-2">
+                        <div class="col-sm-12 col-lg-8">
+                            <v-text-field color="#EFEBEE" type="text" dark label="Pseudo*" prepend-icon="mdi-account" v-model="pseudo"/>
+                            <v-text-field color="#EFEBEE" prepend-icon="mdi-mail" dark type="email" label="Mail*" v-model="email"/>
+                            <v-text-field
+                                    dark
+                                    color="#EFEBEE"
+                                    :append-icon="show3 ? 'mdi-eye' : 'mdi-eye-off'"
+                                    prepend-icon="mdi-lock"
+                                    :type="show3 ? 'text' : 'password'"
+                                    name="input-10-2"
+                                    label="Password*"
+                                    class="input-group--focused"
+                                    :rules="rules" counter
+                                    v-model="password"
+                                    @click:append="show3 = !show3"
+                            />
+                            <v-text-field
+                                    dark
+                                    color="#EFEBEE"
+                                    :append-icon="show4 ? 'mdi-eye' : 'mdi-eye-off'"
+                                    prepend-icon="mdi-lock"
+                                    :type="show4 ? 'text' : 'password'"
+                                    name="input-10-2"
+                                    label="Confirm Password*"
+                                    :rules="rules" counter
+                                    class="input-group--focused"
+                                    v-model="password2"
+                                    @click:append="show4 = !show4"
+                            />
+                            <v-checkbox
+                                    dark
+                                    v-model="checkbox"
+                                    color="#EFEBEE"
+                                    label="I agree to the terms of service"
+                            ></v-checkbox>
+                            <p style="color: red; font-size: 12px">{{errorMessage}}</p>
 
-                            <v-row align="center"
-                                   class="mr-0">
-                                <v-spacer/>
-                                <p style="color: red">{{errorMessage}}</p>
-                            </v-row>
-                        </v-col>
+                            <v-btn
+                                    width="200"
+                                    height="50"
+                                    :loading="registJ"
+                                    elevation="1" tile style="border-radius: 25px; background-color: #EFEBEE; color: #2d3039; text-transform: initial; margin-top: 30px; margin-bottom: 20px"
+                                    @click="register(3)"
+                            >Register</v-btn>
+                        </div>
                     </v-row>
                 </v-container>
-                <v-card-actions>
-                    <v-spacer />
-                    <v-btn
-                            width="150"
-                            height="35"
-                            elevation="1" tile style="border-radius: 5px; background-color: #FFF; color: #2d3039; text-transform: initial"
-                            :loading="registJ"
-                            @click="register(1)"
-                    >Inscription</v-btn>
-                    <v-btn
-                            style="margin-right: 5px; text-transform: initial"
-                            text
-                            color="#003041"
-                            @click="dialogRegisterC = false"
-                    >Fermer</v-btn>
-                </v-card-actions>
             </v-card>
         </v-dialog>
 
@@ -497,8 +476,8 @@
 
                 show4: false,
                 pseudo: null,
-                battleTag: null,
                 password2: null,
+                checkbox: false,
 
                 dialogRegister: false,
                 dialogRegisterC: false,
@@ -546,18 +525,18 @@
             },
             register: function(n) {
                 this.registJ = true;
-                if (this.pseudo != null && this.email != null && this.password != null && this.password2 != null && this.battleTag != null) {
-                    if (n == 3) {
+                if (this.pseudo != null && this.email != null && this.password != null && this.password2 != null && this.checkbox == true) {
+                    if (n == 1) {
                         if (this.password == this.password2) {
                             firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
                                 (userCredential) => {
                                     firebase.database().ref('users' + '/' + userCredential.user.uid).set({
                                         Pseudo: this.pseudo,
-                                        BattleTag: this.battleTag,
+                                        BattleTag: true,
                                         Mail: this.email,
                                         Teams: 0,
                                         Description: 'Player',
-                                        Grade: 3,
+                                        Grade: 1,
                                         isRole: false,
                                         roleId: false,
                                         InscriptionDate: new Date().toLocaleString("fr-FR"),
@@ -571,24 +550,26 @@
                                         })
                                 },
                                 (err) => {
+                                    this.registJ = false;
                                     this.errorMessage = err.message;
                                 }
                             );
                         } else {
+                            this.registJ = false;
                             this.errorMessage = 'Les mots de passe ne correspondent pas';
                         }
                     }
-                    if (n == 1) {
+                    if (n == 3) {
                         if (this.password == this.password2) {
                             firebase.auth().createUserWithEmailAndPassword(this.email, this.password).then(
                                 (userCredential) => {
                                     firebase.database().ref('users' + '/' + userCredential.user.uid).set({
                                         Pseudo: this.pseudo,
-                                        BattleTag: this.battleTag,
+                                        BattleTag: true,
                                         Mail: this.email,
                                         Teams: 0,
                                         Description: 'Coach',
-                                        Grade: 1,
+                                        Grade: 2,
                                         isRole: false,
                                         roleId: false,
                                         InscriptionDate: new Date().toLocaleString("fr-FR"),
@@ -602,14 +583,17 @@
                                         })
                                 },
                                 (err) => {
+                                    this.registJ = false;
                                     this.errorMessage = err.message;
                                 }
                             );
                         } else {
+                            this.registJ = false;
                             this.errorMessage = 'Les mots de passe ne correspondent pas';
                         }
                     }
                 } else {
+                    this.registJ = false;
                     this.errorMessage = 'Veuillez completer tous les champs';
                 }
             }
@@ -630,5 +614,35 @@
         border: 1px solid #dde2ee;
         border-radius: 25px;
         padding: 25px;
+    }
+
+    .revealY {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    .revealY-visible {
+        opacity: 1;
+        transform: translateY(0);
+        transition-duration: .3s;
+    }
+
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity 2s, transform 2s;
+    }
+
+    .fade-enter, fade-leave-action {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    .before-enter {
+        opacity: 0;
+        transform: translateY(100px);
+        transition: all 2s ease-out;
+    }
+
+    .enter {
+        opacity: 1;
+        transform: translateY(0px);
     }
 </style>

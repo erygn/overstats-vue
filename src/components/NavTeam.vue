@@ -13,7 +13,7 @@
                         <v-icon color="#c2cbd4" style="padding: 10px 0px">mdi-home</v-icon>
                 </v-list-item>
                 <v-list-item :to="{path: '/teamPlayer', query: {team: this.$route.query.team}}">
-                        <v-icon color="#c2cbd4" style="padding: 10px 0px">mdi-settings</v-icon>
+                        <v-icon color="#c2cbd4" style="padding: 10px 0px">mdi-cog</v-icon>
                 </v-list-item>
             </v-list>
         </v-navigation-drawer>
