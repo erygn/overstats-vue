@@ -173,15 +173,6 @@
                                             </v-row>
                                             <hr>
                                             <br>
-                                            <h3>Changement en cours de partie <v-btn style="background-color: transparent; color: #69697f" x-small depressed fab @click="resetSwitchOne"><v-icon>mdi-reload</v-icon></v-btn></h3>
-                                            <v-radio-group multiple v-model="configSwitchOne" row>
-                                                <v-radio class="labelColor" color="#69697f" label="TANKS" value="TANK"></v-radio>
-                                                <v-radio class="labelColor" color="#69697f" label="DPS" value="DPS"></v-radio>
-                                                <v-radio class="labelColor" color="#69697f" label="HEAL" value="HEAL"></v-radio>
-                                                <v-radio class="labelColor" color="#69697f" label="AUCUN" value="AUCUN"></v-radio>
-                                            </v-radio-group>
-                                            <hr>
-                                            <br>
                                             <h3>Status Round</h3>
                                             <v-radio-group v-model="kothOneScore" row>
                                                 <v-radio class="labelColor" color="#69697f" label="WIN" :value="1"></v-radio>
@@ -286,15 +277,6 @@
                                             </v-row>
                                             <hr>
                                             <br>
-                                            <h3>Changement en cours de partie <v-btn style="background-color: transparent; color: #69697f" x-small depressed fab @click="resetSwitchTwo"><v-icon>mdi-reload</v-icon></v-btn></h3>
-                                            <v-radio-group multiple v-model="configSwitchTwo" row>
-                                                <v-radio class="labelColor" color="#69697f" label="TANKS" value="TANK"></v-radio>
-                                                <v-radio class="labelColor" color="#69697f" label="DPS" value="DPS"></v-radio>
-                                                <v-radio class="labelColor" color="#69697f" label="HEAL" value="HEAL"></v-radio>
-                                                <v-radio class="labelColor" color="#69697f" label="AUCUN" value="AUCUN"></v-radio>
-                                            </v-radio-group>
-                                            <hr>
-                                            <br>
                                             <h3>Status Round</h3>
                                             <v-radio-group v-model="kothTwoScore" row>
                                                 <v-radio class="labelColor" color="#69697f" label="WIN" :value="1"></v-radio>
@@ -397,15 +379,6 @@
                                                     ></v-select>
                                                 </v-col>
                                             </v-row>
-                                            <hr>
-                                            <br>
-                                            <h3>Changement en cours de partie <v-btn style="background-color: transparent; color: #69697f" x-small depressed fab @click="resetSwitchThree"><v-icon>mdi-reload</v-icon></v-btn></h3>
-                                            <v-radio-group multiple v-model="configSwitchThree" row>
-                                                <v-radio class="labelColor" color="#69697f" label="TANKS" value="TANK"></v-radio>
-                                                <v-radio class="labelColor" color="#69697f" label="DPS" value="DPS"></v-radio>
-                                                <v-radio class="labelColor" color="#69697f" label="HEAL" value="HEAL"></v-radio>
-                                                <v-radio class="labelColor" color="#69697f" label="AUCUN" value="AUCUN"></v-radio>
-                                            </v-radio-group>
                                             <hr>
                                             <br>
                                             <h3>Status Round</h3>
@@ -519,15 +492,6 @@
                                             ></v-select>
                                         </v-col>
                                     </v-row>
-                                    <hr>
-                                    <br>
-                                    <h3>Changement en cours de partie <v-btn style="background-color: transparent; color: #69697f" x-small depressed fab @click="resetSwitchOne"><v-icon>mdi-reload</v-icon></v-btn></h3>
-                                    <v-radio-group multiple v-model="configSwitchOne" row>
-                                        <v-radio class="labelColor" color="#69697f" label="TANKS" value="TANK"></v-radio>
-                                        <v-radio class="labelColor" color="#69697f" label="DPS" value="DPS"></v-radio>
-                                        <v-radio class="labelColor" color="#69697f" label="HEAL" value="HEAL"></v-radio>
-                                        <v-radio class="labelColor" color="#69697f" label="AUCUN" value="AUCUN"></v-radio>
-                                    </v-radio-group>
                                 </v-card-text>
 
                                 <v-card-text v-if="configStatus === 'Défense'">
@@ -594,15 +558,6 @@
                                             ></v-select>
                                         </v-col>
                                     </v-row>
-                                    <hr>
-                                    <br>
-                                    <h3>Changement en cours de partie <v-btn style="background-color: transparent; color: #69697f" x-small depressed fab @click="resetSwitchOne"><v-icon>mdi-reload</v-icon></v-btn></h3>
-                                    <v-radio-group multiple v-model="configSwitchOne" row>
-                                        <v-radio class="labelColor" color="#69697f" label="TANKS" value="TANK"></v-radio>
-                                        <v-radio class="labelColor" color="#69697f" label="DPS" value="DPS"></v-radio>
-                                        <v-radio class="labelColor" color="#69697f" label="HEAL" value="HEAL"></v-radio>
-                                        <v-radio class="labelColor" color="#69697f" label="AUCUN" value="AUCUN"></v-radio>
-                                    </v-radio-group>
                                 </v-card-text>
                             </v-window-item>
 
@@ -671,15 +626,6 @@
                                             ></v-select>
                                         </v-col>
                                     </v-row>
-                                    <hr>
-                                    <br>
-                                    <h3>Changement en cours de partie <v-btn style="background-color: transparent; color: #69697f;" x-small depressed fab @click="resetSwitchTwo"><v-icon>mdi-reload</v-icon></v-btn></h3>
-                                    <v-radio-group multiple v-model="configSwitchTwo" row>
-                                        <v-radio class="labelColor" color="#69697f" label="TANKS" value="TANK"></v-radio>
-                                        <v-radio class="labelColor" color="#69697f" label="DPS" value="DPS"></v-radio>
-                                        <v-radio class="labelColor" color="#69697f" label="HEAL" value="HEAL"></v-radio>
-                                        <v-radio class="labelColor" color="#69697f" label="AUCUN" value="AUCUN"></v-radio>
-                                    </v-radio-group>
                                 </v-card-text>
 
                                 <v-card-text v-if="configStatus === 'Défense'">
@@ -746,15 +692,6 @@
                                             ></v-select>
                                         </v-col>
                                     </v-row>
-                                    <hr>
-                                    <br>
-                                    <h3>Changement en cours de partie <v-btn style="background-color: transparent; color: #69697f" x-small depressed fab @click="resetSwitchTwo"><v-icon>mdi-reload</v-icon></v-btn></h3>
-                                    <v-radio-group multiple v-model="configSwitchTwo" row>
-                                        <v-radio class="labelColor" color="#69697f" label="TANKS" value="TANK"></v-radio>
-                                        <v-radio class="labelColor" color="#69697f" label="DPS" value="DPS"></v-radio>
-                                        <v-radio class="labelColor" color="#69697f" label="HEAL" value="HEAL"></v-radio>
-                                        <v-radio class="labelColor" color="#69697f" label="AUCUN" value="AUCUN"></v-radio>
-                                    </v-radio-group>
                                 </v-card-text>
 
                             </v-window-item>
@@ -838,7 +775,7 @@
                             <v-spacer></v-spacer>
                             <v-btn
                                     v-if="kothOneScore + kothTwoScore != 2 && kothOneScore + kothTwoScore != 6 && stepKoth != 7"
-                                    :disabled="configModel === null || stepKoth === 2 && configModelKothOne === null ||stepKoth === 3 && configTankOne === null ||stepKoth === 3 && configTankTwo === null ||stepKoth === 3 && configDpsOne === null ||stepKoth === 3 && configDpsTwo === null ||stepKoth === 3 && configHealOne === null ||stepKoth === 3 && configHealTwo === null || stepKoth === 3 && configSwitchOne === null || stepKoth === 4 && configModelKothTwo === null || stepKoth === 5 && configTankOneD === null ||stepKoth === 5 && configTankTwoD === null ||stepKoth === 5 && configDpsOneD === null ||stepKoth === 5 && configDpsTwoD === null ||stepKoth === 5 && configHealOneD === null ||stepKoth === 5 && configHealTwoD === null || stepKoth === 5 && configSwitchTwo === null || stepKoth === 6 && configModelKothThree === null"
+                                    :disabled="configModel === null || stepKoth === 2 && configModelKothOne === null ||stepKoth === 3 && configTankOne === null ||stepKoth === 3 && configTankTwo === null ||stepKoth === 3 && configDpsOne === null ||stepKoth === 3 && configDpsTwo === null ||stepKoth === 3 && configHealOne === null ||stepKoth === 3 && configHealTwo === null || stepKoth === 4 && configModelKothTwo === null || stepKoth === 5 && configTankOneD === null ||stepKoth === 5 && configTankTwoD === null ||stepKoth === 5 && configDpsOneD === null ||stepKoth === 5 && configDpsTwoD === null ||stepKoth === 5 && configHealOneD === null ||stepKoth === 5 && configHealTwoD === null || stepKoth === 6 && configModelKothThree === null"
                                     color="#45cd8a"
                                     depressed
                                     icon
@@ -848,7 +785,7 @@
                             </v-btn>
                             <v-btn
                                     v-if="kothOneScore + kothTwoScore != 2 && kothOneScore + kothTwoScore != 6 && stepKoth === 7"
-                                    :disabled="stepKoth === 7 && configTankOneF === null ||stepKoth === 7 && configTankTwoF === null ||stepKoth === 7 && configDpsOneF === null ||stepKoth === 7 && configDpsTwoF === null ||stepKoth === 7 && configHealOneF === null ||stepKoth === 7 && configHealTwoF === null || stepKoth === 7 && configSwitchThree === null ||stepKoth === 7 && kothThreeScore === null"
+                                    :disabled="stepKoth === 7 && configTankOneF === null ||stepKoth === 7 && configTankTwoF === null ||stepKoth === 7 && configDpsOneF === null ||stepKoth === 7 && configDpsTwoF === null ||stepKoth === 7 && configHealOneF === null ||stepKoth === 7 && configHealTwoF === null ||stepKoth === 7 && kothThreeScore === null"
                                     color="#45cd8a"
                                     depressed
                                     icon
@@ -858,7 +795,7 @@
                             </v-btn>
                             <v-btn
                                     v-if="kothOneScore + kothTwoScore === 2 || kothOneScore + kothTwoScore === 6"
-                                    :disabled="configModel === null || stepKoth === 2 && configModelKothOne === null ||stepKoth === 3 && configTankOne === null ||stepKoth === 3 && configTankTwo === null ||stepKoth === 3 && configDpsOne === null ||stepKoth === 3 && configDpsTwo === null ||stepKoth === 3 && configHealOne === null ||stepKoth === 3 && configHealTwo === null || stepKoth === 3 && configSwitchOne === null || stepKoth === 4 && configModelKothTwo === null || stepKoth === 5 && configTankOneD === null ||stepKoth === 5 && configTankTwoD === null ||stepKoth === 5 && configDpsOneD === null ||stepKoth === 5 && configDpsTwoD === null ||stepKoth === 5 && configHealOneD === null ||stepKoth === 5 && configHealTwoD === null || stepKoth === 5 && configSwitchTwo === null"
+                                    :disabled="configModel === null || stepKoth === 2 && configModelKothOne === null ||stepKoth === 3 && configTankOne === null ||stepKoth === 3 && configTankTwo === null ||stepKoth === 3 && configDpsOne === null ||stepKoth === 3 && configDpsTwo === null ||stepKoth === 3 && configHealOne === null ||stepKoth === 3 && configHealTwo === null || stepKoth === 4 && configModelKothTwo === null || stepKoth === 5 && configTankOneD === null ||stepKoth === 5 && configTankTwoD === null ||stepKoth === 5 && configDpsOneD === null ||stepKoth === 5 && configDpsTwoD === null ||stepKoth === 5 && configHealOneD === null ||stepKoth === 5 && configHealTwoD === null"
                                     color="#45cd8a"
                                     depressed
                                     icon
@@ -901,7 +838,7 @@
                             <v-spacer></v-spacer>
                             <v-btn
                                     v-if="step === 3 && configPlay == 'QuickPlay'"
-                                    :disabled="step === 2 && configStatus === null || step === 6 || step === 5 && configScoreOne === null || step === 5 && configScoreTwo === null || step === 3 && configDpsOne === null || step === 3 && configDpsTwo === null || step === 3 && configTankOne === null || step === 3 &&  configTankTwo === null || step === 3 && configHealOne === null || step === 3 && configHealTwo === null || step === 3 && configSwitchOne === null || step === 4 && configSwitchTwo === null || step === 4 && configDpsOneD === null || step === 4 && configDpsTwoD === null || step === 4 && configTankOneD === null || step === 4 &&  configTankTwoD === null || step === 4 && configHealOneD === null || step === 4 && configHealTwoD === null || step === 2 && configModel === null || configMap === null || configPlay === null"
+                                    :disabled="step === 2 && configStatus === null || step === 6 || step === 5 && configScoreOne === null || step === 5 && configScoreTwo === null || step === 3 && configDpsOne === null || step === 3 && configDpsTwo === null || step === 3 && configTankOne === null || step === 3 &&  configTankTwo === null || step === 3 && configHealOne === null || step === 3 && configHealTwo === null  || step === 4 && configDpsOneD === null || step === 4 && configDpsTwoD === null || step === 4 && configTankOneD === null || step === 4 &&  configTankTwoD === null || step === 4 && configHealOneD === null || step === 4 && configHealTwoD === null || step === 2 && configModel === null || configMap === null || configPlay === null"
                                     color="#45cd8a"
                                     depressed
                                     icon
@@ -921,7 +858,7 @@
                             </v-btn>
                             <v-btn
                                     v-if="step === 1 || step === 2 || step === 3 && configPlay != 'QuickPlay' || step === 4 || step === 5 && configPlay != 'QuickPlay'"
-                                    :disabled="step === 2 && configStatus === null || step === 6 || step === 5 && configScoreOne === null || step === 5 && configScoreTwo === null || step === 3 && configDpsOne === null || step === 3 && configDpsTwo === null || step === 3 && configTankOne === null || step === 3 &&  configTankTwo === null || step === 3 && configHealOne === null || step === 3 && configHealTwo === null || step === 3 && configSwitchOne === null || step === 4 && configSwitchTwo === null || step === 4 && configDpsOneD === null || step === 4 && configDpsTwoD === null || step === 4 && configTankOneD === null || step === 4 &&  configTankTwoD === null || step === 4 && configHealOneD === null || step === 4 && configHealTwoD === null || step === 2 && configModel === null || configMap === null || configPlay === null"
+                                    :disabled="step === 2 && configStatus === null || step === 6 || step === 5 && configScoreOne === null || step === 5 && configScoreTwo === null || step === 3 && configDpsOne === null || step === 3 && configDpsTwo === null || step === 3 && configTankOne === null || step === 3 &&  configTankTwo === null || step === 3 && configHealOne === null || step === 3 && configHealTwo === null || step === 4 && configDpsOneD === null || step === 4 && configDpsTwoD === null || step === 4 && configTankOneD === null || step === 4 &&  configTankTwoD === null || step === 4 && configHealOneD === null || step === 4 && configHealTwoD === null || step === 2 && configModel === null || configMap === null || configPlay === null"
                                     color="#45cd8a"
                                     depressed
                                     icon
@@ -961,7 +898,7 @@
 
                 advanced: ["Attente"],
 
-                dps: ['Ashe', 'Bastion', 'Dommfist', 'Genji', 'Hanzo', 'Junkrat', 'Mccree', 'Mei', 'Pharah', 'Reaper', 'Soldier 76', 'Sombra', 'Symmetra', 'Torbjorn', 'Tracer', 'Widowmaker'],
+                dps: ['Ashe', 'Bastion', 'Dommfist', 'Echo', 'Genji', 'Hanzo', 'Junkrat', 'Mccree', 'Mei', 'Pharah', 'Reaper', 'Soldier 76', 'Sombra', 'Symmetra', 'Torbjorn', 'Tracer', 'Widowmaker'],
                 tank: ['Dva', 'Orisa', 'Reinhardt', 'Roadhog', 'Sigma', 'Winston', 'Wrecking ball', 'Zarya'],
                 heal: ['Ana', 'Baptiste', 'Brigitte', 'Lucio', 'Mercy', 'Moira', 'Zenyatta'],
 
@@ -1071,10 +1008,6 @@
                 configHealOneF: null,
                 configHealTwoF: null,
 
-                configSwitchOne: null,
-                configSwitchTwo: null,
-                configSwitchThree: null,
-
                 configCommentaire: '',
 
                 sendM: false,
@@ -1115,15 +1048,6 @@
                     this.configHealOneD = mainHeal;
                     this.configHealTwoD = offHeal;
                 }
-            },
-            resetSwitchOne: function () {
-              this.configSwitchOne = null;
-            },
-            resetSwitchTwo: function () {
-                this.configSwitchTwo = null;
-            },
-            resetSwitchThree: function () {
-                this.configSwitchThree = null;
             },
             sendMatch: function () {
                 this.advanced = [];
@@ -1346,9 +1270,6 @@
                     GameStatus: this.configStatus,
                     GameScoreA: this.configScoreOne,
                     GameScoreB: this.configScoreTwo,
-                    GameSwitchOne: this.configSwitchOne,
-                    GameSwicthTwo: this.configSwitchTwo,
-                    GameSwitchThree: this.configSwitchThree,
                     GameComment: this.configCommentaire,
                     GameDate: new Date().toLocaleString("fr-FR"),
                     GameCompositionSide1: this.randomIdCompoSide1,
@@ -1374,9 +1295,6 @@
                     this.configModelKothTwo = null;
                     this.configModelKothThree = null;
 
-                    this.configSwitchOne = null;
-                    this.configSwitchTwo = null;
-                    this.configSwitchThree = null;
 
                     this.configDpsOne = null;
                     this.configDpsTwo = null;

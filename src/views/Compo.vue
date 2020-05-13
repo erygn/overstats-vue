@@ -339,6 +339,10 @@
                 <v-icon>mdi-close</v-icon>
             </v-btn>
         </v-snackbar>
+
+        <v-overlay :value="overlay">
+            <v-progress-circular indeterminate size="64"></v-progress-circular>
+        </v-overlay>
     </div>
 </template>
 
@@ -349,6 +353,7 @@
         props: ['team', 'id'],
         data() {
             return {
+                overlay: true,
                 accountUid: null,
 
                 advenced: null,
@@ -556,6 +561,8 @@
                         this.teamCalc += 1;
                     }
                 });
+            }).then(() => {
+                this.overlay = false;
             })
 
             firebase.database().ref('teams/' + this.team + '/compo/' + this.id).on('value',  (snapshot) => {

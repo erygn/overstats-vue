@@ -1,22 +1,30 @@
 <template>
   <div id="top" style="background-color: #FFFFFF">
 
+      <v-container fluid style="background: linear-gradient(#000a16, #092139);">
+          <v-row justify="center">
+              <div class="col-lg-8 col-md-10 col-sm-12 text-center">
+                  <transition name="fade" appear >
+                      <div class="row" v-if="displayName.Grade > 1">
+                          <div class="col-lg-12 col-md-12 col-sm-12" style="margin-top: 15px">
+                              <h1 style="font-weight: 700; text-transform: uppercase; font-size: 43px; color: #EFEBEE; margin-top: 50px; letter-spacing: 5px">Team Manager</h1>
+                              <v-btn width="200" elevation="0" tile height="50" style="border-radius: 25px; margin-top: 20px; margin-bottom: 50px; background-color: #385982; color: #EFEBEE; text-transform: initial" @click="addTeamDialog = !addTeamDialog">Ajouter une équipe</v-btn>
+                          </div>
+                      </div>
+
+                      <div class="row" v-else>
+                          <div class="col-lg-12 col-md-12 col-sm-12" style="margin-top: 15px">
+                              <h1 style="font-weight: 700; text-transform: uppercase; font-size: 43px; color: #EFEBEE; margin-top: 50px; margin-bottom: 50px; letter-spacing: 5px">Rejoindre une équipe</h1>
+                          </div>
+                      </div>
+                  </transition>
+              </div>
+          </v-row>
+      </v-container>
+
       <v-container fluid style="background-color: #F7F7F7" id="tManage">
           <v-row justify="center">
               <div class="col-lg-8 col-md-10 col-sm-12">
-                  <div class="row" v-if="displayName.Grade > 1">
-                      <div class="col-12">
-                          <h1 style="margin-top: 60px; font-size: 28px; font-weight: 700; color: #2e313a">Team Manager</h1>
-                          <v-btn width="160" elevation="0" tile height="35" style="border-radius: 25px; margin-bottom: 20px; background-color: #385982; color: #EFEBEE; text-transform: initial" @click="addTeamDialog = !addTeamDialog">Add Team</v-btn>
-                      </div>
-                  </div>
-
-                  <div class="row" v-else>
-                      <div class="col-12">
-                          <h1 style="margin-top: 60px; font-size: 28px; font-weight: 700; color: #2e313a">Team Manager</h1>
-                      </div>
-                  </div>
-
                   <div class="row" v-if="accountValues.Grade > 1">
                       <div class="col-lg-8 col-md-8 col-sm-12" style="margin-bottom: -30px">
                           <p style="font-size: 25px">Vos équipes {{ accountValues.Teams }} / {{ accountValues.Grade }}</p>
@@ -65,8 +73,8 @@
                                   <v-row justify="center">
                                       <div class="text-center">
                                           <v-icon style="margin-top: 20px; background-color: #e5f3fe; color: #0382ff; padding: 10px; border-radius: 40px" large>mdi-gamepad-variant</v-icon>
-                                          <h2 style="margin-top: 12px; color: #2d3039; font-size: 40px; font-weight: 600">Tips</h2>
-                                          <p style="color: #768185; font-size: 15px">Total game</p>
+                                          <h2 style="margin-top: 12px; color: #2d3039; font-size: 40px; font-weight: 600">Conseils</h2>
+                                          <p style="color: #768185; font-size: 15px">Créer votre équipe puis demander à vos joueurs de la rejoindre</p>
                                       </div>
                                   </v-row>
                               </v-container>
@@ -122,18 +130,13 @@
                                   <v-row justify="center">
                                       <div class="text-center">
                                           <v-icon style="margin-top: 20px; background-color: #e5f3fe; color: #0382ff; padding: 10px; border-radius: 40px" large>mdi-gamepad-variant</v-icon>
-                                          <h2 style="margin-top: 12px; color: #2d3039; font-size: 40px; font-weight: 600">Tips</h2>
-                                          <p style="color: #768185; font-size: 15px">Total game</p>
+                                          <h2 style="margin-top: 12px; color: #2d3039; font-size: 40px; font-weight: 600">Conseils</h2>
+                                          <p style="color: #768185; font-size: 15px">Demander à rejoindre une équipe créé par votre coach</p>
                                       </div>
                                   </v-row>
                               </v-container>
                           </v-card>
                       </div>
-
-                      <div class="col-lg-8 col-md-8 col-sm-12">
-                          <p style="font-size: 18px; margin-bottom: -10px">Plus d'équipe disponible pour le moment</p>
-                      </div>
-
                   </div>
 
                   <div class="row" v-if="accountValues.Grade == 1 && accountValues.isRole">
@@ -184,8 +187,8 @@
                                   <v-row justify="center">
                                       <div class="text-center">
                                           <v-icon style="margin-top: 20px; background-color: #e5f3fe; color: #0382ff; padding: 10px; border-radius: 40px" large>mdi-gamepad-variant</v-icon>
-                                          <h2 style="margin-top: 12px; color: #2d3039; font-size: 40px; font-weight: 600">Tips</h2>
-                                          <p style="color: #768185; font-size: 15px">Total game</p>
+                                          <h2 style="margin-top: 12px; color: #2d3039; font-size: 40px; font-weight: 600">Conseils</h2>
+                                          <p style="color: #768185; font-size: 15px">Profiter de votre accès pour voir en temps réel les statistiques de votre équipe</p>
                                       </div>
                                   </v-row>
                               </v-container>
@@ -272,27 +275,28 @@
       </v-container>
 
       <v-dialog
+              persistent
               v-model="battleDialog"
               width="600px"
       >
           <v-card tile style="background-color: #2d3039; color: #EFEBEE;">
               <v-card-title style="font-size: 22px; font-weight: 400">
                   <v-spacer/>
-                  <span style="margin-top: 20px; margin-bottom: 10px">Add your BattleTag</span>
+                  <span style="margin-top: 20px; margin-bottom: 10px">Ajouter votre BattleTag</span>
                   <v-spacer/>
                   <!--                    <v-btn @click="dialog = !dialog" text depressed><v-icon color="#2d3039">mdi-close</v-icon></v-btn>-->
               </v-card-title>
               <v-container>
                   <v-row justify="center" class="row text-center mx-2">
                       <div class="col-sm-12 col-lg-8">
-                          <v-text-field color="#EFEBEE" dark type="text" label="Blizzard Account name" prepend-icon="mdi-account" v-model="battleName"/>
+                          <v-text-field color="#EFEBEE" dark type="text" label="Nom compte Blizzard" prepend-icon="mdi-account" v-model="battleName"/>
                           <v-text-field color="#EFEBEE" dark type="text" label="Battle Tag" prepend-icon="mdi-pound" v-model="battleNum"/>
                           <v-select
                                   dark
                                   color="#EFEBEE"
                                   v-model="battlePlat"
                                   :items="platTag"
-                                  label="Platform"
+                                  label="Plateforme"
                           ></v-select>
                           <v-select
                                   dark
@@ -302,7 +306,7 @@
                                   label="Zone"
                           ></v-select>
                           <div class="text-right">
-                              <a href="https://eu.battle.net/support/fr/article/75767" target="_blank" style="color: #EFEBEE; font-size: 12px; cursor: pointer;">What's the BattleTag?</a>
+                              <a href="https://eu.battle.net/support/fr/article/75767" target="_blank" style="color: #EFEBEE; font-size: 12px; cursor: pointer;">Qu'est ce que le BattleTag?</a>
                           </div>
 
                           <p style="color: red; font-size: 12px; margin-top: 30px">{{battleError}}</p>
@@ -312,8 +316,8 @@
                                   :loading="registJ"
                                   elevation="1" tile style="border-radius: 25px; background-color: #EFEBEE; color: #2d3039; text-transform: initial"
                                   @click="battleNow"
-                          >Add BattleTag</v-btn>
-                          <p @click="battleLater" style="color: cornflowerblue; font-size: 12px; cursor: pointer; margin-top: 20px">Not now</p>
+                          >Ajouter BattleTag</v-btn>
+                          <p @click="battleLater" style="color: cornflowerblue; font-size: 12px; cursor: pointer; margin-top: 20px">Plus tard</p>
                       </div>
                   </v-row>
               </v-container>
@@ -358,7 +362,7 @@
           <v-card tile style="background-color: #FFF; color: #2d3039;">
               <v-card-title style="font-size: 22px; font-weight: 400">
                   <v-spacer/>
-                  <span style="margin-top: 20px; margin-bottom: 10px">Create Team</span>
+                  <span style="margin-top: 20px; margin-bottom: 10px">Créer une équipe</span>
                   <v-spacer/>
                   <!--                    <v-btn @click="dialog = !dialog" text depressed><v-icon color="#2d3039">mdi-close</v-icon></v-btn>-->
               </v-card-title>
@@ -374,8 +378,8 @@
                                   :loading="registJ"
                                   elevation="1" tile style="border-radius: 25px; background-color: #2d3039; color: #EFEBEE; text-transform: initial"
                                   @click="addTeam"
-                          >Add Team</v-btn>
-                          <p style="color: cornflowerblue; font-size: 12px; cursor: pointer; margin-top: 20px">Not Register?</p>
+                          >Ajouter</v-btn>
+                          <p style="color: cornflowerblue; font-size: 12px; cursor: pointer; margin-top: 20px" @click="addTeamDialog = false; addTeamName = ''">Fermer</p>
                       </div>
                   </v-row>
               </v-container>
@@ -489,45 +493,12 @@
               <v-icon>mdi-close</v-icon>
           </v-btn>
       </v-snackbar>
-
-<!--    <v-container fluid style="align-items: center" class="my-5">-->
-<!--      <v-row align="center" style="justify-content: center">-->
-<!--        <div class="col-sm-12 col-lg-6 col-md-8"-->
-<!--             v-for="(team, i) in teamValue"-->
-<!--             :key="i"-->
-<!--        >-->
-<!--          <h2>{{ team.TeamName }}</h2>-->
-<!--          <v-card tile style="border-radius: 20px">-->
-<!--            <v-container>-->
-<!--              <v-row justify="space-between">-->
-<!--                <div class="col-sm-12 col-md-6 col-lg-6">-->
-<!--                  <pie-chart donut="true" :data="pieData" />-->
-<!--                </div>-->
-<!--                <div class="col-sm-12 col-md-6 col-lg-6">-->
-<!--                  <v-data-table :items="table" :items-per-page="5" :headers="[{text: 'Game', align: 'left', value: 'game', }, { text: 'Map', value: 'map' }, { text: 'Score', value: 'score' },]"/>-->
-<!--                </div>-->
-<!--              </v-row>-->
-<!--              <v-card-actions>-->
-<!--                <v-spacer/>-->
-<!--                <v-btn :to="{path: '/team', query: {team: i}}" text>-->
-<!--                  Voir <v-icon>mdi-eye</v-icon>-->
-<!--                </v-btn>-->
-<!--              </v-card-actions>-->
-<!--            </v-container>-->
-<!--          </v-card>-->
-<!--        </div>-->
-<!--      </v-row>-->
-<!--    </v-container>-->
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
-
 import db from '@/fb'
 import firebase from 'firebase'
-//import axios from 'axios';
 
 export default {
   name: 'Home',
@@ -747,7 +718,9 @@ export default {
                               mainDps: 'MainDps',
                               offDps: 'OffDps',
                               mainHeal: 'MainHeal',
-                              offHeal: 'OffHeal'
+                              offHeal: 'OffHeal',
+                              remplacantOne: 'Remplacant',
+                              remplacantTwo: 'Remplacant',
                           }
                       }).then(() => {
                           firebase.database().ref('users/' + firebase.auth().currentUser.uid).update({
@@ -873,9 +846,6 @@ export default {
          }
      })
   },
-  components: {
-    // HelloWorld
-  },
 }
 </script>
 
@@ -891,7 +861,12 @@ export default {
       text-decoration: none;
   }
 
-  .overlap {
-    margin-top: -120px;
+  .fade-enter-active, .fade-leave-active {
+      transition: opacity 2s, transform 2s;
+  }
+
+  .fade-enter, fade-leave-action {
+      opacity: 0;
+      transform: translateY(30px);
   }
 </style>

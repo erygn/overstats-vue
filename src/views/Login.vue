@@ -17,7 +17,7 @@
                             </router-link>
                         </v-toolbar-title>
                         <v-spacer></v-spacer>
-                        <v-btn style="text-transform: initial" text @click="dialog = !dialog">Login</v-btn>
+                        <v-btn style="text-transform: initial" text @click="dialog = !dialog">Connexion</v-btn>
                     </v-row>
                 </div>
             </v-row>
@@ -27,102 +27,56 @@
             <v-row justify="center">
                 <div class="col-lg-8 col-md-10 col-sm-12 text-center">
                     <transition name="fade" appear >
-                        <div class="row">
-                            <div class="row hidden-sm-and-down text-center">
-                                <div class="col-12 text-center">
-                                    <h1 style="font-weight: 700; text-transform: uppercase; font-size: 80px; color: #EFEBEE; margin-top: 80px; letter-spacing: 5px">Improve Your Team</h1>
-                                    <h2 style="font-weight: 400; font-size: 20px; color: #EFEBEE; margin-top: 10px">With Overstats find the weaknesses of your team<br> and improve them</h2>
-                                    <h2 style="font-weight: 700; font-size: 18px; color: #EFEBEE; margin-top: 20px">Are you ready?</h2>
-                                    <v-btn width="200" elevation="0" tile height="50" style="border-radius: 25px; margin-top: 20px; background-color: #385982; color: #EFEBEE; text-transform: initial" @click="scrollTo('reg')">Let's Go!</v-btn>
-                                    <p style="margin-bottom: 120px; color: #EFEBEE; margin-top: 20px; font-size: 14px; cursor: pointer" @click="dialog = !dialog">or <span style="color: #039be5">Login</span></p>
-                                </div>
-                                <!--                            <div class="col-6" style="margin-top: 30px; background-image: url(https://subswapr.fr/img/overstats/tra.png); background-repeat: no-repeat; background-size: cover">-->
-                                <!--&lt;!&ndash;                                <v-img src="https://subswapr.fr/img/overstats/tra.png" />&ndash;&gt;-->
-                                <!--                            </div>-->
+                        <v-row justify="center">
+                            <div class="col-12 text-center">
+                                <h1 style="font-weight: 700; text-transform: uppercase; font-size: 43px; color: #EFEBEE; margin-top: 60px; letter-spacing: 5px">Améliorez votre équipe</h1>
+                                <h2 style="font-weight: 300; font-size: 14px; color: #EFEBEE">Avec Overstats, trouvez les faiblesses de votre équipe<br> et améliorez-les</h2>
+                                <h2 style="font-weight: 700; font-size: 12px; color: #EFEBEE; margin-top: 20px">Es-tu prêt ?</h2>
+                                <v-btn width="200" elevation="0" tile height="50" style="border-radius: 25px; margin-top: 20px; background-color: #385982; color: #EFEBEE; text-transform: initial" @click="scrollTo('reg')">C'est parti !</v-btn>
+                                <p style="margin-bottom: 80px; color: #EFEBEE; margin-top: 20px; font-size: 14px; cursor: pointer" @click="dialog = !dialog"><span style="color: #039be5">Connexion</span></p>
                             </div>
-
-                            <div class="col-lg-6 col-md-6 col-sm-12 hidden-md-and-up" style="margin-top: 15px">
-                                <h1 style="font-weight: 700; text-transform: uppercase; font-size: 43px; color: #EFEBEE; margin-top: 60px; letter-spacing: 5px">Improve Your Team</h1>
-                                <h2 style="font-weight: 300; font-size: 14px; color: #EFEBEE">With Overstats find the weaknesses of your team<br> and improve them</h2>
-                                <h2 style="font-weight: 700; font-size: 12px; color: #EFEBEE; margin-top: 20px">Are you ready?</h2>
-                                <v-btn width="200" elevation="0" tile height="50" style="border-radius: 25px; margin-top: 20px; background-color: #385982; color: #EFEBEE; text-transform: initial" @click="scrollTo('reg')">Let's Go!</v-btn>
-                                <p style="margin-bottom: 80px; color: #EFEBEE; margin-top: 20px; font-size: 14px; cursor: pointer" @click="dialog = !dialog">or <span style="color: #039be5">Login</span></p>
-                            </div>
-                        </div>
+                            <!--                            <div class="col-6" style="margin-top: 30px; background-image: url(https://subswapr.fr/img/overstats/tra.png); background-repeat: no-repeat; background-size: cover">-->
+                            <!--&lt;!&ndash;                                <v-img src="https://subswapr.fr/img/overstats/tra.png" />&ndash;&gt;-->
+                            <!--                            </div>-->
+                        </v-row>
                     </transition>
-                </div>
-            </v-row>
-        </v-container>
-
-        <v-container fluid style="background-color: #F7F7F7" class="hidden-md-and-down hidden-md-and-up">
-            <v-row justify="center">
-                <div class="col-lg-8 col-md-10 col-sm-12 text-center">
-                    <div class="row" style="color: #EFEBEE">
-                        <div class="col-lg-4 col-sm-12">
-                            <div class="bord">
-                                <v-icon large style="margin-bottom: 20px; color: #EFEBEE">mdi-account-plus</v-icon>
-                                <h2 style="font-weight: bold">1. Create an Account</h2>
-                                <p>For your team</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-sm-12">
-                            <div class="bord">
-                                <v-icon large style="margin-bottom: 20px; color: #EFEBEE">mdi-keyboard</v-icon>
-                                <h2 style="font-weight: bold">2. Enter values</h2>
-                                <p>Of your Overwatch game</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-sm-12">
-                            <div class="bord">
-                                <v-icon large style="margin-bottom: 20px; color: #EFEBEE">mdi-chart-arc</v-icon>
-                                <h2 style="font-weight: bold">3. Show Results</h2>
-                                <p>And analyze them</p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </v-row>
         </v-container>
 
         <v-container fluid style="background-color: #F7F7F7">
             <v-row justify="center">
-                <div class="col-lg-8 col-md-10 col-sm-12 text-center">
+                <div class="col-lg-8 col-md-10 col-sm-12 text-center" style="margin-bottom: 60px;">
                     <div class="row">
                         <div class="col-12">
-                            <h1 style="margin-top: 80px; font-size: 35px; font-weight: bold">What's Overstats?</h1>
-                            <h2 style="font-size: 18px; margin-bottom: 50px">Track Your Overwatch Team Stats</h2>
+                            <h1 style="margin-top: 80px; font-size: 35px; font-weight: bold">Qu'est ce qu'Overstats ?</h1>
+                            <h2 style="font-size: 18px; margin-bottom: 50px">Suivez les statistiques de votre équipe Overwatch</h2>
                         </div>
                     </div>
 
                     <div class="row justify-center">
-                        <div class="col-lg-4 col-md-4 col-sm-6 text-center bordT" v-scroll>
+                        <div class="col-lg-4 col-md-4 col-sm-6 text-center bordT">
                             <v-icon large style="margin-bottom: 20px">mdi-account-plus</v-icon>
-                            <h2 style="font-weight: bold">1. Create an Account</h2>
-                            <p>For your team</p>
+                            <h2 style="font-weight: bold">1. Créer un compte</h2>
+                            <p>Pour votre équipe</p>
                         </div>
 
-                        <div class="col-lg-4 col-md-4 col-sm-6 text-center bordT" v-scroll>
+                        <div class="col-lg-4 col-md-4 col-sm-6 text-center bordT">
                             <v-icon large style="margin-bottom: 20px">mdi-keyboard</v-icon>
-                            <h2 style="font-weight: bold">2. Enter values</h2>
-                            <p>Of your Overwatch game</p>
+                            <h2 style="font-weight: bold">2. Entrer des données</h2>
+                            <p>De vos parties Overwatch</p>
                         </div>
 
-                        <div class="col-lg-4 col-md-4 col-sm-6 text-center bordT" v-scroll>
+                        <div class="col-lg-4 col-md-4 col-sm-6 text-center bordT">
                             <v-icon large style="margin-bottom: 20px">mdi-chart-arc</v-icon>
-                            <h2 style="font-weight: bold">3. Show Results</h2>
-                            <p>And analyze them</p>
+                            <h2 style="font-weight: bold">3. Regarder les résultats</h2>
+                            <p>de votre équipe et analyser les</p>
                         </div>
 
-                        <div class="col-lg-4 col-md-4 col-sm-6 text-center bordT" v-scroll>
+                        <div class="col-lg-4 col-md-4 col-sm-6 text-center bordT">
                             <v-icon large style="margin-bottom: 20px">mdi-trending-up</v-icon>
-                            <h2 style="font-weight: bold">4. Progress on the game</h2>
-                            <p>With the Stats</p>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-12">
-                            <p style="font-size: 14px; margin-top: 60px; margin-bottom: 30px; color: #cfd4e0">I'm not sure</p>
+                            <h2 style="font-weight: bold">4. Progresser sur le jeu</h2>
+                            <p>grâce aux statistiques générées par OverStats</p>
                         </div>
                     </div>
                 </div>
@@ -298,7 +252,7 @@
             <v-card tile style="background-color: #FFF; color: #2d3039;">
                 <v-card-title style="font-size: 22px; font-weight: 400">
                     <v-spacer/>
-                    <span style="margin-top: 20px; margin-bottom: 10px">Login</span>
+                    <span style="margin-top: 20px; margin-bottom: 10px">Connexion</span>
                     <v-spacer/>
 <!--                    <v-btn @click="dialog = !dialog" text depressed><v-icon color="#2d3039">mdi-close</v-icon></v-btn>-->
                 </v-card-title>
@@ -310,14 +264,14 @@
                                     color="#69697f"
                                     :append-icon="show3 ? 'mdi-eye' : 'mdi-eye-off'"
                                     :type="show3 ? 'text' : 'password'"
-                                    label="Password*"
+                                    label="Mot de passe*"
                                     prepend-icon="mdi-lock"
                                     class="input-group--focused"
                                     v-model="password"
                                     @click:append="show3 = !show3"
                             />
                             <div class="text-right">
-                                <p style="color: cornflowerblue; font-size: 12px; cursor: pointer;">Forgot your password</p>
+                                <p style="color: cornflowerblue; font-size: 12px; cursor: pointer;">Mot de passe oublié</p>
                             </div>
                             <p style="color: red; font-size: 12px">{{errorMessage}}</p>
 
@@ -327,8 +281,8 @@
                                     :loading="registJ"
                                     elevation="1" tile style="border-radius: 25px; background-color: #2d3039; color: #EFEBEE; text-transform: initial; margin-top: 30px"
                                     @click="login"
-                            >Login</v-btn>
-                            <p style="color: cornflowerblue; font-size: 12px; cursor: pointer; margin-top: 20px" @click="notRegister">Not Register?</p>
+                            >Connexion</v-btn>
+                            <p style="color: cornflowerblue; font-size: 12px; cursor: pointer; margin-top: 20px" @click="notRegister">Pas de compte ?</p>
                         </div>
                     </v-row>
                 </v-container>
@@ -343,7 +297,7 @@
             <v-card tile style="border-radius: 5px; background-color: #2d3039; color: #EFEBEE;">
                 <v-card-title style="font-size: 22px; font-weight: 400">
                     <v-spacer/>
-                    <span style="margin-top: 20px; margin-bottom: 10px">Become a Player</span>
+                    <span style="margin-top: 20px; margin-bottom: 10px">Devenir un Joueur</span>
                     <v-spacer/>
                     <!--                    <v-btn @click="dialog = !dialog" text depressed><v-icon color="#2d3039">mdi-close</v-icon></v-btn>-->
                 </v-card-title>
@@ -359,7 +313,7 @@
                                     prepend-icon="mdi-lock"
                                     :type="show3 ? 'text' : 'password'"
                                     name="input-10-2"
-                                    label="Password*"
+                                    label="Mot de passe*"
                                     class="input-group--focused"
                                     :rules="rules" counter
                                     v-model="password"
@@ -372,7 +326,7 @@
                                     prepend-icon="mdi-lock"
                                     :type="show4 ? 'text' : 'password'"
                                     name="input-10-2"
-                                    label="Confirm Password*"
+                                    label="Confirmer le mot de passe*"
                                     :rules="rules" counter
                                     class="input-group--focused"
                                     v-model="password2"
@@ -382,7 +336,7 @@
                                     dark
                                     v-model="checkbox"
                                     color="#EFEBEE"
-                                    label="I agree to the terms of service"
+                                    label="J'accepte les conditions d'OverStats"
                             ></v-checkbox>
                             <p style="color: red; font-size: 12px">{{errorMessage}}</p>
 
@@ -392,7 +346,7 @@
                                     :loading="registJ"
                                     elevation="1" tile style="border-radius: 25px; background-color: #EFEBEE; color: #2d3039; text-transform: initial; margin-top: 30px; margin-bottom: 20px"
                                     @click="register(1)"
-                            >Register</v-btn>
+                            >S'inscrire</v-btn>
                         </div>
                     </v-row>
                 </v-container>
@@ -407,7 +361,7 @@
             <v-card tile style="border-radius: 5px; background-color: #2d3039; color: #EFEBEE;">
                 <v-card-title style="font-size: 22px; font-weight: 400">
                     <v-spacer/>
-                    <span style="margin-top: 20px; margin-bottom: 10px">Become a Coach</span>
+                    <span style="margin-top: 20px; margin-bottom: 10px">Devenir un Coach</span>
                     <v-spacer/>
                     <!--                    <v-btn @click="dialog = !dialog" text depressed><v-icon color="#2d3039">mdi-close</v-icon></v-btn>-->
                 </v-card-title>
@@ -423,7 +377,7 @@
                                     prepend-icon="mdi-lock"
                                     :type="show3 ? 'text' : 'password'"
                                     name="input-10-2"
-                                    label="Password*"
+                                    label="Mot de passe*"
                                     class="input-group--focused"
                                     :rules="rules" counter
                                     v-model="password"
@@ -436,7 +390,7 @@
                                     prepend-icon="mdi-lock"
                                     :type="show4 ? 'text' : 'password'"
                                     name="input-10-2"
-                                    label="Confirm Password*"
+                                    label="Confirmer le mot de passe*"
                                     :rules="rules" counter
                                     class="input-group--focused"
                                     v-model="password2"
@@ -446,7 +400,7 @@
                                     dark
                                     v-model="checkbox"
                                     color="#EFEBEE"
-                                    label="I agree to the terms of service"
+                                    label="J'accepte les conditions d'OverStats"
                             ></v-checkbox>
                             <p style="color: red; font-size: 12px">{{errorMessage}}</p>
 
@@ -456,7 +410,7 @@
                                     :loading="registJ"
                                     elevation="1" tile style="border-radius: 25px; background-color: #EFEBEE; color: #2d3039; text-transform: initial; margin-top: 30px; margin-bottom: 20px"
                                     @click="register(3)"
-                            >Register</v-btn>
+                            >S'inscrire</v-btn>
                         </div>
                     </v-row>
                 </v-container>

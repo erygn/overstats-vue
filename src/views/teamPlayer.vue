@@ -3,7 +3,7 @@
         <v-container fluid>
             <v-row justify="center" style="color: #2e313a">
                 <div class="col-lg-10 col-md-10 col-sm-12">
-                    <h1 style="margin-left: 15px; font-weight: 400; margin-bottom: 10px; font-size: 30px"><router-link :to="{path: '/team', query: {team: team}}" style="text-decoration: none"><v-btn style="background-color: transparent; color: #2e313a;" fab x-small depressed><v-icon>fa-angle-left</v-icon></v-btn></router-link> Settings </h1>
+                    <h1 style="margin-left: 15px; font-weight: 400; margin-bottom: 10px; font-size: 30px"><router-link :to="{path: '/team', query: {team: team}}" style="text-decoration: none"><v-btn style="background-color: transparent; color: #2e313a;" fab x-small depressed><v-icon>fa-angle-left</v-icon></v-btn></router-link> Paramètres </h1>
                 </div>
             </v-row>
         </v-container>
@@ -11,7 +11,7 @@
         <v-container fluid>
             <v-row justify="center">
                 <div class="col-lg-10 col-md-10 col-sm-12">
-                    <h1 style="margin-left: 15px; margin-bottom: -30px; font-size: 22px; font-weight: 700; color: #2e313a">Team Config</h1>
+                    <h1 style="margin-left: 15px; margin-bottom: -30px; font-size: 22px; font-weight: 700; color: #2e313a">Configuration d'équipe</h1>
                 </div>
             </v-row>
         </v-container>
@@ -23,7 +23,7 @@
                         <div class="col-lg-6 col-sm-12">
                             <v-card tile style="border-radius: 5px; color: #363645; font-weight: 500">
                                 <v-card-title>
-                                    <h1 style="margin-left: 15px; font-size: 15px; font-weight: 700; color: #2e313a">Players Name</h1>
+                                    <h1 style="margin-left: 15px; font-size: 15px; font-weight: 700; color: #2e313a">Joueurs</h1>
                                 </v-card-title>
                                 <v-container>
                                     <v-row>
@@ -58,6 +58,22 @@
                                             </v-row>
                                         </div>
                                     </v-row>
+
+                                    <v-row>
+                                        <div class="col-12">
+                                            <h1 style="margin-left: 15px; font-size: 15px; font-weight: 700; color: #2e313a">Remplaçants</h1>
+                                        </div>
+                                        <div class="col-12">
+                                            <v-row style="font-size: 15px; color: #2e313a; margin-left: 8px">
+                                                <div class="col-sm-6">
+                                                    Remplaçant #1: <strong>{{ teamValue.Players.remplacantOne }}</strong> <v-btn v-if="accountUid == teamValue.OwnerId" @click="openChange('rempOne')" text x-small><v-icon small color="#2e313a">mdi-pencil</v-icon></v-btn>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    Remplaçant #2: <strong>{{ teamValue.Players.remplacantTwo }}</strong> <v-btn v-if="accountUid == teamValue.OwnerId" @click="openChange('rempTwo')" text x-small><v-icon small color="#2e313a">mdi-pencil</v-icon></v-btn>
+                                                </div>
+                                            </v-row>
+                                        </div>
+                                    </v-row>
                                 </v-container>
                             </v-card>
                         </div>
@@ -66,9 +82,9 @@
                             <v-card tile elevation="1" style="border-radius: 5px; color: #363645">
                                 <v-card-title>
                                     <div>
-                                        <h1 style="margin-left: 15px; font-size: 15px; font-weight: 700; color: #2e313a">Join Request</h1>
-                                        <p v-if="teamValue.EnableJoin" style="margin-left: 15px; font-size: 11px; color: #2e313a; margin-top: -15px">Join enable</p>
-                                        <p v-else style="margin-left: 15px; font-size: 11px; color: #2e313a; margin-top: -15px">Join disable</p>
+                                        <h1 style="margin-left: 15px; font-size: 15px; font-weight: 700; color: #2e313a">Demandes reçues</h1>
+                                        <p v-if="teamValue.EnableJoin" style="margin-left: 15px; font-size: 11px; color: #2e313a; margin-top: -15px">Demandes activées</p>
+                                        <p v-else style="margin-left: 15px; font-size: 11px; color: #2e313a; margin-top: -15px">Demandes désactivées</p>
                                     </div>
                                     <v-spacer/>
                                     <v-btn style="margin-top: -12px; text-transform: initial" text @click="joinStats">{{ joinMsg }}</v-btn>
@@ -128,7 +144,7 @@
                             >
                                 <v-list-item-subtitle>Modifier le nom du role / {{ nameChange }}</v-list-item-subtitle>
                                 <v-list-item-subtitle><v-text-field color="#003041" type="text" :label="nameLabel" prepend-icon="mdi-rename-box" v-model="roleName"/></v-list-item-subtitle>
-                                <v-list-item-subtitle class="text-right"><v-btn v-if="teamValue.Players.isMainTank && nameChange == 'mainTank' || teamValue.Players.isOffTank && nameChange == 'offTank' || teamValue.Players.isMainDps && nameChange == 'mainDps' || teamValue.Players.isOffDps && nameChange == 'offDps' || teamValue.Players.isMainHeal && nameChange == 'mainHeal' || teamValue.Players.isOffHeal && nameChange == 'offHeal'" height="35" width="150" @click="supUser" small style="background-color: #2d3039; text-transform: initial; color: #FFFFFF">Supprimer Joueur</v-btn> <v-btn v-else height="35" width="150" @click="dialogUsers = !dialogUsers" small style="background-color: #2d3039; text-transform: initial; color: #FFFFFF">Utilisateur</v-btn></v-list-item-subtitle>
+                                <v-list-item-subtitle class="text-right"><v-btn v-if="teamValue.Players.isMainTank && nameChange == 'mainTank' || teamValue.Players.isOffTank && nameChange == 'offTank' || teamValue.Players.isMainDps && nameChange == 'mainDps' || teamValue.Players.isOffDps && nameChange == 'offDps' || teamValue.Players.isMainHeal && nameChange == 'mainHeal' || teamValue.Players.isOffHeal && nameChange == 'offHeal' || teamValue.Players.isRemplacantOne && nameChange == 'Remplacant #1' || teamValue.Players.isRemplacantTwo && nameChange == 'Remplacant #2'" height="35" width="150" @click="supUser" small style="background-color: #2d3039; text-transform: initial; color: #FFFFFF">Supprimer Joueur</v-btn> <v-btn v-else height="35" width="150" @click="dialogUsers = !dialogUsers" small style="background-color: #2d3039; text-transform: initial; color: #FFFFFF">Utilisateur</v-btn></v-list-item-subtitle>
                             </v-row>
                         </v-col>
                     </v-row>
@@ -175,7 +191,7 @@
                                 <v-list-item-subtitle>Choisir un utilisateur à ajouter</v-list-item-subtitle>
                                 <v-card-text style="height: 200px; overflow: auto">
                                     <div v-for="(item, index) in teamPlayer" :key="index" style="margin-top: 10px">
-                                        <div class="row" v-if="!item.isRole" style="border-bottom: 1px solid #333333;">
+                                        <div class="row" v-if="!item.isRole && item.Grade == 1" style="border-bottom: 1px solid #333333;">
                                             <div class="col-6">
                                                 <p>{{ item.Pseudo }}</p>
                                             </div>
@@ -602,17 +618,17 @@
                     firebase.database().ref('teams/' + this.team).update({
                         EnableJoin: false,
                     }).then(() => {
-                        this.joinMsg = 'Enable';
+                        this.joinMsg = 'Activer';
                         this.snackbarDel = true;
-                        this.delValue = 'Join disable';
+                        this.delValue = 'Demandes refusées';
                     })
                 } else {
                     firebase.database().ref('teams/' + this.team).update({
                         EnableJoin: true,
                     }).then(() => {
-                        this.joinMsg = 'Disable';
+                        this.joinMsg = 'Désactiver';
                         this.snackbarAdd = true;
-                        this.addValue = 'Join enable';
+                        this.addValue = 'Demandes autorisées';
                     })
                 }
             },
@@ -726,6 +742,34 @@
                         this.delValue = 'Joueur supprimé';
                     });
                 }
+                if (this.nameChange == 'Remplacant #1') {
+                    firebase.database().ref('users/' + this.teamValue.Players.isRemplacantOne).update({
+                        isRole: false,
+                        roleId: false,
+                    }).then(() => {
+                        firebase.database().ref('teams/' + this.team + '/Players/').update({
+                            isRemplacantOne: null,
+                            remplacantOne: 'Remplacant',
+                        })
+                        this.dialogName = false;
+                        this.snackbarDel = true;
+                        this.delValue = 'Joueur supprimé';
+                    });
+                }
+                if (this.nameChange == 'Remplacant #2') {
+                    firebase.database().ref('users/' + this.teamValue.Players.isRemplacantTwo).update({
+                        isRole: false,
+                        roleId: false,
+                    }).then(() => {
+                        firebase.database().ref('teams/' + this.team + '/Players/').update({
+                            isRemplacantTwo: null,
+                            remplacantTwo: 'Remplacant',
+                        })
+                        this.dialogName = false;
+                        this.snackbarDel = true;
+                        this.delValue = 'Joueur supprimé';
+                    });
+                }
             },
             getUser: function(n, p) {
                 this.getIndex = n;
@@ -733,6 +777,16 @@
                 this.dialogUsers = false;
             },
           openChange: function (n) {
+              if (n == 'rempOne') {
+                  this.nameChange = 'Remplacant #1';
+                  this.nameLabel = this.teamValue.Players.remplacantOne;
+                  this.dialogName = true;
+              }
+              if (n == 'rempTwo') {
+                  this.nameChange = 'Remplacant #2';
+                  this.nameLabel = this.teamValue.Players.remplacantTwo;
+                  this.dialogName = true;
+              }
             if (n === 'mTank') {
                 this.nameChange = 'mainTank';
                 this.nameLabel = this.teamValue.Players.mainTank;
@@ -819,6 +873,26 @@
                     if (this.nameChange === 'offHeal') {
                         firebase.database().ref('teams/' + this.team + '/Players/').update({
                             offHeal: this.roleName,
+                        }).then(() => {
+                            this.dialogName = false;
+                            this.snackbarAdd = true;
+                            this.addValue = 'Nom modifié';
+                            this.roleName = null;
+                        })
+                    }
+                    if (this.nameChange === 'Remplacant #1') {
+                        firebase.database().ref('teams/' + this.team + '/Players/').update({
+                            remplacantOne: this.roleName,
+                        }).then(() => {
+                            this.dialogName = false;
+                            this.snackbarAdd = true;
+                            this.addValue = 'Nom modifié';
+                            this.roleName = null;
+                        })
+                    }
+                    if (this.nameChange === 'Remplacant #2') {
+                        firebase.database().ref('teams/' + this.team + '/Players/').update({
+                            remplacantTwo: this.roleName,
                         }).then(() => {
                             this.dialogName = false;
                             this.snackbarAdd = true;
@@ -918,6 +992,36 @@
                             this.roleName = null;
                         })
                     }
+                    if (this.nameChange === 'Remplacant #1') {
+                        firebase.database().ref('teams/' + this.team + '/Players/').update({
+                            remplacantOne: this.roleName,
+                            isRemplacantOne: this.getIndex,
+                        }).then(() => {
+                            firebase.database().ref('users/' + this.getIndex).update({
+                                isRole: true,
+                                roleId: this.team,
+                            });
+                            this.dialogName = false;
+                            this.snackbarAdd = true;
+                            this.addValue = 'Nom modifié';
+                            this.roleName = null;
+                        })
+                    }
+                    if (this.nameChange === 'Remplacant #2') {
+                        firebase.database().ref('teams/' + this.team + '/Players/').update({
+                            remplacantTwo: this.roleName,
+                            isRemplacantTwo: this.getIndex,
+                        }).then(() => {
+                            firebase.database().ref('users/' + this.getIndex).update({
+                                isRole: true,
+                                roleId: this.team,
+                            });
+                            this.dialogName = false;
+                            this.snackbarAdd = true;
+                            this.addValue = 'Nom modifié';
+                            this.roleName = null;
+                        })
+                    }
                 }
             }
         },
@@ -933,9 +1037,9 @@
                 }
 
                 if (snapshot.val().EnableJoin == true) {
-                    this.joinMsg = 'Disable';
+                    this.joinMsg = 'Désactiver';
                 } else {
-                    this.joinMsg = 'Enable';
+                    this.joinMsg = 'Activer';
                 }
             })
 

@@ -84,10 +84,10 @@
                 <div class="col-lg-10 col-md-10 col-sm-12">
                     <v-row>
                         <div class="col-8">
-                            <h1 style="margin-left: 15px; margin-bottom: -30px; font-size: 22px; font-weight: 700; color: #2e313a">Recent Game</h1>
+                            <h1 style="margin-left: 15px; margin-bottom: -30px; font-size: 22px; font-weight: 700; color: #2e313a">Game Map</h1>
                         </div>
                         <div class="col-4 text-right">
-                            <h1 style="margin-bottom: -30px; font-size: 18px; font-weight: 300; color: #2e313a; margin-right: 15px">Recent Game <v-icon small style="margin-top: -3px; margin-left: 5px">fa-angle-down</v-icon></h1>
+                            <h1 style="margin-bottom: -30px; font-size: 18px; font-weight: 300; color: #2e313a; margin-right: 15px">Game Map <v-icon small style="margin-top: -3px; margin-left: 5px">fa-angle-down</v-icon></h1>
                         </div>
                     </v-row>
                 </div>
@@ -110,11 +110,11 @@
                                 show-arrows
                         >
                             <v-slide-item
-                                    v-for="(item, index) in teamValue.matchs" :key="index"
+                                    v-for="(item, index) in gameMap" :key="index"
                                     v-slot:default="{ active, toggle }"
                             >
                                 <v-card
-                                        :img="getIconMap(item.GameMap)"
+                                        :img="getIconMap(item)"
                                         :color="active ? undefined : 'grey lighten-1'"
                                         class="ma-1"
                                         height="200"
@@ -123,14 +123,43 @@
 
                                 >
                                     <v-row class="fill-height align-end text-center" justify="center">
-                                        <v-card-title v-if="item.GameMap != 'Rialto' && item.GameMap != 'Busan' && item.GameMap != 'Ilios' && item.GameMap != 'Oasis' && item.GameMap != 'Nepal'" style="color: #FFF; font-weight: 600; margin-bottom: -107px; text-shadow: 0px 0px 6px rgba(0,0,0,0.89);">{{ item.GameMap }}</v-card-title>
-                                        <v-card-title v-if="item.GameMap === 'Rialto' || item.GameMap === 'Busan' || item.GameMap === 'Ilios' || item.GameMap === 'Oasis' || item.GameMap === 'Nepal'" style="color: #FFF; font-weight: 600; margin-bottom: -107px; text-shadow: 0px 0px 6px rgba(0,0,0,0.89);">{{ item.GameMap }} /R</v-card-title>
-<!--                                        <v-card-subtitle style="color: #FFF; font-weight: 400; font-size: 12px; margin-top: -200px">{{ item.GameDate }}</v-card-subtitle>-->
-                                        <v-btn small style="margin-bottom: 5px; background-color: transparent; color: #FFF; text-shadow: 0px 0px 6px rgba(0,0,0,0.89);" depressed :to="{path: '/game', query: {team: team, id: index}}">Show</v-btn>
+                                        <v-card-title v-if="item != 'Rialto' && item != 'Busan' && item != 'Ilios' && item != 'Oasis' && item != 'Nepal'" style="color: #FFF; font-weight: 600; margin-bottom: -100px; text-shadow: 0px 0px 6px rgba(0,0,0,0.89);">{{ item }}</v-card-title>
+                                        <v-card-title v-else style="color: #FFF; font-weight: 600; margin-bottom: -100px; text-shadow: 0px 0px 6px rgba(0,0,0,0.89);">{{ item }} /R</v-card-title>
+                                        <v-btn small style="margin-bottom: 5px; background-color: transparent; color: #FFF; text-shadow: 0px 0px 6px rgba(0,0,0,0.89);" depressed :to="{path: '/map', query: {team: team, id: item}}">Show</v-btn>
                                     </v-row>
                                 </v-card>
                             </v-slide-item>
                         </v-slide-group>
+
+<!--                        <v-slide-group-->
+<!--                                v-model="model"-->
+<!--                                class="pa-4"-->
+<!--                                active-class="warning"-->
+<!--                                center-active-->
+<!--                                show-arrows-->
+<!--                        >-->
+<!--                            <v-slide-item-->
+<!--                                    v-for="(item, index) in gameMap" :key="index"-->
+<!--                                    v-slot:default="{ active, toggle }"-->
+<!--                            >-->
+<!--                                <v-card-->
+<!--                                        :img="getIconMap(item)"-->
+<!--                                        :color="active ? undefined : 'grey lighten-1'"-->
+<!--                                        class="ma-1"-->
+<!--                                        height="200"-->
+<!--                                        width="150"-->
+<!--                                        @click="toggle"-->
+
+<!--                                >-->
+<!--                                    <v-row class="fill-height align-end text-center" justify="center">-->
+<!--                                        <v-card-title v-if="item != 'Rialto' && item != 'Busan' && item != 'Ilios' && item != 'Oasis' && item != 'Nepal'" style="color: #FFF; font-weight: 600; margin-bottom: -107px; text-shadow: 0px 0px 6px rgba(0,0,0,0.89);">{{ item }}</v-card-title>-->
+<!--                                        <v-card-title v-if="item === 'Rialto' || item === 'Busan' || item === 'Ilios' || item === 'Oasis' || item === 'Nepal'" style="color: #FFF; font-weight: 600; margin-bottom: -107px; text-shadow: 0px 0px 6px rgba(0,0,0,0.89);">{{ item }} /R</v-card-title>-->
+<!--                                        <v-btn small style="margin-bottom: 5px; background-color: transparent; color: #FFF; text-shadow: 0px 0px 6px rgba(0,0,0,0.89);" depressed :to="{path: '/game', query: {team: team, map: item}}">Show</v-btn>-->
+<!--                                    </v-row>-->
+<!--                                </v-card>-->
+<!--                            </v-slide-item>-->
+<!--                        </v-slide-group>-->
+
                     </v-sheet>
                 </div>
             </v-row>
@@ -238,222 +267,6 @@
             </v-row>
         </v-container>
 
-<!--        <v-container fluid>-->
-<!--            <v-row justify="center" style="margin: 0px 1px; color: #9696A3">-->
-<!--                <div class="col-lg-10 col-md-10 col-sm-12">-->
-<!--                    <v-row>-->
-<!--                        <div class="col-lg-6 col-sm-12">-->
-<!--                            <v-card tile elevation="1" style="border-radius: 5px; color: #363645; font-weight: 500">-->
-<!--                                <v-card-title>-->
-<!--                                    <h1 style="margin-left: 15px; font-size: 15px; font-weight: 700; color: #2e313a">Composition of the last game</h1>-->
-<!--                                </v-card-title>-->
-<!--                                <v-container>-->
-<!--                                    <v-tabs :grow="true"-->
-<!--                                            background-color="transparent"-->
-<!--                                            color="#363645"-->
-<!--                                    >-->
-<!--                                        <v-tab>-->
-<!--                                            Attack-->
-<!--                                        </v-tab>-->
-<!--                                        <v-tab>-->
-<!--                                            Defense-->
-<!--                                        </v-tab>-->
-
-<!--                                        <v-tab-item>-->
-<!--                                            <v-container>-->
-<!--                                                <v-row class="mx-2">-->
-<!--                                                    <v-col-->
-<!--                                                            class="align-center justify-space-between"-->
-<!--                                                            cols="12"-->
-<!--                                                    >-->
-<!--                                                        <v-row-->
-<!--                                                                align="center"-->
-<!--                                                                class="mr-0"-->
-<!--                                                        >-->
-<!--                                                            <v-list-item-subtitle><v-text-field color="#003041" type="text" label="Email*" prepend-icon="mdi-mail" v-model="email"/></v-list-item-subtitle>-->
-<!--                                                            <v-list-item-subtitle><v-text-field color="#003041" type="password" label="Mot de passe*" prepend-icon="mdi-lock" v-model="password"/></v-list-item-subtitle>-->
-<!--                                                            <v-list-item-subtitle style="color: #E53935" v-if="errorMessageL">{{ errorMessageL }}</v-list-item-subtitle>-->
-<!--                                                        </v-row>-->
-<!--                                                    </v-col>-->
-<!--                                                </v-row>-->
-<!--                                            </v-container>-->
-<!--                                        </v-tab-item>-->
-<!--                                        <v-tab-item>-->
-<!--                                            <v-container>-->
-<!--                                                <v-row class="mx-2">-->
-<!--                                                    <v-col-->
-<!--                                                            class="align-center justify-space-between"-->
-<!--                                                            cols="12"-->
-<!--                                                    >-->
-<!--                                                        <v-row-->
-<!--                                                                align="center"-->
-<!--                                                                class="mr-0"-->
-<!--                                                        >-->
-<!--                                                            <v-list-item-subtitle><v-text-field color="#003041" type="text" label="Pseudo*" prepend-icon="mdi-account" v-model="pseudo"/></v-list-item-subtitle>-->
-<!--                                                            <v-list-item-subtitle><v-text-field color="#003041" type="text" label="Email*" prepend-icon="mdi-mail" v-model="email"/></v-list-item-subtitle>-->
-<!--                                                            <v-list-item-subtitle><v-text-field color="#003041" type="password" label="Mot de passe*" prepend-icon="mdi-lock" v-model="password"/></v-list-item-subtitle>-->
-<!--                                                            <v-list-item-subtitle><v-text-field color="#003041" type="password" label="Confirmation mot de passe*" prepend-icon="mdi-lock" v-model="passwordConf"/></v-list-item-subtitle>-->
-<!--                                                            <v-list-item-subtitle style="color: #E53935" v-if="errorMessage">{{ errorMessage }}</v-list-item-subtitle>-->
-<!--                                                        </v-row>-->
-<!--                                                    </v-col>-->
-<!--                                                </v-row>-->
-<!--                                            </v-container>-->
-<!--                                        </v-tab-item>-->
-<!--                                    </v-tabs>-->
-<!--                                </v-container>-->
-<!--                            </v-card>-->
-<!--                        </div>-->
-<!--                        <div class="col-lg-6 col-sm-12">-->
-<!--                            <v-card tile style="border-radius: 20px; background-color: #1b1b29; color: #FFF; font-weight: 500">-->
-<!--                                <v-container>-->
-<!--                                    <v-row justify="space-between">-->
-<!--                                        <div class="col-12">-->
-<!--                                            <v-row justify="space-between">-->
-<!--                                                <area-chart xtitle="Essaie" ytitle="Top" :data="areaChart"></area-chart>-->
-<!--                                            </v-row>-->
-<!--                                            <pie-chart donut="true" :data="pieData" />-->
-<!--                                        </div>-->
-<!--                                    </v-row>-->
-<!--                                </v-container>-->
-<!--                                <v-card-title style="height: 40px; font-weight: 200; background-color: #9dc5c1; color: white">-->
-<!--                                    <span style="margin-top: -12px; font-size: 15px; color: #0e0f17; font-weight: 400"><v-icon>mdi-trophy</v-icon> Global Win Rate</span>-->
-<!--                                </v-card-title>-->
-<!--                            </v-card>-->
-<!--                        </div>-->
-<!--                    </v-row>-->
-<!--                </div>-->
-<!--            </v-row>-->
-<!--        </v-container>-->
-
-
-<!--        <div class="row" v-for="(item, index) in teamValue.matchs" :key="index">-->
-<!--            {{ item.GameMap }} - {{ item.GameType }}-->
-<!--        </div>-->
-
-<!--        <hr>-->
-
-<!--        <div class="row" v-for="(item, index) in maps" :key="index">-->
-<!--            {{ item.name }} - {{ item.win }} - {{ item.total }} // {{ item.win / item.total }}-->
-<!--        </div>-->
-
-<!--        {{ compoTank }}-->
-
-<!--        <div class="row">-->
-<!--            <div class="col-sm-6">-->
-<!--                <h2>Progression</h2>-->
-<!--                <v-card tile style="border-radius: 5px">-->
-<!--                    <v-container>-->
-<!--                        <area-chart prefix="$" :data="chartData"/>-->
-<!--                        <v-card-actions>-->
-<!--                            <v-spacer/>-->
-<!--                            <v-btn text>-->
-<!--                                Ajouter <v-icon>mdi-plus</v-icon>-->
-<!--                            </v-btn>-->
-<!--                        </v-card-actions>-->
-<!--                    </v-container>-->
-<!--                </v-card>-->
-<!--            </div>-->
-<!--            <div class="col-sm-6">-->
-<!--                <h2>Kills</h2>-->
-<!--                <v-card tile style="border-radius: 5px">-->
-<!--                    <v-container>-->
-<!--                        <column-chart :data="[['Sun', 32], ['Mon', 46], ['Tue', 28]]"/>-->
-<!--                        <v-card-actions>-->
-<!--                            <v-spacer/>-->
-<!--                            <v-btn text>-->
-<!--                                Ajouter <v-icon>mdi-plus</v-icon>-->
-<!--                            </v-btn>-->
-<!--                        </v-card-actions>-->
-<!--                    </v-container>-->
-<!--                </v-card>-->
-<!--            </div>-->
-<!--        </div>-->
-
-<!--        <v-container fluid>-->
-<!--            <v-row justify="center" style="margin: 0px 1px; color: #FFF">-->
-<!--                <div class="col-lg-4 col-md-4 col-sm-12">-->
-<!--                    <v-card tile style="border-radius: 20px; background-color: #0d0d16; color: #2D2D39; font-weight: 500; height: 380px">-->
-<!--                        <v-container>-->
-<!--                            <v-row>-->
-<!--                                <div class="col-12">-->
-<!--                                    <h2 style="font-weight: 500; text-transform: uppercase; font-size: 15px; margin-left: 20px; margin-bottom: 15px">Hero Compostion</h2>-->
-<!--                                    <div style="margin: 0px 20px; overflow:auto; height: 240px">-->
-<!--                                        <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #2D2D39; margin-bottom: 10px" v-for="(item, index) in teamValue.compo" :key="index">-->
-<!--                                            <div>-->
-<!--                                                <p style="color: #6c6c82;">{{ item.Name }}</p>-->
-<!--                                                <p style="margin-top: -14px; font-size: 12px">{{ item.CompoDate }}</p>-->
-<!--                                            </div>-->
-<!--                                            <v-btn fab depressed style="background-color: transparent"><v-icon style="color: #6c6c82">fa-eye</v-icon></v-btn>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                    <v-row justify="center" style="background-color: #adb2bd">-->
-<!--&lt;!&ndash;                                        <span style="position: absolute; bottom: 20px; background-color: #1a1a27; padding: 10px 90px; border-radius: 10px; color: #6a6a80; font-size: 12px">Show all</span>&ndash;&gt;-->
-<!--                                        <v-btn style="position: absolute; bottom: 20px; background-color: #1a1a27; padding: 10px 90px; border-radius: 10px; color: #6a6a80; font-size: 12px; text-transform: none" tile depressed>Show all</v-btn>-->
-<!--                                    </v-row>-->
-<!--                                </div>-->
-<!--                            </v-row>-->
-<!--                        </v-container>-->
-<!--                    </v-card>-->
-<!--                </div>-->
-
-<!--                <div class="col-lg-4 col-md-4 col-sm-12">-->
-<!--                    <v-card tile style="border-radius: 20px; background-color: #0d0d16; color: #2D2D39; font-weight: 500">-->
-<!--                        <v-container>-->
-<!--                            <v-row justify="space-between">-->
-<!--                                <div class="col-sm-12 col-md-6 col-lg-6">-->
-<!--                                    <h2 style="font-weight: 500">Tout type confondu</h2>-->
-<!--                                    <pie-chart donut="true" :data="pieData" />-->
-<!--                                </div>-->
-<!--                                <div class="col-sm-12 col-md-6 col-lg-6">-->
-<!--                                    <h2 style="font-weight: 500">Ranked</h2>-->
-<!--                                    <column-chart :data="columnRanked" />-->
-<!--                                </div>-->
-<!--                                &lt;!&ndash;                            <div class="col-sm-12 col-md-6 col-lg-6">&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                <v-data-table :items="table" :items-per-page="5" :headers="[{text: 'Game', align: 'left', value: 'game', }, { text: 'Map', value: 'map' }, { text: 'Score', value: 'score' },]"/>&ndash;&gt;-->
-<!--                                &lt;!&ndash;                            </div>&ndash;&gt;-->
-<!--                            </v-row>-->
-<!--                            <v-row justify="space-between">-->
-<!--                                <div class="col-sm-12 col-md-6 col-lg-6">-->
-<!--                                    <h2 style="font-weight: 500">Option de développement</h2>-->
-<!--                                    <p>Dev en cours</p>-->
-<!--                                    &lt;!&ndash;                                <v-data-table :items="table" :items-per-page="5" :headers="[{text: 'Game', align: 'left', value: 'game', }, { text: 'Map', value: 'map' }, { text: 'Score', value: 'score' },]"/>&ndash;&gt;-->
-<!--                                </div>-->
-<!--                                <div class="col-sm-12 col-md-6 col-lg-6">-->
-<!--                                    <h2 style="font-weight: 500">Quickplay</h2>-->
-<!--                                    <column-chart :data="columnQuick" />-->
-<!--                                </div>-->
-<!--                                &lt;!&ndash;                                                        <div class="col-sm-12 col-md-6 col-lg-6">&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                                            <v-data-table :items="table" :items-per-page="5" :headers="[{text: 'Game', align: 'left', value: 'game', }, { text: 'Map', value: 'map' }, { text: 'Score', value: 'score' },]"/>&ndash;&gt;-->
-<!--                                &lt;!&ndash;                                                        </div>&ndash;&gt;-->
-<!--                            </v-row>-->
-<!--                        </v-container>-->
-<!--                    </v-card>-->
-<!--                </div>-->
-
-<!--                <div class="col-lg-4 col-md-4 col-sm-12">-->
-<!--                    <v-card tile style="border-radius: 20px; background-color: #0d0d16; color: #2D2D39; font-weight: 500; height: 700px">-->
-<!--                        <v-container>-->
-<!--                            <v-row>-->
-<!--                                <div class="col-12">-->
-<!--                                    <h2 style="font-weight: 500; text-transform: uppercase; font-size: 15px; margin-left: 20px; margin-bottom: 15px">Team Comments</h2>-->
-<!--                                    <div style="margin: 0px 20px; overflow:auto; height: 530px">-->
-<!--                                        <div v-for="(item, index) in teamValue.comments" :key="index">-->
-<!--                                            <p style="color: #6c6c82;">{{ item.Comment }}</p>-->
-<!--                                            <p style="margin-top: -14px; font-size: 12px">{{ item.CommentDate }}</p>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                    <v-row justify="center" style="background-color: #adb2bd">-->
-<!--&lt;!&ndash;                                        <span style="position: absolute; bottom: 20px; background-color: #1a1a27; padding: 10px 90px; border-radius: 10px; color: #6a6a80; font-size: 12px">Add Comment</span>&ndash;&gt;-->
-<!--                                        <v-btn @click="dialog = !dialog" style="position: absolute; bottom: 20px; background-color: #1a1a27; padding: 10px 90px; border-radius: 10px; color: #6a6a80; font-size: 12px; text-transform: none" tile depressed>Add Comment</v-btn>-->
-<!--                                    </v-row>-->
-<!--                                </div>-->
-<!--                            </v-row>-->
-<!--                        </v-container>-->
-<!--                    </v-card>-->
-<!--                </div>-->
-<!--            </v-row>-->
-<!--        </v-container>-->
-
         <v-menu v-if="accountUid == teamValue.OwnerId" top :offset-y="offset">
             <template v-slot:activator="{ on }">
                 <v-btn
@@ -466,16 +279,6 @@
                     <v-icon>mdi-plus</v-icon>
                 </v-btn>
             </template>
-
-<!--            <v-list>-->
-<!--                <v-list-item-->
-<!--                        v-for="(item, index) in menu"-->
-<!--                        :key="index"-->
-<!--                        link-->
-<!--                >-->
-<!--                    <v-list-item-title>{{ item.title }}</v-list-item-title>-->
-<!--                </v-list-item>-->
-<!--            </v-list>-->
 
             <v-list>
                 <v-list-item link :to="{path: '/GameAdd', query: {team: team}}">
@@ -551,15 +354,9 @@
             </v-btn>
         </v-snackbar>
 
-<!--        <v-btn-->
-<!--                bottom-->
-<!--                fab-->
-<!--                fixed-->
-<!--                right-->
-<!--        >-->
-<!--            <v-icon>mdi-plus</v-icon>-->
-<!--        </v-btn>-->
-
+        <v-overlay :value="overlay">
+            <v-progress-circular indeterminate size="64"></v-progress-circular>
+        </v-overlay>
     </div>
 </template>
 
@@ -570,6 +367,7 @@
         props: ['team'],
         data() {
             return {
+                overlay: true,
                 accountUid: null,
 
                 model: null,
@@ -596,6 +394,8 @@
                 favorite: false,
                 sendM: false,
                 snackbarAddVal: false,
+
+                gameMap: [],
 
                 mapIcon: {
                     'Lidjiang': 'https://subswapr.fr/img/overstats/lidjiang.jpg',
@@ -754,47 +554,13 @@
         },
         created() {
             this.accountUid = firebase.auth().currentUser.uid;
-            firebase.database().ref('teams/' + this.team).on('value', (snapshot) => {
+            firebase.database().ref('teams/' + this.team).once('value').then((snapshot) => {
                 // alert(JSON.stringify(snapshot.val()))
                 this.teamValue = snapshot.val();
-
-                // Calcul du nombre de ranked
-                Object.keys(snapshot.val().matchs || {}).forEach(id => {
-                    const match = snapshot.val().matchs[id];
-                    this.match += 1;
-                    if (match.GamePlay == 'Ranked') {
-                        this.matchRank += 1;
-                    }
-                    if (match.GamePlay == 'QuickPlay') {
-                        this.matchQuick += 1;
-                    }
-                });
 
                 // Calcul du nombre de Compo
                 Object.keys(snapshot.val().compo || {}).forEach(() => {
                     this.matchCompo += 1;
-                });
-
-                //Calcul de Winrate par Map
-                Object.keys(snapshot.val().matchs || {}).forEach(id => {
-                    const match = snapshot.val().matchs[id];
-                    const map = match.GameMap;
-                    if (map === 'Dorado') {
-                        if (match.GameScoreA > match.GameScoreB) {
-                            this.maps.Dorado.win += 1;
-                        }
-                        this.maps.Dorado.total += 1;
-                    } else if (map === 'Junkertown') {
-                        if (match.GameScoreA > match.GameScoreB) {
-                            this.maps.Junkertown.win += 1;
-                        }
-                        this.maps.Junkertown.total += 1;
-                    } else if (map === 'Eichenwald') {
-                        if (match.GameScoreA > match.GameScoreB) {
-                            this.maps.Eichenwald.win += 1;
-                        }
-                        this.maps.Eichenwald.total += 1;
-                    }
                 });
 
                 // // Ajout Compo Tank
@@ -806,10 +572,24 @@
                 //     this.compoTank.push(tan);
                 // });
 
-                //Calcul de PieDataRank et QuickPlay
+                //Calcul de tout
                 Object.keys(snapshot.val().matchs || {}).forEach(id => {
                     const match = snapshot.val().matchs[id];
+                    this.match += 1;
+
+                    if (!this.gameMap.includes(match.GameMap)) {
+                        this.gameMap.push(match.GameMap);
+                    }
+
                     if (match.GamePlay === 'Ranked') {
+                        // if (match.GameMap in this.gameMap) {
+                        //     let one = 3;
+                        //     one.lenght;
+                        // } else {
+                        //     this.gameMap.push(match.GameMap);
+                        // }
+
+                        this.matchRank += 1;
                         if (match.GameScoreA > match.GameScoreB) {
                             this.vicRank += 1;
                         } else if (match.GameScoreA < match.GameScoreB) {
@@ -819,6 +599,14 @@
                         }
                     }
                     if (match.GamePlay === 'QuickPlay') {
+                        // if (match.GameMap in this.gameMap) {
+                        //     let one = 3;
+                        //     one.lenght;
+                        // } else {
+                        //     this.gameMap.push(match.GameMap);
+                        // }
+
+                        this.matchQuick += 1;
                         if (match.GameScoreA > match.GameScoreB) {
                             this.vicQuick += 1;
                         } else if (match.GameScoreA < match.GameScoreB) {
@@ -863,13 +651,9 @@
                     ['Egalité', snapshot.val().countNullQuickPlay],
                 ];
                 this.favorite = snapshot.child('isFav').val();
+            }).then(() => {
+                this.overlay = false;
             })
-
-            // firebase.database().ref('teams/' + firebase.auth().currentUser.uid + '/' + this.team).on('value',  (snapshot) => {
-            //
-            //     // alert(JSON.stringify(snapshot.val()))
-            //     this.teamName = snapshot.val();
-            // })
         }
     }
 </script>
